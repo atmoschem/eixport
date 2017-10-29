@@ -16,5 +16,17 @@ in different formats and export the to format suitable to other models.
 
 The first case itof this package will be with the model R-Line.
 
-functions: 
-to_rline
+functions:
+
+- to_rline
+
+
+```{r eval=F}
+# 0.0.1.9000
+library(devtools)
+install_github("ibarraespinosa/eixport")
+library(eixport)
+?to_rline
+```
+
+
