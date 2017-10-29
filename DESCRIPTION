@@ -1,14 +1,16 @@
 Package: eixport
 Title: Exporting emissions
-Version: 0.0.0.9000
-Authors@R: c(person(given = "Sergio", family = "Ibarra-Espinosa", 
+Version: 0.0.1.9000
+Authors@R: c(
+  person(given = "Sergio", family = "Ibarra-Espinosa",
         role = c("aut", "cre"),
-     email = "sergio.ibarra@usp.br")) 
+        email = "sergio.ibarra@usp.br",
+        comment = c(ORCID = "0000-0002-3162-1905"))) 
 Description: Export emissions.
 License: MIT + file LICENSE
 URL: https://github.com/ibarraespinosa/eixport
 BugReports: https://github.com/ibarraespinosa/eixport/issues/
 Depends: R (>= 3.4.1)
 Encoding: UTF-8
-LazyData: true
+LazyData: no
 RoxygenNote: 6.0.1
