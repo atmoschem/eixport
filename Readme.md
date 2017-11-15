@@ -1,6 +1,5 @@
 ---
-title: "Eixport"
-date: "8 October 2017"
+title: eixport 
 ---
 
 ## Exporting emissions to other models
@@ -13,7 +12,7 @@ There are several models whose inputs are emissions, such as [R-Line](https://ww
 This R-Package provide functions to read emissions from [VEIN](https://github.com/ibarraespinosa/vein) and also other 
 in different formats and export the to format suitable to other models.
 
-The first case itof this package will be with the model R-Line.
+The first casetof this package will exporting VEIN emissions into the model R-Line.
 
 functions:
 
