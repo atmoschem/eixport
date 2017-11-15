@@ -1,6 +1,5 @@
 ---
 title: "Eixport"
-author: "Sergio Ibarra-Espinosa"
 date: "8 October 2017"
 ---
 
@@ -22,7 +21,7 @@ functions:
 
 
 ```{r eval=F}
-# 0.0.1.9000
+# 0.0.2.9000
 library(devtools)
 install_github("ibarraespinosa/eixport")
 library(eixport)
