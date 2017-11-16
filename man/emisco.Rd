@@ -3,22 +3,34 @@
 \docType{data}
 \name{emisco}
 \alias{emisco}
-\title{Emissions database from vein package (g/ms)}
-\format{An object of class \code{sf} (inherits from \code{data.frame}) with 7205 rows and 182 columns.}
+\title{Emissions fromV EIN demo}
+\format{A data frame with 288 rows and 12 variables:
+\describe{
+  \item{KM_PC_E25}{Mileage in km of Passenger Cars using Gasoline with 25\% Ethanol}
+  \item{KM_PC_E100}{Mileage in km of Passenger Cars using Ethanol 100\%}
+  \item{KM_PC_FLEX}{Mileage in km of Passenger Cars using Flex engines}
+  \item{KM_LCV_E25}{Mileage in km of Light Commercial Vehicles using Gasoline with 25\% Ethanol}
+  \item{KM_LCV_FLEX}{Mileage in km of Light Commercial Vehicles using Flex}
+  \item{KM_PC_B5}{Mileage in km of Passenger Cars using Diesel with 5\% biodiesel}
+  \item{KM_TRUCKS_B5}{Mileage in km of Trucks using Diesel with 5\% biodiesel}
+  \item{KM_BUS_B5}{Mileage in km of Bus using Diesel with 5\% biodiesel}
+  \item{KM_LCV_B5}{Mileage in km of Light Commercial Vehicles using Diesel with 5\% biodiesel}
+  \item{KM_SBUS_B5}{Mileage in km of Small Bus using Diesel with 5\% biodiesel}
+  \item{KM_ATRUCKS_B5}{Mileage in km of Articulated Trucks using Diesel with 5\% biodiesel}
+  \item{KM_MOTO_E25}{Mileage in km of Motorcycles using Gasoline with 25\% Ethanol}
+  \item{KM_LDV_GNV}{Mileage in km of Light Duty Vehicles using Natural Gas}
+}}
+\source{
+\url{http://veicular.cetesb.sp.gov.br/relatorios-e-publicacoes/}
+}
 \usage{
-data(emisco)
+data(fkm)
 }
 \description{
-Emissions data of CO from vein demo. When runingn the demo in the vein
-package, it produces an object called 'net' which includes the emissions
-for 168 hours of CO in g/h. This object was exported to shapefiles and open
-in QGIS to split the line vector by its vertices with the interface with
-GRASS inside QGIS (v.split.vert) and max vert per link = 2.
-Then the emissions were divided by the length of the link in meters and by
-3600 to obtain emissions in g/(ms).
-}
-\details{
-It includes parameters coordinates of initial and final link calculates in
-QGIS
+EDIT!
+Functions from CETESB:
+Antonio de Castro Bruni and Marcelo Pereira Bales. 2013.
+Curvas de intensidade de uso por tipo de veiculo automotor da frota da cidade de Sao Paulo
+This functions depends on the age of use of the vehicle
 }
 \keyword{datasets}

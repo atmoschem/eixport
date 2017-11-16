@@ -1,15 +1,15 @@
 #' Create emission files to the WRF-Chem model
 #'
-#' @description Create an emission file from file wrfinput
+#' @description Create an emission file from wrfinput
 #'
-#' @param wrfinput_dir folder with the wrfinput file
+#' @param wrfinput_dir folder with the wrfinput file(s)
 #' @param wrfchemi_dir output folder
 #' @param domains domain or domains to processed
-#' @param frames_per_auxinput5 value from wrf &time_control namelist, numer of times in a single emission file
-#' @param auxinput5_interval_m value from wrf &time_control namelist, interval in minutes betwen diferent times
+#' @param frames_per_auxinput5 value from wrf &time_control namelist.input, numer of times in a single emission file
+#' @param auxinput5_interval_m value from wrf &time_control namelist.input, interval in minutes betwen diferent times
 #' @param day_offset number of days (can be an fracion) to crate multiple files
-#' @param io_style_emissions from wrf &chem namelist
-#' @param kemit from wrf &chem namelist, numer of levels of the emission file
+#' @param io_style_emissions from wrf &chem namelist.input
+#' @param kemit from wrf &chem namelist.input, numer of levels of the emission file
 #' @param variaveis emission species
 #' @param n_aero number of aerosol species
 #' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for no compression
@@ -25,18 +25,18 @@
 #' # emissions for a 1 day forecast for domains 1 and 2
 #' # the folder WRF_input has to contain wrfinput_d01 and wrfinput_d02
 #'
-#' wrf_emisson(wrfinput_dir = "WRF_INPUT",
-#'             wrfchemi_dir = "EMISS",
-#'             domains      = 1:2,
+#' wrf_emisson(wrfinput_dir         = "WRF_INPUT",
+#'             wrfchemi_dir         = "EMISS",
+#'             domains              = 1:2,
 #'             frames_per_auxinput5 = 24,
 #'             auxinput5_interval_m = 60,
 #'             day_offset           = 0)
 #'
-#' # emission the the last timestep
+#' # emission for the last timestep
 #'
-#' wrf_emisson(wrfinput_dir = "WRF_INPUT",
-#'             wrfchemi_dir = "EMISS",
-#'             domains      = 1:2,
+#' wrf_emisson(wrfinput_dir         = "WRF_INPUT",
+#'             wrfchemi_dir         = "EMISS",
+#'             domains              = 1:2,
 #'             frames_per_auxinput5 = 1,
 #'             auxinput5_interval_m = 60,
 #'             day_offset           = 1)
