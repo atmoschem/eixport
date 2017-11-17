@@ -52,9 +52,10 @@ works only with io_style_emissions = 2
 # Do not run
 
 # emissions for a 1 day forecast for domains 1 and 2
-# the folder WRF_input has to contain wrfinput_d01 and wrfinput_d02
 
-wrf_emisson(wrfinput_dir         = "WRF_INPUT",
+dir.create("EMISS")
+
+wrf_emisson(wrfinput_dir         = system.file("extdata", package = "eixport"),
             wrfchemi_dir         = "EMISS",
             domains              = 1:2,
             frames_per_auxinput5 = 24,
@@ -63,7 +64,7 @@ wrf_emisson(wrfinput_dir         = "WRF_INPUT",
 
 # emission for the last timestep
 
-wrf_emisson(wrfinput_dir         = "WRF_INPUT",
+wrf_emisson(wrfinput_dir         = system.file("extdata", package = "eixport"),
             wrfchemi_dir         = "EMISS",
             domains              = 1:2,
             frames_per_auxinput5 = 1,
