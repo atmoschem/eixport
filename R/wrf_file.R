@@ -35,7 +35,8 @@
 #'             domains              = 1:2,
 #'             frames_per_auxinput5 = 24,
 #'             auxinput5_interval_m = 60,
-#'             day_offset           = 0)
+#'             day_offset           = 0,
+#'             verbose              = T)
 #'
 #' # emission for the last timestep
 #'
@@ -44,7 +45,8 @@
 #'             domains              = 1:2,
 #'             frames_per_auxinput5 = 1,
 #'             auxinput5_interval_m = 60,
-#'             day_offset           = 1)
+#'             day_offset           = 1,
+#'             verbose              = T)
 #'}
 
 wrf_emisson <- function(wrfinput_dir         = "",
