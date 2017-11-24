@@ -23,7 +23,7 @@ functions:
 
 
 ```{r eval=F}
-# 0.2.0.0000
+# 0.2.5.0000
 library(devtools)
 install_github("ibarraespinosa/eixport")
 library(eixport)

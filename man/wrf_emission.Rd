@@ -8,7 +8,7 @@ wrf_emission(x, file = file.choose(), total = NA, profile = 1,
   names = NA, weights = 1)
 }
 \arguments{
-\item{x}{matrix of emissions of spacial weights}
+\item{x}{matrix or array of emissions of spacial weights}
 
 \item{file}{emission file name}
 
@@ -21,15 +21,15 @@ wrf_emission(x, file = file.choose(), total = NA, profile = 1,
 \item{weights}{weight of eath specie}
 }
 \description{
-Function to espand, split and write emissions. The input is expand into
-time by profile and split betwen variables with diferent weights.
+Function to expand, split and write emissions. The input is expand into
+time by profile and split between variables with diferent weights.
 }
 \note{
 length(profile) must be the number of times in the emission
 file (value of frames_per_auxinput5 if wrf_create() was used to
 create this file).
 
-total is a aditional way to calcule or correct the total emissions
+total is a additional way to calculate or correct the total emissions
 
 sum(profile) = 1 and sum(weights) = 1 to conserve mass
 

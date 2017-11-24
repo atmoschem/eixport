@@ -2,12 +2,12 @@
 % Please edit documentation in R/wrf_put.R
 \name{wrf_put}
 \alias{wrf_put}
-\title{Funtion to write variables in emission files}
+\title{Function to write variables in emission files}
 \usage{
 wrf_put(file = file.choose(), name = NA, POL)
 }
 \arguments{
-\item{file}{name of file interactively (defoult) or specified}
+\item{file}{name of file interactively (default) or specified}
 
 \item{name}{name of the variable (any variable)}
 

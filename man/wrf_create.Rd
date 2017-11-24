@@ -12,24 +12,24 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
   "E_HC3", "E_HC5", "E_HC8", "E_KET", "E_ORA2", "E_CSL", "E_TERP", "E_PM25I",
   "E_PM25J", "E_ECI", "E_ECJ", "E_ORGI", "E_ORGJ", "E_SO4I", "E_SO4J", "E_NO3J",
   "E_NO3I", "E_SO4C", "E_NO3C", "E_ORGC", "E_ECC", "E_PM10"), n_aero = 15,
-  COMPRESS = NA, verbose = FALSE, force_ncdf4 = FALSE)
+  COMPRESS = NA, force_ncdf4 = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{wrfinput_dir}{folder with the wrfinput file(s)}
 
 \item{wrfchemi_dir}{output folder}
 
-\item{domains}{domain or domains to processed}
+\item{domains}{domain or domains to process}
 
-\item{frames_per_auxinput5}{value from wrf &time_control namelist.input, numer of times in a single emission file}
+\item{frames_per_auxinput5}{value from wrf &time_control namelist.input, number of times in a single emission file}
 
-\item{auxinput5_interval_m}{value from wrf &time_control namelist.input, interval in minutes betwen diferent times}
+\item{auxinput5_interval_m}{value from wrf &time_control namelist.input, interval in minutes between different times}
 
-\item{day_offset}{number of days (can be an fracion) to crate multiple files}
+\item{day_offset}{number of days (can be a fracion) to create multiple files}
 
 \item{io_style_emissions}{from wrf &chem namelist.input}
 
-\item{kemit}{from wrf &chem namelist.input, numer of levels of the emission file}
+\item{kemit}{from wrf &chem namelist.input, number of levels of the emission file}
 
 \item{variaveis}{emission species, can be used data(emis_opt)}
 
@@ -37,15 +37,15 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
 
 \item{COMPRESS}{integer between 1 (least compr) and 9 (most compr) or NA for no compression}
 
-\item{verbose}{print file info}
-
 \item{force_ncdf4}{force NetCDF4 format}
+
+\item{verbose}{print file info}
 }
 \description{
 Create an emission file from wrfinput
 }
 \note{
-works only with io_style_emissions = 2
+to use io_style_emissions = 1, use day_offset increased by 0.5 (to increase 12h)
 
 Windowns users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'

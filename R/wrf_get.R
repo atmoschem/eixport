@@ -1,8 +1,8 @@
-#' Funtion to read variables of emission files
+#' Function to read variables of emission files
 #'
 #' @description Write variable
 #'
-#' @param file name of file interactively (defoult) or specified
+#' @param file name of file interactively (default) or specified
 #' @param name name of the variable (any variable)
 #'
 #' @export

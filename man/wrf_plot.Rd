@@ -10,7 +10,7 @@ wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
 \arguments{
 \item{file}{emission file name}
 
-\item{name}{polutant name}
+\item{name}{pollutant name}
 
 \item{time}{time from emission file}
 
@@ -25,13 +25,13 @@ wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
 \item{...}{Arguments to be passed to plot methods}
 }
 \description{
-Create an quick plot from wrf emission file
+Create a quick plot from wrf emission file
 }
 \note{
 If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 time with control the level which will be ploted
 
-In case of a error related to plot.new() margins lbarra must be ajusted
+In case of a error related to plot.new() margins lbarra must be adjusted
 }
 \examples{
 \dontrun{

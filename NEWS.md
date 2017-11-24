@@ -1,3 +1,8 @@
+## eixport v0.2.5.0000 (Release date: 25 November 2017)
+- some fixes
+- add the _style_emissions = 1 to wrf_create
+- add the internal kemit to the wrf_emission function
+
 ## eixport v0.2.0.0000 (Release date: 25 November 2017)
 - new funtions plot wrf emission
 

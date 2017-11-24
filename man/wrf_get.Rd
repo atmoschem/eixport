@@ -2,12 +2,12 @@
 % Please edit documentation in R/wrf_get.R
 \name{wrf_get}
 \alias{wrf_get}
-\title{Funtion to read variables of emission files}
+\title{Function to read variables of emission files}
 \usage{
 wrf_get(file = file.choose(), name = NA)
 }
 \arguments{
-\item{file}{name of file interactively (defoult) or specified}
+\item{file}{name of file interactively (default) or specified}
 
 \item{name}{name of the variable (any variable)}
 }

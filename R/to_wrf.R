@@ -1,9 +1,9 @@
 #' Combine total/spacial/temporal/split and write emission to file
 #'
-#' @description Function to espand, split and write emissions. The input is expand into
-#' time by profile and split betwen variables with diferent weights.
+#' @description Function to expand, split and write emissions. The input is expand into
+#' time by profile and split between variables with diferent weights.
 #'
-#' @param x matrix of emissions of spacial weights
+#' @param x matrix or array of emissions of spacial weights
 #' @param file emission file name
 #' @param total total of emited specie
 #' @param profile temporal profile to expand the emissions
@@ -14,7 +14,7 @@
 #' file (value of frames_per_auxinput5 if wrf_create() was used to
 #' create this file).
 #'
-#' @note total is a aditional way to calcule or correct the total emissions
+#' @note total is a additional way to calculate or correct the total emissions
 #'
 #' @note sum(profile) = 1 and sum(weights) = 1 to conserve mass
 #'
@@ -55,11 +55,24 @@
 
 
 wrf_emission <- function(x,file = file.choose(),total = NA,profile = 1,names = NA,weights = 1){
+  if(is.matrix(x)){
+    kemit <- 1
+  }else{
+    kemit <- dim(x)[3]
+  }
   wrf          <- nc_open(file)
   g_atributos  <- ncatt_get(wrf,0)
-  VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
-                            g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
-                            length(profile)))
+  if(kemit == 1){
+    VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
+                              g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
+                              length(profile)))
+  }else{
+    VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
+                              g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
+                              kenit,
+                              length(profile)))
+  }
+
   nc_close(wrf)
 
   if(!is.na(total))
@@ -67,7 +80,11 @@ wrf_emission <- function(x,file = file.choose(),total = NA,profile = 1,names = N
 
   for(i in 1:length(names)){
     for(j in 1:length(profile)){
-      VAR[,,j] = profile[j] * x
+      if(kemit ==1){
+        VAR[,,j] = profile[j] * x
+      }else{
+        VAR[,,,j] = profile[j] * x
+      }
     }
     wrf_put(file,name = names[i],weights[i]*VAR)
   }

@@ -3,7 +3,7 @@
 \docType{data}
 \name{emis_opt}
 \alias{emis_opt}
-\title{Emission names}
+\title{List of WRF emission species}
 \format{A list of emision variables names, same number than emis_opt in namelist.}
 \source{
 \url{http://www2.mmm.ucar.edu/wrf/users/download/get_source.html}

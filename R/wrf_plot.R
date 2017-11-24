@@ -1,9 +1,9 @@
 #' Simple plot
 #'
-#' @description Create an quick plot from wrf emission file
+#' @description Create a quick plot from wrf emission file
 #'
 #' @param file emission file name
-#' @param name polutant name
+#' @param name pollutant name
 #' @param time time from emission file
 #' @param nivel level from the emission file
 #' @param barra barblot if TRUE
@@ -14,7 +14,7 @@
 #' @note If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 #' time with control the level which will be ploted
 #'
-#' @note In case of a error related to plot.new() margins lbarra must be ajusted
+#' @note In case of a error related to plot.new() margins lbarra must be adjusted
 #'
 #' @author Daniel Schuch
 #'
@@ -140,19 +140,22 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
     title(titulo)
   }
 
-  old.par <- par(mar = c(0, 0, 0, 0))
 
-  layout(matrix(c(1,2),ncol = 2,nrow = 1,byrow = T),widths = c(1,lbarra))
-  par(mar=c(3.5,3.5,3,0))
+  if(barra){
+    old.par <- par(mar = c(0, 0, 0, 0))
+    layout(matrix(c(1,2),ncol = 2,nrow = 1,byrow = T),widths = c(1,lbarra))
+    par(mar=c(3.5,3.5,3,0))
+  }
   filled.contour2(x,y,POL)
   grid()
-  mtext(Times[time],3,line = 0.8)
+  mtext(paste("WRF-Chem emissions - Time:",Times[time]),3,line = 0.8)
   mtext("Latitude", 2,line = 2.2,cex = 1.2,las=0)
   mtext("Longitude",1,line = 2.2,cex = 1.2)
-  par(mar=c(3.5,2,3,3))
-  barras(POL)
-  mtext(paste("WRF-Chem emissions - Time:",name),3, line = 0.8)
-
-  par(old.par)
-  par(mfrow=c(1,1))
+  if(barra){
+    par(mar=c(3.5,2,3,3))
+    barras(POL)
+    mtext(name,3, line = 0.8)
+    par(old.par)
+    par(mfrow=c(1,1))
+  }
 }

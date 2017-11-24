@@ -1,4 +1,4 @@
-#' Emission names
+#' List of WRF emission species
 #'
 #' @description  Emission package definitions from WRF 3.9.1.1
 #'

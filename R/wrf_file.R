@@ -4,18 +4,18 @@
 #'
 #' @param wrfinput_dir folder with the wrfinput file(s)
 #' @param wrfchemi_dir output folder
-#' @param domains domain or domains to processed
-#' @param frames_per_auxinput5 value from wrf &time_control namelist.input, numer of times in a single emission file
-#' @param auxinput5_interval_m value from wrf &time_control namelist.input, interval in minutes betwen diferent times
-#' @param day_offset number of days (can be an fracion) to crate multiple files
+#' @param domains domain or domains to process
+#' @param frames_per_auxinput5 value from wrf &time_control namelist.input, number of times in a single emission file
+#' @param auxinput5_interval_m value from wrf &time_control namelist.input, interval in minutes between different times
+#' @param day_offset number of days (can be a fracion) to create multiple files
 #' @param io_style_emissions from wrf &chem namelist.input
-#' @param kemit from wrf &chem namelist.input, numer of levels of the emission file
+#' @param kemit from wrf &chem namelist.input, number of levels of the emission file
 #' @param variaveis emission species, can be used data(emis_opt)
 #' @param n_aero number of aerosol species
 #' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for no compression
-#' @param verbose print file info
 #' @param force_ncdf4 force NetCDF4 format
-#' @note works only with io_style_emissions = 2
+#' @param verbose print file info
+#' @note to use io_style_emissions = 1, use day_offset increased by 0.5 (to increase 12h)
 #'
 #' @note Windowns users need to rename the emission files
 #' from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
@@ -69,8 +69,8 @@ wrf_create  <- function(wrfinput_dir         = "",
                                       "E_ORGC","E_ECC","E_PM10"),
                         n_aero               = 15,
                         COMPRESS             = NA,
-                        verbose              = FALSE,
-                        force_ncdf4          = FALSE)
+                        force_ncdf4          = FALSE,
+                        verbose              = FALSE)
 {
   a <- Sys.info()["sysname"]
   if(a[[1]] == "Windows") linux = F else linux = T # to avoid special chacacteres in the filename
@@ -91,10 +91,15 @@ wrf_create  <- function(wrfinput_dir         = "",
     minuto       <- paste(formatC(minuto,  width = 2, format = "d", flag = "0"))
     segundo      <- paste(formatC(segundo, width = 2, format = "d", flag = "0"))
 
-    # future work
-    # if(io_style_emissions == 1){
-    #   frames_per_auxinput5 <- 12
-    # }
+    if(io_style_emissions == 1){
+      frames_per_auxinput5 <- 12
+      if(is.integer(day_offset)){
+        h                   <- "00z"
+      }else{
+        h                   <- "12z"
+      }
+      file_name            <- paste(wrfchemi_dir,"/wrfchemi_",h,"_","d0",domain,sep="")
+    }
     if(io_style_emissions ==2){
       if(linux){
         file_name         <- paste(wrfchemi_dir,"/wrfchemi_d0",domain,"_",format(date,"%Y-%m-%d"),"_",hora,":",minuto,":",segundo,sep="")
