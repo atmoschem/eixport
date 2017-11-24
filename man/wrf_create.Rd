@@ -31,7 +31,7 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
 
 \item{kemit}{from wrf &chem namelist.input, numer of levels of the emission file}
 
-\item{variaveis}{emission species}
+\item{variaveis}{emission species, can be used data(emis_opt)}
 
 \item{n_aero}{number of aerosol species}
 
@@ -79,7 +79,7 @@ wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 }
 }
 \seealso{
-\code{\link{wrf_emission}}
+\code{\link{wrf_emission}} and \code{\link{emis_opt}}
 }
 \author{
 Daniel Schuch

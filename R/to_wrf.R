@@ -24,7 +24,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_create}} and \code{\link{wrf_get}}
+#' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}} and \code{\link{wrf_plot}}
 #'
 #' @examples \dontrun{
 #' # Do not run

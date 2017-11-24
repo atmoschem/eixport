@@ -64,7 +64,7 @@ wrf_emission(CO,files[1],profile = perfil,names = "E_CO")
 }
 }
 \seealso{
-\code{\link{wrf_create}} and \code{\link{wrf_get}}
+\code{\link{wrf_create}}, \code{\link{wrf_get}} and \code{\link{wrf_plot}}
 }
 \author{
 Daniel Schuch

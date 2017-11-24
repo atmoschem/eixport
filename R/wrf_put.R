@@ -10,7 +10,7 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @seealso wrf_plot and \code{\link{wrf_get}}
+#' @seealso \code{\link{wrf_plot}} and \code{\link{wrf_get}}
 #'
 #' @examples \dontrun{
 #' # Do not run
@@ -18,7 +18,7 @@
 #' # create the folder and emission file
 #'dir.create("EMISS")
 #'wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'            rfchemi_dir = "EMISS")
+#'           wrfchemi_dir = "EMISS")
 #'
 #'# get the name of created file
 #'files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)

@@ -17,12 +17,13 @@ functions:
 - to_rline: Export emissions to other formats
 - wrf_create:	Create emission files to the WRF-Chem
 - wrf_emission:	Combine total/spacial/temporal/split and write emission to file
+- wrf_plot: simple plot for emissions
 - wrf_get:	Funtions to read variables of emission files
 - wrf_put:	Funtions to write variables in emission files
 
 
 ```{r eval=F}
-# 0.1.0.0000
+# 0.2.0.0000
 library(devtools)
 install_github("ibarraespinosa/eixport")
 library(eixport)

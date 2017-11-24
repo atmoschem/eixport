@@ -23,7 +23,7 @@ Extract variable
 # create the folder and emission file
 dir.create("EMISS")
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-           rfchemi_dir = "EMISS")
+          wrfchemi_dir = "EMISS")
 
 # get the name of created file
 files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
@@ -35,7 +35,7 @@ wrf_put(file = files[1],name = "E_CO",POL = CO)
 }
 }
 \seealso{
-wrf_plot and \code{\link{wrf_get}}
+\code{\link{wrf_plot}} and \code{\link{wrf_get}}
 }
 \author{
 Daniel Schuch

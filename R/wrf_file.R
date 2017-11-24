@@ -10,7 +10,7 @@
 #' @param day_offset number of days (can be an fracion) to crate multiple files
 #' @param io_style_emissions from wrf &chem namelist.input
 #' @param kemit from wrf &chem namelist.input, numer of levels of the emission file
-#' @param variaveis emission species
+#' @param variaveis emission species, can be used data(emis_opt)
 #' @param n_aero number of aerosol species
 #' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for no compression
 #' @param verbose print file info
@@ -25,7 +25,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_emission}}
+#' @seealso \code{\link{wrf_emission}} and \code{\link{emis_opt}}
 #'
 #' @examples \dontrun{
 #' # Do not run

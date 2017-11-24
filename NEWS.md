@@ -1,4 +1,7 @@
-## eixport v0.1.0.0000 (Release date: 24 December 2017)
+## eixport v0.2.0.0000 (Release date: 25 November 2017)
+- new funtions plot wrf emission
+
+## eixport v0.1.0.0000 (Release date: 24 November 2017)
 - new set to funtions to work with WRF-chem emissions
 
 ## vein v0.0.1.9000 (Release date: 29 October 2017)
