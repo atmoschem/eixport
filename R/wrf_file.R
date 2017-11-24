@@ -1,4 +1,4 @@
-#' Create emission files to the WRF-Chem model
+#' Create emission files to the WRF-Chem
 #'
 #' @description Create an emission file from wrfinput
 #'
@@ -21,7 +21,11 @@
 #' from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
 #' before run wrf.exe with these files
 #'
+#' @author Daniel Schuch
+#'
 #' @export
+#'
+#' @seealso \code{\link{wrf_emission}}
 #'
 #' @examples \dontrun{
 #' # Do not run
@@ -30,26 +34,26 @@
 #'
 #' dir.create("EMISS")
 #'
-#' wrf_emisson(wrfinput_dir         = system.file("extdata", package = "eixport"),
-#'             wrfchemi_dir         = "EMISS",
-#'             domains              = 1:2,
-#'             frames_per_auxinput5 = 24,
-#'             auxinput5_interval_m = 60,
-#'             day_offset           = 0,
-#'             verbose              = T)
+#' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
+#'            wrfchemi_dir         = "EMISS",
+#'            domains              = 1:2,
+#'            frames_per_auxinput5 = 24,
+#'            auxinput5_interval_m = 60,
+#'            day_offset           = 0,
+#'            verbose              = T)
 #'
 #' # emission for the last timestep
 #'
-#' wrf_emisson(wrfinput_dir         = system.file("extdata", package = "eixport"),
-#'             wrfchemi_dir         = "EMISS",
-#'             domains              = 1:2,
-#'             frames_per_auxinput5 = 1,
-#'             auxinput5_interval_m = 60,
-#'             day_offset           = 1,
-#'             verbose              = T)
+#' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
+#'            wrfchemi_dir         = "EMISS",
+#'            domains              = 1:2,
+#'            frames_per_auxinput5 = 1,
+#'            auxinput5_interval_m = 60,
+#'            day_offset           = 1,
+#'            verbose              = T)
 #'}
 
-wrf_emisson <- function(wrfinput_dir         = "",
+wrf_create  <- function(wrfinput_dir         = "",
                         wrfchemi_dir         = "",
                         domains              = 1,
                         frames_per_auxinput5 = 1,

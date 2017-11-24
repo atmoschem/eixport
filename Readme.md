@@ -14,7 +14,11 @@ The first casetof this package will exporting VEIN emissions into the model R-Li
 
 functions:
 
-- to_rline
+- to_rline: Export emissions to other formats
+- wrf_create:	Create emission files to the WRF-Chem
+- wrf_emission:	Combine total/spacial/temporal/split and write emission to file
+- wrf_get:	Funtions to extract variables of emission files
+- wrf_put:	Funtions to write variables in emission files
 
 
 ```{r eval=F}
@@ -22,7 +26,7 @@ functions:
 library(devtools)
 install_github("ibarraespinosa/eixport")
 library(eixport)
-?to_rline
+?wrf_emission
 ```
 
 

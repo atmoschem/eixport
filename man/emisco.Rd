@@ -3,7 +3,7 @@
 \docType{data}
 \name{emisco}
 \alias{emisco}
-\title{Emissions fromV EIN demo}
+\title{Emissions from VEIN demo}
 \format{A data frame with 288 rows and 12 variables:
 \describe{
   \item{KM_PC_E25}{Mileage in km of Passenger Cars using Gasoline with 25\% Ethanol}
@@ -27,7 +27,6 @@
 data(fkm)
 }
 \description{
-EDIT!
 Functions from CETESB:
 Antonio de Castro Bruni and Marcelo Pereira Bales. 2013.
 Curvas de intensidade de uso por tipo de veiculo automotor da frota da cidade de Sao Paulo
