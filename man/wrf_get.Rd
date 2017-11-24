@@ -2,7 +2,7 @@
 % Please edit documentation in R/wrf_get.R
 \name{wrf_get}
 \alias{wrf_get}
-\title{Funtion to extract variables of emission files}
+\title{Funtion to read variables of emission files}
 \usage{
 wrf_get(file = file.choose(), name = NA)
 }

@@ -1,4 +1,4 @@
-#' Funtion to extract variables of emission files
+#' Funtion to read variables of emission files
 #'
 #' @description Write variable
 #'
