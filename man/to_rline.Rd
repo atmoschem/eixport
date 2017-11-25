@@ -4,12 +4,10 @@
 \alias{to_rline}
 \title{Export emissions to other formats}
 \usage{
-to_rline(x, X_b, Y_b, Z_b, X_e, Y_e, Z_e, dCL, sigmaz0, lanes, Emis, Hw1, dw1,
-  Hw2, dw2, Depth, Wtop, Wbottom, experimental = FALSE)
+to_rline(X_b, Y_b, Z_b, X_e, Y_e, Z_e, dCL, sigmaz0, lanes, Emis, Hw1, dw1, Hw2,
+  dw2, Depth, Wtop, Wbottom, experimental = FALSE)
 }
 \arguments{
-\item{x}{Emissions object as spatial feature sf.}
-
 \item{X_b}{initial x coordinates.}
 
 \item{Y_b}{initial y coordinates.}
@@ -46,6 +44,8 @@ to_rline(x, X_b, Y_b, Z_b, X_e, Y_e, Z_e, dCL, sigmaz0, lanes, Emis, Hw1, dw1,
 
 \item{experimental}{Boolean argument to denotes the use of the experimental
 features (TRUE) or not (FALSE).}
+
+\item{x}{Emissions object as spatial feature sf.}
 }
 \value{
 Data-frame file with format for R-LINE model.

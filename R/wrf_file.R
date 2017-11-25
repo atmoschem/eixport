@@ -21,7 +21,7 @@
 #' from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
 #' before run wrf.exe with these files
 #'
-#' @author Daniel Schuch
+#' @author Daniel Schuch EMAIL:
 #'
 #' @export
 #'
