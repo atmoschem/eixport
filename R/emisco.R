@@ -1,6 +1,5 @@
-#' Emissions fromV EIN demo
+#' Emissions from VEIN demo
 #'
-#' EDIT!
 #' Functions from CETESB:
 #' Antonio de Castro Bruni and Marcelo Pereira Bales. 2013.
 #' Curvas de intensidade de uso por tipo de veiculo automotor da frota da cidade de Sao Paulo

@@ -1,6 +1,6 @@
 Package: eixport
 Title: Exporting emissions
-Version: 0.0.2.9000
+Version: 0.2.5
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -10,8 +10,9 @@ Authors@R: c(
   person(given = "Daniel",
          family = "Schuch",
          role = c("aut"),
-         email = "underschuch@gmail.com")
-        ) 
+         email = "underschuch@gmail.com",
+         comment = c(ORCID = "0000-0001-5977-4519"))
+  ) 
 Description: Export emissions.
 License: MIT + file LICENSE
 URL: https://github.com/ibarraespinosa/eixport

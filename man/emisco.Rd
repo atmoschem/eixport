@@ -3,7 +3,11 @@
 \docType{data}
 \name{emisco}
 \alias{emisco}
+<<<<<<< HEAD
 \title{Emissions fromV EIN demo}
+=======
+\title{Emissions from VEIN demo}
+>>>>>>> 6a873815dc5af3d23138044858d2a4ef2d5f5c19
 \format{A data frame with 288 rows and 12 variables:
 \describe{
   \item{KM_PC_E25}{Mileage in km of Passenger Cars using Gasoline with 25\% Ethanol}
@@ -27,7 +31,10 @@
 data(fkm)
 }
 \description{
+<<<<<<< HEAD
 EDIT!
+=======
+>>>>>>> 6a873815dc5af3d23138044858d2a4ef2d5f5c19
 Functions from CETESB:
 Antonio de Castro Bruni and Marcelo Pereira Bales. 2013.
 Curvas de intensidade de uso por tipo de veiculo automotor da frota da cidade de Sao Paulo
