@@ -51,7 +51,7 @@ files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
 # open, put some numbers and write
 CO <- wrf_get(file = files[1],name = "E_CO")
 CO <- CO[,,1]
-CO[] = rnorm(length(CO))
+CO[] = abs(rnorm(length(CO)))
 
 perfil <- c(0.010760058, 0.005280596, 0.002883553, 0.002666932,
            0.005781312, 0.018412838, 0.051900411, 0.077834636,
