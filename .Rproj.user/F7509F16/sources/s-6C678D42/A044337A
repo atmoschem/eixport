@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1511492570387.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A044337A",
+    "lastKnownWriteTime" : 1511547871,
+    "last_content_update" : 1511547871481,
+    "path" : "C:/Users/Schuch/eixport/eixport/R/to_wrf.R",
+    "project_path" : "R/to_wrf.R",
+    "properties" : {
+        "cursorPosition" : "16,47",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

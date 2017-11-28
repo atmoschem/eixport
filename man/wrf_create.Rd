@@ -79,7 +79,7 @@ wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 }
 }
 \seealso{
-\code{\link{wrf_emission}} and \code{\link{emis_opt}}
+\code{\link{to_wrf}} and \code{\link{emis_opt}}
 }
 \author{
 Daniel Schuch EMAIL:

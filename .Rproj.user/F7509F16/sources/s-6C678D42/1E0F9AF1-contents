@@ -17,7 +17,7 @@
 #' @note
 #' look to the number of aerosol of the emis_opt in wrf domumentation / code.
 #'
-#' @seealso \code{\link{to_wrf}}
+#' @seealso \code{\link{wrf_emission}}
 #'
 #' @author Daniel Schuch
 #'

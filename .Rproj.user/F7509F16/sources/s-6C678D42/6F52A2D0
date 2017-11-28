@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1511493437110.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6F52A2D0",
+    "lastKnownWriteTime" : 1511548139,
+    "last_content_update" : 1511548139568,
+    "path" : "C:/Users/Schuch/eixport/eixport/R/wrf_get.R",
+    "project_path" : "R/wrf_get.R",
+    "properties" : {
+        "cursorPosition" : "0,7",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

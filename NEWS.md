@@ -1,3 +1,6 @@
+## eixport v0.2.6 (Release date: 24 November 2017)
+- Adding Lights data
+
 ## eixport v0.2.5 (Release date: 24 November 2017)
 - Adding to_smoke and to_cmaq initial functions
 

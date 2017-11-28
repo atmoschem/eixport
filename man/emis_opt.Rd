@@ -30,7 +30,7 @@ wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
 
 }
 \seealso{
-\code{\link{wrf_emission}}
+\code{\link{to_wrf}}
 }
 \author{
 Daniel Schuch
