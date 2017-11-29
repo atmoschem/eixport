@@ -82,5 +82,5 @@ wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 \code{\link{to_wrf}} and \code{\link{emis_opt}}
 }
 \author{
-Daniel Schuch EMAIL:
+Daniel Schuch
 }

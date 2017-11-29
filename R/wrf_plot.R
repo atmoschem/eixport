@@ -1,4 +1,4 @@
-#' Simple plot
+#' Simple plot from wrf emission file
 #'
 #' @description Create a quick plot from wrf emission file
 #'
