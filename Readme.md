@@ -19,7 +19,7 @@ functions:
 - to_smoke: Creating input text foles for running SMOKE
 - to_cmaq: Creating netcdf for running CMAQ
 - to_wrf:	Combine total/spacial/temporal/split and write emission to file
-- wrf_temporal: create hourly temporal profile to wrf
+- wrf_temporal: Traffic intensity profile for WRF-Chem
 - wrf_create:	Create emission files to the WRF-Chem
 - wrf_plot: simple plot for emissions
 - wrf_get:	Funtions to read variables of emission files

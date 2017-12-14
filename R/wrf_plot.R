@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_get}} and \code{\link{emis_create}}
+#' @seealso \code{\link{wrf_get}} and \code{\link{wrf_create}}
 #'
 #' @examples \dontrun{
 #' # Do not run

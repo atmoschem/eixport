@@ -49,7 +49,7 @@ wrf_plot(files[1],"E_CO")
 }
 }
 \seealso{
-\code{\link{wrf_get}} and \code{\link{emis_create}}
+\code{\link{wrf_get}} and \code{\link{wrf_create}}
 }
 \author{
 Daniel Schuch
