@@ -6,6 +6,7 @@
 #' @param x matrix or array of emissions of spacial weights
 #' @param file emission file name
 #' @param total total of emited specie
+#' @param norm if the spacial weights need to be normalized
 #' @param profile temporal profile to expand the emissions
 #' @param names species to be write
 #' @param weights weight of eath specie
@@ -24,7 +25,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}} and \code{\link{wrf_plot}}
+#' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 #'
 #' @examples \dontrun{
 #' # Do not run
@@ -55,7 +56,7 @@
 #'}
 
 
-to_wrf <- function(x,file = file.choose(),total = NA,profile = 1,names = NA,weights = 1){
+to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names = NA,weights = 1){
   if(is.matrix(x)){
     kemit <- 1
   }else{
@@ -76,8 +77,11 @@ to_wrf <- function(x,file = file.choose(),total = NA,profile = 1,names = NA,weig
 
   nc_close(wrf)
 
+  if(norm)
+    x <- x / sum(x)
+
   if(!is.na(total))
-    x <- total * x / sum(x)
+    x <- total * x
 
   for(i in 1:length(names)){
     for(j in 1:length(profile)){

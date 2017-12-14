@@ -8,17 +8,14 @@
 wrf_profile(x, file, verbose = T)
 }
 \arguments{
-\item{x}{data.frame of intenticy of trafic by hours (rows) and weekdays (columns)}
+\item{x}{data.frame of intenticy of traffic by hours (rows) and weekdays (columns)}
 
 \item{file}{emission file name}
 
 \item{verbose}{display adicional information}
 }
 \description{
-returns a traffic intensity profile (based on a wrf file date) and a traffic intensity data.frame
-}
-\note{
-this functin depends on weekday names in order to work
+returns a traffic intensity profile (based on wrf file Times) and a traffic intensity data.frame
 }
 \examples{
 \dontrun{
@@ -58,6 +55,8 @@ row.names(raw.profile) <- c("00:00","01:00","02:00","03:00","04:00","05:00",
                             "12:00","13:00","14:00","15:00","16:00","17:00",
                             "18:00","19:00","20:00","21:00","22:00","23:00")
 
+print(raw.profile)
+
 # create the folder and emission file
 dir.create("EMISS")
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
@@ -66,11 +65,9 @@ wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
 
 files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
 
-print(raw.profile)
-
 profile <- wrf_profile(raw.profile,files[1])
 
-plot(profile,ty="l",lty = 2,axe=F,main = "Trafic Intencity for Sao Paulo",xlab = "hour")
+plot(profile,ty="l",lty = 2,axe=F,main = "Traffic Intensity for Sao Paulo",xlab = "hour")
 axis(2)
 axis(1,at=0.5+c(0,6,12,18,24),labels = c("00:00","06:00","12:00","18:00","00:00"))
 }

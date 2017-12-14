@@ -4,8 +4,8 @@
 \alias{to_wrf}
 \title{Combine total/spacial/temporal/split and write emission to file}
 \usage{
-to_wrf(x, file = file.choose(), total = NA, profile = 1, names = NA,
-  weights = 1)
+to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
+  names = NA, weights = 1)
 }
 \arguments{
 \item{x}{matrix or array of emissions of spacial weights}
@@ -13,6 +13,8 @@ to_wrf(x, file = file.choose(), total = NA, profile = 1, names = NA,
 \item{file}{emission file name}
 
 \item{total}{total of emited specie}
+
+\item{norm}{if the spacial weights need to be normalized}
 
 \item{profile}{temporal profile to expand the emissions}
 
@@ -65,7 +67,7 @@ to_wrf(Lights,files[1],total = 1521983,profile = perfil,names = "E_CO")
 }
 }
 \seealso{
-\code{\link{wrf_create}}, \code{\link{wrf_get}} and \code{\link{wrf_plot}}
+\code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 }
 \author{
 Daniel Schuch
