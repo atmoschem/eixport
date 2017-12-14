@@ -1,12 +1,10 @@
 #' Traffic intensity profile for WRF
 #'
-#' @description returns a traffic intensity profile (based on a wrf file date) and a traffic intensity data.frame
+#' @description returns a traffic intensity profile (based on wrf file Times) and a traffic intensity data.frame
 #'
-#' @param x data.frame of intenticy of trafic by hours (rows) and weekdays (columns)
+#' @param x data.frame of intenticy of traffic by hours (rows) and weekdays (columns)
 #' @param file emission file name
 #' @param verbose display adicional information
-#'
-#' @note this functin depends on weekday names in order to work
 #'
 #' @format a numeric vector
 #'
@@ -53,6 +51,8 @@
 #'                             "12:00","13:00","14:00","15:00","16:00","17:00",
 #'                             "18:00","19:00","20:00","21:00","22:00","23:00")
 #'
+#' print(raw.profile)
+#'
 #' # create the folder and emission file
 #' dir.create("EMISS")
 #' wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
@@ -61,11 +61,9 @@
 #'
 #' files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
 #'
-#' print(raw.profile)
-#'
 #' profile <- wrf_profile(raw.profile,files[1])
 #'
-#' plot(profile,ty="l",lty = 2,axe=F,main = "Trafic Intencity for Sao Paulo",xlab = "hour")
+#' plot(profile,ty="l",lty = 2,axe=F,main = "Traffic Intensity for Sao Paulo",xlab = "hour")
 #' axis(2)
 #' axis(1,at=0.5+c(0,6,12,18,24),labels = c("00:00","06:00","12:00","18:00","00:00"))
 #'}
@@ -85,7 +83,7 @@ wrf_profile <- function(x,file,verbose = T){
     profile[i] <- as.numeric(x[hora+1,s+1])
     if(verbose){
       print(unlist(strsplit(times[i],"_")))
-      print(paste0("Weekday: ",dia," Trafic Intencity: ",profile[i]))
+      print(paste0("Weekday: ",dia," Traffic Intensity: ",profile[i]))
     }
   }
   return(profile)
