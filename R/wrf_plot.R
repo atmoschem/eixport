@@ -41,19 +41,9 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   if(is.na(name)){
     name  <- menu(names(wrfchem$var),title = "Chose the variable:")
     POL   <- ncvar_get(wrfchem,names(wrfchem$var)[name])
+    name  <- names(wrfchem$var)[name]
   }else{
     POL   <- ncvar_get(wrfchem,name)
-  }
-
-  if(verbose){
-    print(wrfchem$filename)
-    print(name)
-    if(max(POL) == min(POL)){
-      warning("Max value = Min Value!")
-    }
-    else{
-      print(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = ""))
-    }
   }
 
   xlat      <- ncvar_get(wrfchem,varid="XLAT")
@@ -72,6 +62,17 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   }
   if(length(dim(POL)) == 4){
     POL <- POL[,,nivel,time]
+  }
+
+  if(verbose){
+    print(wrfchem$filename)
+    print(name)
+    if(max(POL) == min(POL)){
+      warning("Max value = Min Value!")
+    }
+    else{
+      print(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = ""))
+    }
   }
 
   filled.contour2 <-  function (x = seq(0, 1, length.out = nrow(z)),
@@ -131,7 +132,7 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   }
 
 
-  barras <- function(x,levels = pretty(x),n = length(levels), col = gray.colors(length(levels)-1),titulo=""){
+  barras <- function(x,levels = pretty(x),n = length(levels), col = gray.colors(length(levels)-1),titulo="",...){
     plot.new()
     plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i", yaxs = "i")
     rect(0, levels[-length(levels)], 1, levels[-1L], col = col)
@@ -152,7 +153,7 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   mtext("Latitude", 2,line = 2.2,cex = 1.2,las=0)
   mtext("Longitude",1,line = 2.2,cex = 1.2)
   if(barra){
-    par(mar=c(3.5,2,3,3))
+    par(mar=c(3.5,1,3,4))
     barras(POL)
     mtext(name,3, line = 0.8)
     par(old.par)
