@@ -148,7 +148,6 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
     par(mar=c(3.5,3.5,3,0))
   }
   filled.contour2(x,y,POL)
-  grid()
   mtext(paste("WRF-Chem emissions - Time:",Times[time]),3,line = 0.8)
   mtext("Latitude", 2,line = 2.2,cex = 1.2,las=0)
   mtext("Longitude",1,line = 2.2,cex = 1.2)

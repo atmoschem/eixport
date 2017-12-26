@@ -37,7 +37,9 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @source \url{https://pt.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}
+#' @source \url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
+#'
+#' @details  \url{https://en.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}
 #'
 #' @usage data(Lights)
 #' @docType data

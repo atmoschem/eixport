@@ -6,7 +6,7 @@
 \title{Spatial distribution exemple}
 \format{A matrix of spatial distribution}
 \source{
-\url{https://pt.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}
+\url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
 }
 \usage{
 data(Lights)
@@ -14,6 +14,9 @@ data(Lights)
 \description{
 Spatial distribution for veicular emissions based on an image of persistent lights of the
 Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paulo, Rio de Janeiro, Mato Grosso, Santa Catarina e Parana).
+}
+\details{
+\url{https://en.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}
 }
 \examples{
 \dontrun{
