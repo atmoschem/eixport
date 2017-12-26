@@ -1,7 +1,7 @@
 #' Export emissions to other formats
 #'
-#' @description Export Emissions object to format of file 'Sources.txt' of the
-#' model R-LINE
+#' @description Export Emissions object according format of file 'Sources.txt'
+#' of the model R-LINE
 #'
 #' @param x Emissions object as spatial feature sf.
 #' @param X_b initial x coordinates.
@@ -32,15 +32,14 @@
 #' @examples \dontrun{
 #' # Do not run
 #' data(emisco)
-#' f1 <- to_rline(x = emisco,
-#'                X_b = emisco$xmin,
+#' f1 <- to_rline(X_b = emisco$xmin,
 #'                Y_b = emisco$ymin,
 #'                Z_b =0,
 #'                X_e = emisco$xmin,
 #'                Y_e = emisco$ymin,
 #'                Z_e =0,
 #'                dCL = 0,
-#'                Emis = emisco$V1,
+#'                Emis = emisco$V8,
 #'                sigmaz0 = 2,
 #'                lanes = emisco$lanes)
 #' write.table(x = f1, file = "~/Source.txt", row.names = FALSE)
@@ -63,8 +62,8 @@ to_rline <- function (X_b,
                       Wtop,
                       Wbottom,
                       experimental = FALSE){
-  if (missing(x) | is.null(x)) {
-    stop (print("No 'Emissions' object"))
+  if (missing(Emis) | is.null(Emis)) {
+    stop (print("No 'Emissions'"))
   } else if (experimental){
   dfa <- data.frame(Group = format(1:length(X_b), width = 5))
   dfb <- format(cbind(X_b = X_b, Y_b = Y_b), width = 10)
