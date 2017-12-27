@@ -32,6 +32,7 @@ the output is a list.
 \examples{
 \dontrun{
 # Do not run
+
 }
 }
 \references{

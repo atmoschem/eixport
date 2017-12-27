@@ -27,6 +27,7 @@
 #'
 #' @examples \dontrun{
 #' # Do not run
+#'
 #'}
 to_brams_spm <- function(sdf, epsg = 4326){
   if(inherits(x = sdf, what = "list")){
