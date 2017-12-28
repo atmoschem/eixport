@@ -51,8 +51,8 @@ features (TRUE) or not (FALSE).}
 Data-frame file with format for R-LINE model.
 }
 \description{
-Export Emissions object to format of file 'Sources.txt' of the
-model R-LINE
+Export Emissions object according format of file 'Sources.txt'
+of the model R-LINE
 }
 \note{
 Michelle G. Snyder, Akula Venkatram, David K. Heist, Steven G. Perry,
@@ -64,15 +64,14 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.
 \dontrun{
 # Do not run
 data(emisco)
-f1 <- to_rline(x = emisco,
-               X_b = emisco$xmin,
+f1 <- to_rline(X_b = emisco$xmin,
                Y_b = emisco$ymin,
                Z_b =0,
                X_e = emisco$xmin,
                Y_e = emisco$ymin,
                Z_e =0,
                dCL = 0,
-               Emis = emisco$V1,
+               Emis = emisco$V8,
                sigmaz0 = 2,
                lanes = emisco$lanes)
 write.table(x = f1, file = "~/Source.txt", row.names = FALSE)
