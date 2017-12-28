@@ -1,3 +1,7 @@
+## eixport v0.2.7 (Release date: 26 December 2017)
+- Fix #6: Incuding functions to SPM BRAMS.
+- Improve documentation of emisco, example of to_rline and Readme.md. 
+
 ## eixport v0.2.6 (Release date: 24 November 2017)
 - Adding Lights data
 

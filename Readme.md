@@ -13,12 +13,13 @@ in different formats and export the to format suitable to other models.
 
 The first case of this package will exporting VEIN emissions into the model R-Line.
 
-functions:
+some functions:
 
 - to_rline: Export emissions to other formats
 - to_smoke: Creating input text foles for running SMOKE
 - to_cmaq: Creating netcdf for running CMAQ
-- to_wrf:	Combine total/spacial/temporal/split and write emission to file
+- to_wrf:	Combine total/spatial/temporal/split and write emission to file
+- to_brams_spm:	inputs for SPM BRAMS
 - wrf_profile: Traffic intensity profile for WRF-Chem
 - wrf_create:	Create emission files to the WRF-Chem
 - wrf_plot: simple plot for emissions
@@ -26,9 +27,8 @@ functions:
 - wrf_put:	Funtions to write variables in emission files
 
 
-
 ```{r eval=F}
-# 0.2.6
+# 0.2.7
 devtools::install_github("ibarraespinosa/eixport")
 library(eixport)
 ?wrf_emission
