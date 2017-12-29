@@ -18,6 +18,8 @@ License: MIT + file LICENSE
 URL: https://github.com/ibarraespinosa/eixport
 BugReports: https://github.com/ibarraespinosa/eixport/issues/
 Depends: R (>= 3.4.1), ncdf4
+Imports: sf
+Suggests: sp
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.0.1
