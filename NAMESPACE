@@ -8,7 +8,4 @@ export(wrf_get)
 export(wrf_plot)
 export(wrf_profile)
 export(wrf_put)
-importFrom(sf,st_as_sf)
-importFrom(sf,st_coordinates)
-importFrom(sf,st_set_geometry)
-importFrom(sf,st_transform)
+
