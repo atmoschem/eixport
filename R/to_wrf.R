@@ -56,7 +56,8 @@
 #'}
 
 
-to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names = NA,weights = 1){
+to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names = NA,weights = 1,verbose = T){
+
   if(is.matrix(x)){
     kemit <- 1
   }else{
@@ -91,6 +92,8 @@ to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names 
         VAR[,,,j] = profile[j] * x
       }
     }
+    if(verbose)
+      print(paste("writing emissions:",names[i],"weight",weights[i]))
     wrf_put(file,name = names[i],weights[i]*VAR)
   }
 }

@@ -5,7 +5,7 @@
 \title{Combine total/spacial/temporal/split and write emission to file}
 \usage{
 to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
-  names = NA, weights = 1)
+  names = NA, weights = 1, verbose = T)
 }
 \arguments{
 \item{x}{matrix or array of emissions of spacial weights}
