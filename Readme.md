@@ -16,8 +16,6 @@ The first case of this package will exporting VEIN emissions into the model R-Li
 some functions:
 
 - to_rline: Export emissions to other formats
-- to_smoke: Creating input text foles for running SMOKE
-- to_cmaq: Creating netcdf for running CMAQ
 - to_wrf:	Combine total/spatial/temporal/split and write emission to file
 - to_brams_spm:	inputs for SPM BRAMS
 - wrf_profile: Traffic intensity profile for WRF-Chem
