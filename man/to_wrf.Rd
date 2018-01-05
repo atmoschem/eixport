@@ -21,6 +21,8 @@ to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
 \item{names}{species to be write}
 
 \item{weights}{weight of eath specie}
+
+\item{verbose}{display adicional information}
 }
 \description{
 Function to expand, split and write emissions. The input is expand into
@@ -59,7 +61,8 @@ perfil <- c(0.010760058, 0.005280596, 0.002883553, 0.002666932,
            0.058388406, 0.072855890, 0.075267137, 0.063246412,
            0.042713523, 0.029108975, 0.022091855, 0.015298458)
 
-plot(perfil,ty = "l",col= "purple",xlab = "Hour",main = "Time profile",ylab = "Weight",axes = F,xlim = c(0,24))
+plot(perfil,ty = "l",col= "purple",xlab = "Hour",main = "Time profile",
+    ylab = "Weight",axes = F,xlim = c(0,24))
 axis(2)
 axis(1,at = c(0,6,12,18,24),labels = c("00:00","06:00","12:00","18:00","00:00"))
 

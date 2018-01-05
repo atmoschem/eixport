@@ -7,13 +7,13 @@
 vein_to_wrf(vemiss, file = file.choose(), write = F, verbose = T)
 }
 \arguments{
+\item{vemiss}{emission from vein package}
+
 \item{file}{wrf emission file}
 
 \item{write}{if the emission will be write directly in the file}
 
 \item{verbose}{display adicional information}
-
-\item{vemis}{emission from vein package}
 }
 \description{
 Return a matrix or write in file
@@ -21,7 +21,8 @@ Return a matrix or write in file
 \examples{
 \dontrun{
 # Do not run
-co <- vein_to_wrf(vein_emission,paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep=""))
+wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
+co  <- vein_to_wrf(vein_emission,wrf)
 plot(co)
 }
 }

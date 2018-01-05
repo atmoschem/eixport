@@ -2,7 +2,7 @@
 #'
 #' @description Return a matrix or write in file
 #'
-#' @param vemis emission from vein package
+#' @param vemiss emission from vein package
 #' @param file wrf emission file
 #' @param write if the emission will be write directly in the file
 #' @param verbose display adicional information
@@ -13,7 +13,8 @@
 #'
 #' @examples \dontrun{
 #' # Do not run
-#' co <- vein_to_wrf(vein_emission,paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep=""))
+#' wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
+#' co  <- vein_to_wrf(vein_emission,wrf)
 #' plot(co)
 #'}
 

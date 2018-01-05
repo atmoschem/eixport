@@ -10,6 +10,8 @@
 #'
 #' @import ncdf4
 #'
+#' @importFrom raster raster brick flip
+#'
 #' @export
 #'
 #' @author Daniel Schuch
