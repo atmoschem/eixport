@@ -3,16 +3,19 @@
 \name{wrf_get}
 \alias{wrf_get}
 \title{Function to read variables of emission files}
+\format{array or raster object}
 \usage{
-wrf_get(file = file.choose(), name = NA)
+wrf_get(file = file.choose(), name = NA, as_raster = F)
 }
 \arguments{
 \item{file}{name of file interactively (default) or specified}
 
 \item{name}{name of the variable (any variable)}
+
+\item{as_raster}{return a raster instead of a array}
 }
 \description{
-Write variable
+Read a variable
 }
 \examples{
 \dontrun{

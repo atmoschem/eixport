@@ -23,6 +23,8 @@
 #'
 #' @author Daniel Schuch
 #'
+#' @import ncdf4
+#'
 #' @export
 #'
 #' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
@@ -63,8 +65,8 @@ to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names 
   }else{
     kemit <- dim(x)[3]
   }
-  wrf          <- nc_open(file)
-  g_atributos  <- ncatt_get(wrf,0)
+  wrf          <- ncdf4::nc_open(file)
+  g_atributos  <- ncdf4::ncatt_get(wrf,0)
   if(kemit == 1){
     VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
@@ -76,7 +78,7 @@ to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names 
                               length(profile)))
   }
 
-  nc_close(wrf)
+  ncdf4::nc_close(wrf)
 
   if(norm)
     x <- x / sum(x)

@@ -3,6 +3,7 @@
 export(to_brams_spm)
 export(to_rline)
 export(to_wrf)
+export(vein_to_wrf)
 export(wrf_create)
 export(wrf_get)
 export(wrf_plot)

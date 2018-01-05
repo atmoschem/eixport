@@ -10,6 +10,8 @@
 #'
 #' @author Daniel Schuch
 #'
+#' @import ncdf4
+#'
 #' @export
 #'
 #' @seealso \code{\link{wrf_create}} and \code{\link{to_wrf}}

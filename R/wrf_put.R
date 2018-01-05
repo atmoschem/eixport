@@ -10,6 +10,8 @@
 #'
 #' @author Daniel Schuch
 #'
+#' @import ncdf4
+#'
 #' @seealso \code{\link{wrf_plot}} and \code{\link{wrf_get}}
 #'
 #' @examples \dontrun{
@@ -30,7 +32,7 @@
 #'}
 
 wrf_put <- function(file = file.choose(),name = NA,POL){
-  wrfchem <- nc_open(file,write = T)
-  ncvar_put(wrfchem,varid = name,POL)
-  nc_close(wrfchem)
+  wrfchem <- ncdf4::nc_open(file,write = T)
+  ncdf4::ncvar_put(wrfchem,varid = name,POL)
+  ncdf4::nc_close(wrfchem)
 }

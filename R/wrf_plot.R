@@ -18,6 +18,8 @@
 #'
 #' @author Daniel Schuch
 #'
+#' @import ncdf4
+#'
 #' @export
 #'
 #' @seealso \code{\link{wrf_get}} and \code{\link{wrf_create}}
@@ -37,25 +39,25 @@
 #'}
 
 wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra = T,lbarra = 0.2,verbose = T, ...){
-  wrfchem <- nc_open(file)
+  wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
     name  <- menu(names(wrfchem$var),title = "Chose the variable:")
-    POL   <- ncvar_get(wrfchem,names(wrfchem$var)[name])
+    POL   <- ncdf4::ncvar_get(wrfchem,names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]
   }else{
     POL   <- ncvar_get(wrfchem,name)
   }
 
-  xlat      <- ncvar_get(wrfchem,varid="XLAT")
-  xlong     <- ncvar_get(wrfchem,varid="XLONG")
+  xlat      <- ncdf4::ncvar_get(wrfchem,varid="XLAT")
+  xlong     <- ncdf4::ncvar_get(wrfchem,varid="XLONG")
   lat       <- range(xlat)
   lon       <- range(xlong)
   y         <- xlat [1, ]
   x         <- xlong[ ,1]
 
-  Times     <- ncvar_get(wrfchem,varid="Times")
+  Times     <- ncdf4::ncvar_get(wrfchem,varid="Times")
 
-  nc_close(wrfchem)
+  ncdf4::nc_close(wrfchem)
 
   if(length(dim(POL)) == 3){
     POL <- POL[,,time]

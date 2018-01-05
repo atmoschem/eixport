@@ -23,6 +23,8 @@
 #'
 #' @author Daniel Schuch
 #'
+#' @import ncdf4
+#'
 #' @export
 #'
 #' @seealso \code{\link{to_wrf}} and \code{\link{emis_opt}}
@@ -78,8 +80,8 @@ wrf_create  <- function(wrfinput_dir         = "",
   for(domain in domains){
     # basic information from wrfinput
     wrfinput     <- paste(wrfinput_dir,"/wrfinput_d0",domain,sep="")
-    wrfinput     <- nc_open(wrfinput,write = F)
-    input_time   <- ncvar_get(wrfinput,"Times")
+    wrfinput     <- ncdf4::nc_open(wrfinput,write = F)
+    input_time   <- ncdf4::ncvar_get(wrfinput,"Times")
 
     date <- as.character(paste(substr(input_time,1,10),substr(input_time,12,19)))
     date <- as.POSIXct(strptime(date, "%Y-%m-%d %H:%M:%S"))
@@ -123,72 +125,72 @@ wrf_create  <- function(wrfinput_dir         = "",
       }
     }
 
-    input_lat    <- ncvar_get(wrfinput,"XLAT")
-    input_lon    <- ncvar_get(wrfinput,"XLONG")
-    g_atributos  <- ncatt_get(wrfinput,0)
+    input_lat    <- ncdf4::ncvar_get(wrfinput,"XLAT")
+    input_lon    <- ncdf4::ncvar_get(wrfinput,"XLONG")
+    g_atributos  <- ncdf4::ncatt_get(wrfinput,0)
     g_atributos  <- c( list(Title = "Anthropogenic emissions",
                             History = paste("created on",format(Sys.time(),"%Y-%m-%d at %H:%M")),
                             Author = "R package eixport"),
                        g_atributos[4:length(g_atributos)])
     # definition of dimensions
-    west_east           <- ncdim_def("west_east",units = "",longname = "",vals = 1:g_atributos$`WEST-EAST_PATCH_END_UNSTAG`)
-    south_north         <- ncdim_def("south_north",units = "",longname = "",vals = 1:g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`)
-    emissions_zdim_stag <- ncdim_def("emissions_zdim_stag",units = "",longname = "",vals = 1:kemit)
-    DateStrLen          <- ncdim_def("DateStrLen",units = "",longname = "",vals = 1:19)
-    Time                <- ncdim_def("Time",units = "",longname = "",vals = 1:frames_per_auxinput5, unlim=TRUE)
+    west_east           <- ncdf4::ncdim_def("west_east",units = "",longname = "",vals = 1:g_atributos$`WEST-EAST_PATCH_END_UNSTAG`)
+    south_north         <- ncdf4::ncdim_def("south_north",units = "",longname = "",vals = 1:g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`)
+    emissions_zdim_stag <- ncdf4::ncdim_def("emissions_zdim_stag",units = "",longname = "",vals = 1:kemit)
+    DateStrLen          <- ncdf4::ncdim_def("DateStrLen",units = "",longname = "",vals = 1:19)
+    Time                <- ncdf4::ncdim_def("Time",units = "",longname = "",vals = 1:frames_per_auxinput5, unlim=TRUE)
     # definition of variables
-    Times               <- ncvar_def(name = "Times",dim = list(DateStrLen,Time),units = "",      prec = "char", compression = COMPRESS)
-    XLONG               <- ncvar_def(name = "XLONG",units = "",dim = list(west_east,south_north),prec = "float",compression = COMPRESS)
-    XLAT                <- ncvar_def(name = "XLAT" ,units = "",dim = list(west_east,south_north),prec = "float",compression = COMPRESS)
+    Times               <- ncdf4::ncvar_def(name = "Times",dim = list(DateStrLen,Time),units = "",      prec = "char", compression = COMPRESS)
+    XLONG               <- ncdf4::ncvar_def(name = "XLONG",units = "",dim = list(west_east,south_north),prec = "float",compression = COMPRESS)
+    XLAT                <- ncdf4::ncvar_def(name = "XLAT" ,units = "",dim = list(west_east,south_north),prec = "float",compression = COMPRESS)
     # GAS fase emissions
     for(i in 1:(length(variaveis) - n_aero)){
-      assign(variaveis[i], ncvar_def(name = variaveis[i],units = "",dim = list(west_east,south_north,emissions_zdim_stag,Time),prec="float",compression = COMPRESS))
+      assign(variaveis[i], ncdf4::ncvar_def(name = variaveis[i],units = "",dim = list(west_east,south_north,emissions_zdim_stag,Time),prec="float",compression = COMPRESS))
     }
     # AEROSOL emissions
     for(i in (1+length(variaveis) - n_aero):length(variaveis)){
-      assign(variaveis[i], ncvar_def(name = variaveis[i],units = "",dim = list(west_east,south_north,emissions_zdim_stag,Time),prec="float",compression = COMPRESS))
+      assign(variaveis[i], ncdf4::ncvar_def(name = variaveis[i],units = "",dim = list(west_east,south_north,emissions_zdim_stag,Time),prec="float",compression = COMPRESS))
     }
     emiss_file <- nc_create(filename=file_name,vars=c(list('Times'=Times,'XLAT'=XLAT,'XLONG'=XLONG),mget(ls(pattern = "E_"))),force_v4 = force_ncdf4)
     for(i in 1:length(g_atributos)){
-      ncatt_put(emiss_file,varid = 0,attname = names(g_atributos)[i],attval = g_atributos[[i]])
+      ncdf4::ncatt_put(emiss_file,varid = 0,attname = names(g_atributos)[i],attval = g_atributos[[i]])
     }
     # values for the basic variables
-    ncvar_put(emiss_file,"Times",file_time)
-    ncvar_put(emiss_file,"XLONG",input_lon)
-    ncatt_put(emiss_file,varid = "XLONG",attname = "MemoryOrder",attval = "XY")
-    ncatt_put(emiss_file,varid = "XLONG",attname = "description",attval = "LONGITUDE, WEST IS NEGATIVE")
-    ncatt_put(emiss_file,varid = "XLONG",attname = "units",attval = "degree east")
-    ncatt_put(emiss_file,varid = "XLONG",attname = "stagger",attval = "")
-    ncatt_put(emiss_file,varid = "XLONG",attname = "FieldType",attval = 104)
-    ncvar_put(emiss_file,"XLAT",input_lat)
-    ncatt_put(emiss_file,varid = "XLAT",attname = "MemoryOrder",attval = "XY")
-    ncatt_put(emiss_file,varid = "XLAT",attname = "description",attval = "LATITUDE, SOUTH IS NEGATIVE")
-    ncatt_put(emiss_file,varid = "XLAT",attname = "units",attval = "degree north")
-    ncatt_put(emiss_file,varid = "XLAT",attname = "stagger",attval = "")
-    ncatt_put(emiss_file,varid = "XLAT",attname = "FieldType",attval = 104)
+    ncdf4::ncvar_put(emiss_file,"Times",file_time)
+    ncdf4::ncvar_put(emiss_file,"XLONG",input_lon)
+    ncdf4::ncatt_put(emiss_file,varid = "XLONG",attname = "MemoryOrder",attval = "XY")
+    ncdf4::ncatt_put(emiss_file,varid = "XLONG",attname = "description",attval = "LONGITUDE, WEST IS NEGATIVE")
+    ncdf4::ncatt_put(emiss_file,varid = "XLONG",attname = "units",attval = "degree east")
+    ncdf4::ncatt_put(emiss_file,varid = "XLONG",attname = "stagger",attval = "")
+    ncdf4::ncatt_put(emiss_file,varid = "XLONG",attname = "FieldType",attval = 104)
+    ncdf4::ncvar_put(emiss_file,"XLAT",input_lat)
+    ncdf4::ncatt_put(emiss_file,varid = "XLAT",attname = "MemoryOrder",attval = "XY")
+    ncdf4::ncatt_put(emiss_file,varid = "XLAT",attname = "description",attval = "LATITUDE, SOUTH IS NEGATIVE")
+    ncdf4::ncatt_put(emiss_file,varid = "XLAT",attname = "units",attval = "degree north")
+    ncdf4::ncatt_put(emiss_file,varid = "XLAT",attname = "stagger",attval = "")
+    ncdf4::ncatt_put(emiss_file,varid = "XLAT",attname = "FieldType",attval = 104)
     # vetor of zeros
     zero <- array(0,c(west_east$len,south_north$len,emissions_zdim_stag$len,Time$len))
     # GASES inicializat5ion with zeros
     for(i in 1:(length(variaveis) - n_aero)){
-      ncvar_put(emiss_file,varid = variaveis[i],zero)
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "MemoryOrder",attval = "XYZ")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "description",attval = "EMISSIONS")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "units",attval = "mol km^-2 hr^-1")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "stagger",attval = "Z")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "FieldType",attval = 104)
+      ncdf4::ncvar_put(emiss_file,varid = variaveis[i],zero)
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "MemoryOrder",attval = "XYZ")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "description",attval = "EMISSIONS")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "units",attval = "mol km^-2 hr^-1")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "stagger",attval = "Z")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "FieldType",attval = 104)
     }
     # AEROSOIS inicializat5ion with zeros
     for(i in (1+length(variaveis) - n_aero):length(variaveis)){
-      ncvar_put(emiss_file,varid = variaveis[i],zero)
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "MemoryOrder",attval = "XYZ")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "description",attval = "EMISSIONS")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "units",attval = "ug m^-2 s^-1")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "stagger",attval = "Z")
-      ncatt_put(emiss_file,varid = variaveis[i],attname = "FieldType",attval = 104)
+      ncdf4::ncvar_put(emiss_file,varid = variaveis[i],zero)
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "MemoryOrder",attval = "XYZ")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "description",attval = "EMISSIONS")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "units",attval = "ug m^-2 s^-1")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "stagger",attval = "Z")
+      ncdf4::ncatt_put(emiss_file,varid = variaveis[i],attname = "FieldType",attval = 104)
     }
     if(verbose){
       print(emiss_file)
     }
-    nc_close(emiss_file)
+    ncdf4::nc_close(emiss_file)
   }
 }
