@@ -40,7 +40,8 @@ wrf_get <- function(file = file.choose(),name = NA,as_raster = F){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
     name  <- menu(names(wrfchem$var),title = "Chose the variable:")
-    POL   <- ncdf4::ncvar_get(wrfchem,names(wrfchem$var)[name])
+    name  <- names(wrfchem$var)[name]
+    POL   <- ncdf4::ncvar_get(wrfchem,name)
   }else{
     POL   <- ncdf4::ncvar_get(wrfchem,name)
   }
@@ -53,7 +54,7 @@ wrf_get <- function(file = file.choose(),name = NA,as_raster = F){
     r.lon  <- range(lon)
     n.lat  <- ncdf4::ncatt_get(wrfchem,varid = 0,attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
     n.lon  <- ncdf4::ncatt_get(wrfchem,varid = 0,attname = "WEST-EAST_PATCH_END_UNSTAG")$value
-
+    
     n      <- length(time)
     if(n == 1){
       r <- raster::raster(x=t(POL),xmn=r.lon[1],xmx=r.lon[2],ymn=r.lat[1],ymx=r.lat[2])
@@ -64,7 +65,7 @@ wrf_get <- function(file = file.choose(),name = NA,as_raster = F){
       r <- raster::flip(r,2)
     }
     raster::crs(r)   <- "+proj=longlat +ellps=GRS80 +no_defs"
-    names(r) <- paste(POL,time,sep="_")
+    names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
     return(r)
   }
