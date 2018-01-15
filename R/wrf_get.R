@@ -9,6 +9,7 @@
 #' @format array or raster object
 #'
 #' @import ncdf4
+#' @import raster
 #'
 #' @importFrom raster raster brick flip
 #'
@@ -56,14 +57,14 @@ wrf_get <- function(file = file.choose(),name = NA,as_raster = F){
     n      <- length(time)
     if(n == 1){
       r <- raster::raster(x=t(POL),xmn=r.lon[1],xmx=r.lon[2],ymn=r.lat[1],ymx=r.lat[2])
-      r <- flip(r,2)
+      r <- raster::flip(r,2)
     }
     if(n >= 1){
       r <- raster::brick(x=aperm(POL,c(2,1,3)),xmn=r.lon[1],xmx=r.lon[2],ymn=r.lat[1],ymx=r.lat[2])
-      r <- flip(r,2)
+      r <- raster::flip(r,2)
     }
-    crs(r)   <- "+proj=longlat +ellps=GRS80 +no_defs"
-    names(r) <- paste(name,time)
+    raster::crs(r)   <- "+proj=longlat +ellps=GRS80 +no_defs"
+    names(r) <- paste(POL,time,sep="_")
     ncdf4::nc_close(wrfchem)
     return(r)
   }
