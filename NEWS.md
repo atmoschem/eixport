@@ -1,6 +1,8 @@
+## eixport v0.2.9 (Release date: 15 January 2018)
+- Adding data rawprofile. Deleting wrf_temporal.R and adding wrf_profile.R
+
 ## eixport v0.2.8 (Release date: 15 January 2018)
-- Adding wrf_grid to create spatial grids bassed on wrf files and minor fix to
-vein_to_wrf.
+- Adding wrf_grid to create spatial grids bassed on wrf files.
 
 ## eixport v0.2.7 (Release date: 26 December 2017)
 - Fix #6: Incuding functions to SPM BRAMS.
