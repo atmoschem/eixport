@@ -74,14 +74,14 @@ to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
   }
   wrf          <- ncdf4::nc_open(file)
   g_atributos  <- ncdf4::ncatt_get(wrf,0)
-  if(kemit == 1){
+  if(is.matrix(x)){
     VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
                               length(profile)))
   }else{
     VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
-                              kenit,
+                              kemit,
                               length(profile)))
   }
 
@@ -102,7 +102,7 @@ to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
       }
     }
     if(verbose)
-      print(paste("writing emissions:",names[i],"weight",weights[i]))
+      print(paste("writing emissions:", names[i],"weight", weights[i]))
     wrf_put(file,name = names[i],weights[i]*VAR)
   }
 }

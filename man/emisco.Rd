@@ -4,7 +4,7 @@
 \name{emisco}
 \alias{emisco}
 \title{Emissions from VEIN demo}
-\format{A data frame with 288 rows and 12 variables:
+\format{A sf object of lines with 288 rows and 15 variables:
 \describe{
   \item{ldv}{Light Duty Vehicles (1/h)}
   \item{hdv}{Heavy Duty Vehicles (1/h)}
@@ -16,10 +16,15 @@
   \item{capacity}{Capacity of vehicles in each link (1/h)}
   \item{tmin}{Time for travelling each link (min)}
   \item{V8}{Emissions}
+  \item{xmin}{Initial x coordinates}
+  \item{xmax}{Ending x coordinates}
+  \item{ymin}{Initial y coordinates}
+  \item{ymax}{Ending y coordinates}
+  \item{geometry}{geometry column of the sf object}
   data(emisco)
 }}
 \source{
-\url{http://veicular.cetesb.sp.gov.br/relatorios-e-publicacoes/}
+\url{https://github.com/ibarraespinosa/vein}
 }
 \usage{
 data(emisco)
