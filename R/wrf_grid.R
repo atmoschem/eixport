@@ -2,7 +2,9 @@
 #'
 #' @description Return a spatialfeature polygon or matrix
 #'
-#' @param filewrf wrfinput file (also geo.nc?, other?)
+#' @param filewrf wrf file
+#' @param type Type or wrf file: "wrfinput" or "geo". When type is "geo", lat
+#' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #'
@@ -15,12 +17,18 @@
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf, axes = T)
 #'}
-wrf_grid <- function(filewrf, matrix = F, epsg = 4326){
-    print(paste("using grid info from:",filewrf))
+wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
+    print(paste("using grid info from:", filewrf))
 
   wrf    <- ncdf4::nc_open(filewrf)
-  lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
-  lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
+  cat("Include the following variables ", names(wrf$var))
+  if(type == "wrfinput"){
+    lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
+    lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
+  } else if(type == "geo"){
+    lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT_M")
+    lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG_M")
+  }
   time   <- ncdf4::ncvar_get(wrf,varid = "Times")
   dx     <- ncdf4::ncatt_get(wrf,varid = 0,
                              attname = "DX")$value #/ 1000 # km

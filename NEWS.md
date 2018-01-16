@@ -1,5 +1,7 @@
 ## eixport v0.2.9 (Release date: 15 January 2018)
 - Adding data rawprofile. Deleting wrf_temporal.R and adding wrf_profile.R
+- Adding option in wrf_grid to read wrfinput from real or geo_em files from
+geogrid.
 
 ## eixport v0.2.8 (Release date: 15 January 2018)
 - Adding wrf_grid to create spatial grids bassed on wrf files.
