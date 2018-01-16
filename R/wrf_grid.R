@@ -5,19 +5,16 @@
 #' @param filewrf wrfinput file (also geo.nc?, other?)
 #' @param matrix if the output is matrix or polygon (sf)
 #'
-#' @export
-#'
 #' @import ncdf4
 #' @importFrom sf st_polygon st_multipolygon
-#'
+#' @export
 #' @examples \dontrun{
 #' # Do not run
 #' wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf)
 #'}
-
-vein_to_wrf <- function(wrffile, matrix = F){
+wrf_grid <- function(filewrf, matrix = F){
   if(verbose)
     print(paste("using grid info from:",file))
 
