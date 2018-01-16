@@ -4,6 +4,7 @@
 #'
 #' @param filewrf wrfinput file (also geo.nc?, other?)
 #' @param matrix if the output is matrix or polygon (sf)
+#' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #'
 #' @import ncdf4
 #' @importFrom sf st_polygon st_multipolygon st_sf st_sfc

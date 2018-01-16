@@ -10,6 +10,8 @@ wrf_grid(filewrf, matrix = F, epsg = 4326)
 \item{filewrf}{wrfinput file (also geo.nc?, other?)}
 
 \item{matrix}{if the output is matrix or polygon (sf)}
+
+\item{epsg}{epsg code number (see http://spatialreference.org/ref/epsg/)}
 }
 \description{
 Return a spatialfeature polygon or matrix
