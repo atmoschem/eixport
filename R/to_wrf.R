@@ -64,7 +64,8 @@
 #'
 #'to_wrf(Lights,files[1],total = 1521983,profile = perfil,names = "E_CO")
 #'}
-to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names = NA,weights = 1,verbose = T){
+to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
+                   profile = 1, names = NA, weights = 1, verbose = T){
 
   if(is.matrix(x)){
     kemit <- 1
@@ -74,11 +75,11 @@ to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names 
   wrf          <- ncdf4::nc_open(file)
   g_atributos  <- ncdf4::ncatt_get(wrf,0)
   if(kemit == 1){
-    VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
+    VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
                               length(profile)))
   }else{
-    VAR          <- array(0,c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
+    VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
                               kenit,
                               length(profile)))
@@ -94,7 +95,7 @@ to_wrf <- function(x,file = file.choose(),total = NA,norm = F,profile = 1,names 
 
   for(i in 1:length(names)){
     for(j in 1:length(profile)){
-      if(kemit ==1){
+      if(is.matrix(x)){
         VAR[,,j] = profile[j] * x
       }else{
         VAR[,,,j] = profile[j] * x
