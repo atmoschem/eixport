@@ -15,10 +15,9 @@
 #' plot(gwrf)
 #'}
 wrf_grid <- function(filewrf, matrix = F){
-  if(verbose)
-    print(paste("using grid info from:",file))
+    print(paste("using grid info from:",filewrf))
 
-  wrf    <- ncdf4::nc_open(file)
+  wrf    <- ncdf4::nc_open(filewrf)
   lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
   lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
   time   <- ncdf4::ncvar_get(wrf,varid = "Times")
@@ -63,7 +62,7 @@ wrf_grid <- function(filewrf, matrix = F){
                      p4_lon,p4_lat,
                      p1_lon,p1_lat),
                    ncol=2, byrow=TRUE)
-    cell <- sf::st_polygon( list( mat) )
+    cell <- sf::st_polygon(list(mat))
     grid[[i]] = cell
   }
   grid <- sf::st_multipolygon(grid)
