@@ -21,8 +21,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
     print(paste("using grid info from:", filewrf))
 
   wrf    <- ncdf4::nc_open(filewrf)
-  cat("Include the following variables ", names(wrf$var))
-  if(type == "wrfinput"){
+    if(type == "wrfinput"){
     lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
   } else if(type == "geo"){
