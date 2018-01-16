@@ -32,7 +32,7 @@ files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
 # open, put some numbers and write
 CO <- wrf_get(file = files[1],name = "E_CO")
 CO[] = rnorm(length(CO))
-wrf_put(file = files[1],name = "E_CO",POL = CO)
+wrf_put(file = files[1], name = "E_CO",POL = CO)
 }
 }
 \seealso{

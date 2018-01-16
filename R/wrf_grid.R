@@ -6,7 +6,7 @@
 #' @param matrix if the output is matrix or polygon (sf)
 #'
 #' @import ncdf4
-#' @importFrom sf st_polygon st_multipolygon
+#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc
 #' @export
 #' @examples \dontrun{
 #' # Do not run
@@ -21,9 +21,12 @@ wrf_grid <- function(filewrf, matrix = F){
   lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
   lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
   time   <- ncdf4::ncvar_get(wrf,varid = "Times")
-  dx     <- ncdf4::ncatt_get(wrf,varid = 0,attname = "DX")$value #/ 1000 # km
-  n.lat  <- ncdf4::ncatt_get(wrf,varid = 0,attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
-  n.lon  <- ncdf4::ncatt_get(wrf,varid = 0,attname = "WEST-EAST_PATCH_END_UNSTAG")$value
+  dx     <- ncdf4::ncatt_get(wrf,varid = 0,
+                             attname = "DX")$value #/ 1000 # km
+  n.lat  <- ncdf4::ncatt_get(wrf,varid = 0,
+                             attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
+  n.lon  <- ncdf4::ncatt_get(wrf,varid = 0,
+                             attname = "WEST-EAST_PATCH_END_UNSTAG")$value
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
   r.lon  <- range(lat)
@@ -65,7 +68,8 @@ wrf_grid <- function(filewrf, matrix = F){
     cell <- sf::st_polygon(list(mat))
     grid[[i]] = cell
   }
-  grid <- sf::st_multipolygon(grid)
+  geometry <- sf::st_sfc(sf::st_multipolygon(grid))
+  grid <- st_sf(geometry = geometry)
   if (matrix == T){
     return(mat)
   } else {
