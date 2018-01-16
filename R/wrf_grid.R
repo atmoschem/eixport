@@ -12,7 +12,7 @@
 #' # Do not run
 #' wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
 #' gwrf  <- wrf_grid(wrf)
-#' plot(gwrf)
+#' plot(gwrf, axes = T)
 #'}
 wrf_grid <- function(filewrf, matrix = F){
     print(paste("using grid info from:",filewrf))
