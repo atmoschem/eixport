@@ -18,7 +18,7 @@
 #' plot(gwrf, axes = T)
 #'}
 wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
-    print(paste("using grid info from:", filewrf))
+    cat(paste("using grid info from:", filewrf, "\n"))
 
   wrf    <- ncdf4::nc_open(filewrf)
     if(type == "wrfinput"){
@@ -38,7 +38,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
   r.lon  <- range(lat)
-  EM  <- matrix(0,nrow = n.lon, ncol = n.lat) # o formato da saida
+  EM  <- matrix(0, nrow = n.lon, ncol = n.lat) # o formato da saida
 
   points      <- data.frame(lat  = c(lat),
                             long = c(lon))
