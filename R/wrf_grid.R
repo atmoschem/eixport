@@ -1,23 +1,23 @@
-#' Export emission from vein model to WRF
+#' Creates grid from wrf file
 #'
-#' @description Return a matrix or write in file
+#' @description Return a spatialfeature polygon or matrix
 #'
 #' @param filewrf wrfinput file (also geo.nc?, other?)
-#' @param write if the emission will be write directly in the file
-#' @param verbose display adicional information
+#' @param matrix if the output is matrix or polygon (sf)
 #'
 #' @export
 #'
 #' @import ncdf4
+#' @importFrom sf st_polygon st_multipolygon
 #'
 #' @examples \dontrun{
 #' # Do not run
 #' wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
-#' co  <- vein_to_wrf(vein_emission,wrf)
-#' plot(co)
+#' gwrf  <- wrf_grid(wrf)
+#' plot(gwrf)
 #'}
 
-vein_to_wrf <- function(wrffile, write = F,verbose = T){
+vein_to_wrf <- function(wrffile, matrix = F){
   if(verbose)
     print(paste("using grid info from:",file))
 
@@ -70,10 +70,10 @@ vein_to_wrf <- function(wrffile, write = F,verbose = T){
     grid[[i]] = cell
   }
   grid <- sf::st_multipolygon(grid)
+  if (matrix == T){
+    return(mat)
+  } else {
+    return(grid)
+  }
 
-  plot(grid)
-  axis(1)
-  axis(2)
-
-  return(grid)
 }

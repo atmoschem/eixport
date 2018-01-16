@@ -1,7 +1,10 @@
+## eixport v0.2.8 (Release date: 15 January 2018)
+- Adding wrf_grid to create spatial grids bassed on wrf files and minor fix to
+vein_to_wrf.
+
 ## eixport v0.2.7 (Release date: 26 December 2017)
 - Fix #6: Incuding functions to SPM BRAMS.
 - Improve documentation of emisco, example of to_rline and Readme.md. 
-
 ## eixport v0.2.6 (Release date: 24 November 2017)
 - Adding Lights data
 
