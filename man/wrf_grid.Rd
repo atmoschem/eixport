@@ -17,7 +17,7 @@ long comes from mass grid, XLONG_M and XLAT_M}
 \item{epsg}{epsg code number (see http://spatialreference.org/ref/epsg/)}
 }
 \description{
-Return a spatialfeature polygon or matrix
+Return a Spatial Feature multipolygon or matrix
 }
 \examples{
 \dontrun{

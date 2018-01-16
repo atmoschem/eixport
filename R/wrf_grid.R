@@ -1,6 +1,6 @@
 #' Creates grid from wrf file
 #'
-#' @description Return a spatialfeature polygon or matrix
+#' @description Return a Spatial Feature multipolygon or matrix
 #'
 #' @param filewrf wrf file
 #' @param type Type or wrf file: "wrfinput" or "geo". When type is "geo", lat
@@ -19,21 +19,20 @@
 #'}
 wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
     cat(paste("using grid info from:", filewrf, "\n"))
-
-  wrf    <- ncdf4::nc_open(filewrf)
+  wrf <- ncdf4::nc_open(filewrf)
     if(type == "wrfinput"){
-    lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT")
-    lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG")
+    lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT")
+    lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG")
   } else if(type == "geo"){
-    lat    <- ncdf4::ncvar_get(wrf,varid = "XLAT_M")
-    lon    <- ncdf4::ncvar_get(wrf,varid = "XLONG_M")
+    lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT_M")
+    lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG_M")
   }
-  time   <- ncdf4::ncvar_get(wrf,varid = "Times")
-  dx     <- ncdf4::ncatt_get(wrf,varid = 0,
+  time   <- ncdf4::ncvar_get(wrf, varid = "Times")
+  dx     <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "DX")$value #/ 1000 # km
-  n.lat  <- ncdf4::ncatt_get(wrf,varid = 0,
+  n.lat  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
-  n.lon  <- ncdf4::ncatt_get(wrf,varid = 0,
+  n.lon  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "WEST-EAST_PATCH_END_UNSTAG")$value
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
