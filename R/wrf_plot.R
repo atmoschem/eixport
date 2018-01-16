@@ -19,7 +19,9 @@
 #' @author Daniel Schuch
 #'
 #' @import ncdf4
-#'
+#' @importFrom grDevices cm.colors gray.colors
+#' @importFrom graphics .filled.contour Axis axis box layout mtext par plot.new plot.window rect title
+#' @importFrom utils menu
 #' @export
 #'
 #' @seealso \code{\link{wrf_get}} and \code{\link{wrf_create}}
@@ -37,7 +39,6 @@
 #'# open, put some numbers and write
 #'wrf_plot(files[1],"E_CO")
 #'}
-
 wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra = T,lbarra = 0.2,verbose = T, ...){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){

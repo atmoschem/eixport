@@ -44,8 +44,6 @@ to_rline(X_b, Y_b, Z_b, X_e, Y_e, Z_e, dCL, sigmaz0, lanes, Emis, Hw1, dw1, Hw2,
 
 \item{experimental}{Boolean argument to denotes the use of the experimental
 features (TRUE) or not (FALSE).}
-
-\item{x}{Emissions object as spatial feature sf.}
 }
 \value{
 Data-frame file with format for R-LINE model.

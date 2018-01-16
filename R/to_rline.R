@@ -3,7 +3,6 @@
 #' @description Export Emissions object according format of file 'Sources.txt'
 #' of the model R-LINE
 #'
-#' @param x Emissions object as spatial feature sf.
 #' @param X_b initial x coordinates.
 #' @param Y_b initial y coordinates.
 #' @param Z_b initial meters above sea level (m).
