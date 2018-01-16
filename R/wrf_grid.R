@@ -14,7 +14,7 @@
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf, axes = T)
 #'}
-wrf_grid <- function(filewrf, matrix = F){
+wrf_grid <- function(filewrf, matrix = F, epsg = 4326){
     print(paste("using grid info from:",filewrf))
 
   wrf    <- ncdf4::nc_open(filewrf)
@@ -69,7 +69,7 @@ wrf_grid <- function(filewrf, matrix = F){
     grid[[i]] = cell
   }
   geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-  grid <- st_sf(geometry = geometry)
+  grid <- st_sf(geometry = geometry, crs = epsg)
   if (matrix == T){
     return(mat)
   } else {
