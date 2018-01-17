@@ -12,7 +12,6 @@ addons:
        - libudunits2-dev
        - libproj-dev
        - libgdal-dev
-       - libnetcdff-dev
        - libnetcdf-dev
        - netcdf-bin
 
