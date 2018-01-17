@@ -1,8 +1,12 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 
+language: r
 
-language: R
+r:
+  - release
+  - oldrel
+
 dist: trusty
 sudo: required
 #cache: packages
@@ -17,6 +21,6 @@ before_install:
   sudo apt-get --yes install libnetcdf-dev netcdf-bin
 r_packages:
   - covr
-
+warnings_are_errors: true
 after_success:
   - Rscript -e 'library(covr); codecov()'
