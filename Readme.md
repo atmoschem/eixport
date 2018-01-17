@@ -1,4 +1,5 @@
 # eixport
+[![Travis-CI Build Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)
 
 ## Exporting emissions to other models
 
