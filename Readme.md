@@ -25,7 +25,7 @@ some functions:
 
 
 ```{r eval=F}
-# 0.2.8
+# 0.2.9
 devtools::install_github("ibarraespinosa/eixport")
 library(eixport)
 ?to_wrf
