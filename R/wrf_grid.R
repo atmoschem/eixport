@@ -78,7 +78,8 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
     grid[[i]] = cell
   }
   geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-  grid <- st_sf(geometry = geometry, crs = epsg)
+  grid <- st_cast(x = st_sf(geometry = geometry, crs = epsg), to = "POLYGON")
+  grid$id <- 1:nrow(grid)
   if (matrix == T){
     return(EM)
   } else {
