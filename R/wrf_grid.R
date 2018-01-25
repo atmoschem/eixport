@@ -29,7 +29,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   }
   time   <- ncdf4::ncvar_get(wrf, varid = "Times")
   dx     <- ncdf4::ncatt_get(wrf, varid = 0,
-                             attname = "DX")$value #/ 1000 # km
+                             attname = "DX")$value
   n.lat  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
   n.lon  <- ncdf4::ncatt_get(wrf, varid = 0,
@@ -39,7 +39,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
   r.lon  <- range(lat)
-  EM  <- matrix(0, nrow = n.lon, ncol = n.lat) # o formato da saida
+  EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
 
   points      <- data.frame(lat  = c(lat),
                             long = c(lon))
