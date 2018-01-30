@@ -31,32 +31,39 @@
 #'
 #'dir.create("EMISS")
 #'wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'           wrfchemi_dir = "EMISS")
+#'           wrfchemi_dir = "~/Documents/EMISS")
 #'
 #'# get the name of created file
-#'files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+#'files <- list.files(path = "~/Documents/EMISS",pattern = "wrfchemi",full.names = T)
 #'
 #'# open, put some numbers and write
 #'wrf_plot(files[1],"E_CO")
 #'}
-wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra = T,lbarra = 0.2,verbose = T, ...){
+wrf_plot <- function(file = file.choose(),
+                     name = NA,
+                     time = 1,
+                     nivel = 1,
+                     barra = T,
+                     lbarra = 0.2,
+                     verbose = T,
+                     ...){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
-    name  <- menu(names(wrfchem$var),title = "Chose the variable:")
-    POL   <- ncdf4::ncvar_get(wrfchem,names(wrfchem$var)[name])
+    name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+    POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]
   }else{
     POL   <- ncvar_get(wrfchem,name)
   }
 
-  xlat      <- ncdf4::ncvar_get(wrfchem,varid="XLAT")
-  xlong     <- ncdf4::ncvar_get(wrfchem,varid="XLONG")
+  xlat      <- ncdf4::ncvar_get(wrfchem, varid="XLAT")
+  xlong     <- ncdf4::ncvar_get(wrfchem, varid="XLONG")
   lat       <- range(xlat)
   lon       <- range(xlong)
   y         <- xlat [1, ]
   x         <- xlong[ ,1]
 
-  Times     <- ncdf4::ncvar_get(wrfchem,varid="Times")
+  Times     <- ncdf4::ncvar_get(wrfchem, varid="Times")
 
   ncdf4::nc_close(wrfchem)
 
@@ -79,12 +86,25 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   }
 
   filled.contour2 <-  function (x = seq(0, 1, length.out = nrow(z)),
-                                y = seq(0, 1, length.out = ncol(z)), z, xlim = range(x, finite = TRUE),
-                                ylim = range(y, finite = TRUE), zlim = range(z, finite = TRUE),
-                                levels = pretty(zlim, nlevels), nlevels = 20, color.palette = cm.colors,
-                                col = gray.colors(length(levels)-1), plot.title, plot.axes,
-                                key.title, key.axes, asp = NA, xaxs = "i", yaxs = "i", las = 1,
-                                axes = TRUE, frame.plot = axes,mar, ...) {
+                                y = seq(0, 1, length.out = ncol(z)), z,
+                                xlim = range(x, finite = TRUE),
+                                ylim = range(y, finite = TRUE),
+                                zlim = range(z, finite = TRUE),
+                                levels = pretty(zlim, nlevels),
+                                nlevels = 20,
+                                color.palette = cm.colors,
+                                col = gray.colors(length(levels)-1),
+                                plot.title,
+                                plot.axes,
+                                key.title,
+                                key.axes,
+                                asp = NA,
+                                xaxs = "i",
+                                yaxs = "i",
+                                las = 1,
+                                axes = TRUE,
+                                frame.plot = axes,
+                                mar, ...) {
     if (missing(z)) {
       if (!missing(x)) {
         if (is.list(x)) {
@@ -135,7 +155,11 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
   }
 
 
-  barras <- function(x,levels = pretty(x),n = length(levels), col = gray.colors(length(levels)-1),titulo="",...){
+  barras <- function(x,
+                     levels = pretty(x),
+                     n = length(levels),
+                     col = gray.colors(length(levels)-1),
+                     titulo = "",...){
     plot.new()
     plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i", yaxs = "i")
     rect(0, levels[-length(levels)], 1, levels[-1L], col = col)
@@ -147,18 +171,22 @@ wrf_plot <- function(file = file.choose(),name = NA,time = 1, nivel = 1, barra =
 
   if(barra){
     old.par <- par(mar = c(0, 0, 0, 0))
-    layout(matrix(c(1,2),ncol = 2,nrow = 1,byrow = T),widths = c(1,lbarra))
-    par(mar=c(3.5,3.5,3,0))
+    layout(matrix(c(1,2),
+                  ncol = 2,
+                  nrow = 1,
+                  byrow = T),
+           widths = c(1,lbarra))
+    par(mar=c(3.5, 3.5, 3, 0))
   }
-  filled.contour2(x,y,POL)
-  mtext(paste("WRF-Chem emissions - Time:",Times[time]),3,line = 0.8)
-  mtext("Latitude", 2,line = 2.2,cex = 1.2,las=0)
-  mtext("Longitude",1,line = 2.2,cex = 1.2)
+  filled.contour2(x, y, POL)
+  mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
+  mtext("Latitude", 2, line = 2.2,cex = 1.2, las=0)
+  mtext("Longitude", 1, line = 2.2,cex = 1.2)
   if(barra){
-    par(mar=c(3.5,1,3,4))
+    par(mar = c(3.5, 1, 3, 4))
     barras(POL)
-    mtext(name,3, line = 0.8)
+    mtext(name, 3, line = 0.8)
     par(old.par)
-    par(mfrow=c(1,1))
+    par(mfrow = c(1, 1))
   }
 }

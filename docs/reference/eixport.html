@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List of WRF emission species — emis_opt • eixport</title>
+<title>eixport: a package for exporting emissions — eixport • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,63 +83,33 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List of WRF emission species</h1>
+    <h1>eixport: a package for exporting emissions</h1>
     </div>
 
     
-    <p>Emission package definitions from WRF 3.9.1.1</p>
+    <p>This package provides functions to export emissions to other models</p>
     
 
-    <pre class="usage"><span class='fu'>data</span>(<span class='no'>emis_opt</span>)</pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A list of emision variables names, same number than emis_opt in namelist.</p>
-    
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='http://www2.mmm.ucar.edu/wrf/users/download/get_source.html'>http://www2.mmm.ucar.edu/wrf/users/download/get_source.html</a></p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>look to the number of aerosol of the emis_opt in wrf domumentation / code.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <p><code><a href='to_wrf.html'>to_wrf</a></code></p>
+    <p><strong>1) Characteristics</strong></p>
+<p>This package includes functions torelated to WRF-Chem, Brams and RLINE.
+Also, includes the data:</p><ol>
+<li><p>data("emis_opt")</p></li>
+<li><p>data("emisco")</p></li>
+<li><p>data("Lights")</p></li>
+<li><p>data("rawprofile")</p></li>
+</ol>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Do not run</span>
-<span class='fu'>dir.create</span>(<span class='st'>"EMISS"</span>)
-<span class='fu'>data</span>(<span class='no'>emis_opt</span>)
-<span class='fu'>names</span>(<span class='no'>emis_opt</span>)
-<span class='fu'><a href='wrf_create.html'>wrf_create</a></span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-           <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='st'>"EMISS"</span>,
-           <span class='kw'>variaveis</span>    <span class='kw'>=</span> <span class='no'>emis_opt</span>[<span class='st'>"eradmsorg"</span>],
-           <span class='kw'>n_aero</span>       <span class='kw'>=</span> <span class='fl'>17</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Daniel Schuch
+      <li><a href="#details">Details</a></li>
+          </ul>
 
   </div>
 </div>

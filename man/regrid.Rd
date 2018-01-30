@@ -4,16 +4,19 @@
 \alias{regrid}
 \title{Read EDGAR emissions for exporting to other formats}
 \usage{
-regrid(edgar, gtarget, ncol, nrow)
+regrid(edgar, gtarget, ncol, nrow, crs = "+init=epsg:4326")
 }
 \arguments{
 \item{edgar}{Edgar NetCDF.}
 
-\item{gtarget}{sf grid, which can be produced using wrf_grid.}
+\item{gtarget}{SpatialPolygonsDataFrame, which can be produced using
+wrf_grid and as "Spatial".}
 
 \item{ncol}{Number of columns of gtarget.}
 
 \item{nrow}{Number of rows of gtarget.}
+
+\item{crs}{Coordinate referencey System as crs parameter from raster package}
 }
 \description{
 Return a raster
@@ -21,6 +24,66 @@ Return a raster
 \examples{
 \dontrun{
 # Do not run
-# IN DEVELOPMENT
+# Download EDGAR: http://edgar.jrc.ec.europa.eu/
+Primero sumar las matrices y despue re_samplear
+path <- "~/Documents/edgar/"
+e1_co <- paste0(path,
+                "01_Power_Industry/",
+                "v431_v2_REFERENCE_CO_2010_monthly_ENE_nc/",
+                "v431_v2_REFERENCE_CO_2010_8_ENE.0.1x0.1.nc")
+
+e2_co <- paste0(path,
+                "02_Oil_Refineries/",
+                "v431_v2_REFERENCE_CO_2010_monthly_REF_nc/",
+                "v431_v2_REFERENCE_CO_2010_8_REF.0.1x0.1.nc")
+e3_co <- paste0(path,
+                "03_Transformation_Industry/",
+                "v431_v2_REFERENCE_CO_2010_monthly_TRF_nc/",
+                "v431_v2_REFERENCE_CO_2010_8_TRF.0.1x0.1.nc")
+e4_co <- paste0(path,
+                "04_Combustion_Manufacturing/",
+                "v431_v2_REFERENCE_CO_2010_monthly_IND_nc/",
+                "v431_v2_REFERENCE_CO_2010_8_IND.0.1x0.1.nc")
+e5_co <- paste0(path,
+                "05_Aviation_Climbing/",
+                "v431_v2_REFERENCE_CO_2010_monthly_TNR_Aviation_CDS_nc/",
+                "v431_v2_REFERENCE_CO_2010_1_CDS.0.1x0.1.nc")
+e7_co <- paste0(path,
+                "07_Aviation_LTO/",
+                "v431_v2_REFERENCE_CO_2010_monthly_TNR_Aviation_LTO_nc/",
+                "v431_v2_REFERENCE_CO_2010_1_LTO.0.1x0.1.nc")
+e10_co <- paste0(path,
+                 "10_Railways_Pipelines_OffRoad/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_TNR_Other_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_TNG.0.1x0.1.nc")
+e11_co <- paste0(path,
+                 "11_Shipping/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_TNR_Ship_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_SHIP.0.1x0.1.nc")
+e12_co <- paste0(path,
+                 "12_Energy_Buildings/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_RCO_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_RCO.0.1x0.1.nc")
+e13_co <- paste0(path,
+                 "13_Fuel_Exploitation/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_PRO_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_PRO.0.1x0.1.nc")
+e14_co <- paste0(path,
+                 "14_Process_Production/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_PPA_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_PPA.0.1x0.1.nc")
+e15_co <- paste0(path,
+                 "15_Agricultural_Waste_Burning/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_AGR_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_AGR.0.1x0.1.nc")
+e16_co <- paste0(path,
+                 "16_Waste_Solid/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_SWD_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_SWD.0.1x0.1.nc")
+e17_co <- paste0(path,
+                 "17_Fossil_Fuel_Fires/",
+                 "v431_v2_REFERENCE_CO_2010_monthly_OTH_nc/",
+                 "v431_v2_REFERENCE_CO_2010_1_OTH.0.1x0.1.nc")
+
 }
 }

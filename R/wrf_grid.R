@@ -9,7 +9,7 @@
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #'
 #' @import ncdf4
-#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc
+#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
 #' @export
 #' @examples \dontrun{
 #' # Do not run
@@ -78,7 +78,8 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
     grid[[i]] = cell
   }
   geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-  grid <- st_cast(x = st_sf(geometry = geometry, crs = epsg), to = "POLYGON")
+  grid <- sf::st_cast(x = st_sf(geometry = geometry, crs = epsg),
+                      to = "POLYGON")
   grid$id <- 1:nrow(grid)
   if (matrix == T){
     return(EM)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/to_wrf.R
 \name{to_wrf}
 \alias{to_wrf}
-\title{Combine total/spacial/temporal/split and write emission to file}
+\title{Combine total/spasial/temporal/split and write emission to file}
 \usage{
 to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
   names = NA, weights = 1, verbose = T)

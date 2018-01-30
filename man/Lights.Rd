@@ -23,13 +23,13 @@ Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paul
 # Do not run
 
 # create the folder and emission file
-dir.create("EMISS")
+dir.create("~/Documents/EMISS")
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "EMISS",
+          wrfchemi_dir = "~/Documents/EMISS",
           frames_per_auxinput5 = 24)
 
 # get the name of created file
-files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+files <- list.files(path = "~/Documents/EMISS",pattern = "wrfchemi",full.names = T)
 
 data(Lights)
 

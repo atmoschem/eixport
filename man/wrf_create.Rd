@@ -21,9 +21,11 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
 
 \item{domains}{domain or domains to process}
 
-\item{frames_per_auxinput5}{value from wrf &time_control namelist.input, number of times in a single emission file}
+\item{frames_per_auxinput5}{value from wrf &time_control namelist.input,
+number of times in a single emission file}
 
-\item{auxinput5_interval_m}{value from wrf &time_control namelist.input, interval in minutes between different times}
+\item{auxinput5_interval_m}{value from wrf &time_control namelist.input,
+interval in minutes between different times}
 
 \item{day_offset}{number of days (can be a fracion) to create multiple files}
 
@@ -35,7 +37,8 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
 
 \item{n_aero}{number of aerosol species}
 
-\item{COMPRESS}{integer between 1 (least compr) and 9 (most compr) or NA for no compression}
+\item{COMPRESS}{integer between 1 (least compr) and 9 (most compr) or NA for
+no compression}
 
 \item{force_ncdf4}{force NetCDF4 format}
 
@@ -45,7 +48,8 @@ wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
 Create an emission file from wrfinput
 }
 \note{
-to use io_style_emissions = 1, use day_offset increased by 0.5 (to increase 12h)
+to use io_style_emissions = 1, use day_offset increased by 0.5
+(to increase 12h)
 
 Windowns users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
