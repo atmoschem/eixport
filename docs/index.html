@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
+  <a href="/index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -59,7 +59,31 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    Export emissions.
+    <div id="eixport" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#eixport" class="anchor"></a>eixport</h1></div>
+
+<div id="exporting-emissions-to-other-models" class="section level2">
+<h2 class="hasAnchor">
+<a href="#exporting-emissions-to-other-models" class="anchor"></a>Exporting emissions to other models</h2>
+<p>Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.</p>
+<p>There are several models whose inputs are emissions, such as <a href="https://www.cmascenter.org/r-line/">R-Line</a> or <a href="https://ruc.noaa.gov/wrf/wrf-chem/">WRF-Chem</a>. Now experimental addition of inputs for running smoke and cmaq.</p>
+<p>This R-Package provide functions to read emissions from <a href="https://github.com/ibarraespinosa/vein">VEIN</a> and from other models in different formats and export the emissions into the appropiate format suitable to other models.</p>
+<p>The first case of this package will exporting VEIN emissions into the model R-Line.</p>
+<p>some functions:</p>
+<ul>
+<li>to_rline: Export emissions to other formats</li>
+<li>to_wrf: Combine total/spatial/temporal/split and write emission to file</li>
+<li>to_brams_spm: inputs for SPM BRAMS</li>
+<li>wrf_profile: Traffic intensity profile for WRF-Chem</li>
+<li>wrf_create: Create emission files to the WRF-Chem</li>
+<li>wrf_plot: simple plot for emissions</li>
+<li>wrf_get: Funtions to read variables of emission files</li>
+<li>wrf_put: Funtions to write variables in emission files</li>
+</ul>
+<p><code>{r eval=F} # 0.2.9 devtools::install_github("atmoschem/eixport") library(eixport) ?to_wrf</code></p>
+</div>
+</div>
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -71,7 +95,7 @@
 </li>
 </ul>
 <h2>License</h2>
-
+<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Sergio Ibarra-Espinosa <br><small class="roles"> Author, maintainer </small> <br><small>(0000-0002-3162-1905)</small>
@@ -81,8 +105,7 @@
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/mit-license.php">MIT</a></li>
-<li><a href="LICENSE.html">LICENSE</a></li>
+<li><a href="https://travis-ci.org/atmoschem/eixport"><img src="https://travis-ci.org/atmoschem/eixport.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 </ul>
 </div>
 </div>
@@ -93,7 +116,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
