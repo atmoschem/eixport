@@ -1,4 +1,4 @@
-#' Combine total/spacial/temporal/split and write emission to file
+#' Combine total/spasial/temporal/split and write emission to file
 #'
 #' @description Function to expand, split and write emissions. The input is expand into
 #' time by profile and split between variables with diferent weights.

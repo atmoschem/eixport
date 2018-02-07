@@ -1,6 +1,6 @@
 Package: eixport
 Title: Exporting emissions
-Version: 0.2.9
+Version: 0.2.10
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",

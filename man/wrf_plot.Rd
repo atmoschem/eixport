@@ -39,10 +39,10 @@ In case of a error related to plot.new() margins lbarra must be adjusted
 
 dir.create("EMISS")
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "EMISS")
+          wrfchemi_dir = "~/Documents/EMISS")
 
 # get the name of created file
-files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+files <- list.files(path = "~/Documents/EMISS",pattern = "wrfchemi",full.names = T)
 
 # open, put some numbers and write
 wrf_plot(files[1],"E_CO")

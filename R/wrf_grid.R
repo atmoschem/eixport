@@ -9,7 +9,7 @@
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #'
 #' @import ncdf4
-#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc
+#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
 #' @export
 #' @examples \dontrun{
 #' # Do not run
@@ -18,9 +18,9 @@
 #' plot(gwrf, axes = T)
 #'}
 wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
-    cat(paste("using grid info from:", filewrf, "\n"))
+  cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
-    if(type == "wrfinput"){
+  if(type == "wrfinput"){
     lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG")
   } else if(type == "geo"){
@@ -29,15 +29,17 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   }
   time   <- ncdf4::ncvar_get(wrf, varid = "Times")
   dx     <- ncdf4::ncatt_get(wrf, varid = 0,
-                             attname = "DX")$value #/ 1000 # km
+                             attname = "DX")$value
   n.lat  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
   n.lon  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "WEST-EAST_PATCH_END_UNSTAG")$value
+  cat(paste0("Number of lat points ", n.lat, "\n"))
+  cat(paste0("Number of lon points ", n.lon, "\n"))
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
   r.lon  <- range(lat)
-  EM  <- matrix(0, nrow = n.lon, ncol = n.lat) # o formato da saida
+  EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
 
   points      <- data.frame(lat  = c(lat),
                             long = c(lon))
@@ -53,7 +55,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   grid = list()
 
   for(i in 1:nrow(points)){
-  # for(i in 1:2){
+    # for(i in 1:2){
     p1_lat = points$lat[i]  - dx/2
     p1_lon = points$long[i] + dy/2
 
@@ -76,9 +78,11 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
     grid[[i]] = cell
   }
   geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-  grid <- st_sf(geometry = geometry, crs = epsg)
+  grid <- sf::st_cast(x = st_sf(geometry = geometry, crs = epsg),
+                      to = "POLYGON")
+  grid$id <- 1:nrow(grid)
   if (matrix == T){
-    return(mat)
+    return(EM)
   } else {
     return(grid)
   }
