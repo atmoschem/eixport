@@ -48,7 +48,6 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F){
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrfchem, varid = "XLONG")
     time   <- ncdf4::ncvar_get(wrfchem, varid = "Times")
-    dx     <- ncdf4::ncatt_get(wrfchem, varid = 0,attname = "DX")$value #/ 1000 # km
     r.lat  <- range(lat)
     r.lon  <- range(lon)
     n.lat  <- ncdf4::ncatt_get(wrfchem,varid = 0,attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
