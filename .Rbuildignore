@@ -3,3 +3,4 @@
 ^\.travis\.yml$
 ^Readme.md$
 ^docs$
+^appveyor\.yml$
