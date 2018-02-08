@@ -17,11 +17,11 @@ some functions:
 - to_rline: Export emissions to other formats
 - to_wrf:	Combine total/spatial/temporal/split and write emission to file
 - to_brams_spm:	inputs for SPM BRAMS
-- wrf_profile: Traffic intensity profile for WRF-Chem
+- wrf_profile: Create a spatial profile
 - wrf_create:	Create emission files to the WRF-Chem
-- wrf_plot: simple plot for emissions
-- wrf_get:	Funtions to read variables of emission files
-- wrf_put:	Funtions to write variables in emission files
+- wrf_plot: Simple plot for emission
+- wrf_get:	Read variables of emission files
+- wrf_put:	Write variables in emission files
 
 
 ```{r eval=F}
