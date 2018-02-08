@@ -25,7 +25,7 @@ some functions:
 
 
 ```{r eval=F}
-# 0.2.9
+# 0.2.10
 devtools::install_github("atmoschem/eixport")
 library(eixport)
 ?to_wrf
