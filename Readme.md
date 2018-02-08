@@ -24,7 +24,7 @@ some functions:
 - wrf_put:	Write variables in emission files
 
 
-```{r eval=F}
+```r
 # 0.2.9
 devtools::install_github("atmoschem/eixport")
 library(eixport)
