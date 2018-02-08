@@ -1,4 +1,4 @@
-#' Traffic intensity profile for WRF
+#' Create a spatial profile from a wrf emission file and a dataframe with
 #'
 #' @description returns a traffic intensity profile (based on wrf file Times)
 #' and a traffic intensity data.frame
@@ -23,15 +23,16 @@
 #'
 #' # Profile based on Sao Paulo tunnel experiments
 #' data(rawprofile)
-#' raw.profile <- as.data.frame(rawprofile)
-#' names(raw.profile) <- c("Sunday","Monday","Tuesday","Wednesday","Thursday",
-#'                         "Friday","Saturday")
-#' row.names(raw.profile) <- c("00:00","01:00","02:00","03:00","04:00","05:00",
-#'                             "06:00","07:00","08:00","09:00","10:00","11:00",
-#'                             "12:00","13:00","14:00","15:00","16:00","17:00",
-#'                             "18:00","19:00","20:00","21:00","22:00","23:00")
+#' rawprofile  <- matrix(rawprofile,nrow = 24,byrow = T)
+#' rawprofile <- as.data.frame(rawprofile)
+#' names(rawprofile) <- c("Sunday","Monday","Tuesday","Wednesday","Thursday",
+#'                        "Friday","Saturday")
+#' row.names(rawprofile) <- c("00:00","01:00","02:00","03:00","04:00","05:00",
+#'                            "06:00","07:00","08:00","09:00","10:00","11:00",
+#'                            "12:00","13:00","14:00","15:00","16:00","17:00",
+#'                            "18:00","19:00","20:00","21:00","22:00","23:00")
 #'
-#' print(raw.profile)
+#' print(rawprofile)
 #'
 #' # create the folder and emission file
 #' dir.create("EMISS")
@@ -41,7 +42,7 @@
 #'
 #' files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
 #'
-#' profile <- wrf_profile(raw.profile,files[1])
+#' profile <- wrf_profile(rawprofile,files[1])
 #'
 #' plot(profile,ty="l",lty = 2,axe=F,main = "Traffic Intensity for Sao Paulo",
 #' xlab = "hour")
