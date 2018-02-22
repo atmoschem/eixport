@@ -3,8 +3,9 @@
 #' @description Read a variable
 #'
 #' @param file name of file interactively (default) or specified
-#' @param as_raster return a raster instead of a array
 #' @param name name of the variable (any variable)
+#' @param as_raster return a raster instead of a array
+#' @param raster_crs crs to used if as_raster is TRUE
 #'
 #' @format array or raster object
 #'
@@ -35,7 +36,8 @@
 #'CO[] = rnorm(length(CO))
 #'wrf_put(file = files[1], name = "E_CO",POL = CO)
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = F){
+wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
+                    raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
    name  <- menu(names(wrfchem$var), title = "Chose the variable:")
@@ -72,7 +74,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F){
                          ymx = r.lat[2])
       r <- raster::flip(r,2)
     }
-    raster::crs(r)   <- "+proj=longlat +ellps=GRS80 +no_defs"
+    raster::crs(r)   <- sp::CRS(raster_crs)
     names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
     return(r)

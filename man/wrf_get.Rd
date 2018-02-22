@@ -5,7 +5,8 @@
 \title{Function to read variables of emission files}
 \format{array or raster object}
 \usage{
-wrf_get(file = file.choose(), name = NA, as_raster = F)
+wrf_get(file = file.choose(), name = NA, as_raster = F,
+  raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 }
 \arguments{
 \item{file}{name of file interactively (default) or specified}
@@ -13,6 +14,8 @@ wrf_get(file = file.choose(), name = NA, as_raster = F)
 \item{name}{name of the variable (any variable)}
 
 \item{as_raster}{return a raster instead of a array}
+
+\item{raster_crs}{crs to used if as_raster is TRUE}
 }
 \description{
 Read a variable

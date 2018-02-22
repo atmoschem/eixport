@@ -90,7 +90,8 @@
     <p>Read a variable</p>
     
 
-    <pre class="usage"><span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>raster_crs</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -106,6 +107,10 @@
     <tr>
       <th>as_raster</th>
       <td><p>return a raster instead of a array</p></td>
+    </tr>
+    <tr>
+      <th>raster_crs</th>
+      <td><p>crs to used if as_raster is TRUE</p></td>
     </tr>
     </table>
     
