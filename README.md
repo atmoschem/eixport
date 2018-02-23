@@ -1,5 +1,8 @@
 # eixport
+[![Rdoc](http://www.rdocumentation.org/badges/version/eixport)](http://www.rdocumentation.org/packages/eixport)
 [![Travis-CI Build Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
+
+![WRF-Chem emisisons of CO](https://i.imgur.com/5zfCeWT.png)
 
 ## Exporting emissions to other models
 
@@ -11,6 +14,7 @@ This R-Package provide functions to read emissions from [VEIN](https://github.co
 in different formats and export the emissions into the appropiate format suitable to other models.
 
 The first case of this package will exporting VEIN emissions into the model R-Line.
+
 
 some functions:
 
@@ -25,7 +29,7 @@ some functions:
 
 
 ```r
-# 0.2.10
+# 0.3.0
 devtools::install_github("atmoschem/eixport")
 library(eixport)
 ?to_wrf

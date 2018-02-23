@@ -1,6 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
-^Readme.md$
+^README.md$
 ^docs$
 ^appveyor\.yml$
+^paper.md$
+^paper.bib$
+^lights_wrf.png$

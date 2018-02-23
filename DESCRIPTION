@@ -1,6 +1,6 @@
 Package: eixport
-Title: Exporting emissions
-Version: 0.2.10
+Title: eixport: An R package to export emissions to atmospheric models
+Version: 0.3.0
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -13,10 +13,10 @@ Authors@R: c(
          email = "underschuch@gmail.com",
          comment = c(ORCID = "0000-0001-5977-4519"))
   ) 
-Description: Export emissions.
+Description: This package export anthropogenic emissions to atmospheric models such as WRFChem. This package was created to do a litle bi more easy these tasks. This packages imports functions of sf, ncdf4 and raster and produces NetCDF files and text tiles formatted for the atmospheric model target.
 License: MIT + file LICENSE
-URL: https://github.com/ibarraespinosa/eixport
-BugReports: https://github.com/ibarraespinosa/eixport/issues/
+URL: https://github.com/atmoschem/eixport
+BugReports: https://github.com/atmoschem/eixport/issues/
 Depends: R (>= 3.4.1)
 Suggests: sp
 Imports: sf, ncdf4, raster

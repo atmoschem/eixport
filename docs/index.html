@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exporting emissions • eixport</title>
+<title>eixport: An R package to export emissions to atmospheric models • eixport</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -63,6 +63,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#eixport" class="anchor"></a>eixport</h1></div>
 
+<p><img src="https://i.imgur.com/5zfCeWT.png" alt="WRF-Chem emisisons of CO"></p>
 <div id="exporting-emissions-to-other-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exporting-emissions-to-other-models" class="anchor"></a>Exporting emissions to other models</h2>
@@ -81,7 +82,7 @@
 <li>wrf_get: Read variables of emission files</li>
 <li>wrf_put: Write variables in emission files</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 0.2.10</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 0.3.0</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"atmoschem/eixport"</span>)
 <span class="kw">library</span>(eixport)
 ?to_wrf</code></pre></div>
@@ -108,6 +109,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="http://www.rdocumentation.org/packages/eixport"><img src="http://www.rdocumentation.org/badges/version/eixport" alt="Rdoc"></a></li>
 <li><a href="https://travis-ci.org/atmoschem/eixport"><img src="https://travis-ci.org/atmoschem/eixport.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/Schuch666/eixport"><img src="https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true" alt="Build status"></a></li>
 </ul>
