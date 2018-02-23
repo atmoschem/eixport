@@ -13,13 +13,12 @@ Authors@R: c(
          email = "underschuch@gmail.com",
          comment = c(ORCID = "0000-0001-5977-4519"))
   ) 
-Description: This package export anthropogenic emissions to atmospheric models such as WRFChem. This package was created to do a litle bi more easy these tasks. This packages imports functions of sf, ncdf4 and raster and produces NetCDF files and text tiles formatted for the atmospheric model target.
+Description: This package export anthropogenic emissions to atmospheric models. This package was created to do easier these tasks producing formatted files for the atmospheric model target.
 License: MIT + file LICENSE
 URL: https://github.com/atmoschem/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
-Depends: R (>= 3.4.1)
-Suggests: sp
-Imports: sf, ncdf4, raster
+Depends: R (>= 2.10)
+Imports: sf, ncdf4, raster, sp
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.0.1

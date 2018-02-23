@@ -10,9 +10,8 @@
 #' @format array or raster object
 #'
 #' @import ncdf4
-#' @import raster sp
-#'
 #' @importFrom raster raster brick flip
+#' @importFrom sp CRS
 #'
 #' @export
 #'
