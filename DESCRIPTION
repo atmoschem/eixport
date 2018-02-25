@@ -1,5 +1,5 @@
 Package: eixport
-Title: eixport: An R package to export emissions to atmospheric models
+Title: Export Emissions to Atmospheric Models
 Version: 0.3.0
 Authors@R: c(
   person(given = "Sergio",
@@ -13,7 +13,7 @@ Authors@R: c(
          email = "underschuch@gmail.com",
          comment = c(ORCID = "0000-0001-5977-4519"))
   ) 
-Description: This package export anthropogenic emissions to atmospheric models. This package was created to do easier these tasks producing formatted files for the atmospheric model target.
+Description: It reads emissions data and creates formatted inputs for the atmospheric model target.
 License: MIT + file LICENSE
 URL: https://github.com/atmoschem/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
