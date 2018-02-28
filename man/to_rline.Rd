@@ -62,7 +62,7 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.
 \dontrun{
 # Do not run
 data(emisco)
-f1 <- to_rline(X_b = emisco$xmin,
+Source <- to_rline(X_b = emisco$xmin,
                Y_b = emisco$ymin,
                Z_b =0,
                X_e = emisco$xmin,
@@ -72,6 +72,8 @@ f1 <- to_rline(X_b = emisco$xmin,
                Emis = emisco$V8,
                sigmaz0 = 2,
                lanes = emisco$lanes)
-write.table(x = f1, file = "~/Source.txt", row.names = FALSE)
+head(Source)
+write.table(x = Source, file = paste0(tempdir(), "/Sources.txt"),
+row.names = FALSE, sep = " ", quote = FALSE)
 }
 }

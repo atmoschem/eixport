@@ -1,6 +1,7 @@
 # eixport
 [![Rdoc](http://www.rdocumentation.org/badges/version/eixport)](http://www.rdocumentation.org/packages/eixport)
 [![Travis-CI Build Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
+[![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
 
 ![WRF-Chem emisisons of CO](https://i.imgur.com/5zfCeWT.png)
 

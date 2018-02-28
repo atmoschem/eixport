@@ -38,25 +38,25 @@
 #'
 #' # emissions for a 1 day forecast for domains 1 and 2
 #'
-#' dir.create("EMISS")
+#' dir.create(file.path(tempdir(), "EMISS"))
 #'
 #' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
-#'            wrfchemi_dir         = "EMISS",
+#'            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
 #'            domains              = 1:2,
 #'            frames_per_auxinput5 = 24,
 #'            auxinput5_interval_m = 60,
 #'            day_offset           = 0,
-#'            verbose              = T)
+#'            verbose              = TRUE)
 #'
 #' # emission for the last timestep
 #'
 #' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
-#'            wrfchemi_dir         = "EMISS",
+#'            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
 #'            domains              = 1:2,
 #'            frames_per_auxinput5 = 1,
 #'            auxinput5_interval_m = 60,
 #'            day_offset           = 1,
-#'            verbose              = T)
+#'            verbose              = TRUE)
 #'}
 
 wrf_create  <- function(wrfinput_dir         = "",

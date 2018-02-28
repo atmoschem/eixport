@@ -142,19 +142,21 @@ time with control the level which will be ploted</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Do not run</span>
+    <pre class="examples"><div class='input'>{
 
-<span class='fu'>dir.create</span>(<span class='st'>"EMISS"</span>)
+<span class='fu'>dir.create</span>(<span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 <span class='fu'><a href='wrf_create.html'>wrf_create</a></span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-          <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='st'>"~/Documents/EMISS"</span>)
+          <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 
 <span class='co'># get the name of created file</span>
-<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"~/Documents/EMISS"</span>,<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,<span class='kw'>full.names</span> <span class='kw'>=</span> <span class='no'>T</span>)
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
+                   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,
+                   <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># open, put some numbers and write</span>
-<span class='fu'>wrf_plot</span>(<span class='no'>files</span>[<span class='fl'>1</span>],<span class='st'>"E_CO"</span>)
-<span class='co'># }</span></pre>
+<span class='fu'>wrf_plot</span>(<span class='no'>files</span>[<span class='fl'>1</span>], <span class='st'>"E_CO"</span>)
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpgB7i71/EMISS' already exists</span></div><div class='output co'>#&gt; [1] "/tmp/RtmpgB7i71/EMISS/wrfchemi_d01_2011-08-01_00:00:00"
+#&gt; [1] "E_CO"</div><div class='output co'>#&gt; <span class='warning'>Warning: Max value = Min Value!</span></div><div class='img'><img src='wrf_plot-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
