@@ -12,6 +12,8 @@ authors:
 - affiliation: '1'
   name: Daniel Schuch
   orcid: 0000-0001-5977-4519
+  name: Edmilson Dias de Freitas
+  orcid: 0000-0001-8783-2747
 date: "23 February 2018"
 output:
   word_document: default
