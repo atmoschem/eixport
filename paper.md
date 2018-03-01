@@ -94,7 +94,7 @@ The resulting plot can be seen in the Fig. 1.
 
 ![WRF-Chem emisisons of CO](https://i.imgur.com/5zfCeWT.png)
 
-The R package eixport is available at the repository  https://github.com/atmoschem/eixport. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (https://travis-ci.org/atmoschem/eixport) and Windows via Appveyor (https://ci.appveyor.com/project/Schuch666/eixport). Also, eixport is already on CRAN  https://CRAN.R-project.org/package=eixport.
+The R package eixport is available at the repository  https://github.com/atmoschem/eixport. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (https://travis-ci.org/atmoschem/eixport) and Windows via Appveyor (https://ci.appveyor.com/project/Schuch666/eixport). Also, eixport is already on CRAN https://CRAN.R-project.org/package=eixport.
 
 \pagebreak
 
