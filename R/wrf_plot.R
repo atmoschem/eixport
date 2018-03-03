@@ -8,6 +8,7 @@
 #' @param nivel level from the emission file
 #' @param barra barblot if TRUE
 #' @param lbarra length of barplot
+#' @param col color vector
 #' @param verbose if TRUE print some information
 #' @param ... Arguments to be passed to plot methods
 #'
@@ -45,6 +46,7 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
+                     col = gray.colors(10),
                      verbose = T,
                      ...){
   wrfchem <- ncdf4::nc_open(file)
@@ -91,9 +93,9 @@ wrf_plot <- function(file = file.choose(),
                                 ylim = range(y, finite = TRUE),
                                 zlim = range(z, finite = TRUE),
                                 levels = pretty(zlim, nlevels),
-                                nlevels = 20,
+                                nlevels = length(col),
                                 color.palette = cm.colors,
-                                col = gray.colors(length(levels)-1),
+                                col = col,
                                 plot.title,
                                 plot.axes,
                                 key.title,
@@ -156,9 +158,9 @@ wrf_plot <- function(file = file.choose(),
 
 
   barras <- function(x,
-                     levels = pretty(x),
-                     n = length(levels),
-                     col = gray.colors(length(levels)-1),
+                     levels = pretty(x,nlevels),
+                     nlevels = length(col),
+                     col    = gray.colors(length(levels)-1),
                      titulo = "",...){
     plot.new()
     plot.window(xlim = c(0, 1), ylim = range(levels), xaxs = "i", yaxs = "i")
@@ -178,13 +180,13 @@ wrf_plot <- function(file = file.choose(),
            widths = c(1,lbarra))
     par(mar=c(3.5, 3.5, 3, 0))
   }
-  filled.contour2(x, y, POL)
+  filled.contour2(x, y, POL, col = col)
   mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
   mtext("Latitude", 2, line = 2.2,cex = 1.2, las=0)
   mtext("Longitude", 1, line = 2.2,cex = 1.2)
   if(barra){
     par(mar = c(3.5, 1, 3, 4))
-    barras(POL)
+    barras(POL, col = col)
     mtext(name, 3, line = 0.8)
     par(old.par)
     par(mfrow = c(1, 1))
