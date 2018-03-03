@@ -19,21 +19,22 @@
 #'
 #' @seealso \code{\link{wrf_plot}} and \code{\link{wrf_put}}
 #'
-#' @examples \dontrun{
-#' # Do not run
+#' @examples {
 #'
 #' # create the folder and emission file
-#'dir.create("EMISS")
-#'wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'          wrfchemi_dir = "EMISS")
+#' dir.create(file.path(tempdir(), "EMISS"))
+#' wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
+#'          wrfchemi_dir = file.path(tempdir(), "EMISS"))
 #'
-#'# get the name of created file
-#'files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+#' # get the name of created file
+#' files <- list.files(path = file.path(tempdir(), "EMISS"),
+#'                    pattern = "wrfchemi",
+#'                    full.names = TRUE)
 #'
-#'# open, put some numbers and write
-#'CO <- wrf_get(file = files[1],name = "E_CO")
-#'CO[] = rnorm(length(CO))
-#'wrf_put(file = files[1], name = "E_CO",POL = CO)
+#' # open, put some numbers and write
+#' CO <- wrf_get(file = files[1], name = "E_CO")
+#' CO[] = rnorm(length(CO))
+#' wrf_put(file = files[1], name = "E_CO", POL = CO)
 #'}
 wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){

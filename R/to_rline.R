@@ -31,7 +31,7 @@
 #' @examples \dontrun{
 #' # Do not run
 #' data(emisco)
-#' f1 <- to_rline(X_b = emisco$xmin,
+#' Source <- to_rline(X_b = emisco$xmin,
 #'                Y_b = emisco$ymin,
 #'                Z_b =0,
 #'                X_e = emisco$xmin,
@@ -41,7 +41,9 @@
 #'                Emis = emisco$V8,
 #'                sigmaz0 = 2,
 #'                lanes = emisco$lanes)
-#' write.table(x = f1, file = "~/Source.txt", row.names = FALSE)
+#' head(Source)
+#' write.table(x = Source, file = paste0(tempdir(), "/Sources.txt"),
+#' row.names = FALSE, sep = " ", quote = FALSE)
 #' }
 to_rline <- function (X_b,
                       Y_b,
@@ -64,63 +66,64 @@ to_rline <- function (X_b,
   if (missing(Emis) | is.null(Emis)) {
     stop (print("No 'Emissions'"))
   } else if (experimental){
-  dfa <- data.frame(Group = format(1:length(X_b), width = 5))
-  dfb <- format(cbind(X_b = X_b, Y_b = Y_b), width = 10)
-  dfc <-   format(data.frame(Z_b = ifelse(length(Z_b) == 1,
-                                          rep(Z_b, length(X_b)), Z_b)),
-                  width = 5)
-  dfd <- format(cbind(X_e = X_e, Y_e = Y_e), width = 10)
-
-  dfe <- format(data.frame(Z_e = ifelse(length(Z_e) == 1,
-                                        rep(Z_e, length(X_e)), Z_e)),
-                width = 5)
-  dff <- format(data.frame(dCL = dCL), width = 5)
-  dfg <- format(data.frame(sigmaz0 =  ifelse(length(sigmaz0) == 1,
-                                             rep(sigmaz0, length(sigmaz0)),
-                                             sigmaz0)),
-                width = 9)
-  dfh <- format(data.frame(lanes = lanes), wdith = 7)
-  dfi <- format(data.frame(Emis = Emis), wdith = 6)
-  dfj <- format(data.frame(Hw1 = Hw1,
-                           dw1 = dw1,
-                           Hw2 = Hw2,
-                           dw2 = dw2), wdith = 5)
-  dfk <- format(data.frame(Depth = Depth), width = 7)
-  dfl <- format(data.frame(Wtop = Wtop), width = 7)
-  dfm <- format(data.frame(Wbottom = Wbottom), width = 9)
-  df <- cbind(dfa, dfb, dfc, dfd, dfe, dff, dfg, dfh, dfi, dfj, dfk, dfl, dfm)
-
-  return(df)
+    df <- data.frame(
+    Group = as.character(format(1:length(X_b), width = 5)))
+    df$X_b  <- as.character(format(X_b, width = 10))
+    df$Y_b  <- as.character(format(Y_b, width = 10))
+    df$Z_b <- as.character(format(ifelse(length(Z_b) == 1,
+                            rep(Z_b, length(X_b)),
+                            Z_b),
+                     width = 5))
+    df$X_e  <- as.character(format(X_e, width = 10))
+    df$Y_e  <- as.character(format(Y_e, width = 10))
+    df$Z_e <- as.character(format(ifelse(length(Z_e) == 1,
+                            rep(Z_e, length(X_e)),
+                            Z_e),
+                     width = 5))
+    df$dCL <- as.character(format(dCL, width = 5))
+    df$sigma0 <- as.character(format(ifelse(length(sigmaz0) == 1,
+                               rep(sigmaz0, length(X_e)),
+                               sigmaz0),
+                        width = 9))
+    df$lanes <- as.character(format(lanes, width = 7))
+    df$Emis <- as.character(format(Emis, width = 6))
+    df$Hw1 <- as.character(format(Hw1, width = 5))
+    df$dw1 <- as.character(format(dw1, width = 5))
+    df$Hw2 <- as.character(format(Hw2, width = 5))
+    df$dw2 <- as.character(format(dw2, width = 5))
+    df$Depth <- as.character(format(Depth, width = 7))
+    df$Wtop <- as.character(format(Wtop, width = 7))
+    df$Wbottom <- as.character(format(Wbottom, width = 9))
+    return(df)
   } else if(experimental == FALSE){
-    dfa <- data.frame(Group = format(1:length(X_b), width = 5))
-    dfb <- format(cbind(X_b = X_b, Y_b = Y_b), width = 10)
-    dfc <-   format(data.frame(Z_b = ifelse(length(Z_b) == 1,
-                                            rep(Z_b, length(X_b)), Z_b)),
-                    width = 5)
-    dfd <- format(cbind(X_e = X_e, Y_e = Y_e), width = 10)
-
-    dfe <- format(data.frame(Z_e = ifelse(length(Z_e) == 1,
-                                          rep(Z_e, length(X_e)), Z_e)),
-                  width = 5)
-    dff <- format(data.frame(dCL = dCL), width = 5)
-    dfg <- format(data.frame(sigmaz0 =  ifelse(length(sigmaz0) == 1,
-                                               rep(sigmaz0, length(sigmaz0)),
-                                               sigmaz0)),
-                  width = 9)
-    dfh <- format(data.frame(lanes = lanes), wdith = 7)
-    dfi <- format(data.frame(Emis = Emis), wdith = 6)
-    dfj <- format(data.frame(Hw1 = rep(0, length(X_e)),
-                             dw1 = rep(0, length(X_e)),
-                             Hw2 = rep(0, length(X_e)),
-                             dw2 = rep(0, length(X_e))),
-                  wdith = 5)
-    dfk <- format(data.frame(Depth = rep(0, length(X_e))),
-                  width = 7)
-    dfl <- format(data.frame(Wtop = rep(0, length(X_e))),
-                  width = 7)
-    dfm <- format(data.frame(Wbottom = rep(0, length(X_e))),
-                  width = 9)
-    df <- cbind(dfa, dfb, dfc, dfd, dfe, dff, dfg, dfh, dfi, dfj, dfk, dfl, dfm)
+    df <- data.frame(
+      Group = as.character(format(1:length(X_b), width = 5)))
+    df$X_b  <- as.character(format(X_b, width = 10))
+    df$Y_b  <- as.character(format(Y_b, width = 10))
+    df$Z_b <- as.character(format(ifelse(length(Z_b) == 1,
+                            rep(Z_b, length(X_b)),
+                            Z_b),
+                     width = 5))
+    df$X_e  <- as.character(format(X_e, width = 10))
+    df$Y_e  <- as.character(format(Y_e, width = 10))
+    df$Z_e <- as.character(format(ifelse(length(Z_e) == 1,
+                            rep(Z_e, length(X_e)),
+                            Z_e),
+                     width = 5))
+    df$dCL <- as.character(format(dCL, width = 5))
+    df$sigma0 <- as.character(format(ifelse(length(sigmaz0) == 1,
+                               rep(sigmaz0, length(X_e)),
+                               sigmaz0),
+                        width = 9))
+    df$lanes <- as.character(format(lanes, width = 7))
+    df$Emis <- as.character(format(Emis, width = 6))
+    df$Hw1 <- as.character(format(0, width = 5))
+    df$dw1 <- as.character(format(0, width = 5))
+    df$Hw2 <- as.character(format(0, width = 5))
+    df$dw2 <- as.character(format(0, width = 5))
+    df$Depth <- as.character(format(0, width = 7))
+    df$Wtop <- as.character(format(0, width = 7))
+    df$Wbottom <- as.character(format(0, width = 9))
     return(df)
   }
 }

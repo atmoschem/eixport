@@ -1,5 +1,5 @@
 Package: eixport
-Title: eixport: An R package to export emissions to atmospheric models
+Title: Export Emissions to Atmospheric Models
 Version: 0.3.0
 Authors@R: c(
   person(given = "Sergio",
@@ -13,7 +13,7 @@ Authors@R: c(
          email = "underschuch@gmail.com",
          comment = c(ORCID = "0000-0001-5977-4519"))
   ) 
-Description: This package export anthropogenic emissions to atmospheric models. This package was created to do easier these tasks producing formatted files for the atmospheric model target.
+Description: Emissions are mass of pollutants released into the atmosphere. Air quality models needs emission data, with spatial and temporal distribution, to represent air pollutant concentrations. This package eixport creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) <doi:10.1016/j.atmosenv.2005.04.027>, 'BRAMS-SPM' Freitas et al (2005) <doi:10.1016/j.atmosenv.2005.07.017> and 'RLINE' Snyder et al (2013) <doi:10.1016/j.atmosenv.2013.05.074>. See the eixport website for more information, documentations and examples.
 License: MIT + file LICENSE
 URL: https://github.com/atmoschem/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
@@ -22,3 +22,5 @@ Imports: sf, ncdf4, raster, sp
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.0.1
+Suggests: testthat,
+    covr

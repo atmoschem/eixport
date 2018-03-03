@@ -179,25 +179,25 @@ before run wrf.exe with these files</p>
 
 <span class='co'># emissions for a 1 day forecast for domains 1 and 2</span>
 
-<span class='fu'>dir.create</span>(<span class='st'>"EMISS"</span>)
+<span class='fu'>dir.create</span>(<span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 
 <span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span>         <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-           <span class='kw'>wrfchemi_dir</span>         <span class='kw'>=</span> <span class='st'>"EMISS"</span>,
+           <span class='kw'>wrfchemi_dir</span>         <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
            <span class='kw'>domains</span>              <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>,
            <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>24</span>,
            <span class='kw'>auxinput5_interval_m</span> <span class='kw'>=</span> <span class='fl'>60</span>,
            <span class='kw'>day_offset</span>           <span class='kw'>=</span> <span class='fl'>0</span>,
-           <span class='kw'>verbose</span>              <span class='kw'>=</span> <span class='no'>T</span>)
+           <span class='kw'>verbose</span>              <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># emission for the last timestep</span>
 
 <span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span>         <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-           <span class='kw'>wrfchemi_dir</span>         <span class='kw'>=</span> <span class='st'>"EMISS"</span>,
+           <span class='kw'>wrfchemi_dir</span>         <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
            <span class='kw'>domains</span>              <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>,
            <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>1</span>,
            <span class='kw'>auxinput5_interval_m</span> <span class='kw'>=</span> <span class='fl'>60</span>,
            <span class='kw'>day_offset</span>           <span class='kw'>=</span> <span class='fl'>1</span>,
-           <span class='kw'>verbose</span>              <span class='kw'>=</span> <span class='no'>T</span>)
+           <span class='kw'>verbose</span>              <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

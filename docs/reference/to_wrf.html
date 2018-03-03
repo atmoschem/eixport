@@ -147,38 +147,32 @@ create this file).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Do not run</span>
-
-<span class='co'># create the folder and emission file</span>
-<span class='fu'>dir.create</span>(<span class='st'>"EMISS"</span>)
+<span class='fu'>dir.create</span>(<span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 <span class='fu'><a href='wrf_create.html'>wrf_create</a></span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-          <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='st'>"EMISS"</span>,
+          <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
           <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>24</span>)
 
 <span class='co'># get the name of created file</span>
-<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"EMISS"</span>,<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,<span class='kw'>full.names</span> <span class='kw'>=</span> <span class='no'>T</span>)
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
+                   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,
+                   <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>data</span>(<span class='no'>Lights</span>)
 
-<span class='no'>perfil</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.010760058</span>, <span class='fl'>0.005280596</span>,
-           <span class='fl'>0.002883553</span>, <span class='fl'>0.002666932</span>,
-           <span class='fl'>0.005781312</span>, <span class='fl'>0.018412838</span>,
-           <span class='fl'>0.051900411</span>, <span class='fl'>0.077834636</span>,
-           <span class='fl'>0.067919758</span>, <span class='fl'>0.060831614</span>,
-           <span class='fl'>0.055852868</span>, <span class='fl'>0.052468599</span>,
-           <span class='fl'>0.050938043</span>, <span class='fl'>0.051921718</span>,
-           <span class='fl'>0.052756244</span>, <span class='fl'>0.052820165</span>,
-           <span class='fl'>0.058388406</span>, <span class='fl'>0.072855890</span>,
-           <span class='fl'>0.075267137</span>, <span class='fl'>0.063246412</span>,
-           <span class='fl'>0.042713523</span>, <span class='fl'>0.029108975</span>,
-           <span class='fl'>0.022091855</span>, <span class='fl'>0.015298458</span>)
+<span class='no'>perfil</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.010760058</span>, <span class='fl'>0.005280596</span>, <span class='fl'>0.002883553</span>, <span class='fl'>0.002666932</span>,
+           <span class='fl'>0.005781312</span>, <span class='fl'>0.018412838</span>, <span class='fl'>0.051900411</span>, <span class='fl'>0.077834636</span>,
+           <span class='fl'>0.067919758</span>, <span class='fl'>0.060831614</span>, <span class='fl'>0.055852868</span>, <span class='fl'>0.052468599</span>,
+           <span class='fl'>0.050938043</span>, <span class='fl'>0.051921718</span>, <span class='fl'>0.052756244</span>, <span class='fl'>0.052820165</span>,
+           <span class='fl'>0.058388406</span>, <span class='fl'>0.072855890</span>, <span class='fl'>0.075267137</span>, <span class='fl'>0.063246412</span>,
+           <span class='fl'>0.042713523</span>, <span class='fl'>0.029108975</span>, <span class='fl'>0.022091855</span>, <span class='fl'>0.015298458</span>)
 
-<span class='fu'>plot</span>(<span class='no'>perfil</span>,<span class='kw'>ty</span> <span class='kw'>=</span> <span class='st'>"l"</span>,<span class='kw'>col</span><span class='kw'>=</span> <span class='st'>"purple"</span>,<span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Hour"</span>,<span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Time profile"</span>,
-    <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Weight"</span>,<span class='kw'>axes</span> <span class='kw'>=</span> <span class='no'>F</span>,<span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>,<span class='fl'>24</span>))
+<span class='fu'>plot</span>(<span class='no'>perfil</span>, <span class='kw'>ty</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span><span class='kw'>=</span> <span class='st'>"purple"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Hour"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Time profile"</span>,
+    <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Weight"</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>24</span>))
 <span class='fu'>axis</span>(<span class='fl'>2</span>)
-<span class='fu'>axis</span>(<span class='fl'>1</span>,<span class='kw'>at</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>,<span class='fl'>6</span>,<span class='fl'>12</span>,<span class='fl'>18</span>,<span class='fl'>24</span>),<span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>,<span class='st'>"00:00"</span>))
+<span class='fu'>axis</span>(<span class='fl'>1</span>, <span class='kw'>at</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span>),
+    <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>,<span class='st'>"00:00"</span>))
 
-<span class='fu'>to_wrf</span>(<span class='no'>Lights</span>,<span class='no'>files</span>[<span class='fl'>1</span>],<span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>,<span class='kw'>profile</span> <span class='kw'>=</span> <span class='no'>perfil</span>,<span class='kw'>names</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
+<span class='fu'>to_wrf</span>(<span class='no'>Lights</span>, <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>, <span class='kw'>profile</span> <span class='kw'>=</span> <span class='no'>perfil</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

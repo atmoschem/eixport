@@ -35,18 +35,19 @@ time with control the level which will be ploted
 In case of a error related to plot.new() margins lbarra must be adjusted
 }
 \examples{
-\dontrun{
-# Do not run
+{
 
-dir.create("EMISS")
+dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "~/Documents/EMISS")
+          wrfchemi_dir = file.path(tempdir(), "EMISS"))
 
 # get the name of created file
-files <- list.files(path = "~/Documents/EMISS",pattern = "wrfchemi",full.names = T)
+files <- list.files(path = file.path(tempdir(), "EMISS"),
+                   pattern = "wrfchemi",
+                   full.names = TRUE)
 
 # open, put some numbers and write
-wrf_plot(files[1],"E_CO")
+wrf_plot(files[1], "E_CO")
 }
 }
 \seealso{

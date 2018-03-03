@@ -25,7 +25,7 @@ and a traffic intensity data.frame
 
 # Profile based on Sao Paulo tunnel experiments
 data(rawprofile)
-rawprofile  <- matrix(rawprofile,nrow = 24,byrow = T)
+rawprofile  <- matrix(rawprofile, nrow = 24, byrow = TRUE)
 rawprofile <- as.data.frame(rawprofile)
 names(rawprofile) <- c("Sunday","Monday","Tuesday","Wednesday","Thursday",
                        "Friday","Saturday")
@@ -37,20 +37,22 @@ row.names(rawprofile) <- c("00:00","01:00","02:00","03:00","04:00","05:00",
 print(rawprofile)
 
 # create the folder and emission file
-dir.create("EMISS")
+dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "EMISS",
+          wrfchemi_dir = file.path(tempdir(), "EMISS"),
           frames_per_auxinput5 = 24)
 
-files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+files <- list.files(path = file.path(tempdir(), "EMISS"),
+                    pattern = "wrfchemi",
+                    full.names = TRUE)
 
 profile <- wrf_profile(rawprofile,files[1])
 
-plot(profile,ty="l",lty = 2,axe=F,main = "Traffic Intensity for Sao Paulo",
-xlab = "hour")
+plot(profile, ty="l", lty = 2, axe = FALSE,
+     main = "Traffic Intensity for Sao Paulo", xlab = "hour")
 axis(2)
-axis(1,at=0.5+c(0,6,12,18,24),labels = c("00:00","06:00","12:00","18:00",
-"00:00"))
+axis(1, at = 0.5 + c(0, 6, 12, 18, 24),
+    labels = c("00:00","06:00","12:00","18:00", "00:00"))
 }
 }
 \seealso{

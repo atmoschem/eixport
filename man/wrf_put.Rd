@@ -17,21 +17,21 @@ wrf_put(file = file.choose(), name = NA, POL)
 Extract variable
 }
 \examples{
-\dontrun{
-# Do not run
-
+{
 # create the folder and emission file
-dir.create("EMISS")
+dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "EMISS")
+          wrfchemi_dir = file.path(tempdir(), "EMISS"))
 
 # get the name of created file
-files <- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+files <- list.files(path = file.path(tempdir(), "EMISS"),
+                    pattern = "wrfchemi",
+                    full.names = TRUE)
 
 # open, put some numbers and write
-CO <- wrf_get(file = files[1],name = "E_CO")
+CO <- wrf_get(file = files[1], name = "E_CO")
 CO[] = rnorm(length(CO))
-wrf_put(file = files[1],name = "E_CO",POL = CO)
+wrf_put(file = files[1], name = "E_CO", POL = CO)
 }
 }
 \seealso{

@@ -188,7 +188,7 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Do not run</span>
 <span class='fu'>data</span>(<span class='no'>emisco</span>)
-<span class='no'>f1</span> <span class='kw'>&lt;-</span> <span class='fu'>to_rline</span>(<span class='kw'>X_b</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>xmin</span>,
+<span class='no'>Source</span> <span class='kw'>&lt;-</span> <span class='fu'>to_rline</span>(<span class='kw'>X_b</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>xmin</span>,
                <span class='kw'>Y_b</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>ymin</span>,
                <span class='kw'>Z_b</span> <span class='kw'>=</span><span class='fl'>0</span>,
                <span class='kw'>X_e</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>xmin</span>,
@@ -198,7 +198,9 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
                <span class='kw'>Emis</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>V8</span>,
                <span class='kw'>sigmaz0</span> <span class='kw'>=</span> <span class='fl'>2</span>,
                <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>lanes</span>)
-<span class='fu'>write.table</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>f1</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"~/Source.txt"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>head</span>(<span class='no'>Source</span>)
+<span class='fu'>write.table</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Source</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='fu'>tempdir</span>(), <span class='st'>"/Sources.txt"</span>),
+<span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>" "</span>, <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

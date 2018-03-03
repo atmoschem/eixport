@@ -20,10 +20,11 @@ long comes from mass grid, XLONG_M and XLAT_M}
 Return a Spatial Feature multipolygon or matrix
 }
 \examples{
-\dontrun{
+{
 # Do not run
-wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
+wrf <- paste(system.file("extdata", package = "eixport"),
+                         "/wrfinput_d02", sep="")
 gwrf  <- wrf_grid(wrf)
-plot(gwrf, axes = T)
+plot(gwrf, axes = TRUE)
 }
 }

@@ -11,11 +11,12 @@
 #' @import ncdf4
 #' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
 #' @export
-#' @examples \dontrun{
+#' @examples {
 #' # Do not run
-#' wrf <- paste(system.file("extdata", package = "EmissV"),"/wrfinput_d02",sep="")
+#' wrf <- paste(system.file("extdata", package = "eixport"),
+#'                          "/wrfinput_d02", sep="")
 #' gwrf  <- wrf_grid(wrf)
-#' plot(gwrf, axes = T)
+#' plot(gwrf, axes = TRUE)
 #'}
 wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   cat(paste("using grid info from:", filewrf, "\n"))

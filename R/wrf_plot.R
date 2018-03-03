@@ -27,18 +27,19 @@
 #'
 #' @seealso \code{\link{wrf_get}} and \code{\link{wrf_create}}
 #'
-#' @examples \dontrun{
-#' # Do not run
+#' @examples {
 #'
-#'dir.create("EMISS")
+#'dir.create(file.path(tempdir(), "EMISS"))
 #'wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'           wrfchemi_dir = "~/Documents/EMISS")
+#'           wrfchemi_dir = file.path(tempdir(), "EMISS"))
 #'
 #'# get the name of created file
-#'files <- list.files(path = "~/Documents/EMISS",pattern = "wrfchemi",full.names = T)
+#'files <- list.files(path = file.path(tempdir(), "EMISS"),
+#'                    pattern = "wrfchemi",
+#'                    full.names = TRUE)
 #'
 #'# open, put some numbers and write
-#'wrf_plot(files[1],"E_CO")
+#'wrf_plot(files[1], "E_CO")
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
