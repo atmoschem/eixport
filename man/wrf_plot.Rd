@@ -5,8 +5,7 @@
 \title{Simple plot from wrf emission file}
 \usage{
 wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
-  barra = T, lbarra = 0.2, verbose = T, col = gray.colors(length(levels)
-  - 1), ...)
+  barra = T, lbarra = 0.2, col = gray.colors(10), verbose = T, ...)
 }
 \arguments{
 \item{file}{emission file name}
@@ -20,6 +19,8 @@ wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
 \item{barra}{barblot if TRUE}
 
 \item{lbarra}{length of barplot}
+
+\item{col}{color vector}
 
 \item{verbose}{if TRUE print some information}
 
