@@ -4,7 +4,7 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
 [![DOI](https://zenodo.org/badge/106145968.svg)](https://zenodo.org/badge/latestdoi/106145968)
 
-![WRF-Chem emisisons of CO](https://i.imgur.com/5zfCeWT.png)
+![WRF-Chem emisisons of CO](https://raw.githubusercontent.com/atmoschem/eixport/master/lights_wrf.png)
 
 ## Exporting emissions to other models
 

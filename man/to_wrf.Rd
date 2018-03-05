@@ -70,7 +70,7 @@ to_wrf(Lights, files[1], total = 1521983, profile = perfil, names = "E_CO")
 }
 }
 \seealso{
-\code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
+\link{wrf_create}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 }
 \author{
 Daniel Schuch

@@ -28,7 +28,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
+#' @seealso \link{wrf_create}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 #'
 #' @examples \dontrun{
 #' dir.create(file.path(tempdir(), "EMISS"))
