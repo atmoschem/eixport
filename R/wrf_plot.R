@@ -41,10 +41,11 @@
 #'# load end write some data in this emission file
 #'data(Lights)
 #'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
-#'
-#'cor <- c("#46024E","#442764","#3A4277","#1D5B88","#007393",
-#'         "#008A99","#009F99","#00B293","#00C387","#65D174",
-#'         "#9EDB5D","#D0E245","#FDE333")
+#' #library(cptcity)
+#' #cpt(n = 13)
+#'cor <- c("#000004","#110A30","#320A5E","#560F6D","#781C6D","#9A2864",
+#'         "#BB3654","#D74B3E","#ED6925","#F98C09","#FBB418","#F4DE52",
+#'         "#FCFFA4")
 #'wrf_plot(files[1], "E_CO", ,col = cor)
 #'}
 wrf_plot <- function(file = file.choose(),

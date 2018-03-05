@@ -4,7 +4,7 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
 [![DOI](https://zenodo.org/badge/106145968.svg)](https://zenodo.org/badge/latestdoi/106145968)
 
-![WRF-Chem emisisons of CO](https://raw.githubusercontent.com/atmoschem/eixport/master/lights_wrf.png)
+![WRF-Chem emisisons of CO](https://i.imgur.com/BcZ2tfW.png)
 
 ## Exporting emissions to other models
 
@@ -31,9 +31,16 @@ some functions:
 
 
 ```r
-# 0.3.0
+# 0.3.1
 devtools::install_github("atmoschem/eixport")
 library(eixport)
 ?to_wrf
 ```
 
+or CRAN
+```r
+# 0.3.0
+install.packages("eixport")
+library(eixport)
+?to_wrf
+```

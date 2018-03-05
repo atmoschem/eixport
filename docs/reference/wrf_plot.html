@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simple plot from wrf emission file � wrf_plot • eixport</title>
+<title>Simple plot from wrf emission file — wrf_plot • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -160,13 +160,14 @@ time with control the level which will be ploted</p>
 <span class='co'># load end write some data in this emission file</span>
 <span class='fu'>data</span>(<span class='no'>Lights</span>)
 <span class='fu'><a href='to_wrf.html'>to_wrf</a></span>(<span class='no'>Lights</span>, <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
-
-<span class='no'>cor</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"#46024E"</span>,<span class='st'>"#442764"</span>,<span class='st'>"#3A4277"</span>,<span class='st'>"#1D5B88"</span>,<span class='st'>"#007393"</span>,
-        <span class='st'>"#008A99"</span>,<span class='st'>"#009F99"</span>,<span class='st'>"#00B293"</span>,<span class='st'>"#00C387"</span>,<span class='st'>"#65D174"</span>,
-        <span class='st'>"#9EDB5D"</span>,<span class='st'>"#D0E245"</span>,<span class='st'>"#FDE333"</span>)
+<span class='co'>#library(cptcity)</span>
+<span class='co'>#cpt(n = 13)</span>
+<span class='no'>cor</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"#000004"</span>,<span class='st'>"#110A30"</span>,<span class='st'>"#320A5E"</span>,<span class='st'>"#560F6D"</span>,<span class='st'>"#781C6D"</span>,<span class='st'>"#9A2864"</span>,
+        <span class='st'>"#BB3654"</span>,<span class='st'>"#D74B3E"</span>,<span class='st'>"#ED6925"</span>,<span class='st'>"#F98C09"</span>,<span class='st'>"#FBB418"</span>,<span class='st'>"#F4DE52"</span>,
+        <span class='st'>"#FCFFA4"</span>)
 <span class='fu'>wrf_plot</span>(<span class='no'>files</span>[<span class='fl'>1</span>], <span class='st'>"E_CO"</span>, ,<span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cor</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: 'C:\Users\Schuch\AppData\Local\Temp\RtmpqiSWdD\EMISS' already exists</span></div><div class='output co'>#&gt; [1] "writing emissions: E_CO weight 1"
-#&gt; [1] "C:\\Users\\Schuch\\AppData\\Local\\Temp\\RtmpqiSWdD/EMISS/wrfchemi_d01_2011-08-01_00_00_00"
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpIAwFCa/EMISS' already exists</span></div><div class='output co'>#&gt; [1] "writing emissions: E_CO weight 1"
+#&gt; [1] "/tmp/RtmpIAwFCa/EMISS/wrfchemi_d01_2011-08-01_00:00:00"
 #&gt; [1] "E_CO"
 #&gt; [1] "Max value: 2481.08618164062, Min value: 0"</div><div class='img'><img src='wrf_plot-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
