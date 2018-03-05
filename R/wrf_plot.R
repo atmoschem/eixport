@@ -25,7 +25,7 @@
 #' @importFrom utils menu
 #' @export
 #'
-#' @seealso \code{\link{wrf_get}} and \code{\link{wrf_create}}
+#' @seealso \code{\link{Lights}}, \code{\link{to_wrf}} and \code{\link{wrf_create}}
 #'
 #' @examples {
 #'
@@ -38,8 +38,14 @@
 #'                    pattern = "wrfchemi",
 #'                    full.names = TRUE)
 #'
-#'# open, put some numbers and write
-#'wrf_plot(files[1], "E_CO")
+#'# load end write some data in this emission file
+#'data(Lights)
+#'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
+#'
+#'cor <- c("#46024E","#442764","#3A4277","#1D5B88","#007393",
+#'         "#008A99","#009F99","#00B293","#00C387","#65D174",
+#'         "#9EDB5D","#D0E245","#FDE333")
+#'wrf_plot(files[1], "E_CO", ,col = cor)
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
