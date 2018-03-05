@@ -29,16 +29,16 @@ some functions:
 - wrf_get:	Read variables of emission files
 - wrf_put:	Write variables in emission files
 
-
-```r
+```{r eval = FALSE}
 # 0.3.1
 devtools::install_github("atmoschem/eixport")
 library(eixport)
 ?to_wrf
+
 ```
 
 or CRAN
-```r
+```{r eval = FALSE}
 # 0.3.0
 install.packages("eixport")
 library(eixport)
