@@ -45,3 +45,8 @@ install.packages("eixport")
 library(eixport)
 ?to_wrf
 ```
+
+### Contributing
+Contributions of all sorts are welcome, issues and pull requests are the preferred ways of sharing them.
+When contributing pull requests, please follow the [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml).
+This project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
