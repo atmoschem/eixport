@@ -15,7 +15,7 @@
 #' @note If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 #' time with control the level which will be ploted
 #'
-#' @note In case of a error related to plot.new() margins lbarra must be adjusted
+#' @note In case of an error related to plot.new() margins lbarra must be adjusted
 #'
 #' @author Daniel Schuch
 #'

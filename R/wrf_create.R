@@ -1,6 +1,6 @@
 #' Create emission files to the WRF-Chem
 #'
-#' @description Create an emission file from wrfinput
+#' @description Create an emission file from wrfinput file(s)
 #'
 #' @param wrfinput_dir folder with the wrfinput file(s)
 #' @param wrfchemi_dir output folder
@@ -9,7 +9,7 @@
 #' number of times in a single emission file
 #' @param auxinput5_interval_m value from wrf &time_control namelist.input,
 #' interval in minutes between different times
-#' @param day_offset number of days (can be a fracion) to create multiple files
+#' @param day_offset number of days (can be a fraction) to create multiple files
 #' @param io_style_emissions from wrf &chem namelist.input
 #' @param kemit from wrf &chem namelist.input, number of levels of the emission file
 #' @param variaveis emission species, can be used data(emis_opt)
@@ -21,7 +21,7 @@
 #' @note to use io_style_emissions = 1, use day_offset increased by 0.5
 #' (to increase 12h)
 #'
-#' @note Windowns users need to rename the emission files
+#' @note Windows users need to rename the emission files
 #' from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
 #' before run wrf.exe with these files
 #'

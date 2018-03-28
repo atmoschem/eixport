@@ -3,7 +3,7 @@
 #' @description Return a Spatial Feature multipolygon or matrix
 #'
 #' @param filewrf wrf file
-#' @param type Type or wrf file: "wrfinput" or "geo". When type is "geo", lat
+#' @param type Type of wrf file: "wrfinput" or "geo". When type is "geo", lat
 #' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
