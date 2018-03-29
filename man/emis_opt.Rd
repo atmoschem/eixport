@@ -20,18 +20,14 @@ look to the number of aerosol of the emis_opt in wrf domumentation / code.
 \examples{
 \dontrun{
 # Do not run
-dir.create("EMISS")
 data(emis_opt)
 names(emis_opt)
-wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-           wrfchemi_dir = "EMISS",
-           variaveis    = emis_opt["eradmsorg"],
-           n_aero       = 17)
+emis_opt["eradm"]
 }
 
 }
 \seealso{
-\code{\link{to_wrf}}
+\code{\link{wrf_create}}
 }
 \author{
 Daniel Schuch
