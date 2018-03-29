@@ -18,13 +18,19 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function to read variables of emission files — wrf_get" />
+
+<meta property="og:description" content="Read a variable" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +53,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +71,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -84,6 +94,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Function to read variables of emission files</h1>
+    <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_get.R'><code>R/wrf_get.R</code></a></small>
     </div>
 
     
@@ -93,7 +104,7 @@
     <pre class="usage"><span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='no'>F</span>,
   <span class='kw'>raster_crs</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -106,11 +117,11 @@
     </tr>
     <tr>
       <th>as_raster</th>
-      <td><p>return a raster instead of a array</p></td>
+      <td><p>return a raster instead of an array</p></td>
     </tr>
     <tr>
       <th>raster_crs</th>
-      <td><p>crs to used if as_raster is TRUE</p></td>
+      <td><p>crs to use if as_raster is TRUE</p></td>
     </tr>
     </table>
     
@@ -175,3 +186,4 @@ Daniel Schuch
 
   </body>
 </html>
+

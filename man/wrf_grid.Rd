@@ -9,7 +9,7 @@ wrf_grid(filewrf, type = "wrfinput", matrix = F, epsg = 4326)
 \arguments{
 \item{filewrf}{wrf file}
 
-\item{type}{Type or wrf file: "wrfinput" or "geo". When type is "geo", lat
+\item{type}{Type of wrf file: "wrfinput" or "geo". When type is "geo", lat
 long comes from mass grid, XLONG_M and XLAT_M}
 
 \item{matrix}{if the output is matrix or polygon (sf)}

@@ -43,6 +43,8 @@
 #'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
 #'
 #'wrf_plot(files[1], "E_CO")
+#'#library(cptcity) for nice colour scales
+#'#wrf_plot(files[1], "E_CO", col = cpt())
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,

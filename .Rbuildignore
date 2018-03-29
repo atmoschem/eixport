@@ -9,5 +9,6 @@
 ^lights_wrf.png$
 ^codecov\.yml$
 ^CODE_OF_CONDUCT.md$
-^README.html
-^paper.docx
+^README.html$
+^paper.docx$
+^CONTRIBUTING.md$

@@ -33,7 +33,7 @@ Create a quick plot from wrf emission file
 If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 time with control the level which will be ploted
 
-In case of a error related to plot.new() margins lbarra must be adjusted
+In case of an error related to plot.new() margins lbarra must be adjusted
 }
 \examples{
 {
@@ -52,6 +52,8 @@ data(Lights)
 to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
 
 wrf_plot(files[1], "E_CO")
+#library(cptcity) for nice colour scales
+#wrf_plot(files[1], "E_CO", col = cpt())
 }
 }
 \seealso{

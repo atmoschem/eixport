@@ -13,9 +13,9 @@ wrf_get(file = file.choose(), name = NA, as_raster = F,
 
 \item{name}{name of the variable (any variable)}
 
-\item{as_raster}{return a raster instead of a array}
+\item{as_raster}{return a raster instead of an array}
 
-\item{raster_crs}{crs to used if as_raster is TRUE}
+\item{raster_crs}{crs to use if as_raster is TRUE}
 }
 \description{
 Read a variable

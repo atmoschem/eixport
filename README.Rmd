@@ -19,34 +19,39 @@ in different formats and export the emissions into the appropiate format suitabl
 The first case of this package will exporting VEIN emissions into the model R-Line.
 
 
-some functions:
+## Install
 
-- to_rline: Export emissions to other formats
-- to_wrf:	Combine total/spatial/temporal/split and write emission to file
-- to_brams_spm:	inputs for SPM BRAMS
-- wrf_profile: Create spatial profile for WRF-Chem
-- wrf_create:	Create emission files to the WRF-Chem
-- wrf_plot: simple plot for emissions
-- wrf_get:	Read variables of emission files
-- wrf_put:	Write variables in emission files
+To install the [CRAN](https://CRAN.R-project.org/package=eixport) version:
 
 ```{r eval = FALSE}
-# 0.3.1
-devtools::install_github("atmoschem/eixport")
-library(eixport)
-?to_wrf
-
-```
-
-or CRAN
-```{r eval = FALSE}
-# 0.3.0
 install.packages("eixport")
-library(eixport)
-?to_wrf
 ```
 
-### Contributing
+To install the development version:
+
+```{r eval = FALSE}
+devtools::install_github("atmoschem/eixport")
+```
+
+```{r}
+library(eixport)
+```
+
+## Some functions:
+
+- [to_rline](https://atmoschem.github.io/eixport/reference/to_rline.html): Export emissions to other formats
+- [to_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):	Combine total/spatial/temporal/split and write emission to file
+- [to_brams_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):	inputs for SPM BRAMS
+- [wrf_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html): Create spatial profile for WRF-Chem
+- [wrf_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):	Create emission files to the WRF-Chem
+- [wrf_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html): simple plot for emissions
+- [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
+- [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
+
+
+## Contributing
+
+Please, read [this](https://github.com/atmoschem/eixport/blob/master/CONTRIBUTING.md) guide.
 Contributions of all sorts are welcome, issues and pull requests are the preferred ways of sharing them.
 When contributing pull requests, please follow the [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml).
-This project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+This project is released with a [Contributor Code of Conduct](https://github.com/atmoschem/eixport/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
