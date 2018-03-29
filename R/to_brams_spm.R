@@ -21,7 +21,7 @@
 #' concentration forecast in the metropolitan area of são paulo, brazil:
 #' Coupling and validation. Atmospheric Environment, Elsevier, n. 39, p.
 #' 6352–6361, 2005.
-#' @author Sergio Ibarra
+#' @author Sergio Ibarra and Edmilson Freitas
 #' @importFrom sf st_as_sf st_coordinates st_set_geometry st_transform
 #' @export
 #'

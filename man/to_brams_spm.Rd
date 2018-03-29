@@ -43,5 +43,5 @@ Coupling and validation. Atmospheric Environment, Elsevier, n. 39, p.
 6352–6361, 2005.
 }
 \author{
-Sergio Ibarra
+Sergio Ibarra and Edmilson Freitas
 }
