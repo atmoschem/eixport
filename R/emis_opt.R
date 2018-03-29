@@ -2,7 +2,7 @@
 #'
 #' @description  Emission package definitions from WRF 3.9.1.1
 #'
-#' @format A list of emision variables names, same number than emis_opt in namelist.
+#' @format A list of emision variables names, same number as emis_opt in namelist.
 #'
 #' @examples \dontrun{
 #' # Do not run
@@ -12,7 +12,7 @@
 #' }
 #'
 #' @note
-#' look to the number of aerosol of the emis_opt in wrf domumentation / code.
+#' look to the number of aerosol of the emis_opt in WRF domumentation / code.
 #'
 #' @seealso \code{\link{wrf_create}}
 #'

@@ -1,7 +1,7 @@
-#' Inputs for BRAMS SPM
+#' Inputs for BRAMS-SPM
 #'
-#' @description Create inputs for SPM brams. The inputs consists in data-frame
-#' or a lists of data-frames with daily emissions (mol/day), lat, long. Also,
+#' @description Create inputs for BRAMS-SPM. The inputs consist of a data-frame
+#' or a list of data-frames with daily emissions (mol/day), lat, long. Also,
 #' including a functions describing the hourly profile.
 #'
 #' @param sdf Grid emissions, which can be a SpatialPolygonsDataFrame or polygon
@@ -12,8 +12,8 @@
 #' coordinates of the output.
 #' @return data-frame of daily gridded emissions, lat, long and a message with
 #' function.
-#' @note When the input os class 'Spatial', they are converted to 'sf'. If the
-#' input is a data-frame, the output is a data-frame. If he input is a list,
+#' @note When the input is class 'Spatial', they are converted to 'sf'. If the
+#' input is a data-frame, the output is a data-frame. If the input is a list,
 #' the output is a list.
 #'
 #' @references SPM BRAMS: FREITAS, E. MARTINS, L.,  SILVA, P. and ANDRADE, M.

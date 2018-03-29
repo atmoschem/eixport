@@ -4,7 +4,7 @@
 #'
 #' \strong{1) Characteristics}
 #'
-#' This package includes functions torelated to WRF-Chem, Brams and RLINE.
+#' This package includes functions related to WRF-Chem, Brams and RLINE.
 #' Also, includes the data:
 #' \enumerate{
 #' \item data("emis_opt")

@@ -4,8 +4,8 @@
 #'
 #' @param file name of file interactively (default) or specified
 #' @param name name of the variable (any variable)
-#' @param as_raster return a raster instead of a array
-#' @param raster_crs crs to used if as_raster is TRUE
+#' @param as_raster return a raster instead of an array
+#' @param raster_crs crs to use if as_raster is TRUE
 #'
 #' @format array or raster object
 #'

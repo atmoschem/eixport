@@ -1,7 +1,7 @@
-#' Spatial distribution exemple
+#' Spatial distribution example
 #'
-#' @description Spatial distribution for veicular emissions based on an image of persistent lights of the
-#' Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paulo, Rio de Janeiro, Mato Grosso, Santa Catarina e Parana).
+#' @description Spatial distribution for vehicular emissions based on an image of persistent lights of the
+#' Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paulo, Rio de Janeiro, Mato Grosso, and Santa Catarina e Parana).
 #'
 #' @format A matrix of spatial distribution
 #'

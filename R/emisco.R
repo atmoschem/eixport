@@ -1,8 +1,8 @@
 #' Emissions from VEIN demo
 #'
-#' Emissions iwth units for R-LINE
+#' Emissions with units for R-LINE
 #'
-#' @format A sf object of lines with 288 rows and 15 variables:
+#' @format A \code{sf} object of type LINESTRING with 288 rows and 15 variables:
 #' \describe{
 #'   \item{ldv}{Light Duty Vehicles (1/h)}
 #'   \item{hdv}{Heavy Duty Vehicles (1/h)}

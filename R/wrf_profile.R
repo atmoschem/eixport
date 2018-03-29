@@ -1,12 +1,12 @@
-#' Create a spatial profile from a wrf emission file and a dataframe with
+#' Create a spatial profile from a wrf emission file and a data frame with
 #'
 #' @description returns a traffic intensity profile (based on wrf file Times)
-#' and a traffic intensity data.frame
+#' and a traffic intensity data frame
 #'
 #' @param x data.frame of intenticy of traffic by hours (rows) and weekdays
 #' (columns)
 #' @param file emission file name
-#' @param verbose display adicional information
+#' @param verbose display additional information
 #'
 #' @format a numeric vector
 #'

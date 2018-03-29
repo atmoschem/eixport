@@ -1,6 +1,6 @@
 #' Export emissions to other formats
 #'
-#' @description Export Emissions object according format of file 'Sources.txt'
+#' @description Export emissions object according to format of file 'Sources.txt'
 #' of the model R-LINE
 #'
 #' @param X_b initial x coordinates.
@@ -20,9 +20,9 @@
 #' @param Depth Depth of the depression. USed for depressed roadway (m).
 #' @param Wtop width of the opening at the top of the depression (m).
 #' @param Wbottom width of the roadway at the bottom of the depression (m).
-#' @param experimental Boolean argument to denotes the use of the experimental
+#' @param experimental Boolean argument to denote the use of the experimental
 #' features (TRUE) or not (FALSE).
-#' @return Data-frame file with format for R-LINE model.
+#' @return Data frame with format for R-LINE model.
 #' @note Michelle G. Snyder, Akula Venkatram, David K. Heist, Steven G. Perry,
 #' William B. Petersen, Vlad Isakov, RLINE: A line source dispersion model
 #' for near-surface releases, In Atmospheric Environment, Volume 77, 2013,
