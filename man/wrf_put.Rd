@@ -17,7 +17,6 @@ wrf_put(file = file.choose(), name = NA, POL)
 Extract variable
 }
 \examples{
-{
 # create the folder and emission file
 dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
@@ -32,7 +31,6 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
 CO <- wrf_get(file = files[1], name = "E_CO")
 CO[] = rnorm(length(CO))
 wrf_put(file = files[1], name = "E_CO", POL = CO)
-}
 }
 \seealso{
 \code{\link{wrf_plot}} and \code{\link{wrf_get}}
