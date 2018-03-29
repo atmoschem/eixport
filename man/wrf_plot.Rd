@@ -5,7 +5,7 @@
 \title{Simple plot from wrf emission file}
 \usage{
 wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
-  barra = T, lbarra = 0.2, col = gray.colors(10), verbose = T, ...)
+  barra = T, lbarra = 0.2, col = gray.colors(13), verbose = T, ...)
 }
 \arguments{
 \item{file}{emission file name}
@@ -50,12 +50,8 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
 # load end write some data in this emission file
 data(Lights)
 to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
-#library(cptcity)
-#cpt(n = 13)
-cor <- c("#000004","#110A30","#320A5E","#560F6D","#781C6D","#9A2864",
-        "#BB3654","#D74B3E","#ED6925","#F98C09","#FBB418","#F4DE52",
-        "#FCFFA4")
-wrf_plot(files[1], "E_CO", ,col = cor)
+
+wrf_plot(files[1], "E_CO")
 }
 }
 \seealso{

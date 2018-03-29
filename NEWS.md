@@ -1,5 +1,8 @@
 NEWS
 ===========
+# exiport 0.3.0: 29 February 2018
+- exemple fix
+- remove warning message
 
 # eixport 0.3.0 (Release date: 23 February 2018)
 

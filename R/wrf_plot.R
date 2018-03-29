@@ -41,12 +41,8 @@
 #'# load end write some data in this emission file
 #'data(Lights)
 #'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
-#' #library(cptcity)
-#' #cpt(n = 13)
-#'cor <- c("#000004","#110A30","#320A5E","#560F6D","#781C6D","#9A2864",
-#'         "#BB3654","#D74B3E","#ED6925","#F98C09","#FBB418","#F4DE52",
-#'         "#FCFFA4")
-#'wrf_plot(files[1], "E_CO", ,col = cor)
+#'
+#'wrf_plot(files[1], "E_CO")
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
@@ -54,7 +50,7 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = gray.colors(10),
+                     col = gray.colors(13),
                      verbose = T,
                      ...){
   wrfchem <- ncdf4::nc_open(file)
@@ -88,10 +84,10 @@ wrf_plot <- function(file = file.choose(),
     print(wrfchem$filename)
     print(name)
     if(max(POL) == min(POL)){
-      warning("Max value = Min Value!")
+      cat("Max value = Min Value!")
     }
     else{
-      print(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = ""))
+      cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = ""))
     }
   }
 
