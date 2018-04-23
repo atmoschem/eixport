@@ -32,8 +32,13 @@ some functions:
 
 ```r
 # 0.3.0
+library(devtools)
 devtools::install_github("atmoschem/eixport")
+#or
+install.packages("eixport") # now on CRAN
 library(eixport)
 ?to_wrf
 ```
 
+
+    

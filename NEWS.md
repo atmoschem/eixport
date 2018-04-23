@@ -1,6 +1,14 @@
 NEWS
 ===========
 
+# eixport 0.3.1 (Release date: 23 April 2018)
+
+### eixport 0.3.1 (Release date: 23 April 2018)
+
+- Added data gCO.
+- Added function as4wrf.
+- Added tests. 
+
 # eixport 0.3.0 (Release date: 23 February 2018)
 
 ### eixport 0.3.0 (Release date: 23 February 2018)

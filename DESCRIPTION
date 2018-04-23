@@ -1,6 +1,6 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
