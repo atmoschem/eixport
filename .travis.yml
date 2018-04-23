@@ -6,6 +6,8 @@ r:
 #  - devel
 
 # cache: packages
+r_packages:
+  - devtools
 
 sudo: required
 
