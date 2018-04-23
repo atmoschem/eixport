@@ -4,13 +4,13 @@
 \alias{to_as4wrf}
 \title{Generates emissions dataframe to generate WRF-Chem inputs}
 \usage{
-to_as4wrf(sdf, nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist)
+to_as4wrf(sdf, nr = 1, dmyhm, tz, crs = 4326, islist)
 }
 \arguments{
-\item{sdf}{Grid emissions, which can be a SpatialPolygonsDataFrame, or a list
-of SpatialPolygonsDataFrame. The user must enter a list with 36
-SpatialPolygonsDataFrame with emissions for the mechanism CBMZ. When there
-are no emissions available, the SpatialPolygonsDataFrame must contain
+\item{sdf}{Gridded emissions, which can be a SpatialPolygonsDataFrame, or a list
+of SpatialPolygonsDataFrame, or a sf object of "POLYGON". The user must enter
+a list with 36 SpatialPolygonsDataFrame with emissions for the mechanism CBMZ.
+When there  are no emissions available, the SpatialPolygonsDataFrame must contain
 0.}
 
 \item{nr}{Number of repetitions of the emissions period}
@@ -36,6 +36,9 @@ assimilation system: "Another Asimilation System 4 WRF (AAS4WRF)" as published
 by Vera-Vala et al (2016)
 }
 \note{
+The user must produce a text file with the data-frame resulting of this
+function. Then, use this file with the NCL script AAS4WRF.ncl
+
 The reference of the emissions assimilation system is Vara-Vela, A.,
 Andrade, M. F., Kumar, P., Ynoue, R. Y., and Munoz, A. G.: Impact of
 vehicular emissions on the formation of fine particles in the Sao Paulo

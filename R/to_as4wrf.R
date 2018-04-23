@@ -5,10 +5,10 @@
 #' assimilation system: "Another Asimilation System 4 WRF (AAS4WRF)" as published
 #' by Vera-Vala et al (2016)
 #'
-#' @param sdf Grid emissions, which can be a SpatialPolygonsDataFrame, or a list
-#' of SpatialPolygonsDataFrame. The user must enter a list with 36
-#' SpatialPolygonsDataFrame with emissions for the mechanism CBMZ. When there
-#' are no emissions available, the SpatialPolygonsDataFrame must contain
+#' @param sdf Gridded emissions, which can be a SpatialPolygonsDataFrame, or a list
+#' of SpatialPolygonsDataFrame, or a sf object of "POLYGON". The user must enter
+#' a list with 36 SpatialPolygonsDataFrame with emissions for the mechanism CBMZ.
+#' When there  are no emissions available, the SpatialPolygonsDataFrame must contain
 #' 0.
 #' @param nr Number of repetitions of the emissions period
 #' @param dmyhm String indicating Day Month Year Hour and Minute in the format
@@ -18,10 +18,12 @@
 #' @param crs Coordinate reference system, e.g: "+init=epsg:4326". Used to
 #' transform the coordinates of the output
 #' @param islist logical value to indicate if sdf is a list or not
-#' @importFrom sp coordinates spTransform CRS
+#' @importFrom sf st_coordinates  st_transform st_set_geometry
 #' @importFrom methods as
 #' @return data-frame of gridded emissions  g/h
 #' @export
+#' @note The user must produce a text file with the data-frame resulting of this
+#' function. Then, use this file with the NCL script AAS4WRF.ncl
 #' @note The reference of the emissions assimilation system is Vara-Vela, A.,
 #' Andrade, M. F., Kumar, P., Ynoue, R. Y., and Munoz, A. G.: Impact of
 #' vehicular emissions on the formation of fine particles in the Sao Paulo
@@ -42,22 +44,25 @@
 #'                tz = "America/Sao_Paulo", islist = FALSE)
 #' head(df)
 #' }
-to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist){
+to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
   if(nr <= 0){
     stop("The argument 'nr' must be positive")
   } else if (islist == FALSE) {
-    if(class(sdf)[1] == "sf"){
-      sdf <- as(sdf, "Spatial")
-    }
-    dft <- as.data.frame(sp::coordinates(
-      sp::spTransform(sdf, CRSobj = sp::CRS(crs))))
+    sdf <- sf::st_as_sf(sdf)
+    # if(class(sdf)[1] == "sf"){
+    #   sdf <- as(sdf, "Spatial")
+    # }
+    dft <- as.data.frame(sf::st_coordinates(
+      sf::st_transform(sdf, crs)))[, 1:2]
     dftid <- data.frame(id = 1:nrow(dft))
 
     dft <- as.data.frame(cbind(dftid, dft))
 
+    sdf <-sf::st_set_geometry(sdf, NULL)
+
     dft <- do.call("rbind", replicate(ncol(sdf), dft, simplify = FALSE))
-    dft$pol <-  unlist(lapply(1:(ncol(sdf)),function(i) {
-      as.numeric(sdf@data[, i])
+    dft$pol <-  unlist(lapply(1:ncol(sdf),function(i) {
+      as.numeric(sdf[, i])
     })
     )
     names(dft) <- c("id", "long", "lat", "pollutant")
@@ -78,17 +83,19 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist){
   } else if (class(sdf)!="list" & islist==TRUE) {
     stop("The argument 'sdf' must be a list")
   } else if (class(sdf)=="list" & islist==TRUE) {
-    if(class(sdf)[1] == "sf"){
-      sdf <- lapply(sdf, methods::as, "Spatial")
-    }
-    dft <- as.data.frame(sp::coordinates(
-      sp::spTransform(sdf[[1]], CRSobj = sp::CRS(crs))))
+    # if(class(sdf)[1] == "sf"){
+    #   sdf <- lapply(sdf, methods::as, "Spatial")
+    # }
+    dft <- as.data.frame(sf::st_coordinates(
+      sf::st_transform(sdf[[1]], crs)))[, 1:2]
 
     dftid <- data.frame(id = 1:nrow(sdf[[1]]))
 
     dft <- as.data.frame(cbind(dftid, dft))
 
-    dft <- do.call("rbind", replicate(ncol(sdf[[1]]),
+    sdf <-sf::st_set_geometry(sdf, NULL)
+
+    dft <- do.call("rbind", replicate(ncol(sdf),
                                       dft, simplify = FALSE))
     dft <- cbind(dft,
                  as.data.frame(
@@ -97,20 +104,18 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist){
                                   function(j) {
                                     unlist(lapply(1:ncol(sdf[[1]]),
                                                   function(i) {
-                                                    as.numeric( sdf[[j]]@data [, i])
+                                                    as.numeric( sdf[[j]][, i])
                                                   }
                                     ))
                                   }
-                           )))
-    )
+                           ))))
 
     names(dft) <- c("id", "long", "lat",  names(sdf))
     dft <- do.call("rbind", replicate(nr, dft, simplify = FALSE))
-    #  tzz <- ifelse(utc!=0,(-utc)*3600, 0)
     time_lt <- as.POSIXct(x = dmyhm, format="%d-%m-%Y %H:%M", tz=tz)
     dft$time_lt <- rep(seq.POSIXt(from = time_lt,
                                   by = "1 hour",
-                                  length.out = ncol(sdf[[1]])*nr),
+                                  length.out = ncol(sdf)*nr),
                        each=nrow(sdf[[1]]))
     dft$time_utc <- dft$time_lt
     attr(dft$time_utc, "tzone") <- "Etc/UTC"
