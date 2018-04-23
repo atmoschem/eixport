@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +68,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -83,10 +90,7 @@
       <div class="row">
   <div class="col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.3.0</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
     <div class="contents">
@@ -107,85 +111,85 @@
         <tr>
           <!--  -->
           <td>
+            <p><code><a href="Lights.html">Lights</a></code> </p>
+          </td>
+          <td><p>Spatial distribution example</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="eixport.html">eixport</a></code> </p>
           </td>
           <td><p>eixport: a package for exporting emissions</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="emis_opt.html">data</a></code> </p>
+            <p><code><a href="emis_opt.html">emis_opt</a></code> </p>
           </td>
           <td><p>List of WRF emission species</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="emisco.html">data</a></code> </p>
+            <p><code><a href="emisco.html">emisco</a></code> </p>
           </td>
           <td><p>Emissions from VEIN demo</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="Lights.html">data</a></code> </p>
-          </td>
-          <td><p>Spatial distribution exemple</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rawprofile.html">data</a></code> </p>
+            <p><code><a href="rawprofile.html">rawprofile</a></code> </p>
           </td>
           <td><p>Raw profile</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="to_brams_spm.html">to_brams_spm</a></code> </p>
+            <p><code><a href="to_brams_spm.html">to_brams_spm()</a></code> </p>
           </td>
-          <td><p>Inputs for BRAMS SPM</p></td>
+          <td><p>Inputs for BRAMS-SPM</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="to_rline.html">to_rline</a></code> </p>
+            <p><code><a href="to_rline.html">to_rline()</a></code> </p>
           </td>
           <td><p>Export emissions to other formats</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="to_wrf.html">to_wrf</a></code> </p>
+            <p><code><a href="to_wrf.html">to_wrf()</a></code> </p>
           </td>
-          <td><p>Combine total/spasial/temporal/split and write emission to file</p></td>
+          <td><p>Combine total/spatial/temporal/split and write emission to file</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_create.html">wrf_create</a></code> </p>
+            <p><code><a href="wrf_create.html">wrf_create()</a></code> </p>
           </td>
           <td><p>Create emission files to the WRF-Chem</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_get.html">wrf_get</a></code> </p>
+            <p><code><a href="wrf_get.html">wrf_get()</a></code> </p>
           </td>
           <td><p>Function to read variables of emission files</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_grid.html">wrf_grid</a></code> </p>
+            <p><code><a href="wrf_grid.html">wrf_grid()</a></code> </p>
           </td>
           <td><p>Creates grid from wrf file</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_plot.html">wrf_plot</a></code> </p>
+            <p><code><a href="wrf_plot.html">wrf_plot()</a></code> </p>
           </td>
           <td><p>Simple plot from wrf emission file</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_profile.html">wrf_profile</a></code> </p>
+            <p><code><a href="wrf_profile.html">wrf_profile()</a></code> </p>
           </td>
-          <td><p>Create a spatial profile from a wrf emission file and a dataframe with</p></td>
+          <td><p>Create a spatial profile from a wrf emission file and a data frame with</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="wrf_put.html">wrf_put</a></code> </p>
+            <p><code><a href="wrf_put.html">wrf_put()</a></code> </p>
           </td>
           <td><p>Function to write variables in emission files</p></td>
         </tr>
@@ -216,3 +220,4 @@
 
   </body>
 </html>
+

@@ -17,7 +17,6 @@ authors:
   orcid: 0000-0001-8783-2747
 date: "23 February 2018"
 output:
-  word_document: default
   pdf_document: default
 bibliography: paper.bib
 affiliations:
@@ -31,7 +30,8 @@ Emissions are the pollutant mass released into the atmosphere [@pulles2010art]. 
 [@landrigan2017lancet].
 
 
-An important tool for policy decision is air quality models. They have been used not only to study the impact of different emissions scenarios for policy making but also to understand the dynamics of air pollutants in various parts of the world [@Andradeetal2015]. The inputs for an air quality models are meteorology and emissions. Currently, there are tools for developing emissions inventories such as the VEIN [@vein] and the EmissV models [@emissv].  However, the existing tools for inputting the emissions into the air quality models are not written with a high-level language, such as PREP-Chem written in Fortran and C [@freitas2011prep]. Therefore, we developed **eixport**, a tool for doing the mentioned task, using R [@R], a high-level programming. 
+
+An important tool for policy decision is air quality models. They have been used not only to study the impact of different emissions scenarios for policy making but also to understand the dynamics of air pollutants in various parts of the world [@Andradeetal2015]. The inputs for an air quality models are meteorology and emissions. Currently, there are tools for developing emissions inventories such as the VEIN [@vein] and the EmissV models [@emissv].  However, the existing tools for inputting the emissions into the air quality models are not written in a user-friendly way, such as PREP-Chem written in Fortran and C [@freitas2011prep]. Also, as the R language has a growing community, including statistical R packages for model evaluation and validation, such as openair [], air quality modelers already familiar with R would tend to use 'eixport' for inputing data into the appropiate format for each model without the need of deep knowledge in a specific model language. Therefore, we developed **eixport**, a tool for inputting data into atmospheric models using R [@R]. 
 
 eixport imports functions form the R packages sf [@sf] which provides functions for spatial vector data, providing bindings to the GDAL, GEOS, and Proj.4 C++ libraries. Also, eixport import functions from the package ncdf4 [@ncdf4], which interface to Unidata netCDF Format Data Files, and from the raster package [@raster], which provides functions to gridded data.
 
@@ -92,7 +92,7 @@ wrf_plot(files[1])
 
 The resulting plot can be seen in the Fig. 1.
 
-![WRF-Chem emisisons of CO](https://i.imgur.com/5zfCeWT.png)
+![WRF-Chem emisisons of CO](https://raw.githubusercontent.com/atmoschem/EmissV/master/example.jpg)
 
 The R package eixport is available at the repository  https://github.com/atmoschem/eixport. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (https://travis-ci.org/atmoschem/eixport) and Windows via Appveyor (https://ci.appveyor.com/project/Schuch666/eixport). Also, eixport is already on CRAN https://CRAN.R-project.org/package=eixport.
 

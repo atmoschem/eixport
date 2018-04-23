@@ -1,22 +1,22 @@
-#' Combine total/spasial/temporal/split and write emission to file
+#' Combine total/spatial/temporal/split and write emission to file
 #'
-#' @description Function to expand, split and write emissions. The input is expand into
+#' @description Function to expand, split and write emissions. The input is expanded into
 #' time by profile and split between variables with diferent weights.
 #'
-#' @param x matrix or array of emissions of spacial weights
+#' @param x matrix or array of emissions of spatial weights
 #' @param file emission file name
-#' @param total total of emited specie
-#' @param norm if the spacial weights need to be normalized
+#' @param total total of emited species
+#' @param norm if the spatial weights need to be normalized
 #' @param profile temporal profile to expand the emissions
 #' @param names species to be write
-#' @param weights weight of eath specie
-#' @param verbose display adicional information
+#' @param weights weight of each species
+#' @param verbose display additional information
 #'
 #' @note length(profile) must be the number of times in the emission
 #' file (value of frames_per_auxinput5 if wrf_create() was used to
 #' create this file).
 #'
-#' @note total is a additional way to calculate or correct the total emissions
+#' @note total is an additional way to calculate or correct the total emissions
 #'
 #' @note sum(profile) = 1 and sum(weights) = 1 to conserve mass
 #'
@@ -28,7 +28,7 @@
 #'
 #' @export
 #'
-#' @seealso \code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
+#' @seealso \link{wrf_create}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 #'
 #' @examples \dontrun{
 #' dir.create(file.path(tempdir(), "EMISS"))

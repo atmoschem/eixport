@@ -1,7 +1,7 @@
 #' Generates emissions dataframe to generate WRF-Chem inputs
 #'
-#' \code{to_as4wrf} returns a dataframes with columns lat, long, id, pollutants, local time
-#' and GMT time. This dataframe has the proper format to be used with WRF
+#' \code{to_as4wrf} returns a dataframes with columns lat, long, id, pollutants,
+#' local time and GMT time. This dataframe has the proper format to be used with WRF
 #' assimilation system: "Another Asimilation System 4 WRF (AAS4WRF)" as published
 #' by Vera-Vala et al (2016)
 #'
@@ -35,19 +35,18 @@
 #' e_hc3, e_hc5, e_hc8, e_eth, e_co, e_ol2, e_olt, e_oli, e_tol, e_xyl, e_ket
 #' e_csl, e_iso, e_no2, e_ch3oh, e_c2h5oh, e_pm25i, e_pm25j, e_so4i, e_so4j
 #' e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc
-#' @seealso \code{\link{wrf_create}} \code{\link{wrf_grid}}
+#' @seealso \code{\link{wrf_create}} \code{\link{to_wrf}}
 #' @examples {
 #' data(gCO)
 #' df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
-#'                tz = "America/Sao_Paulo, isList = FALSE)
+#'                tz = "America/Sao_Paulo", islist = FALSE)
 #' head(df)
 #' }
 to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist){
-  warning("emis_wrf depends on the NCL script AAS4WRF. To create wrfchemi directly use the package 'eixport' https://CRAN.R-project.org/package=eixport")
   if(nr <= 0){
     stop("The argument 'nr' must be positive")
   } else if (islist == FALSE) {
-    if(class(sdf) == "sf"){
+    if(class(sdf)[1] == "sf"){
       sdf <- as(sdf, "Spatial")
     }
     dft <- as.data.frame(sp::coordinates(
@@ -79,7 +78,7 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = "+init=epsg:4326", islist){
   } else if (class(sdf)!="list" & islist==TRUE) {
     stop("The argument 'sdf' must be a list")
   } else if (class(sdf)=="list" & islist==TRUE) {
-    if(class(sdf) == "sf"){
+    if(class(sdf)[1] == "sf"){
       sdf <- lapply(sdf, methods::as, "Spatial")
     }
     dft <- as.data.frame(sp::coordinates(

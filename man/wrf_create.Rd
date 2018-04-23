@@ -27,7 +27,7 @@ number of times in a single emission file}
 \item{auxinput5_interval_m}{value from wrf &time_control namelist.input,
 interval in minutes between different times}
 
-\item{day_offset}{number of days (can be a fracion) to create multiple files}
+\item{day_offset}{number of days (can be a fraction) to create multiple files}
 
 \item{io_style_emissions}{from wrf &chem namelist.input}
 
@@ -45,13 +45,13 @@ no compression}
 \item{verbose}{print file info}
 }
 \description{
-Create an emission file from wrfinput
+Create an emission file from wrfinput file(s)
 }
 \note{
 to use io_style_emissions = 1, use day_offset increased by 0.5
 (to increase 12h)
 
-Windowns users need to rename the emission files
+Windows users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
 before run wrf.exe with these files
 }

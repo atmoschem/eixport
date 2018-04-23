@@ -2,7 +2,7 @@
 % Please edit documentation in R/wrf_profile.R
 \name{wrf_profile}
 \alias{wrf_profile}
-\title{Create a spatial profile from a wrf emission file and a dataframe with}
+\title{Create a spatial profile from a wrf emission file and a data frame with}
 \format{a numeric vector}
 \usage{
 wrf_profile(x, file, verbose = T)
@@ -13,11 +13,11 @@ wrf_profile(x, file, verbose = T)
 
 \item{file}{emission file name}
 
-\item{verbose}{display adicional information}
+\item{verbose}{display additional information}
 }
 \description{
 returns a traffic intensity profile (based on wrf file Times)
-and a traffic intensity data.frame
+and a traffic intensity data frame
 }
 \examples{
 \dontrun{

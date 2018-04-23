@@ -2,30 +2,30 @@
 % Please edit documentation in R/to_wrf.R
 \name{to_wrf}
 \alias{to_wrf}
-\title{Combine total/spasial/temporal/split and write emission to file}
+\title{Combine total/spatial/temporal/split and write emission to file}
 \usage{
 to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
   names = NA, weights = 1, verbose = T)
 }
 \arguments{
-\item{x}{matrix or array of emissions of spacial weights}
+\item{x}{matrix or array of emissions of spatial weights}
 
 \item{file}{emission file name}
 
-\item{total}{total of emited specie}
+\item{total}{total of emited species}
 
-\item{norm}{if the spacial weights need to be normalized}
+\item{norm}{if the spatial weights need to be normalized}
 
 \item{profile}{temporal profile to expand the emissions}
 
 \item{names}{species to be write}
 
-\item{weights}{weight of eath specie}
+\item{weights}{weight of each species}
 
-\item{verbose}{display adicional information}
+\item{verbose}{display additional information}
 }
 \description{
-Function to expand, split and write emissions. The input is expand into
+Function to expand, split and write emissions. The input is expanded into
 time by profile and split between variables with diferent weights.
 }
 \note{
@@ -33,7 +33,7 @@ length(profile) must be the number of times in the emission
 file (value of frames_per_auxinput5 if wrf_create() was used to
 create this file).
 
-total is a additional way to calculate or correct the total emissions
+total is an additional way to calculate or correct the total emissions
 
 sum(profile) = 1 and sum(weights) = 1 to conserve mass
 
@@ -70,7 +70,7 @@ to_wrf(Lights, files[1], total = 1521983, profile = perfil, names = "E_CO")
 }
 }
 \seealso{
-\code{\link{wrf_create}}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
+\link{wrf_create}, \code{\link{wrf_get}},\code{\link{wrf_profile}}  and \code{\link{wrf_plot}}
 }
 \author{
 Daniel Schuch

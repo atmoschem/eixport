@@ -14,7 +14,7 @@
 #'
 #' @seealso \code{\link{wrf_plot}} and \code{\link{wrf_get}}
 #'
-#' @examples {
+#' @examples{
 #' # create the folder and emission file
 #' dir.create(file.path(tempdir(), "EMISS"))
 #' wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
@@ -29,7 +29,7 @@
 #' CO <- wrf_get(file = files[1], name = "E_CO")
 #' CO[] = rnorm(length(CO))
 #' wrf_put(file = files[1], name = "E_CO", POL = CO)
-#'}
+#' }
 wrf_put <- function(file = file.choose(),name = NA,POL){
   wrfchem <- ncdf4::nc_open(file,write = T)
   ncdf4::ncvar_put(wrfchem,varid = name,POL)

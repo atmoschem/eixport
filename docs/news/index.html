@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • eixport</title>
+<title>Changelog • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Changelog" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +68,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -84,11 +91,121 @@
 
   <div class="col-md-9">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div class="contents">
-    NA
+    <div id="exiport-0-3-0-29-february-2018" class="section level1">
+<h1 class="page-header">
+<a href="#exiport-0-3-0-29-february-2018" class="anchor"></a>exiport 0.3.0: 29 February 2018<small> 2018-03-01 </small>
+</h1>
+<ul>
+<li>exemple fix</li>
+<li>remove warning message</li>
+</ul>
+</div>
+    <div id="eixport-0-3-0-release-date-23-february-2018" class="section level1">
+<h1 class="page-header">
+<a href="#eixport-0-3-0-release-date-23-february-2018" class="anchor"></a>eixport 0.3.0 (Release date: 23 February 2018)<small> 2018-03-01 </small>
+</h1>
+<div id="eixport-0-3-0-release-date-23-february-2018-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#eixport-0-3-0-release-date-23-february-2018-1" class="anchor"></a>eixport 0.3.0 (Release date: 23 February 2018)</h3>
+<ul>
+<li>Remove regrid.</li>
+<li>Prepare submissions to JOSS</li>
+</ul>
+</div>
+<div id="eixport-v0-2-10-release-date-19-january-2018" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-10-release-date-19-january-2018" class="anchor"></a>eixport v0.2.10 (Release date: 19 January 2018)</h2>
+<ul>
+<li>Fix wrf_grid. add regrid.</li>
+</ul>
+</div>
+<div id="eixport-v0-2-9-release-date-15-january-2018" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-9-release-date-15-january-2018" class="anchor"></a>eixport v0.2.9 (Release date: 15 January 2018)</h2>
+<ul>
+<li>Adding data rawprofile. Deleting wrf_temporal.R and adding wrf_profile.R</li>
+<li>Adding option in wrf_grid to read wrfinput from real or geo_em files from geogrid.</li>
+</ul>
+</div>
+<div id="eixport-v0-2-8-release-date-15-january-2018" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-8-release-date-15-january-2018" class="anchor"></a>eixport v0.2.8 (Release date: 15 January 2018)</h2>
+<ul>
+<li>Adding wrf_grid to create spatial grids bassed on wrf files.</li>
+</ul>
+</div>
+<div id="eixport-v0-2-7-release-date-26-december-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-7-release-date-26-december-2017" class="anchor"></a>eixport v0.2.7 (Release date: 26 December 2017)</h2>
+<ul>
+<li>Fix <a href='https://github.com/atmoschem/eixport/issues/6'>#6</a>: Incuding functions to SPM BRAMS.</li>
+<li>Improve documentation of emisco, example of to_rline and Readme.md.</li>
+</ul>
+</div>
+<div id="eixport-v0-2-6-release-date-24-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-6-release-date-24-november-2017" class="anchor"></a>eixport v0.2.6 (Release date: 24 November 2017)</h2>
+<ul>
+<li>Adding Lights data</li>
+</ul>
+</div>
+<div id="eixport-v0-2-5-release-date-24-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-5-release-date-24-november-2017" class="anchor"></a>eixport v0.2.5 (Release date: 24 November 2017)</h2>
+<ul>
+<li>Adding to_smoke and to_cmaq initial functions</li>
+</ul>
+</div>
+<div id="eixport-v0-2-4-release-date-24-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-4-release-date-24-november-2017" class="anchor"></a>eixport v0.2.4 (Release date: 24 November 2017)</h2>
+<ul>
+<li>some fixes</li>
+<li>add the _style_emissions = 1 to wrf_create</li>
+<li>add the internal kemit to the wrf_emission function</li>
+</ul>
+</div>
+<div id="eixport-v0-2-0-0000-release-date-24-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-2-0-0000-release-date-24-november-2017" class="anchor"></a>eixport v0.2.0.0000 (Release date: 24 November 2017)</h2>
+<ul>
+<li>new funtions plot wrf emission</li>
+</ul>
+</div>
+<div id="eixport-v0-1-0-0000-release-date-24-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-1-0-0000-release-date-24-november-2017" class="anchor"></a>eixport v0.1.0.0000 (Release date: 24 November 2017)</h2>
+<ul>
+<li>new set to funtions to work with WRF-chem emissions</li>
+</ul>
+</div>
+<div id="eixport-v0-0-2-9000-release-date-15-november-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-0-2-9000-release-date-15-november-2017" class="anchor"></a>eixport v0.0.2.9000 (Release date: 15 November 2017)</h2>
+<ul>
+<li>improving format for to_rline output. Deleting argument x in to_rline. Adding Daniel Schuch</li>
+</ul>
+</div>
+<div id="vein-v0-0-1-9000-release-date-29-october-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vein-v0-0-1-9000-release-date-29-october-2017" class="anchor"></a>vein v0.0.1.9000 (Release date: 29 October 2017)</h2>
+<ul>
+<li>testing first function: to_rline</li>
+</ul>
+</div>
+<div id="eixport-v0-0-0-9000-release-date-8-october-2017" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eixport-v0-0-0-9000-release-date-8-october-2017" class="anchor"></a>eixport v0.0.0.9000 (Release date: 8 October 2017)</h2>
+<ul>
+<li>First commit</li>
+</ul>
+</div>
+</div>
     </div>
   </div>
 
@@ -96,7 +213,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#NA">NA</a></li>
+        <li><a href="#exiport-0-3-0-29-february-2018">0.3.0</a></li>
+        <li><a href="#eixport-0-3-0-release-date-23-february-2018">0.3.0</a></li>
       </ul>
     </div>
   </div>
@@ -117,3 +235,4 @@
 
   </body>
 </html>
+

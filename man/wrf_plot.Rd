@@ -5,7 +5,7 @@
 \title{Simple plot from wrf emission file}
 \usage{
 wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
-  barra = T, lbarra = 0.2, verbose = T, ...)
+  barra = T, lbarra = 0.2, col = gray.colors(13), verbose = T, ...)
 }
 \arguments{
 \item{file}{emission file name}
@@ -20,6 +20,8 @@ wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
 
 \item{lbarra}{length of barplot}
 
+\item{col}{color vector}
+
 \item{verbose}{if TRUE print some information}
 
 \item{...}{Arguments to be passed to plot methods}
@@ -31,7 +33,7 @@ Create a quick plot from wrf emission file
 If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 time with control the level which will be ploted
 
-In case of a error related to plot.new() margins lbarra must be adjusted
+In case of an error related to plot.new() margins lbarra must be adjusted
 }
 \examples{
 {
@@ -45,12 +47,17 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
                    pattern = "wrfchemi",
                    full.names = TRUE)
 
-# open, put some numbers and write
+# load end write some data in this emission file
+data(Lights)
+to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
+
 wrf_plot(files[1], "E_CO")
+#library(cptcity) for nice colour scales
+#wrf_plot(files[1], "E_CO", col = cpt())
 }
 }
 \seealso{
-\code{\link{wrf_get}} and \code{\link{wrf_create}}
+\code{\link{Lights}}, \code{\link{to_wrf}} and \code{\link{wrf_create}}
 }
 \author{
 Daniel Schuch

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Inputs for BRAMS SPM — to_brams_spm • eixport</title>
+<title>Inputs for BRAMS-SPM — to_brams_spm • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,21 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Inputs for BRAMS-SPM — to_brams_spm" />
+
+<meta property="og:description" content="Create inputs for BRAMS-SPM. The inputs consist of a data-frame
+or a list of data-frames with daily emissions (mol/day), lat, long. Also,
+including a functions describing the hourly profile." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +55,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +73,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -83,18 +95,19 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Inputs for BRAMS SPM</h1>
+    <h1>Inputs for BRAMS-SPM</h1>
+    <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/to_brams_spm.R'><code>R/to_brams_spm.R</code></a></small>
     </div>
 
     
-    <p>Create inputs for SPM brams. The inputs consists in data-frame
-or a lists of data-frames with daily emissions (mol/day), lat, long. Also,
+    <p>Create inputs for BRAMS-SPM. The inputs consist of a data-frame
+or a list of data-frames with daily emissions (mol/day), lat, long. Also,
 including a functions describing the hourly profile.</p>
     
 
     <pre class="usage"><span class='fu'>to_brams_spm</span>(<span class='no'>sdf</span>, <span class='kw'>epsg</span> <span class='kw'>=</span> <span class='fl'>4326</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -118,8 +131,8 @@ function.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>When the input os class 'Spatial', they are converted to 'sf'. If the
-input is a data-frame, the output is a data-frame. If he input is a list,
+    <p>When the input is class 'Spatial', they are converted to 'sf'. If the
+input is a data-frame, the output is a data-frame. If the input is a list,
 the output is a list.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -154,7 +167,7 @@ Coupling and validation. Atmospheric Environment, Elsevier, n. 39, p.
 
     <h2>Author</h2>
     
-Sergio Ibarra
+Sergio Ibarra and Edmilson Freitas
 
   </div>
 </div>
@@ -173,3 +186,4 @@ Sergio Ibarra
 
   </body>
 </html>
+

@@ -2,23 +2,19 @@
 #'
 #' @description  Emission package definitions from WRF 3.9.1.1
 #'
-#' @format A list of emision variables names, same number than emis_opt in namelist.
+#' @format A list of emision variables names, same number as emis_opt in namelist.
 #'
 #' @examples \dontrun{
 #' # Do not run
-#' dir.create("EMISS")
 #' data(emis_opt)
 #' names(emis_opt)
-#' wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'            wrfchemi_dir = "EMISS",
-#'            variaveis    = emis_opt["eradmsorg"],
-#'            n_aero       = 17)
+#' emis_opt["eradm"]
 #' }
 #'
 #' @note
-#' look to the number of aerosol of the emis_opt in wrf domumentation / code.
+#' look to the number of aerosol of the emis_opt in WRF domumentation / code.
 #'
-#' @seealso \code{\link{to_wrf}}
+#' @seealso \code{\link{wrf_create}}
 #'
 #' @author Daniel Schuch
 #'
