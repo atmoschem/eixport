@@ -15,7 +15,7 @@
 #' "d-m-Y H:M" e.g.: "01-05-2014 00:00" It represents the time of the first
 #' hour of emissions in Local Time
 #' @param tz Time zone as required in for function \code{\link{as.POSIXct}}
-#' @param crs Coordinate reference system, e.g: "+init=epsg:4326". Used to
+#' @param crs Coordinate reference system, e.g: "+init=crs:4326". Used to
 #' transform the coordinates of the output
 #' @param islist logical value to indicate if sdf is a list or not
 #' @importFrom sf st_coordinates  st_transform st_set_geometry
@@ -43,6 +43,7 @@
 #' df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
 #'                tz = "America/Sao_Paulo", islist = FALSE)
 #' head(df)
+#'
 #' }
 to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
   if(nr <= 0){
@@ -52,16 +53,19 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
     # if(class(sdf)[1] == "sf"){
     #   sdf <- as(sdf, "Spatial")
     # }
-    dft <- as.data.frame(sf::st_coordinates(
-      sf::st_transform(sdf, crs)))[, 1:2]
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
+    dft$N <- paste0(dft[, 3], "_", dft[, 4])
+    dft = dft[!duplicated(dft$N),]
+    dft <- dft[, 1:2]
+
     dftid <- data.frame(id = 1:nrow(dft))
 
-    dft <- as.data.frame(cbind(dftid, dft))
+    dft <- data.frame(cbind(dftid, dft))
 
-    sdf <-sf::st_set_geometry(sdf, NULL)
+    sdf <- sf::st_set_geometry(sdf, NULL)
 
     dft <- do.call("rbind", replicate(ncol(sdf), dft, simplify = FALSE))
-    dft$pol <-  unlist(lapply(1:ncol(sdf),function(i) {
+    dft$pol <-  unlist(lapply(1:ncol(sdf), function(i) {
       as.numeric(sdf[, i])
     })
     )
@@ -82,20 +86,22 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
       ))
   } else if (class(sdf)!="list" & islist==TRUE) {
     stop("The argument 'sdf' must be a list")
-  } else if (class(sdf)=="list" & islist==TRUE) {
+  } else if (class(sdf) == "list" & islist == TRUE) {
     # if(class(sdf)[1] == "sf"){
     #   sdf <- lapply(sdf, methods::as, "Spatial")
     # }
-    dft <- as.data.frame(sf::st_coordinates(
-      sf::st_transform(sdf[[1]], crs)))[, 1:2]
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], crs)))
+    dft$N <- paste0(dft[, 3], "_", dft[, 4])
+    dft = dft[!duplicated(dft$N),]
+    dft <- dft[, 1:2]
 
     dftid <- data.frame(id = 1:nrow(sdf[[1]]))
 
     dft <- as.data.frame(cbind(dftid, dft))
 
-    sdf <-sf::st_set_geometry(sdf, NULL)
+    sdf <- lapply(sdf, sf::st_set_geometry, NULL)
 
-    dft <- do.call("rbind", replicate(ncol(sdf),
+    dft <- do.call("rbind", replicate(ncol(sdf)[[1]],
                                       dft, simplify = FALSE))
     dft <- cbind(dft,
                  as.data.frame(

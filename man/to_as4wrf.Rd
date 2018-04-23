@@ -21,7 +21,7 @@ hour of emissions in Local Time}
 
 \item{tz}{Time zone as required in for function \code{\link{as.POSIXct}}}
 
-\item{crs}{Coordinate reference system, e.g: "+init=epsg:4326". Used to
+\item{crs}{Coordinate reference system, e.g: "+init=crs:4326". Used to
 transform the coordinates of the output}
 
 \item{islist}{logical value to indicate if sdf is a list or not}
@@ -59,6 +59,7 @@ data(gCO)
 df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
                tz = "America/Sao_Paulo", islist = FALSE)
 head(df)
+
 }
 }
 \seealso{

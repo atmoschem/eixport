@@ -26,41 +26,43 @@
 #' @export
 #'
 #' @examples \dontrun{
-#' # Do not run
-#'
+#' data(gCO)
+#' df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
+#' head(df1)
 #'}
 to_brams_spm <- function(sdf, epsg = 4326){
   if(inherits(x = sdf, what = "list")){
     if(class(sdf[[1]]) == "SpatialPolygonsDataFrame"){
-      message("SpatialPolygonsDataFrame")
+      # message("SpatialPolygonsDataFrame")
       sdf <- lapply(sdf, sf::st_as_sf)
-    } else if(class(sdf[[1]] == "sf")){
-        message("sf")
-      }
-      dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], epsg)))
-      ldf <- lapply(1:length(sdf),
-                    function(i){
-                      cbind(colSums(sf::st_set_geometry(sdf[[i]], NULL)),
-                            dft)
-                    })
-      return(ldf)
-      # Initially, this function return rowsums and polygon separatly
-      sumdf <- sapply(sdf, rowSums, na.rm = T)
-      names(sumdf) <- paste0("sum_" , names(sdf))
-      print(sumdf)
-  } else if(class(sdf) == "sf"){
-    message("sf")
-    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, epsg)))
-    ldf <- as.data.frame(cbind(colSums(sf::st_geometry(sdf, NULL)), dft))
+    } else if(class(sdf[[1]][1]) == "sf"){
+
+    }
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], epsg)))
+    dft$N <- paste0(dft[, 3], "_", dft[, 4])
+    dft <- dft[!duplicated(dft$N),]
+    dft <- dft[, 1:2]
+    names(dft) <- c("long", "lat")
+    ldf <- lapply(1:length(sdf),
+                  function(i){
+                    cbind(rowSums(sf::st_set_geometry(sdf[[i]], NULL)),
+                          dft)
+                  })
     return(ldf)
-  } else if(class(sdf) == "SpatialPolygonsDataFrame") {
-    message("SpatialPolygonsDataFrame")
-    sdf <- sf::st_as_sf(sdf)
-    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, epsg)))
-    ldf <- as.data.frame(cbind(colSums(sf::st_set_geometry(sdf, NULL)), dft))
-    sumdf <- rowSums(sdf, na.rm = T)
+    # Initially, this function return rowsums and polygon separatly
+    sumdf <- sapply(sdf, rowSums, na.rm = TRUE)
     names(sumdf) <- paste0("sum_" , names(sdf))
     print(sumdf)
+  } else {
+    # message("sf")
+    sdf <- sf::st_as_sf(sdf)
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, epsg)))
+    dft$N <- paste0(dft[, 3], "_", dft[, 4])
+    dft <- dft[!duplicated(dft$N),]
+    dft <- dft[, 1:2]
+    names(dft) <- c("long", "lat")
+    dft2 <- data.frame(e24h = rowSums(sf::st_set_geometry(sdf, NULL)))
+    ldf <- cbind(dft, dft2)
     return(ldf)
   }
 }

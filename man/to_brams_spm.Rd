@@ -31,8 +31,9 @@ the output is a list.
 }
 \examples{
 \dontrun{
-# Do not run
-
+data(gCO)
+df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
+head(df1)
 }
 }
 \references{
