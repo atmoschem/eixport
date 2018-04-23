@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>eixport: a package for exporting emissions — eixport • eixport</title>
+<title>Gridded emissions from VEIN demo — gCO • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="eixport: a package for exporting emissions — eixport" />
+<meta property="og:title" content="Gridded emissions from VEIN demo — gCO" />
 
-<meta property="og:description" content="This package provides functions to export emissions to other models" />
+<meta property="og:description" content="Emissions in g/h for morning rush hour." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -93,25 +93,27 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>eixport: a package for exporting emissions</h1>
-    <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/eixport.R'><code>R/eixport.R</code></a></small>
+    <h1>Gridded emissions from VEIN demo</h1>
+    <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/gCO.R'><code>R/gCO.R</code></a></small>
     </div>
 
     
-    <p>This package provides functions to export emissions to other models</p>
+    <p>Emissions in g/h for morning rush hour.</p>
     
 
+    <pre class="usage"><span class='fu'>data</span>(<span class='no'>gCO</span>)</pre>
         
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><strong>1) Characteristics</strong></p>
-<p>This package includes functions related to WRF-Chem, Brams and RLINE.
-Also, includes the data:</p><ol>
-<li><p>data("emis_opt")</p></li>
-<li><p>data("emisco")</p></li>
-<li><p>data("Lights")</p></li>
-<li><p>data("rawprofile")</p></li>
-</ol>
+    <p>A sf object of lines with 437 rows and 2 variables:</p><dl class='dl-horizontal'>
+  <dt>V9</dt><dd><p>Emissions of CO (g/h) for 08:00-09:00</p></dd>
+  <dt>geometry</dt><dd><p>geometry</p></dd>
+  data(gCO)
+</dl>
+    
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://github.com/atmoschem/vein'>https://github.com/atmoschem/vein</a></p>
     
 
   </div>
@@ -119,7 +121,9 @@ Also, includes the data:</p><ol>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#details">Details</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#source">Source</a></li>
           </ul>
 
   </div>

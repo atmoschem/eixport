@@ -5,7 +5,10 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eixport)](http://cran.r-project.org/web/packages/eixport) 
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](http://cran.r-project.org/package=eixport)
 
-![WRF-Chem emisisons of CO](https://i.imgur.com/BcZ2tfW.png)
+
+```{r echo = FALSE}
+knitr::include_graphics("https://i.imgur.com/BcZ2tfW.png")
+```
 
 ## Exporting emissions to other models
 
