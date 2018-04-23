@@ -12,6 +12,12 @@ test_that("to_as4wrf works", {
                  pollutant = 8391.2824346044,
                  time_lt = as.POSIXct(x = "2018-04-29", tz = "America/Sao_Paulo"),
                  time_utc = as.POSIXct(x = "2018-04-29 03:00:00", tz = "Etc/UTC"),
-                 dutch = 2900
+                 dutch = as.numeric(
+                   paste0(
+                     strftime(as.POSIXct(x = "2018-04-29 03:00:00", tz = "Etc/UTC"),
+                              timezone = tz, format = "%d"),
+                     strftime(as.POSIXct(x = "2018-04-29 03:00:00", tz = "Etc/UTC"),
+                              timezone = tz, format = "%H")
+                   ))
                ))
 })
