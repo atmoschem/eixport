@@ -31,3 +31,8 @@ test_that("multiplication works", {
   expect_equal(wrf_plot(f1, "E_CO", verbose = FALSE),
                wrf_plot(f2, "E_CO", verbose = FALSE))
 })
+
+test_that("multiplication works", {
+  expect_equal(wrf_plot(f1, "E_CO", verbose = TRUE)[1],
+               wrf_plot(f2, "E_CO", verbose = TRUE)[1])
+})

@@ -1,4 +1,5 @@
 context("to_rline")
+
 data(emisco)
 emisco <- emisco[1 ,]
 df2 <- data.frame(
@@ -19,7 +20,8 @@ df2$Hw2 = as.character(format(0,width = 5))
 df2$dw2 = as.character(format(0, width = 5))
 df2$Depth = as.character(format(0, width = 7))
 df2$Wtop = as.character(format(0, width = 7))
-df2$Wbottom = as.character(format(0, width = 9))
+df2$Wbottom = as.character(format(0, width = 9)
+)
 
 test_that("to_rline works", {
   expect_equal(to_rline(X_b = emisco$xmin,
@@ -27,11 +29,33 @@ test_that("to_rline works", {
                         Z_b =0,
                         X_e = emisco$xmin,
                         Y_e = emisco$ymin,
-                        Z_e =0,
+                        Z_e = 0,
                         dCL = 0,
                         Emis = emisco$V8,
                         sigmaz0 = 2,
                         lanes = emisco$lanes),
                df2
                )
+})
+test_that("to_rline works", {
+  expect_equal(to_rline(X_b = emisco$xmin,
+                        Y_b = emisco$ymin,
+                        Z_b = 0,
+                        X_e = emisco$xmin,
+                        Y_e = emisco$ymin,
+                        Z_e = 0,
+                        dCL = 0,
+                        sigmaz0 = 2,
+                        lanes = emisco$lanes,
+                        Emis = emisco$V8,
+                        Hw1 = 0,
+                        dw1 = 0,
+                        Hw2 = 0,
+                        dw2 = 0,
+                        Depth = 0,
+                        Wtop = 0,
+                        Wbottom = 0,
+                        experimental = TRUE),
+               df2
+  )
 })

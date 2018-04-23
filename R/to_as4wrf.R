@@ -41,14 +41,16 @@
 #' @examples {
 #' data(gCO)
 #' df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
-#'                tz = "America/Sao_Paulo", islist = FALSE)
+#'                tz = "America/Sao_Paulo")
 #' head(df)
-#'
+#' df2 <- to_as4wrf(sdf = list(co = gCO, pm = gCO), dmyhm = "29-04-2018 00:00",
+#'                tz = "America/Sao_Paulo")
+#' head(df2)
 #' }
-to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
+to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){
   if(nr <= 0){
     stop("The argument 'nr' must be positive")
-  } else if (islist == FALSE) {
+  } else if (class(sdf)[1] != "list") {
     sdf <- sf::st_as_sf(sdf)
     # if(class(sdf)[1] == "sf"){
     #   sdf <- as(sdf, "Spatial")
@@ -84,9 +86,7 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
         strftime(dft$time_utc, timezone = tz, format = "%d"),
         strftime(dft$time_utc, timezone = tz, format = "%H")
       ))
-  } else if (class(sdf)!="list" & islist==TRUE) {
-    stop("The argument 'sdf' must be a list")
-  } else if (class(sdf) == "list" & islist == TRUE) {
+  } else if (class(sdf) == "list") {
     # if(class(sdf)[1] == "sf"){
     #   sdf <- lapply(sdf, methods::as, "Spatial")
     # }
@@ -99,16 +99,18 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
 
     dft <- as.data.frame(cbind(dftid, dft))
 
+    # sdf <- lapply(sdf, methods::as, "Spatial")
     sdf <- lapply(sdf, sf::st_set_geometry, NULL)
 
-    dft <- do.call("rbind", replicate(ncol(sdf)[[1]],
+    dft <- do.call("rbind", replicate(ncol(sdf[[1]]),
                                       dft, simplify = FALSE))
     dft <- cbind(dft,
                  as.data.frame(
                    do.call("cbind",
                            lapply(1:length(sdf),
                                   function(j) {
-                                    unlist(lapply(1:ncol(sdf[[1]]),
+                                    unlist(
+                                      lapply(1:ncol(sdf[[1]]),
                                                   function(i) {
                                                     as.numeric( sdf[[j]][, i])
                                                   }
@@ -121,7 +123,7 @@ to_as4wrf <- function(sdf,nr = 1, dmyhm, tz, crs = 4326, islist){
     time_lt <- as.POSIXct(x = dmyhm, format="%d-%m-%Y %H:%M", tz=tz)
     dft$time_lt <- rep(seq.POSIXt(from = time_lt,
                                   by = "1 hour",
-                                  length.out = ncol(sdf)*nr),
+                                  length.out = ncol(sdf[[1]])*nr),
                        each=nrow(sdf[[1]]))
     dft$time_utc <- dft$time_lt
     attr(dft$time_utc, "tzone") <- "Etc/UTC"

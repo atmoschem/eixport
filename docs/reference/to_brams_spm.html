@@ -149,6 +149,8 @@ Coupling and validation. Atmospheric Environment, Elsevier, n. 39, p.
 <span class='fu'>data</span>(<span class='no'>gCO</span>)
 <span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'>to_brams_spm</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>epsg</span> <span class='kw'>=</span> <span class='fl'>4326</span>)
 <span class='fu'>head</span>(<span class='no'>df1</span>)
+<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'>to_brams_spm</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>co</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>pm</span> <span class='kw'>=</span> <span class='no'>gCO</span>), <span class='kw'>epsg</span> <span class='kw'>=</span> <span class='fl'>4326</span>)
+<span class='fu'>lapply</span>(<span class='no'>df2</span>, <span class='no'>head</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

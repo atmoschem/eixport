@@ -57,9 +57,11 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc
 {
 data(gCO)
 df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
-               tz = "America/Sao_Paulo", islist = FALSE)
+               tz = "America/Sao_Paulo")
 head(df)
-
+df2 <- to_as4wrf(sdf = list(co = gCO, pm = gCO), dmyhm = "29-04-2018 00:00",
+               tz = "America/Sao_Paulo")
+head(df2)
 }
 }
 \seealso{

@@ -38,17 +38,16 @@
 #' COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
 #'
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
+wrf_get <- function(file = file.choose(), name = "E_CO", as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
   wrfchem <- ncdf4::nc_open(file)
-    if(is.na(name)){
-      name  <- menu(names(wrfchem$var), title = "Chose the variable:")
-      name  <- names(wrfchem$var)[name]
+    # if(is.na(name)){
+    #   name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+    #   name  <- names(wrfchem$var)[name]
+    #   POL   <- ncdf4::ncvar_get(wrfchem, name)
+    # }else{
       POL   <- ncdf4::ncvar_get(wrfchem, name)
-    }else{
-      POL   <- ncdf4::ncvar_get(wrfchem, name)
-    }
-
+    # }
   if(as_raster){
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrfchem, varid = "XLONG")

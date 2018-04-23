@@ -176,16 +176,18 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
     <pre class="examples"><div class='input'>{
 <span class='fu'>data</span>(<span class='no'>gCO</span>)
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>to_as4wrf</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>dmyhm</span> <span class='kw'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
-               <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>, <span class='kw'>islist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+               <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>)
 <span class='fu'>head</span>(<span class='no'>df</span>)
-
-}</div><div class='output co'>#&gt;    id      long    lat pollutant    time_lt            time_utc dutch
-#&gt; 1   1 -46.80660 -23.62  8391.282 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 6   2 -46.80172 -23.62  8340.653 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 11  3 -46.79684 -23.62  8549.459 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 16  4 -46.79196 -23.62  9055.417 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 21  5 -46.78708 -23.62  8378.953 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 26  6 -46.78220 -23.62     0.000 2018-04-29 2018-04-29 03:00:00  2900</div></pre>
+<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'>to_as4wrf</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>co</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>pm</span> <span class='kw'>=</span> <span class='no'>gCO</span>), <span class='kw'>dmyhm</span> <span class='kw'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
+               <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>)
+<span class='fu'>head</span>(<span class='no'>df2</span>)
+}</div><div class='output co'>#&gt;    id      long    lat       co       pm    time_lt            time_utc dutch
+#&gt; 1   1 -46.80660 -23.62 8391.282 8391.282 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 6   2 -46.80172 -23.62 8340.653 8340.653 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 11  3 -46.79684 -23.62 8549.459 8549.459 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 16  4 -46.79196 -23.62 9055.417 9055.417 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 21  5 -46.78708 -23.62 8378.953 8378.953 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 26  6 -46.78220 -23.62    0.000    0.000 2018-04-29 2018-04-29 03:00:00  2900</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

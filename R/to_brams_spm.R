@@ -29,13 +29,15 @@
 #' data(gCO)
 #' df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
 #' head(df1)
+#' df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO), epsg = 4326)
+#' lapply(df2, head)
 #'}
 to_brams_spm <- function(sdf, epsg = 4326){
   if(inherits(x = sdf, what = "list")){
-    if(class(sdf[[1]]) == "SpatialPolygonsDataFrame"){
+    if(class(sdf[[1]])[1] == "SpatialPolygonsDataFrame"){
       # message("SpatialPolygonsDataFrame")
       sdf <- lapply(sdf, sf::st_as_sf)
-    } else if(class(sdf[[1]][1]) == "sf"){
+    } else if(class(sdf[[1]])[1] == "sf"){
 
     }
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], epsg)))
@@ -48,6 +50,10 @@ to_brams_spm <- function(sdf, epsg = 4326){
                     cbind(rowSums(sf::st_set_geometry(sdf[[i]], NULL)),
                           dft)
                   })
+    nombres <- names(sdf)
+    for(i in 1:length(sdf)){
+      names(ldf[[i]]) <- c(nombres[i], "long", "lat")
+    }
     return(ldf)
     # Initially, this function return rowsums and polygon separatly
     sumdf <- sapply(sdf, rowSums, na.rm = TRUE)

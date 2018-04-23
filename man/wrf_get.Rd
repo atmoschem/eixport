@@ -5,7 +5,7 @@
 \title{Function to read variables of emission files}
 \format{array or raster object}
 \usage{
-wrf_get(file = file.choose(), name = NA, as_raster = FALSE,
+wrf_get(file = file.choose(), name = "E_CO", as_raster = FALSE,
   raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 }
 \arguments{

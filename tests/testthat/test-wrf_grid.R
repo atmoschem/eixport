@@ -8,3 +8,12 @@ gwrf2 <- readRDS(paste0(system.file("extdata", package = "eixport"),
 test_that("wrf_grid works", {
   expect_equal(gwrf1[1], gwrf2[1])
 })
+
+
+test_that("wrf_grid works", {
+  expect_equal( wrf_grid(wrf1, matrix = TRUE)[1], 0)
+})
+
+test_that("wrf_grid works", {
+  expect_equal( sf::st_set_geometry(wrf_grid(wrf1, epsg = 31983), NULL)[1, 1], 1)
+})

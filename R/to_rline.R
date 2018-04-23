@@ -67,24 +67,24 @@ to_rline <- function (X_b,
     stop (print("No 'Emissions'"))
   } else if (experimental){
     df <- data.frame(
-    Group = as.character(format(1:length(X_b), width = 5)))
+      Group = as.character(format(1:length(X_b), width = 5)))
     df$X_b  <- as.character(format(X_b, width = 10))
     df$Y_b  <- as.character(format(Y_b, width = 10))
     df$Z_b <- as.character(format(ifelse(length(Z_b) == 1,
-                            rep(Z_b, length(X_b)),
-                            Z_b),
-                     width = 5))
+                                         rep(Z_b, length(X_b)),
+                                         Z_b),
+                                  width = 5))
     df$X_e  <- as.character(format(X_e, width = 10))
     df$Y_e  <- as.character(format(Y_e, width = 10))
     df$Z_e <- as.character(format(ifelse(length(Z_e) == 1,
-                            rep(Z_e, length(X_e)),
-                            Z_e),
-                     width = 5))
+                                         rep(Z_e, length(X_e)),
+                                         Z_e),
+                                  width = 5))
     df$dCL <- as.character(format(dCL, width = 5))
     df$sigma0 <- as.character(format(ifelse(length(sigmaz0) == 1,
-                               rep(sigmaz0, length(X_e)),
-                               sigmaz0),
-                        width = 9))
+                                            rep(sigmaz0, length(X_e)),
+                                            sigmaz0),
+                                     width = 9))
     df$lanes <- as.character(format(lanes, width = 7))
     df$Emis <- as.character(format(Emis, width = 6))
     df$Hw1 <- as.character(format(Hw1, width = 5))
@@ -101,20 +101,20 @@ to_rline <- function (X_b,
     df$X_b  <- as.character(format(X_b, width = 10))
     df$Y_b  <- as.character(format(Y_b, width = 10))
     df$Z_b <- as.character(format(ifelse(length(Z_b) == 1,
-                            rep(Z_b, length(X_b)),
-                            Z_b),
-                     width = 5))
+                                         rep(Z_b, length(X_b)),
+                                         Z_b),
+                                  width = 5))
     df$X_e  <- as.character(format(X_e, width = 10))
     df$Y_e  <- as.character(format(Y_e, width = 10))
     df$Z_e <- as.character(format(ifelse(length(Z_e) == 1,
-                            rep(Z_e, length(X_e)),
-                            Z_e),
-                     width = 5))
+                                         rep(Z_e, length(X_e)),
+                                         Z_e),
+                                  width = 5))
     df$dCL <- as.character(format(dCL, width = 5))
     df$sigma0 <- as.character(format(ifelse(length(sigmaz0) == 1,
-                               rep(sigmaz0, length(X_e)),
-                               sigmaz0),
-                        width = 9))
+                                            rep(sigmaz0, length(X_e)),
+                                            sigmaz0),
+                                     width = 9))
     df$lanes <- as.character(format(lanes, width = 7))
     df$Emis <- as.character(format(Emis, width = 6))
     df$Hw1 <- as.character(format(0, width = 5))

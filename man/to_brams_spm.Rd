@@ -34,6 +34,8 @@ the output is a list.
 data(gCO)
 df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
 head(df1)
+df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO), epsg = 4326)
+lapply(df2, head)
 }
 }
 \references{
