@@ -58,7 +58,7 @@ by Vera-Vala et al (2016)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.4</span>
       </span>
     </div>
 
@@ -107,17 +107,17 @@ assimilation system: "Another Asimilation System 4 WRF (AAS4WRF)" as published
 by Vera-Vala et al (2016)</p>
     
 
-    <pre class="usage"><span class='fu'>to_as4wrf</span>(<span class='no'>sdf</span>, <span class='kw'>nr</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>dmyhm</span>, <span class='no'>tz</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='st'>"+init=epsg:4326"</span>, <span class='no'>islist</span>)</pre>
+    <pre class="usage"><span class='fu'>to_as4wrf</span>(<span class='no'>sdf</span>, <span class='kw'>nr</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>dmyhm</span>, <span class='no'>tz</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4326</span>, <span class='no'>islist</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>sdf</th>
-      <td><p>Grid emissions, which can be a SpatialPolygonsDataFrame, or a list
-of SpatialPolygonsDataFrame. The user must enter a list with 36
-SpatialPolygonsDataFrame with emissions for the mechanism CBMZ. When there
-are no emissions available, the SpatialPolygonsDataFrame must contain
+      <td><p>Gridded emissions, which can be a SpatialPolygonsDataFrame, or a list
+of SpatialPolygonsDataFrame, or a sf object of "POLYGON". The user must enter
+a list with 36 SpatialPolygonsDataFrame with emissions for the mechanism CBMZ.
+When there  are no emissions available, the SpatialPolygonsDataFrame must contain
 0.</p></td>
     </tr>
     <tr>
@@ -136,7 +136,7 @@ hour of emissions in Local Time</p></td>
     </tr>
     <tr>
       <th>crs</th>
-      <td><p>Coordinate reference system, e.g: "+init=epsg:4326". Used to
+      <td><p>Coordinate reference system, e.g: "+init=crs:4326". Used to
 transform the coordinates of the output</p></td>
     </tr>
     <tr>
@@ -151,7 +151,9 @@ transform the coordinates of the output</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The reference of the emissions assimilation system is Vara-Vela, A.,
+    <p>The user must produce a text file with the data-frame resulting of this
+function. Then, use this file with the NCL script AAS4WRF.ncl</p>
+<p>The reference of the emissions assimilation system is Vara-Vela, A.,
 Andrade, M. F., Kumar, P., Ynoue, R. Y., and Munoz, A. G.: Impact of
 vehicular emissions on the formation of fine particles in the Sao Paulo
 Metropolitan Area: a numerical study with the WRF-Chem model, Atmos. Chem.
@@ -176,13 +178,14 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>to_as4wrf</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>dmyhm</span> <span class='kw'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
                <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>, <span class='kw'>islist</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'>head</span>(<span class='no'>df</span>)
-}</div><div class='output co'>#&gt;   id      long       lat pollutant    time_lt            time_utc dutch
-#&gt; 1  1 -46.80416 -23.61756  8391.282 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 2  2 -46.79928 -23.61756  8340.653 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 3  3 -46.79440 -23.61756  8549.459 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 4  4 -46.78952 -23.61756  9055.417 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 5  5 -46.78464 -23.61756  8378.953 2018-04-29 2018-04-29 03:00:00  2900
-#&gt; 6  6 -46.77976 -23.61756     0.000 2018-04-29 2018-04-29 03:00:00  2900</div></pre>
+
+}</div><div class='output co'>#&gt;    id      long    lat pollutant    time_lt            time_utc dutch
+#&gt; 1   1 -46.80660 -23.62  8391.282 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 6   2 -46.80172 -23.62  8340.653 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 11  3 -46.79684 -23.62  8549.459 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 16  4 -46.79196 -23.62  9055.417 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 21  5 -46.78708 -23.62  8378.953 2018-04-29 2018-04-29 03:00:00  2900
+#&gt; 26  6 -46.78220 -23.62     0.000 2018-04-29 2018-04-29 03:00:00  2900</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

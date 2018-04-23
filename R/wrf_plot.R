@@ -23,6 +23,7 @@
 #' @importFrom grDevices cm.colors gray.colors
 #' @importFrom graphics .filled.contour Axis axis box layout mtext par plot.new plot.window rect title
 #' @importFrom utils menu
+#' @importFrom cptcity cpt
 #' @export
 #'
 #' @seealso \code{\link{Lights}}, \code{\link{to_wrf}} and \code{\link{wrf_create}}
@@ -43,8 +44,6 @@
 #'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
 #'
 #'wrf_plot(files[1], "E_CO")
-#'#library(cptcity) for nice colour scales
-#'#wrf_plot(files[1], "E_CO", col = cpt())
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
@@ -52,12 +51,12 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = gray.colors(13),
+                     col = cptcity::cpt(n = 13),
                      verbose = T,
                      ...){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
-    name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+    name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]
   }else{

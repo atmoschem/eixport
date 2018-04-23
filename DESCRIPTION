@@ -23,8 +23,8 @@ License: MIT + file LICENSE
 URL: https://github.com/atmoschem/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
 Depends: R (>= 3.3.0)
-Imports: sf, ncdf4, raster, sp, methods
+Imports: sf, ncdf4, raster, sp, methods, cptcity
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.0.1
-Suggests: testthat, covr, cptcity
+Suggests: testthat, covr
