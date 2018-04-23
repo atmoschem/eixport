@@ -16,8 +16,13 @@ f2 <- unzip(zipfile = paste0(system.file("extdata", package = "eixport"),
                              "/wrfchemi_d02_2011-08-02.zip"),
             exdir = file.path(tempdir()))
 
+co <- wrf_get(file = f1, name = "E_CO")
 
 test_that("wrf_get works", {
   expect_equal(wrf_get(file = f1, name = "E_CO"),
                wrf_get(file = f2, name = "E_CO"))
+})
+test_that("wrf_get works", {
+  expect_equal(wrf_get(file = f1, name = "E_CO",  as_raster = TRUE),
+               wrf_get(file = f2, name = "E_CO", as_raster = TRUE))
 })

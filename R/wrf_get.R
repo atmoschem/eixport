@@ -35,17 +35,20 @@
 #' CO <- wrf_get(file = files[1], name = "E_CO")
 #' CO[] = rnorm(length(CO))
 #' wrf_put(file = files[1], name = "E_CO", POL = CO)
+#' COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+#'
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
+wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
   wrfchem <- ncdf4::nc_open(file)
-  if(is.na(name)){
-   name  <- menu(names(wrfchem$var), title = "Chose the variable:")
-    name  <- names(wrfchem$var)[name]
-    POL   <- ncdf4::ncvar_get(wrfchem, name)
-  }else{
-    POL   <- ncdf4::ncvar_get(wrfchem, name)
-  }
+    if(is.na(name)){
+      name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+      name  <- names(wrfchem$var)[name]
+      POL   <- ncdf4::ncvar_get(wrfchem, name)
+    }else{
+      POL   <- ncdf4::ncvar_get(wrfchem, name)
+    }
+
   if(as_raster){
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrfchem, varid = "XLONG")
@@ -66,7 +69,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
                           ymx=r.lat[2])
       r <- raster::flip(r,2)
     }
-    if(n >= 1){
+    if(n > 1){
       r <- raster::brick(x = aperm(POL, c(2, 1, 3)),
                          xmn = r.lon[1],
                          xmx = r.lon[2],
@@ -78,7 +81,8 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
     names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
     return(r)
+  } else {
+    return(POL)
   }
   ncdf4::nc_close(wrfchem)
-  return(POL)
 }

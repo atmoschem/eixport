@@ -5,7 +5,7 @@
 \title{Function to read variables of emission files}
 \format{array or raster object}
 \usage{
-wrf_get(file = file.choose(), name = NA, as_raster = F,
+wrf_get(file = file.choose(), name = NA, as_raster = FALSE,
   raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
 }
 \arguments{
@@ -37,6 +37,8 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
 CO <- wrf_get(file = files[1], name = "E_CO")
 CO[] = rnorm(length(CO))
 wrf_put(file = files[1], name = "E_CO", POL = CO)
+COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+
 }
 }
 \seealso{
