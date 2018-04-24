@@ -58,7 +58,8 @@ eixport count with the following functions:
 ## Examples
 
 The following example creates a directory **EMISS**  and then
-create a wrfchem input in that file. The package already counts with wrfinput files required to run eixport and create inputs for WRF-Chem. The line `data(Lights)` load a matrix of night light to spatially distribute the emissions. The perfil argument is used to temporally distribute the emissions. Lastly, the function `to_wrf` in one line reads the 1521983 $t \cdot y^{-1}$ of  CO, spatially distribute it using nighttime traffic matrix Lights, temporally distribute it with the perfil, injecting the array of emissions directly into the wrfchemi file.
+create a wrfchem input in that file. The package already counts with wrfinput files required to run eixport and create inputs for WRF-Chem. The line `data(Lights)` load a matrix of night light to spatially distribute the emissions. The perfil argument is used to temporally distribute the emissions. Lastly, the function `to_wrf` in one line reads the 1521983 $t \cdot y^{-1}$ of  CO, spatially distribute it using nighttime traffic matrix Lights, temporally distribute it with the perfil, injecting the array of emissions directly into the wrfchemi file. The colour palette is 
+"mpl_inferno" from the R package cptcity [@cpt].
 
 ```
 library(eixport)
@@ -83,7 +84,7 @@ wrf_plot(files[1], "E_CO")
 
 The resulting plot can be seen in the Fig. 1.
 
-![WRF-Chem emisisons of CO (g/h)](https://i.imgur.com/BcZ2tfW.png)
+![WRF-Chem emisisons of CO (t/y)](https://i.imgur.com/BcZ2tfW.png)
 
 The R package eixport is available at the repository  https://github.com/atmoschem/eixport. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (https://travis-ci.org/atmoschem/eixport) and Windows via Appveyor (https://ci.appveyor.com/project/Schuch666/eixport). Also, eixport is already on CRAN https://CRAN.R-project.org/package=eixport. Moreover, this packages tests functions
 with the suite CodeCov (https://codecov.io/) and the r package covr [@covr], achieving
