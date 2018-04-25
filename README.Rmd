@@ -4,11 +4,17 @@
 [![DOI](https://zenodo.org/badge/106145968.svg)](https://zenodo.org/badge/latestdoi/106145968)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eixport)](http://cran.r-project.org/web/packages/eixport) 
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](http://cran.r-project.org/package=eixport)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00607/status.svg)](https://doi.org/10.21105/joss.00607)
 
 
 ```{r echo = FALSE}
 knitr::include_graphics("https://i.imgur.com/BcZ2tfW.png")
 ```
+
+## Paper accepted on JOSS
+
+The Journal of Open Source Software: https://doi.org/10.21105/joss.00607
+
 
 ## Exporting emissions to other models
 

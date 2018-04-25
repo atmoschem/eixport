@@ -114,7 +114,7 @@
 <div id="functions-and-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#functions-and-data" class="anchor"></a>Functions and data</h2>
-<p>eixport count with the folllwing functions:</p>
+<p>eixport count with the following functions:</p>
 <table>
 <thead><tr class="header">
 <th>Function</th>
@@ -134,6 +134,30 @@
 <td>A matrix to temporally distribute emissions</td>
 </tr>
 <tr class="even">
+<td>wrf_create</td>
+<td>Create WRF-Chem inputs based on a WRFinput file</td>
+</tr>
+<tr class="odd">
+<td>wrf_get</td>
+<td>Reads variables from WRF-Chem inputs</td>
+</tr>
+<tr class="even">
+<td>wrf_grid</td>
+<td>Creates spatial feature (sf) polygon grid from WRFinput file</td>
+</tr>
+<tr class="odd">
+<td>wrf_plot</td>
+<td>Simple plot from wrf emission file</td>
+</tr>
+<tr class="even">
+<td>wrf_profile</td>
+<td>returns a traffic intensity profile (based on wrf file Times)</td>
+</tr>
+<tr class="odd">
+<td>wrf_put</td>
+<td>Function to write variables in WRF-Chem inputs</td>
+</tr>
+<tr class="even">
 <td>to_brams_spm</td>
 <td>Produce inputs for BRAMS SPM [@freitas2005simple]</td>
 </tr>
@@ -146,28 +170,8 @@
 <td>Distribution of emissions for WRF-Chem [@Grelletal2005]</td>
 </tr>
 <tr class="odd">
-<td>wrf_create</td>
-<td>Create WRF-Chem inputs based on a WRFinput file</td>
-</tr>
-<tr class="even">
-<td>wrf_get</td>
-<td>Reads variables from WRF-Chem inputs</td>
-</tr>
-<tr class="odd">
-<td>wrf_grid</td>
-<td>Creates spatial feature (sf) polygon grid from WRFinput file</td>
-</tr>
-<tr class="even">
-<td>wrf_plot</td>
-<td>Simple plot from wrf emission file</td>
-</tr>
-<tr class="odd">
-<td>wrf_profile</td>
-<td>returns a traffic intensity profile (based on wrf file Times)</td>
-</tr>
-<tr class="even">
-<td>wrf_put</td>
-<td>Function to write variables in WRF-Chem inputs</td>
+<td>to_as4wrf</td>
+<td>Produce data-frame to be used with NCL AS4WRF [@vara2016]</td>
 </tr>
 </tbody>
 </table>
@@ -175,38 +179,28 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>The following example creates a directory <strong>EMISS</strong> and then create a wrfchem input in that file. The package already counts with wrfinput files required to run eixport and create inputs for WRF-Chem. The line <code>data(Lights)</code> load a matrix of night light to spatially distribute the emissions. The perfil argument is used to temporally distribute the emissions. Lastly, the function <code>to_wrf</code> in one line reads the 1521983 $t \cdot y^{-1}$ of CO, spatially distribute it using nighttime traffic matrix Lights, temporally distribute it with the perfil, injecting the array of emissions directly into the wrfchemi file.</p>
+<p>The following example creates a directory <strong>EMISS</strong> and then create a wrfchem input in that file. The package already counts with wrfinput files required to run eixport and create inputs for WRF-Chem. The line <code>data(Lights)</code> load a matrix of night light to spatially distribute the emissions. The perfil argument is used to temporally distribute the emissions. Lastly, the function <code>to_wrf</code> in one line reads the 1521983 $t \cdot y^{-1}$ of CO, spatially distribute it using nighttime traffic matrix Lights, temporally distribute it with the perfil, injecting the array of emissions directly into the wrfchemi file. The colour palette is “mpl_inferno” from the R package cptcity [@cpt].</p>
 <pre><code>library(eixport)
-dir.create("EMISS")
+dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = "EMISS",
-          frames_per_auxinput5 = 24)
+          wrfchemi_dir = file.path(tempdir(), "EMISS"))
 
 # get the name of created file
-files &lt;- list.files(path = "EMISS",pattern = "wrfchemi",full.names = T)
+files &lt;- list.files(path = file.path(tempdir(), "EMISS"),
+                   pattern = "wrfchemi",
+                   full.names = TRUE)
 
+# load end write some data in this emission file
 data(Lights)
+to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
 
-perfil &lt;- c(0.010760058, 0.005280596, 0.002883553, 0.002666932,
-           0.005781312, 0.018412838, 0.051900411, 0.077834636,
-           0.067919758, 0.060831614, 0.055852868, 0.052468599,
-           0.050938043, 0.051921718, 0.052756244, 0.052820165,
-           0.058388406, 0.072855890, 0.075267137, 0.063246412,
-           0.042713523, 0.029108975, 0.022091855, 0.015298458)
-
-plot(perfil,ty = "l",col= "purple",xlab = "Hour",main = "Time profile",
-    ylab = "Weight",axes = F,xlim = c(0,24))
-axis(2)
-axis(1,at = c(0,6,12,18,24),labels = c("00:00","06:00","12:00","18:00","00:00"))
-
-to_wrf(Lights,files[1],total = 1521983,profile = perfil,names = "E_CO")
-wrf_plot(files[1])
+wrf_plot(files[1], "E_CO")
 # [1] "EMISS/wrfchemi_d01_2011-08-01_00:00:00"
 # [1] "E_CO"
 # [1] "Max value: 26.6966304779053, Min value: 0"</code></pre>
 <p>The resulting plot can be seen in the Fig. 1.</p>
-<p><img src="https://raw.githubusercontent.com/atmoschem/EmissV/master/example.jpg" alt="WRF-Chem emisisons of CO"></p>
-<p>The R package eixport is available at the repository <a href="https://github.com/atmoschem/eixport" class="uri">https://github.com/atmoschem/eixport</a>. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (<a href="https://travis-ci.org/atmoschem/eixport" class="uri">https://travis-ci.org/atmoschem/eixport</a>) and Windows via Appveyor (<a href="https://ci.appveyor.com/project/Schuch666/eixport" class="uri">https://ci.appveyor.com/project/Schuch666/eixport</a>). Also, eixport is already on CRAN <a href="https://CRAN.R-project.org/package=eixport" class="uri">https://CRAN.R-project.org/package=eixport</a>.</p>
+<p><img src="https://i.imgur.com/BcZ2tfW.png" alt="WRF-Chem emisisons of CO (t/y)"></p>
+<p>The R package eixport is available at the repository <a href="https://github.com/atmoschem/eixport" class="uri">https://github.com/atmoschem/eixport</a>. To ensure the usability of the package, in any commit to GitHub, eixport is installed in Ubuntu via Travis-CI (<a href="https://travis-ci.org/atmoschem/eixport" class="uri">https://travis-ci.org/atmoschem/eixport</a>) and Windows via Appveyor (<a href="https://ci.appveyor.com/project/Schuch666/eixport" class="uri">https://ci.appveyor.com/project/Schuch666/eixport</a>). Also, eixport is already on CRAN <a href="https://CRAN.R-project.org/package=eixport" class="uri">https://CRAN.R-project.org/package=eixport</a>. Moreover, this packages tests functions with the suite CodeCov (<a href="https://codecov.io/" class="uri">https://codecov.io/</a>) and the r package covr [@covr], achieving 89% of coverage (<a href="https://codecov.io/github/atmoschem/eixport" class="uri">https://codecov.io/github/atmoschem/eixport</a>).</p>
 <p>\pagebreak</p>
 </div>
 </div>
