@@ -1,6 +1,13 @@
 NEWS
 ===========
 
+# eixport 0.3.4 (Release date: 26 May 2018)
+
+### eixport 0.3.4 (Release date: 26 May 2018)
+
+- Fix to_as4wrf when sdf is list..
+
+
 # eixport 0.3.3 (Release date: 23 April 2018)
 
 ### eixport 0.3.3 (Release date: 23 April 2018)

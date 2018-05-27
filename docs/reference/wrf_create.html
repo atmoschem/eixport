@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Create emission files to the WRF-Chem — wrf_create" />
 
 <meta property="og:description" content="Create an emission file from wrfinput file(s)" />
@@ -55,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.4</span>
       </span>
     </div>
 
@@ -83,6 +86,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -90,16 +94,19 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create emission files to the WRF-Chem</h1>
-    <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_create.R'><code>R/wrf_create.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_create.R'><code>R/wrf_create.R</code></a></small>
+    <div class="hidden name"><code>wrf_create.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Create an emission file from wrfinput file(s)</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>domains</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>auxinput5_interval_m</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>day_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -181,7 +188,7 @@ before run wrf.exe with these files</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='to_wrf.html'>to_wrf</a></code> and <code><a href='emis_opt.html'>emis_opt</a></code></p>
+    <div class='dont-index'><p><code><a href='to_wrf.html'>to_wrf</a></code> and <code><a href='emis_opt.html'>emis_opt</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -241,6 +248,8 @@ Daniel Schuch
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

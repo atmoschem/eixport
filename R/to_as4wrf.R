@@ -99,31 +99,31 @@ to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){
 
     dft <- as.data.frame(cbind(dftid, dft))
 
-    # sdf <- lapply(sdf, methods::as, "Spatial")
     sdf <- lapply(sdf, sf::st_set_geometry, NULL)
 
-    dft <- do.call("rbind", replicate(ncol(sdf[[1]]),
-                                      dft, simplify = FALSE))
-    dft <- cbind(dft,
-                 as.data.frame(
-                   do.call("cbind",
-                           lapply(1:length(sdf),
-                                  function(j) {
-                                    unlist(
-                                      lapply(1:ncol(sdf[[1]]),
-                                                  function(i) {
-                                                    as.numeric( sdf[[j]][, i])
-                                                  }
-                                    ))
-                                  }
-                           ))))
-
-    names(dft) <- c("id", "long", "lat",  names(sdf))
+    # remove id and convert to matrix
+    dft2 <- sapply(1:length(sdf), function(i){
+      sdf[[i]]$id <- NULL
+      unlist(sdf[[i]])
+    })
+    # convert to data.frame
+    dft2 <- data.frame(dft2, row.names = NULL)
+    names(dft2) <- names(sdf)
+    # Create data.frame with id = 0
+    dft1 <- data.frame(id = rep(0, nrow(dft2)), row.names = NULL)
+    dft1$id <- dft$id
+    dft1$long <- dft$X
+    dft1$lat <- dft$Y
+    # cbind both data.frames
+    dft <- cbind(dft1, dft2)
+    # replicate data.frames
     dft <- do.call("rbind", replicate(nr, dft, simplify = FALSE))
     time_lt <- as.POSIXct(x = dmyhm, format="%d-%m-%Y %H:%M", tz=tz)
+    sdf1 <- sdf[[1]]
+    sdf1$id <- NULL
     dft$time_lt <- rep(seq.POSIXt(from = time_lt,
                                   by = "1 hour",
-                                  length.out = ncol(sdf[[1]])*nr),
+                                  length.out = ncol(sdf1)*nr),
                        each=nrow(sdf[[1]]))
     dft$time_utc <- dft$time_lt
     attr(dft$time_utc, "tzone") <- "Etc/UTC"

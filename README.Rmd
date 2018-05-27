@@ -53,6 +53,7 @@ library(eixport)
 - [wrf_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html): simple plot for emissions
 - [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
 - [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
+- [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html): Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
 
 
 ## Contributing
