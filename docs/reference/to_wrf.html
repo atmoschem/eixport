@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combine total/spasial/temporal/split and write emission to file — to_wrf • eixport</title>
+<title>Combine total/spatial/temporal/split and write emission to file — to_wrf • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,23 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Combine total/spatial/temporal/split and write emission to file — to_wrf" />
+
+<meta property="og:description" content="Function to expand, split and write emissions. The input is expanded into
+time by profile and split between variables with diferent weights." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +57,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +75,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +87,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,26 +95,30 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combine total/spasial/temporal/split and write emission to file</h1>
+    <h1>Combine total/spatial/temporal/split and write emission to file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/to_wrf.R'><code>R/to_wrf.R</code></a></small>
+    <div class="hidden name"><code>to_wrf.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>Function to expand, split and write emissions. The input is expand into
+    <p>Function to expand, split and write emissions. The input is expanded into
 time by profile and split between variables with diferent weights.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>to_wrf</span>(<span class='no'>x</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>profile</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>matrix or array of emissions of spacial weights</p></td>
+      <td><p>matrix or array of emissions of spatial weights</p></td>
     </tr>
     <tr>
       <th>file</th>
@@ -107,11 +126,11 @@ time by profile and split between variables with diferent weights.</p>
     </tr>
     <tr>
       <th>total</th>
-      <td><p>total of emited specie</p></td>
+      <td><p>total of emited species</p></td>
     </tr>
     <tr>
       <th>norm</th>
-      <td><p>if the spacial weights need to be normalized</p></td>
+      <td><p>if the spatial weights need to be normalized</p></td>
     </tr>
     <tr>
       <th>profile</th>
@@ -123,11 +142,11 @@ time by profile and split between variables with diferent weights.</p>
     </tr>
     <tr>
       <th>weights</th>
-      <td><p>weight of eath specie</p></td>
+      <td><p>weight of each species</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>display adicional information</p></td>
+      <td><p>display additional information</p></td>
     </tr>
     </table>
     
@@ -136,13 +155,13 @@ time by profile and split between variables with diferent weights.</p>
     <p>length(profile) must be the number of times in the emission
 file (value of frames_per_auxinput5 if wrf_create() was used to
 create this file).</p>
-<p>total is a additional way to calculate or correct the total emissions</p>
+<p>total is an additional way to calculate or correct the total emissions</p>
 <p>sum(profile) = 1 and sum(weights) = 1 to conserve mass</p>
 <p>names and weights must have the same length</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href='wrf_create.html'>wrf_create</a>, <code><a href='wrf_get.html'>wrf_get</a></code>,<code><a href='wrf_profile.html'>wrf_profile</a></code>  and <code><a href='wrf_plot.html'>wrf_plot</a></code></p>
+    <div class='dont-index'><p><a href='wrf_create.html'>wrf_create</a>, <code><a href='wrf_get.html'>wrf_get</a></code>,<code><a href='wrf_profile.html'>wrf_profile</a></code>  and <code><a href='wrf_plot.html'>wrf_plot</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -206,5 +225,8 @@ Daniel Schuch
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

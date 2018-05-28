@@ -42,14 +42,14 @@ to_rline(X_b, Y_b, Z_b, X_e, Y_e, Z_e, dCL, sigmaz0, lanes, Emis, Hw1, dw1, Hw2,
 
 \item{Wbottom}{width of the roadway at the bottom of the depression (m).}
 
-\item{experimental}{Boolean argument to denotes the use of the experimental
+\item{experimental}{Boolean argument to denote the use of the experimental
 features (TRUE) or not (FALSE).}
 }
 \value{
-Data-frame file with format for R-LINE model.
+Data frame with format for R-LINE model.
 }
 \description{
-Export Emissions object according format of file 'Sources.txt'
+Export emissions object according to format of file 'Sources.txt'
 of the model R-LINE
 }
 \note{

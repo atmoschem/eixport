@@ -15,7 +15,7 @@
 #' @note If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 #' time with control the level which will be ploted
 #'
-#' @note In case of a error related to plot.new() margins lbarra must be adjusted
+#' @note In case of an error related to plot.new() margins lbarra must be adjusted
 #'
 #' @author Daniel Schuch
 #'
@@ -23,6 +23,7 @@
 #' @importFrom grDevices cm.colors gray.colors
 #' @importFrom graphics .filled.contour Axis axis box layout mtext par plot.new plot.window rect title
 #' @importFrom utils menu
+#' @importFrom cptcity cpt
 #' @export
 #'
 #' @seealso \code{\link{Lights}}, \code{\link{to_wrf}} and \code{\link{wrf_create}}
@@ -50,7 +51,7 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = gray.colors(13),
+                     col = cptcity::cpt(n = 13),
                      verbose = T,
                      ...){
   wrfchem <- ncdf4::nc_open(file)

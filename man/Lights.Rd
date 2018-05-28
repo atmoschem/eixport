@@ -3,7 +3,7 @@
 \docType{data}
 \name{Lights}
 \alias{Lights}
-\title{Spatial distribution exemple}
+\title{Spatial distribution example}
 \format{A matrix of spatial distribution}
 \source{
 \url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
@@ -12,8 +12,8 @@
 data(Lights)
 }
 \description{
-Spatial distribution for veicular emissions based on an image of persistent lights of the
-Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paulo, Rio de Janeiro, Mato Grosso, Santa Catarina e Parana).
+Spatial distribution for vehicular emissions based on an image of persistent lights of the
+Defense Meteorological Satellite Program (DMSP) for 5 Brazilian states (Sao Paulo, Rio de Janeiro, Mato Grosso, and Santa Catarina e Parana).
 }
 \details{
 \url{https://en.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}

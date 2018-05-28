@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a spatial profile from a wrf emission file and a dataframe with — wrf_profile • eixport</title>
+<title>Create a spatial profile from a wrf emission file and a data frame with — wrf_profile • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,23 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Create a spatial profile from a wrf emission file and a data frame with — wrf_profile" />
+
+<meta property="og:description" content="returns a traffic intensity profile (based on wrf file Times)
+and a traffic intensity data frame" />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +57,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eixport</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eixport</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,7 +75,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +87,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,20 +95,24 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a spatial profile from a wrf emission file and a dataframe with</h1>
+    <h1>Create a spatial profile from a wrf emission file and a data frame with</h1>
+    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_profile.R'><code>R/wrf_profile.R</code></a></small>
+    <div class="hidden name"><code>wrf_profile.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>returns a traffic intensity profile (based on wrf file Times)
-and a traffic intensity data.frame</p>
+and a traffic intensity data frame</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>wrf_profile</span>(<span class='no'>x</span>, <span class='no'>file</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -107,7 +126,7 @@ and a traffic intensity data.frame</p>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>display adicional information</p></td>
+      <td><p>display additional information</p></td>
     </tr>
     </table>
     
@@ -117,7 +136,7 @@ and a traffic intensity data.frame</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='wrf_create.html'>wrf_create</a></code> and <code><a href='to_wrf.html'>to_wrf</a></code></p>
+    <div class='dont-index'><p><code><a href='wrf_create.html'>wrf_create</a></code> and <code><a href='to_wrf.html'>to_wrf</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -187,5 +206,8 @@ Daniel Schuch
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

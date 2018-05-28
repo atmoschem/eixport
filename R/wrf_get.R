@@ -4,8 +4,8 @@
 #'
 #' @param file name of file interactively (default) or specified
 #' @param name name of the variable (any variable)
-#' @param as_raster return a raster instead of a array
-#' @param raster_crs crs to used if as_raster is TRUE
+#' @param as_raster return a raster instead of an array
+#' @param raster_crs crs to use if as_raster is TRUE
 #'
 #' @format array or raster object
 #'
@@ -35,8 +35,10 @@
 #' CO <- wrf_get(file = files[1], name = "E_CO")
 #' CO[] = rnorm(length(CO))
 #' wrf_put(file = files[1], name = "E_CO", POL = CO)
+#' COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+#'
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
+wrf_get <- function(file = file.choose(), name = "E_CO", as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
@@ -66,7 +68,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
                           ymx=r.lat[2])
       r <- raster::flip(r,2)
     }
-    if(n >= 1){
+    if(n > 1){
       r <- raster::brick(x = aperm(POL, c(2, 1, 3)),
                          xmn = r.lon[1],
                          xmx = r.lon[2],
@@ -78,7 +80,8 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
     names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
     return(r)
+  } else {
+    return(POL)
   }
   ncdf4::nc_close(wrfchem)
-  return(POL)
 }

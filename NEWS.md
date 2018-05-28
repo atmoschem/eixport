@@ -1,15 +1,37 @@
 NEWS
 ===========
-# exiport 0.3.0: 29 February 2018
-- exemple fix
-- remove warning message
 
-# eixport 0.3.0 (Release date: 23 February 2018)
+# eixport 0.3.4 (Release date: 26 May 2018)
+
+### eixport 0.3.4 (Release date: 26 May 2018)
+
+- Fix to_as4wrf when sdf is list..
+
+
+# eixport 0.3.3 (Release date: 23 April 2018)
+
+### eixport 0.3.3 (Release date: 23 April 2018)
+
+- Added data gCO.
+- Added function as4wrf.
+- Added tests. 
+
+### eixport 0.3.2 (Release date: 29 March 2018)
+
+- Documentation.
+
+### eixport 0.3.1 (Release date: 4 March 2014)
+
+- Documentation.
+
+## eixport 0.3.0 (Release date: 23 February 2018)
 
 ### eixport 0.3.0 (Release date: 23 February 2018)
 
 - Remove regrid.
 - Prepare submissions to JOSS
+- exemple fix
+- remove warning message
 
 ## eixport v0.2.10 (Release date: 19 January 2018)
 

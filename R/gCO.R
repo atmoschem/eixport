@@ -1,0 +1,14 @@
+#' Gridded emissions from VEIN demo
+#'
+#' Emissions in g/h for morning rush hour.
+#'
+#' @format A sf object of lines with 437 rows and 2 variables:
+#' \describe{
+#'   \item{V9}{Emissions of CO (g/h) for 08:00-09:00}
+#'   \item{geometry}{geometry}
+#'   data(gCO)
+##' }
+#' @source \url{https://github.com/atmoschem/vein}
+#' @usage data(gCO)
+#' @docType data
+"gCO"

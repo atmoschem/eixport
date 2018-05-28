@@ -5,7 +5,7 @@
 \title{Simple plot from wrf emission file}
 \usage{
 wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
-  barra = T, lbarra = 0.2, col = gray.colors(13), verbose = T, ...)
+  barra = T, lbarra = 0.2, col = cptcity::cpt(n = 13), verbose = T, ...)
 }
 \arguments{
 \item{file}{emission file name}
@@ -33,7 +33,7 @@ Create a quick plot from wrf emission file
 If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 time with control the level which will be ploted
 
-In case of a error related to plot.new() margins lbarra must be adjusted
+In case of an error related to plot.new() margins lbarra must be adjusted
 }
 \examples{
 {

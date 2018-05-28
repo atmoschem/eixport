@@ -1,6 +1,6 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.3.1
+Version: 0.3.4
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -11,15 +11,20 @@ Authors@R: c(
          family = "Schuch",
          role = c("aut"),
          email = "underschuch@gmail.com",
-         comment = c(ORCID = "0000-0001-5977-4519"))
+         comment = c(ORCID = "0000-0001-5977-4519")),
+  person(given = "Edmilson",
+         family = "Freitas",
+         role = c("ctb"),
+         email = "edmilson.freitas@iag.usp.br",
+         comment = c(ORCID = "0000-0001-8783-2747"))
   ) 
-Description: Emissions are mass of pollutants released into the atmosphere. Air quality models needs emission data, with spatial and temporal distribution, to represent air pollutant concentrations. This package eixport creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) <doi:10.1016/j.atmosenv.2005.04.027>, 'BRAMS-SPM' Freitas et al (2005) <doi:10.1016/j.atmosenv.2005.07.017> and 'RLINE' Snyder et al (2013) <doi:10.1016/j.atmosenv.2013.05.074>. See the eixport website for more information, documentations and examples.
+Description: Emissions are the mass of pollutants released into the atmosphere. Air quality models need emissions data, with spatial and temporal distribution, to represent air pollutant concentrations. This package, eixport, creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) <doi:10.1016/j.atmosenv.2005.04.027>, 'BRAMS-SPM' Freitas et al (2005) <doi:10.1016/j.atmosenv.2005.07.017> and 'RLINE' Snyder et al (2013) <doi:10.1016/j.atmosenv.2013.05.074>. See the eixport website (<https://atmoschem.github.io/eixport/>) for more information, documentations and examples.
 License: MIT + file LICENSE
 URL: https://github.com/atmoschem/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
-Depends: R (>= 2.10)
-Imports: sf, ncdf4, raster, sp
+Depends: R (>= 3.3.0)
+Imports: sf, ncdf4, raster, sp, methods, cptcity
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.0.1
-Suggests: testthat,covr
+Suggests: testthat, covr

@@ -2,7 +2,7 @@
 % Please edit documentation in R/to_brams_spm.R
 \name{to_brams_spm}
 \alias{to_brams_spm}
-\title{Inputs for BRAMS SPM}
+\title{Inputs for BRAMS-SPM}
 \usage{
 to_brams_spm(sdf, epsg = 4326)
 }
@@ -20,19 +20,22 @@ data-frame of daily gridded emissions, lat, long and a message with
 function.
 }
 \description{
-Create inputs for SPM brams. The inputs consists in data-frame
-or a lists of data-frames with daily emissions (mol/day), lat, long. Also,
+Create inputs for BRAMS-SPM. The inputs consist of a data-frame
+or a list of data-frames with daily emissions (mol/day), lat, long. Also,
 including a functions describing the hourly profile.
 }
 \note{
-When the input os class 'Spatial', they are converted to 'sf'. If the
-input is a data-frame, the output is a data-frame. If he input is a list,
+When the input is class 'Spatial', they are converted to 'sf'. If the
+input is a data-frame, the output is a data-frame. If the input is a list,
 the output is a list.
 }
 \examples{
 \dontrun{
-# Do not run
-
+data(gCO)
+df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
+head(df1)
+df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO), epsg = 4326)
+lapply(df2, head)
 }
 }
 \references{
@@ -43,5 +46,5 @@ Coupling and validation. Atmospheric Environment, Elsevier, n. 39, p.
 6352–6361, 2005.
 }
 \author{
-Sergio Ibarra
+Sergio Ibarra and Edmilson Freitas
 }
