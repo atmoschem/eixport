@@ -40,7 +40,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = F,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
-   name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+   name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     name  <- names(wrfchem$var)[name]
     POL   <- ncdf4::ncvar_get(wrfchem, name)
   }else{

@@ -55,7 +55,7 @@ wrf_plot <- function(file = file.choose(),
                      ...){
   wrfchem <- ncdf4::nc_open(file)
   if(is.na(name)){
-    name  <- menu(names(wrfchem$var), title = "Chose the variable:")
+    name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]
   }else{
