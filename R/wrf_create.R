@@ -113,7 +113,8 @@ wrf_create  <- function(wrfinput_dir         = "",
                         verbose              = FALSE)
 {
   a <- Sys.info()["sysname"]
-  if(a[[1]] == "Windows") linux = F else linux = T # to avoid special chacacteres in the filename
+  # to avoid special chacacteres in the filename
+  if(a[[1]] == "Windows") linux = F else linux = T # nocov
 
   for(domain in domains){
     # basic information from wrfinput
@@ -133,30 +134,29 @@ wrf_create  <- function(wrfinput_dir         = "",
     segundo      <- paste(formatC(segundo, width = 2, format = "d", flag = "0"))
 
     if(io_style_emissions == 1){
-      frames_per_auxinput5 <- 12
+      frames_per_auxinput5 <- 12  # nocov start
       if(is.integer(day_offset)){
         h <- "00z"
       }else{
         h <- "12z"
       }
-      file_name <- paste(wrfchemi_dir, "/wrfchemi_", h, "_", "d0",
-                         domain, sep = "")
+      file_name <- paste(wrfchemi_dir, "/wrfchemi_", h, "_", "d0",domain, sep = "") # nocov end
     }
-    if(io_style_emissions ==2){
+    if(io_style_emissions ==2){                                                     # nocov start
       if(linux){
         file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
                            format(date,"%Y-%m-%d"),
                                    "_",hora,":", minuto,":", segundo, sep = "")
       } else  file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
                                  format(date,"%Y-%m-%d"),
-                                 "_", hora, "_", minuto, "_", segundo, sep = "")
+                                 "_", hora, "_", minuto, "_", segundo, sep = "")   # nocov end
     }
 
     if(frames_per_auxinput5 == 1){
       file_time  <- paste(format(date,"%Y-%m-%d"),
                           "_", hora, ":", minuto, ":", segundo, sep = "")
     }
-    else{
+    else{                                                                   # nocov start
       file_time    <- character(frames_per_auxinput5)
       for(i in 1:frames_per_auxinput5){
         file_time[i] <- paste(format(date,"%Y-%m-%d"),
@@ -177,7 +177,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                                       width = 2,
                                       format = "d",
                                       flag = "0"))
-      }
+      }                                                                      # nocov end
     }
 
     input_lat    <- ncdf4::ncvar_get(wrfinput, "XLAT")

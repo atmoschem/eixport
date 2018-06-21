@@ -5,7 +5,7 @@ wrf_create(wrfinput_dir          = system.file("extdata", package = "eixport"),
             wrfchemi_dir         = file.path(tempdir(), "EMISS"),
             domains              = 2,
             frames_per_auxinput5 = 1,
-            verbose              = FALSE)
+            verbose              = TRUE)
 
 f1 <- dir(path = file.path(tempdir(), "EMISS"), pattern = "wrfchemi_d02", full.names = T)
 

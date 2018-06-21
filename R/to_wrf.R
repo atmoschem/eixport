@@ -64,7 +64,7 @@ to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
   if(is.matrix(x)){
     kemit <- 1
   }else{
-    kemit <- dim(x)[3]
+    kemit <- dim(x)[3] # nocov
   }
   wrf          <- ncdf4::nc_open(file)
   g_atributos  <- ncdf4::ncatt_get(wrf,0)
@@ -73,16 +73,16 @@ to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
                               length(profile)))
   }else{
-    VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
+    VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,  # nocov start
                               g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
                               kemit,
-                              length(profile)))
+                              length(profile)))                           # nocov end
   }
 
   ncdf4::nc_close(wrf)
 
   if(norm)
-    x <- x / sum(x)
+    x <- x / sum(x) # nocov
 
   if(!is.na(total))
     x <- total * x
@@ -92,7 +92,7 @@ to_wrf <- function(x, file = file.choose(), total = NA, norm = F,
       if(is.matrix(x)){
         VAR[,,j] = profile[j] * x
       }else{
-        VAR[,,,j] = profile[j] * x
+        VAR[,,,j] = profile[j] * x # nocov
       }
     }
     if(verbose)

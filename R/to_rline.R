@@ -64,7 +64,7 @@ to_rline <- function (X_b,
                       Wbottom,
                       experimental = FALSE){
   if (missing(Emis) | is.null(Emis)) {
-    stop (print("No 'Emissions'"))
+    stop (print("No 'Emissions'")) # nocov
   } else if (experimental){
     df <- data.frame(
       Group = as.character(format(1:length(X_b), width = 5)))

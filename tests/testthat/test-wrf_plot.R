@@ -27,12 +27,12 @@ f2 <- unzip(zipfile = paste0(system.file("extdata", package = "eixport"),
 to_wrf(Lights[1:63, 1:51], f2, total = 1521983, profile = perfil[1], names = "E_CO")
 
 
-test_that("multiplication works", {
+test_that("plot wrf works", {
   expect_equal(wrf_plot(f1, "E_CO", verbose = FALSE),
                wrf_plot(f2, "E_CO", verbose = FALSE))
 })
 
-test_that("multiplication works", {
+test_that("plot wrf works", {
   expect_equal(wrf_plot(f1, "E_CO", verbose = TRUE)[1],
                wrf_plot(f2, "E_CO", verbose = TRUE)[1])
 })

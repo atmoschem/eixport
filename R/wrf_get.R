@@ -40,11 +40,11 @@
 #'}
 wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
-  wrfchem <- ncdf4::nc_open(file)
-  if(is.na(name)){
+  wrfchem <- ncdf4::nc_open(file)                                       # iteractive
+  if(is.na(name)){                                                      # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
-    name  <- names(wrfchem$var)[name]
+    name  <- names(wrfchem$var)[name]                                   # nocov end
   }else{
     POL   <- ncvar_get(wrfchem,name)
   }
@@ -68,12 +68,12 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                           ymx=r.lat[2])
       r <- raster::flip(r,2)
     }
-    if(n > 1){
-      r <- raster::brick(x = aperm(POL, c(2, 1, 3)),
+    if(n > 1){                                        # for emissions in 3D+time
+      r <- raster::brick(x = aperm(POL, c(2, 1, 3)),  # nocov start
                          xmn = r.lon[1],
                          xmx = r.lon[2],
                          ymn = r.lat[1],
-                         ymx = r.lat[2])
+                         ymx = r.lat[2])              # nocov end
       r <- raster::flip(r,2)
     }
     raster::crs(r)   <- sp::CRS(raster_crs)
@@ -81,7 +81,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
     ncdf4::nc_close(wrfchem)
     return(r)
   } else {
+    ncdf4::nc_close(wrfchem)
     return(POL)
   }
-  ncdf4::nc_close(wrfchem)
 }
