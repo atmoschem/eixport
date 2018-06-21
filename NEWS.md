@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.3.5 (Release date: 21 Jun 2018)
+
+- Add to_munich. Fix #18.
+
 # eixport 0.3.4 (Release date: 26 May 2018)
 
 ### eixport 0.3.4 (Release date: 26 May 2018)
