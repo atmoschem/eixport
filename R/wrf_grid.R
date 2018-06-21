@@ -24,9 +24,9 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
   if(type == "wrfinput"){
     lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG")
-  } else if(type == "geo"){
-    lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT_M")
-    lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG_M")
+  } else if(type == "geo"){                            # nocov
+    lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT_M")  # nocov
+    lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG_M") # nocov
   }
   time   <- ncdf4::ncvar_get(wrf, varid = "Times")
   dx     <- ncdf4::ncatt_get(wrf, varid = 0,

@@ -49,7 +49,7 @@
 #' }
 to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){
   if(nr <= 0){
-    stop("The argument 'nr' must be positive")
+    stop("The argument 'nr' must be positive") # nocov
   } else if (class(sdf)[1] != "list") {
     sdf <- sf::st_as_sf(sdf)
     # if(class(sdf)[1] == "sf"){

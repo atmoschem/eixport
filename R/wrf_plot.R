@@ -54,11 +54,11 @@ wrf_plot <- function(file = file.choose(),
                      col = cptcity::cpt(n = 13),
                      verbose = T,
                      ...){
-  wrfchem <- ncdf4::nc_open(file)
-  if(is.na(name)){
+  wrfchem <- ncdf4::nc_open(file)                                      # iteractive
+  if(is.na(name)){                                                     # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
-    name  <- names(wrfchem$var)[name]
+    name  <- names(wrfchem$var)[name]                                  # nocov end
   }else{
     POL   <- ncvar_get(wrfchem,name)
   }
@@ -85,7 +85,7 @@ wrf_plot <- function(file = file.choose(),
     print(wrfchem$filename)
     print(name)
     if(max(POL) == min(POL)){
-      cat("Max value = Min Value!")
+      cat("Max value = Min Value!") # nocov
     }
     else{
       cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = ""))
@@ -124,14 +124,14 @@ wrf_plot <- function(file = file.choose(),
           x <- seq.int(0, 1, length.out = nrow(z))
         }
       }
-      else stop("no 'z' matrix specified")
+      else stop("no 'z' matrix specified") # nocov
     }
     else if (is.list(x)) {
       y <- x$y
       x <- x$x
     }
     if (any(diff(x) <= 0) || any(diff(y) <= 0))
-      stop("increasing 'x' and 'y' values expected")
+      stop("increasing 'x' and 'y' values expected") # nocov
     mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
     w <- (3 + mar.orig[2]) * par("csi") * 2.54
     par(las = las)
@@ -140,9 +140,9 @@ wrf_plot <- function(file = file.choose(),
     par(mar=mar)
     plot.window(xlim, ylim, "", xaxs = xaxs, yaxs = yaxs, asp = asp)
     if (!is.matrix(z) || nrow(z) <= 1 || ncol(z) <= 1)
-      stop("no proper 'z' matrix specified")
+      stop("no proper 'z' matrix specified") # nocov
     if (!is.double(z))
-      storage.mode(z) <- "double"
+      storage.mode(z) <- "double"  # nocov
     .filled.contour(as.double(x), as.double(y), z, as.double(levels), col = col)
     .filled.contour(x, y, z, c(levels[length(levels)],999999), col[length(col)])
     if (missing(plot.axes)) {
@@ -152,12 +152,12 @@ wrf_plot <- function(file = file.choose(),
         Axis(y, side = 2)
       }
     }
-    else plot.axes
+    else plot.axes  # nocov
     if (frame.plot)
       box()
     if (missing(plot.title))
       title(...)
-    else plot.title
+    else plot.title  # nocov
     invisible()
   }
 
