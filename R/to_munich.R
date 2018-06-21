@@ -42,7 +42,7 @@ to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   sdf <- sf::st_as_sf(sdf)
   sdf$id <- NULL
   if(length(unique(sapply(sf::st_geometry(sdf), length))) > 1){
-    cat("Split your data. One vertex per line is required")
+    cat("Split your data. One vertex per line is required") # nocov
   }
   dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
   lista <- split(x = dft, f = dft$L1)
