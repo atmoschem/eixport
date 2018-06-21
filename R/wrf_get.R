@@ -73,8 +73,8 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                          xmn = r.lon[1],
                          xmx = r.lon[2],
                          ymn = r.lat[1],
-                         ymx = r.lat[2])              # nocov end
-      r <- raster::flip(r,2)
+                         ymx = r.lat[2])
+      r <- raster::flip(r,2)                          # nocov end
     }
     raster::crs(r)   <- sp::CRS(raster_crs)
     names(r) <- paste(name,time,sep="_")

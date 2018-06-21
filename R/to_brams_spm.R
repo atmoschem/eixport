@@ -36,7 +36,7 @@ to_brams_spm <- function(sdf, epsg = 4326){
   if(inherits(x = sdf, what = "list")){
     if(class(sdf[[1]])[1] == "SpatialPolygonsDataFrame"){
       # message("SpatialPolygonsDataFrame")
-      sdf <- lapply(sdf, sf::st_as_sf)
+      sdf <- lapply(sdf, sf::st_as_sf)     # nocov
     } else if(class(sdf[[1]])[1] == "sf"){
 
     }
@@ -54,11 +54,11 @@ to_brams_spm <- function(sdf, epsg = 4326){
     for(i in 1:length(sdf)){
       names(ldf[[i]]) <- c(nombres[i], "long", "lat")
     }
-    return(ldf)
     # Initially, this function return rowsums and polygon separatly
-    sumdf <- sapply(sdf, rowSums, na.rm = TRUE)
-    names(sumdf) <- paste0("sum_" , names(sdf))
-    print(sumdf)
+    # sumdf <- sapply(sdf, rowSums, na.rm = TRUE)
+    # names(sumdf) <- paste0("sum_" , names(sdf))
+    # print(sumdf)
+    return(ldf)
   } else {
     # message("sf")
     sdf <- sf::st_as_sf(sdf)
