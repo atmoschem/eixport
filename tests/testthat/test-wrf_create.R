@@ -13,8 +13,6 @@ f2 <- unzip(zipfile = paste0(system.file("extdata", package = "eixport"),
                              "/wrfchemi_d02_2011-08-02.zip"),
             exdir = file.path(tempdir()))
 
-# f2 <- "wrfchemi_d02_2011-08-02"
-
 nc1 <- ncdf4::nc_open(f1)
 nc2 <- ncdf4::nc_open(f2)
 
