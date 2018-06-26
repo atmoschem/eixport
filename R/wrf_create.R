@@ -187,7 +187,8 @@ wrf_create  <- function(wrfinput_dir         = "",
                             History = paste("created on",
                                             format(Sys.time(),
                                                    "%Y-%m-%d at %H:%M")),
-                            Author = "R package eixport"),
+                            Author = paste0("R package eixport v",
+                                            utils::packageVersion("eixport"))),
                        g_atributos[4:length(g_atributos)])
     # definition of dimensions
     west_east <- ncdf4::ncdim_def("west_east",
