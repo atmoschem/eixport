@@ -1,4 +1,4 @@
-citHeader("To cite vein in publications use at least the first, if not both, thanks:")
+citHeader("To cite eixport in publications use at least the first, if not both:")
 
 citEntry(entry = "article",
    title          = "eixport: An R package to export emissions to atmospheric models",
@@ -14,21 +14,9 @@ citEntry(entry = "article",
    textVersion  =
    paste("Ibarra-Espinosa, S., Schuch, D. and Dias de Freitas., E., (2018).",
         "eixport: An R package to export emissions to atmospheric models",
-        " ournal of Open Source Software, 3(24), 607, https://doi.org/10.21105/joss.00607.")
+        "Journal of Open Source Software, 3(24), 607, https://doi.org/10.21105/joss.00607.")
 )
-year <- 2018
-note <- sprintf("R package version %s", meta$Version)
 
-citEntry(entry = "Manual",
-  title   = "eixport: An R package to export emissions to atmospheric models",
-  author  = "Sergio Ibarra-Espinosa, Daniel Schuch and Edmilson Dias de Freitas",
-  year    = "2017",
-  note    = note,
-  url     = "https://CRAN.R-project.org/package=eixport",
-  textVersion =
-  paste("Sergio Ibarra-Espinosa, Daniel Schuch and Edmilson Dias de Freitas (2017) eixport: An R package to export emissions to atmospheric models. R package version 0.3.3. https://CRAN.R-project.org/package=eixport")
-  )
+citation(auto = meta)
 
-
-
-
+citFooter("Thanks")
