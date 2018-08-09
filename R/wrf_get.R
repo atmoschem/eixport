@@ -6,6 +6,7 @@
 #' @param name name of the variable (any variable)
 #' @param as_raster return a raster instead of an array
 #' @param raster_crs crs to use if as_raster is TRUE
+#' @param raster_lev level for rasters from a 4D variable
 #'
 #' @format array or raster object
 #'
@@ -39,7 +40,8 @@
 #'
 #'}
 wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
-                    raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"){
+                    raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+                    raster_lev = 1){
   wrfchem <- ncdf4::nc_open(file)                                       # iteractive
   if(is.na(name)){                                                      # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")
@@ -49,6 +51,15 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
     POL   <- ncvar_get(wrfchem,name)
   }
   if(as_raster){
+    if(length(dim(POL)) >= 5)                                                  # nocov start
+      stop("images with 5D or more not suported")
+
+    if(length(dim(POL)) == 4){
+      cat(paste0("4D images not supported, making a 3D RasterBrick using level ",
+                 raster_lev," of the file\n"))
+      POL <- POL[,,raster_lev,,drop = T]
+    }                                                                          # nocov end
+
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrfchem, varid = "XLONG")
     time   <- ncdf4::ncvar_get(wrfchem, varid = "Times")
@@ -68,7 +79,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                           ymx=r.lat[2])
       r <- raster::flip(r,2)
     }
-    if(n > 1){                                        # for emissions in 3D+time
+    if(n > 1){                                        # for emissions in 2D+time
       r <- raster::brick(x = aperm(POL, c(2, 1, 3)),  # nocov start
                          xmn = r.lon[1],
                          xmx = r.lon[2],
