@@ -31,7 +31,7 @@ test_that("to_rline works", {
                         Y_e = emisco$ymin,
                         Z_e = 0,
                         dCL = 0,
-                        Emis = emisco$V8,
+                        Emis = as.numeric(emisco$V8),
                         sigmaz0 = 2,
                         lanes = emisco$lanes),
                df2
@@ -47,7 +47,7 @@ test_that("to_rline works", {
                         dCL = 0,
                         sigmaz0 = 2,
                         lanes = emisco$lanes,
-                        Emis = emisco$V8,
+                        Emis = as.numeric(emisco$V8),
                         Hw1 = 0,
                         dw1 = 0,
                         Hw2 = 0,

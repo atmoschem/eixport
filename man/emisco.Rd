@@ -15,7 +15,7 @@
   \item{lanes}{Number of lanes per link}
   \item{capacity}{Capacity of vehicles in each link (1/h)}
   \item{tmin}{Time for travelling each link (min)}
-  \item{V8}{Emissions}
+  \item{V8}{Emissions (g/s)}
   \item{xmin}{Initial x coordinates}
   \item{xmax}{Ending x coordinates}
   \item{ymin}{Initial y coordinates}
@@ -24,7 +24,7 @@
   data(emisco)
 }}
 \source{
-\url{https://github.com/ibarraespinosa/vein}
+\url{https://github.com/atmoschem/vein}
 }
 \usage{
 data(emisco)
