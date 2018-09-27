@@ -91,7 +91,7 @@ wrf_create  <- function(wrfinput_dir         = "",
     }else{
       cat(paste(variaveis,"is not valid, use one of:\n"))           # nocov
       cat(names(emis_opt))                                          # nocov
-      stop("use a valid name, numeric value or the variable names") # nocov
+      stop("name, numeric value or a set of variable names")        # nocov
     }
 
   }
