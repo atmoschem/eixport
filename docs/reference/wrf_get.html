@@ -107,7 +107,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>raster_crs</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>)</pre>
+  <span class='kw'>raster_crs</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>,
+  <span class='kw'>raster_lev</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,6 +128,10 @@
     <tr>
       <th>raster_crs</th>
       <td><p>crs to use if as_raster is TRUE</p></td>
+    </tr>
+    <tr>
+      <th>raster_lev</th>
+      <td><p>level for rasters from a 4D variable</p></td>
     </tr>
     </table>
     
