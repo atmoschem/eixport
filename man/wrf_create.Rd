@@ -6,13 +6,8 @@
 \usage{
 wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
   frames_per_auxinput5 = 1, auxinput5_interval_m = 60, day_offset = 0,
-  io_style_emissions = 2, kemit = 1, variaveis = c("E_NO2", "E_NO",
-  "E_TOL", "E_XYL", "E_ALD", "E_ALDX", "E_SO2", "E_CO", "E_OLT", "E_OLI",
-  "E_OL2", "E_NH3", "E_ISO", "E_HCL", "E_HCHO", "E_ETH", "E_CH3OH", "E_C2H5OH",
-  "E_HC3", "E_HC5", "E_HC8", "E_KET", "E_ORA2", "E_CSL", "E_TERP", "E_PM25I",
-  "E_PM25J", "E_ECI", "E_ECJ", "E_ORGI", "E_ORGJ", "E_SO4I", "E_SO4J", "E_NO3J",
-  "E_NO3I", "E_SO4C", "E_NO3C", "E_ORGC", "E_ECC", "E_PM10"), n_aero = 15,
-  COMPRESS = NA, force_ncdf4 = FALSE, verbose = FALSE)
+  io_style_emissions = 2, kemit = 1, variaveis = "ecbmz_mosaic",
+  n_aero = 15, COMPRESS = NA, force_ncdf4 = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{wrfinput_dir}{folder with the wrfinput file(s)}
@@ -45,15 +40,15 @@ no compression}
 \item{verbose}{print file info}
 }
 \description{
-Create an emission file from wrfinput file(s)
+Create an emission file from wrfinput file(s),
 }
 \note{
-to use io_style_emissions = 1, use day_offset increased by 0.5
-(to increase 12h)
+using io_style_emissions = 1, the 00z will be generated with day_offset = 0 and
+12z with day_offset = 0.5
 
 Windows users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
-before run wrf.exe with these files
+or change in namelist the defoult filename before run wrf.exe with these files
 }
 \examples{
 \dontrun{
@@ -63,22 +58,28 @@ before run wrf.exe with these files
 
 dir.create(file.path(tempdir(), "EMISS"))
 
+# emissions on date_hour style
 wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
            domains              = 1:2,
-           frames_per_auxinput5 = 24,
+           frames_per_auxinput5 = 25,
            auxinput5_interval_m = 60,
-           day_offset           = 0,
            verbose              = TRUE)
 
-# emission for the last timestep
-
+# emissions on 00z / 12z style, create the 00z
 wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
            domains              = 1:2,
-           frames_per_auxinput5 = 1,
-           auxinput5_interval_m = 60,
-           day_offset           = 1,
+           io_style_emissions   = 1,
+           day_offset           = 0,
+           verbose              = TRUE,
+           )
+# emissions on 00z / 12z style, create the 12z
+wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
+           wrfchemi_dir         = file.path(tempdir(), "EMISS"),
+           domains              = 1:2,
+           io_style_emissions   = 1,
+           day_offset           = 0.5,
            verbose              = TRUE)
 }
 }

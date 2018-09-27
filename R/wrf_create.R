@@ -1,6 +1,6 @@
 #' Create emission files to the WRF-Chem
 #'
-#' @description Create an emission file from wrfinput file(s)
+#' @description Create an emission file from wrfinput file(s),
 #'
 #' @param wrfinput_dir folder with the wrfinput file(s)
 #' @param wrfchemi_dir output folder
@@ -18,12 +18,12 @@
 #' no compression
 #' @param force_ncdf4 force NetCDF4 format
 #' @param verbose print file info
-#' @note to use io_style_emissions = 1, use day_offset increased by 0.5
-#' (to increase 12h)
+#' @note using io_style_emissions = 1, the 00z will be generated with day_offset = 0 and
+#' 12z with day_offset = 0.5
 #'
 #' @note Windows users need to rename the emission files
 #' from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
-#' before run wrf.exe with these files
+#' or change in namelist the defoult filename before run wrf.exe with these files
 #'
 #' @author Daniel Schuch
 #'
@@ -40,22 +40,28 @@
 #'
 #' dir.create(file.path(tempdir(), "EMISS"))
 #'
+#' # emissions on date_hour style
 #' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 #'            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
 #'            domains              = 1:2,
-#'            frames_per_auxinput5 = 24,
+#'            frames_per_auxinput5 = 25,
 #'            auxinput5_interval_m = 60,
-#'            day_offset           = 0,
 #'            verbose              = TRUE)
 #'
-#' # emission for the last timestep
-#'
+#' # emissions on 00z / 12z style, create the 00z
 #' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 #'            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
 #'            domains              = 1:2,
-#'            frames_per_auxinput5 = 1,
-#'            auxinput5_interval_m = 60,
-#'            day_offset           = 1,
+#'            io_style_emissions   = 1,
+#'            day_offset           = 0,
+#'            verbose              = TRUE,
+#'            )
+#' # emissions on 00z / 12z style, create the 12z
+#' wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
+#'            wrfchemi_dir         = file.path(tempdir(), "EMISS"),
+#'            domains              = 1:2,
+#'            io_style_emissions   = 1,
+#'            day_offset           = 0.5,
 #'            verbose              = TRUE)
 #'}
 
@@ -67,46 +73,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                         day_offset           = 0,
                         io_style_emissions   = 2,
                         kemit                = 1,
-                        variaveis = c("E_NO2",
-                                      "E_NO",
-                                      "E_TOL",
-                                      "E_XYL",
-                                      "E_ALD",
-                                      "E_ALDX",
-                                      "E_SO2",
-                                      "E_CO",
-                                      "E_OLT",
-                                      "E_OLI",
-                                      "E_OL2",
-                                      "E_NH3",
-                                      "E_ISO",
-                                      "E_HCL",
-                                      "E_HCHO",
-                                      "E_ETH",
-                                      "E_CH3OH",
-                                      "E_C2H5OH",
-                                      "E_HC3",
-                                      "E_HC5",
-                                      "E_HC8",
-                                      "E_KET",
-                                      "E_ORA2",
-                                      "E_CSL",
-                                      "E_TERP",
-                                      "E_PM25I",
-                                      "E_PM25J",
-                                      "E_ECI",
-                                      "E_ECJ",
-                                      "E_ORGI",
-                                      "E_ORGJ",
-                                      "E_SO4I",
-                                      "E_SO4J",
-                                      "E_NO3J",
-                                      "E_NO3I",
-                                      "E_SO4C",
-                                      "E_NO3C",
-                                      "E_ORGC",
-                                      "E_ECC",
-                                      "E_PM10"),
+                        variaveis            = "ecbmz_mosaic",
                         n_aero               = 15,
                         COMPRESS             = NA,
                         force_ncdf4          = FALSE,
@@ -115,6 +82,19 @@ wrf_create  <- function(wrfinput_dir         = "",
   a <- Sys.info()["sysname"]
   # to avoid special chacacteres in the filename
   if(a[[1]] == "Windows") linux = F else linux = T # nocov
+
+  if(length(variaveis) == 1){
+    emis_opt <- NULL
+    load(system.file("data/emis_opt.rda", package = "eixport"))
+    if(variaveis %in% names(emis_opt)){
+      variaveis <- emis_opt[[variaveis]]
+    }else{
+      cat(paste(variaveis,"is not valid, use one of:\n"))           # nocov
+      cat(names(emis_opt))                                          # nocov
+      stop("use a valid name, numeric value or the variable names") # nocov
+    }
+
+  }
 
   for(domain in domains){
     # basic information from wrfinput
@@ -125,6 +105,13 @@ wrf_create  <- function(wrfinput_dir         = "",
     date <- as.character(paste(substr(input_time, 1, 10),
                                substr(input_time, 12, 19)))
     date <- as.POSIXct(strptime(date, "%Y-%m-%d %H:%M:%S"))
+
+    if(io_style_emissions == 1){
+      if(day_offset != 0){
+        day_offset <- 0.5
+      }
+    }
+
     date <- date + 86400 * day_offset
     hora         <- format(date,"%H")
     minuto       <- format(date,"%M")
@@ -135,7 +122,7 @@ wrf_create  <- function(wrfinput_dir         = "",
 
     if(io_style_emissions == 1){
       frames_per_auxinput5 <- 12  # nocov start
-      if(is.integer(day_offset)){
+      if(day_offset == 0){
         h <- "00z"
       }else{
         h <- "12z"
