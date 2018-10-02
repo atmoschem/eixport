@@ -8,8 +8,8 @@
 <title>Export Emissions to Atmospheric Models • eixport</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Export Emissions to Atmospheric Models">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Export Emissions to Atmospheric Models">
 <meta property="og:description" content="Emissions are the mass of pollutants released into the atmosphere. Air quality models need emissions data, with spatial and temporal distribution, to represent air pollutant concentrations. This package, eixport, creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) &lt;doi:10.1016/j.atmosenv.2005.04.027&gt;, 'BRAMS-SPM' Freitas et al (2005) &lt;doi:10.1016/j.atmosenv.2005.07.017&gt; and 'RLINE' Snyder et al (2013) &lt;doi:10.1016/j.atmosenv.2013.05.074&gt;. See the eixport website (&lt;https://atmoschem.github.io/eixport/&gt;) for more information, documentations and examples.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -68,14 +68,9 @@
 <a href="#eixport" class="anchor"></a>eixport</h1></div>
 
 <p><img src="https://i.imgur.com/BcZ2tfW.png"><!-- --></p>
-<div id="paper-accepted-on-joss" class="section level2">
+<div id="exporting-emissions-to-atmospheric-models" class="section level2">
 <h2 class="hasAnchor">
-<a href="#paper-accepted-on-joss" class="anchor"></a>Paper accepted on JOSS</h2>
-<p>The Journal of Open Source Software: <a href="https://doi.org/10.21105/joss.00607" class="uri">https://doi.org/10.21105/joss.00607</a></p>
-</div>
-<div id="exporting-emissions-to-other-models" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exporting-emissions-to-other-models" class="anchor"></a>Exporting emissions to other models</h2>
+<a href="#exporting-emissions-to-atmospheric-models" class="anchor"></a>Exporting emissions to atmospheric models</h2>
 <p>Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.</p>
 <p>There are several models whose inputs are emissions, such as <a href="https://www.cmascenter.org/r-line/">R-Line</a> or <a href="https://ruc.noaa.gov/wrf/wrf-chem/">WRF-Chem</a>. This R-Package provide functions to read emissions from <a href="https://github.com/ibarraespinosa/vein">VEIN</a> and from other models in different formats and export the emissions into the appropiate format suitable to other models.</p>
 </div>
@@ -83,10 +78,10 @@
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
 <p>To install the <a href="https://CRAN.R-project.org/package=eixport">CRAN</a> version:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"eixport"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"eixport"</span>)</code></pre></div>
 <p>To install the development version:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"atmoschem/eixport"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(eixport)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"atmoschem/eixport"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(eixport)</code></pre></div>
 </div>
 <div id="some-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -111,6 +106,19 @@
 <li>
 <a href="https://atmoschem.github.io/eixport/reference/to_as4wrf.html">to_as4wrf</a>: Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.</li>
 </ul>
+</div>
+<div id="paper-accepted-on-journal-of-open-source-software" class="section level2">
+<h2 class="hasAnchor">
+<a href="#paper-accepted-on-journal-of-open-source-software" class="anchor"></a>Paper accepted on Journal of Open Source Software</h2>
+<p><a href="https://doi.org/10.21105/joss.00607" class="uri">https://doi.org/10.21105/joss.00607</a></p>
+<pre><code>@article{eixport,
+    title = {eixport: An R package to export emissions to atmospheric models},
+    journal = {The Journal of Open Source Software},
+    author = {Sergio Ibarra-Espinosa and Daniel Schuch and Edmilson {Dias de Freitas}},
+    year = {2018},
+    doi = {10.21105/joss.00607},
+    url = {http://joss.theoj.org/papers/10.21105/joss.00607},
+  }</code></pre>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">

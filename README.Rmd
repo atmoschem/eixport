@@ -12,12 +12,8 @@
 knitr::include_graphics("https://i.imgur.com/BcZ2tfW.png")
 ```
 
-## Paper accepted on JOSS
 
-The Journal of Open Source Software: https://doi.org/10.21105/joss.00607
-
-
-## Exporting emissions to other models
+## Exporting emissions to atmospheric models
 
 Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.
 
@@ -55,6 +51,21 @@ library(eixport)
 - [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
 - [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
 - [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html): Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+
+## Paper accepted on Journal of Open Source Software
+
+https://doi.org/10.21105/joss.00607
+
+```
+@article{eixport,
+    title = {eixport: An R package to export emissions to atmospheric models},
+    journal = {The Journal of Open Source Software},
+    author = {Sergio Ibarra-Espinosa and Daniel Schuch and Edmilson {Dias de Freitas}},
+    year = {2018},
+    doi = {10.21105/joss.00607},
+    url = {http://joss.theoj.org/papers/10.21105/joss.00607},
+  }
+```
 
 
 ## Contributing
