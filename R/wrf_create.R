@@ -107,8 +107,8 @@ wrf_create  <- function(wrfinput_dir         = "",
     date <- as.POSIXct(strptime(date, "%Y-%m-%d %H:%M:%S"))
 
     if(io_style_emissions == 1){
-      if(day_offset != 0){
-        day_offset <- 0.5
+      if(day_offset != 0){                    # nocov
+        day_offset <- 0.5                     # nocov
       }
     }
 
