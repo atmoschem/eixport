@@ -215,7 +215,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                              dim = list(west_east, south_north),
                              prec = "float",
                              compression = COMPRESS)
-    # GAS fase emissions
+    # GAS phase emissions
     for(i in 1:(length(variaveis) - n_aero)){
       assign(variaveis[i],
              ncdf4::ncvar_def(name = variaveis[i],
@@ -227,7 +227,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                               prec="float",
                               compression = COMPRESS))
     }
-    # AEROSOL emissions
+    # AEROSOLS emissions
     for(i in (1+length(variaveis) - n_aero):length(variaveis)){
       assign(variaveis[i],
              ncdf4::ncvar_def(name = variaveis[i],
@@ -305,7 +305,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                        south_north$len,
                        emissions_zdim_stag$len,
                        Time$len))
-    # GASES inicializat5ion with zeros
+    # GASES initialization with zeros
     for(i in 1:(length(variaveis) - n_aero)){
       ncdf4::ncvar_put(emiss_file,
                        varid = variaveis[i],
@@ -331,7 +331,7 @@ wrf_create  <- function(wrfinput_dir         = "",
                        attname = "FieldType",
                        attval = 104)
     }
-    # AEROSOIS inicializat5ion with zeros
+    # AEROSOIS initialization with zeros
     for(i in (1 + length(variaveis) - n_aero):length(variaveis)){
       ncdf4::ncvar_put(emiss_file,
                        varid = variaveis[i],
