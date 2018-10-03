@@ -42,7 +42,7 @@ to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   sdf <- sf::st_as_sf(sdf)
   x <- sapply(sf::st_set_geometry(sdf, NULL), class)
   if(any(x != "units")){
-   stop("All emissions must have units. Check ?units::set_units")
+   stop("All emissions must have units. Check ?units::set_units") # nocov
   }
   sdf$id <- NULL
   if(length(unique(sapply(sf::st_geometry(sdf), length))) > 1){
