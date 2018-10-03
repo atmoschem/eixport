@@ -5,9 +5,10 @@
 \title{Create emission files to the WRF-Chem}
 \usage{
 wrf_create(wrfinput_dir = "", wrfchemi_dir = "", domains = 1,
-  frames_per_auxinput5 = 1, auxinput5_interval_m = 60, day_offset = 0,
-  io_style_emissions = 2, kemit = 1, variaveis = "ecbmz_mosaic",
-  n_aero = 15, COMPRESS = NA, force_ncdf4 = FALSE, verbose = FALSE)
+  frames_per_auxinput5 = 1, auxinput5_interval_m = 60,
+  day_offset = 0, io_style_emissions = 2, kemit = 1,
+  variaveis = "ecbmz_mosaic", n_aero = 15, COMPRESS = NA,
+  force_ncdf4 = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{wrfinput_dir}{folder with the wrfinput file(s)}

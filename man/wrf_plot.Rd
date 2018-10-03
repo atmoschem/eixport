@@ -5,7 +5,8 @@
 \title{Simple plot from wrf emission file}
 \usage{
 wrf_plot(file = file.choose(), name = NA, time = 1, nivel = 1,
-  barra = T, lbarra = 0.2, col = cptcity::cpt(n = 13), verbose = T, ...)
+  barra = T, lbarra = 0.2, col = cptcity::cpt(n = 13), verbose = T,
+  ...)
 }
 \arguments{
 \item{file}{emission file name}
