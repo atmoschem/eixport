@@ -65,8 +65,8 @@
 #'            verbose              = TRUE)
 #'}
 
-wrf_create  <- function(wrfinput_dir         = "",
-                        wrfchemi_dir         = "",
+wrf_create  <- function(wrfinput_dir         = getwd(),
+                        wrfchemi_dir         = getwd(),
                         domains              = 1,
                         frames_per_auxinput5 = 1,
                         auxinput5_interval_m = 60,
