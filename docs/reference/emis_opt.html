@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="List of WRF emission species — emis_opt" />
 
-<meta property="og:description" content="Emission package definitions from WRF 3.9.1.1" />
+<meta property="og:description" content="Emission package definitions from WRF 4.0.1, for use in wrf_create function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.6</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@
 
     <div class="ref-description">
     
-    <p>Emission package definitions from WRF 3.9.1.1</p>
+    <p>Emission package definitions from WRF 4.0.1, for use in wrf_create function.</p>
     
     </div>
 
@@ -114,7 +114,7 @@
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='http://www2.mmm.ucar.edu/wrf/users/download/get_source.html'>http://www2.mmm.ucar.edu/wrf/users/download/get_source.html</a></p>
+    <p><a href='https://github.com/wrf-model/WRF'>https://github.com/wrf-model/WRF</a></p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -126,12 +126,14 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Do not run</span>
-<span class='fu'>data</span>(<span class='no'>emis_opt</span>)
-<span class='fu'>names</span>(<span class='no'>emis_opt</span>)
-<span class='no'>emis_opt</span>[<span class='st'>"eradm"</span>]
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>emis_opt</span>)
+<span class='fu'>names</span>(<span class='no'>emis_opt</span>)</div><div class='output co'>#&gt;  [1] "no_emission"   "eradm"         "eradmsorg"     "ecbmz_mosaic" 
+#&gt;  [5] "ecptec"        "gocart_ecptec" "mozem"         "mozcem"       
+#&gt;  [9] "cammam"        "mozmem"        "mozc_t1_em"    "blank1"       
+#&gt; [13] "blank2"        "esaprcnov"     "ecb05_opt1"    "ecb05_opt2"   
+#&gt; [17] "eco2"          "eghg"          "ecrimech"      "ecrimechtno"  </div><div class='input'><span class='no'>emis_opt</span><span class='kw'>[[</span><span class='st'>"eradm"</span>]]</div><div class='output co'>#&gt;  [1] "E_ISO"  "E_SO2"  "E_NO"   "E_CO"   "E_ETH"  "E_HC3"  "E_HC5"  "E_HC8" 
+#&gt;  [9] "E_XYL"  "E_OL2"  "E_OLT"  "E_OLI"  "E_TOL"  "E_CSL"  "E_HCHO" "E_ALD" 
+#&gt; [17] "E_KET"  "E_ORA2" "E_NH3" </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

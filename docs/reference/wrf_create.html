@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create emission files to the WRF-Chem — wrf_create • eixport</title>
+<title>Create emission files for the WRF-Chem model — wrf_create • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,13 @@
 
 
 
-<meta property="og:title" content="Create emission files to the WRF-Chem — wrf_create" />
+<meta property="og:title" content="Create emission files for the WRF-Chem model — wrf_create" />
 
-<meta property="og:description" content="Create an emission file from wrfinput file(s)," />
+<meta property="og:description" content="Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
+There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
+The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
+The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).
+Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains &quot;V4.&quot;, this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.6</span>
       </span>
     </div>
 
@@ -95,29 +99,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create emission files to the WRF-Chem</h1>
+    <h1>Create emission files for the WRF-Chem model</h1>
     
     <div class="hidden name"><code>wrf_create.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create an emission file from wrfinput file(s),</p>
+    <p>Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.</p>
+<p>There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).</p>
+<p>The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).</p>
+<p>The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).</p>
+<p>Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains "V4.", this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>domains</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>auxinput5_interval_m</span> <span class='kw'>=</span> <span class='fl'>60</span>,
+    <pre class="usage"><span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(), <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='fu'>getwd</span>(),
+  <span class='kw'>domains</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>frames_per_auxinput5</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>auxinput5_interval_m</span> <span class='kw'>=</span> <span class='fl'>60</span>,
   <span class='kw'>day_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>io_style_emissions</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>kemit</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>variaveis</span> <span class='kw'>=</span> <span class='st'>"ecbmz_mosaic"</span>, <span class='kw'>n_aero</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>COMPRESS</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>force_ncdf4</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>variables</span> <span class='kw'>=</span> <span class='st'>"ecbmz_mosaic"</span>, <span class='kw'>n_aero</span> <span class='kw'>=</span> <span class='fl'>14</span>, <span class='kw'>COMPRESS</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>force_ncdf4</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Anthropogenic emissions for WRF V4.0"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>wrfinput_dir</th>
-      <td><p>folder with the wrfinput file(s)</p></td>
+      <td><p>input folder with the wrfinput file(s)</p></td>
     </tr>
     <tr>
       <th>wrfchemi_dir</th>
@@ -125,32 +134,32 @@
     </tr>
     <tr>
       <th>domains</th>
-      <td><p>domain or domains to process</p></td>
+      <td><p>domain / domains to be process</p></td>
     </tr>
     <tr>
       <th>frames_per_auxinput5</th>
       <td><p>value from wrf &amp;time_control namelist.input,
-number of times in a single emission file</p></td>
+number of times (frames) in a single emission file</p></td>
     </tr>
     <tr>
       <th>auxinput5_interval_m</th>
       <td><p>value from wrf &amp;time_control namelist.input,
-interval in minutes between different times</p></td>
+interval in minutes between different times (frames) see Details</p></td>
     </tr>
     <tr>
       <th>day_offset</th>
-      <td><p>number of days (can be a fraction) to create multiple files</p></td>
+      <td><p>number of days (can be a fraction) see Details</p></td>
     </tr>
     <tr>
       <th>io_style_emissions</th>
-      <td><p>from wrf &amp;chem namelist.input</p></td>
+      <td><p>from wrf &amp;chem namelist.input see Details</p></td>
     </tr>
     <tr>
       <th>kemit</th>
-      <td><p>from wrf &amp;chem namelist.input, number of levels of the emission file</p></td>
+      <td><p>from wrf &amp;chem namelist.input, number of vertical levels of the emission file</p></td>
     </tr>
     <tr>
-      <th>variaveis</th>
+      <th>variables</th>
       <td><p>emission species, can be used data(emis_opt)</p></td>
     </tr>
     <tr>
@@ -167,6 +176,10 @@ no compression</p></td>
       <td><p>force NetCDF4 format</p></td>
     </tr>
     <tr>
+      <th>title</th>
+      <td><p>TITLE attribute for the NetCDF</p></td>
+    </tr>
+    <tr>
       <th>verbose</th>
       <td><p>print file info</p></td>
     </tr>
@@ -174,11 +187,11 @@ no compression</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>using io_style_emissions = 1, the 00z will be generated with day_offset = 0 and
-12z with day_offset = 0.5</p>
+    <p>Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
+wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).</p>
 <p>Windows users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
-or change in namelist the defoult filename before run wrf.exe with these files</p>
+or change in namelist the defoult filename before run wrf.exe with these files.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

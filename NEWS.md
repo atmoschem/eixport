@@ -1,6 +1,11 @@
 NEWS
 ===========
 
+# eixport 0.3.6 (Release date: 05 out 2018)
+
+- update wrf_create for WRF 4.0.1 and detailed documentation for this function ( fix #36 )
+- update emis_opt for WRF 4.0.1
+
 # eixport 0.3.5 (Release date: 21 Jun 2018)
 
 - Add to_munich. Fix #18.

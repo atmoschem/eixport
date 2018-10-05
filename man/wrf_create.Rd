@@ -2,34 +2,35 @@
 % Please edit documentation in R/wrf_create.R
 \name{wrf_create}
 \alias{wrf_create}
-\title{Create emission files to the WRF-Chem}
+\title{Create emission files for the WRF-Chem model}
 \usage{
 wrf_create(wrfinput_dir = getwd(), wrfchemi_dir = getwd(),
   domains = 1, frames_per_auxinput5 = 1, auxinput5_interval_m = 60,
   day_offset = 0, io_style_emissions = 2, kemit = 1,
-  variaveis = "ecbmz_mosaic", n_aero = 15, COMPRESS = NA,
-  force_ncdf4 = FALSE, verbose = FALSE)
+  variables = "ecbmz_mosaic", n_aero = 14, COMPRESS = NA,
+  force_ncdf4 = FALSE, title = "Anthropogenic emissions for WRF V4.0",
+  verbose = FALSE)
 }
 \arguments{
-\item{wrfinput_dir}{folder with the wrfinput file(s)}
+\item{wrfinput_dir}{input folder with the wrfinput file(s)}
 
 \item{wrfchemi_dir}{output folder}
 
-\item{domains}{domain or domains to process}
+\item{domains}{domain / domains to be process}
 
 \item{frames_per_auxinput5}{value from wrf &time_control namelist.input,
-number of times in a single emission file}
+number of times (frames) in a single emission file}
 
 \item{auxinput5_interval_m}{value from wrf &time_control namelist.input,
-interval in minutes between different times}
+interval in minutes between different times (frames) see Details}
 
-\item{day_offset}{number of days (can be a fraction) to create multiple files}
+\item{day_offset}{number of days (can be a fraction) see Details}
 
-\item{io_style_emissions}{from wrf &chem namelist.input}
+\item{io_style_emissions}{from wrf &chem namelist.input see Details}
 
-\item{kemit}{from wrf &chem namelist.input, number of levels of the emission file}
+\item{kemit}{from wrf &chem namelist.input, number of vertical levels of the emission file}
 
-\item{variaveis}{emission species, can be used data(emis_opt)}
+\item{variables}{emission species, can be used data(emis_opt)}
 
 \item{n_aero}{number of aerosol species}
 
@@ -38,18 +39,28 @@ no compression}
 
 \item{force_ncdf4}{force NetCDF4 format}
 
+\item{title}{TITLE attribute for the NetCDF}
+
 \item{verbose}{print file info}
 }
 \description{
-Create an emission file from wrfinput file(s),
+Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
+
+There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
+
+The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
+
+The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).
+
+Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains "V4.", this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input.
 }
 \note{
-using io_style_emissions = 1, the 00z will be generated with day_offset = 0 and
-12z with day_offset = 0.5
+Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
+wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).
 
 Windows users need to rename the emission files
 from 'wrfchemi_d01_2011-08-01_00_00_00' to 'wrfchemi_d01_2011-08-01_00:00:00'
-or change in namelist the defoult filename before run wrf.exe with these files
+or change in namelist the defoult filename before run wrf.exe with these files.
 }
 \examples{
 \dontrun{
