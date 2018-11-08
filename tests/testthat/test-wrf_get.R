@@ -1,6 +1,6 @@
 context("wrf_get")
 
-wrf_create(wrfinput_dir          = system.file("extdata", package = "eixport"),
+wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
            wrfchemi_dir         = file.path(tempdir()),
            domains              = 2,
            frames_per_auxinput5 = 1,

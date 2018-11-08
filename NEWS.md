@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.3.7 (Release date: 01 nov 2018)
+- added wrf_add function
+
 # eixport 0.3.6 (Release date: 05 out 2018)
 
 - update wrf_create for WRF 4.0.1 and detailed documentation for this function ( fix #36 )
