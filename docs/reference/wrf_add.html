@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simple plot from wrf emission file — wrf_plot • eixport</title>
+<title>Function to add values for variables on emission files — wrf_add • eixport</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Simple plot from wrf emission file — wrf_plot" />
+<meta property="og:title" content="Function to add values for variables on emission files — wrf_add" />
 
-<meta property="og:description" content="Create a quick plot from wrf emission file" />
+<meta property="og:description" content="Add values to a variable in a netCDF file, the main use is to combine different
+emissions like top-down emission (EmissV emissions) and inventary emission (sush as EDGAR,
+GAINS, RETRO, etc)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,104 +97,65 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simple plot from wrf emission file</h1>
+    <h1>Function to add values for variables on emission files</h1>
     
-    <div class="hidden name"><code>wrf_plot.Rd</code></div>
+    <div class="hidden name"><code>wrf_add.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a quick plot from wrf emission file</p>
+    <p>Add values to a variable in a netCDF file, the main use is to combine different
+emissions like top-down emission (EmissV emissions) and inventary emission (sush as EDGAR,
+GAINS, RETRO, etc).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_plot</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>nivel</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>barra</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>lbarra</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw pkg'>cptcity</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/cptcity/topics/cpt'>cpt</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>13</span>), <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_add</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>POL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>emission file name</p></td>
+      <td><p>name of file interactively (default) or specified</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>pollutant name</p></td>
+      <td><p>name of the variable (any variable)</p></td>
     </tr>
     <tr>
-      <th>time</th>
-      <td><p>time from emission file</p></td>
-    </tr>
-    <tr>
-      <th>nivel</th>
-      <td><p>level from the emission file</p></td>
-    </tr>
-    <tr>
-      <th>barra</th>
-      <td><p>barblot if TRUE</p></td>
-    </tr>
-    <tr>
-      <th>lbarra</th>
-      <td><p>length of barplot</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>color vector</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>if TRUE print some information</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Arguments to be passed to plot methods</p></td>
+      <th>POL</th>
+      <td><p>variable to be written</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>If the file contains levels (kemit&gt;1), and one frame (auxinput5_interval_m = 1)
-time with control the level which will be ploted</p>
-<p>In case of an error related to plot.new() margins lbarra must be adjusted</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='Lights.html'>Lights</a></code>, <code><a href='to_wrf.html'>to_wrf</a></code> and <code><a href='wrf_create.html'>wrf_create</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>{
-
+<span class='co'># create the folder and emission file</span>
 <span class='fu'>dir.create</span>(<span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 <span class='fu'><a href='wrf_create.html'>wrf_create</a></span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
           <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>))
 
 <span class='co'># get the name of created file</span>
 <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>list.files</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"EMISS"</span>),
-                   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,
-                   <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+                    <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,
+                    <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># load end write some data in this emission file</span>
-<span class='fu'>data</span>(<span class='no'>Lights</span>)
-<span class='fu'><a href='to_wrf.html'>to_wrf</a></span>(<span class='no'>Lights</span>, <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
-
-<span class='fu'>wrf_plot</span>(<span class='no'>files</span>[<span class='fl'>1</span>], <span class='st'>"E_CO"</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpwiBhJY/EMISS' já existe</span></div><div class='output co'>#&gt; [1] "writing emissions: E_CO weight 1"
-#&gt; [1] "/tmp/RtmpwiBhJY/EMISS/wrfchemi_d01_2011-08-01_00:00:00"
-#&gt; [1] "E_CO"
-#&gt; Max value: 2481.08618164062, Min value: 0</div><div class='img'><img src='wrf_plot-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='co'># open, put some numbers and write</span>
+<span class='no'>CO</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wrf_get.html'>wrf_get</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
+<span class='no'>CO</span>[] <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fu'>length</span>(<span class='no'>CO</span>),<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5</span>,<span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='fu'><a href='wrf_put.html'>wrf_put</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
+<span class='co'># open, put some different numbers and write</span>
+<span class='no'>CO</span>[] <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fu'>length</span>(<span class='no'>CO</span>),<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>10</span>,<span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='fu'>wrf_add</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
