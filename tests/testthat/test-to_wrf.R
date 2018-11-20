@@ -18,13 +18,13 @@ perfil <- c(0.010760058, 0.005280596, 0.002883553, 0.002666932,
             0.058388406, 0.072855890, 0.075267137, 0.063246412,
             0.042713523, 0.029108975, 0.022091855, 0.015298458)
 data(Lights)
-to_wrf(Lights[1:63, 1:51], f1[1], total = 1521983, profile = perfil[1], names = "E_CO")
+to_wrf(Lights[1:63, 1:51], f1[1], total = 1521983, profile = perfil[1], name = "E_CO")
 
 f2 <- unzip(zipfile = paste0(system.file("extdata", package = "eixport"),
                              "/wrfchemi_d02_2011-08-02.zip"),
             exdir = file.path(tempdir()))
 
-to_wrf(Lights[1:63, 1:51], f2, total = 1521983, profile = perfil[1], names = "E_CO")
+to_wrf(Lights[1:63, 1:51], f2, total = 1521983, profile = perfil[1], name = "E_CO")
 
 nc1 <- ncdf4::nc_open(f1)
 nc2 <- ncdf4::nc_open(f2)

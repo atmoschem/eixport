@@ -4,23 +4,23 @@
 \alias{to_wrf}
 \title{Combine total/spatial/temporal/split and write emission to file}
 \usage{
-to_wrf(x, file = file.choose(), total = NA, norm = F, profile = 1,
-  names = NA, weights = 1, verbose = T)
+to_wrf(POL, file = file.choose(), name = NA, total = NA, norm = F,
+  profile = 1, weights = 1, verbose = T)
 }
 \arguments{
-\item{x}{matrix or array of emissions of spatial weights}
+\item{POL}{matrix or array of emissions of spatial weights}
 
 \item{file}{emission file name}
 
-\item{total}{total of emited species}
+\item{name}{species to be write}
 
-\item{norm}{if the spatial weights need to be normalized}
+\item{total}{total of emited species (modifier)}
 
-\item{profile}{temporal profile to expand the emissions}
+\item{norm}{if the spatial weights need to be normalized (modifier)}
 
-\item{names}{species to be write}
+\item{profile}{temporal profile to expand the emissions (modifier)}
 
-\item{weights}{weight of each species}
+\item{weights}{weight of each species (modifier)}
 
 \item{verbose}{display additional information}
 }
@@ -54,11 +54,11 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
 data(Lights)
 
 perfil <- c(0.010760058, 0.005280596, 0.002883553, 0.002666932,
-           0.005781312, 0.018412838, 0.051900411, 0.077834636,
-           0.067919758, 0.060831614, 0.055852868, 0.052468599,
-           0.050938043, 0.051921718, 0.052756244, 0.052820165,
-           0.058388406, 0.072855890, 0.075267137, 0.063246412,
-           0.042713523, 0.029108975, 0.022091855, 0.015298458)
+            0.005781312, 0.018412838, 0.051900411, 0.077834636,
+            0.067919758, 0.060831614, 0.055852868, 0.052468599,
+            0.050938043, 0.051921718, 0.052756244, 0.052820165,
+            0.058388406, 0.072855890, 0.075267137, 0.063246412,
+            0.042713523, 0.029108975, 0.022091855, 0.015298458)
 
 plot(perfil, ty = "l", col= "purple", xlab = "Hour", main = "Time profile",
     ylab = "Weight", axes = FALSE, xlim = c(0, 24))
@@ -66,7 +66,7 @@ axis(2)
 axis(1, at = c(0, 6, 12, 18, 24),
     labels = c("00:00","06:00","12:00","18:00","00:00"))
 
-to_wrf(Lights, files[1], total = 1521983, profile = perfil, names = "E_CO")
+to_wrf(Lights, files[1], total = 1521983, profile = perfil, name = "E_CO")
 }
 }
 \seealso{

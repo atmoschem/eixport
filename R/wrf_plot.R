@@ -41,7 +41,7 @@
 #'
 #'# load end write some data in this emission file
 #'data(Lights)
-#'to_wrf(Lights, files[1], total = 1521983, names = "E_CO")
+#'to_wrf(Lights, files[1], total = 1521983, name = "E_CO")
 #'
 #'wrf_plot(files[1], "E_CO")
 #'}

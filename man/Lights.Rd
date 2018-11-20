@@ -46,7 +46,7 @@ axis(2)
 axis(1, at = c(0, 6, 12, 18, 24),
     labels = c("00:00","06:00","12:00","18:00","00:00"))
 
-to_wrf(Lights, files[1], total = 1521983, profile = perfil, names = "E_CO")
+to_wrf(Lights, files[1], total = 1521983, profile = perfil, name = "E_CO")
 }
 
 }
