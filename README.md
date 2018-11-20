@@ -9,7 +9,8 @@
 [![Github Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
 
-## Exporting emissions to atmospheric models, eixport: `r packageVersion("eixport")`
+
+## Exporting emissions to atmospheric models, **eixport**
 
 ![](https://i.imgur.com/BcZ2tfW.png)
 
@@ -20,21 +21,22 @@ This R-Package provide functions to read emissions from [VEIN](https://github.co
 in different formats and export the emissions into the appropiate format suitable to other models.
 
 
+![](https://raw.githubusercontent.com/atmoschem/eixport/master/lights_wrf.png)
 ## Install
 
 To install the [CRAN](https://CRAN.R-project.org/package=eixport) version:
 
-```{r eval = FALSE}
+```r
 install.packages("eixport")
 ```
 
 To install the development version:
 
-```{r eval = FALSE}
+```r
 devtools::install_github("atmoschem/eixport")
 ```
 
-```{r}
+```r
 library(eixport)
 ```
 

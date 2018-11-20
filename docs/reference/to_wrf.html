@@ -62,7 +62,7 @@ time by profile and split between variables with diferent weights." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.6</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.7</span>
       </span>
     </div>
 
@@ -108,14 +108,14 @@ time by profile and split between variables with diferent weights.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>to_wrf</span>(<span class='no'>x</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>profile</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
+    <pre class="usage"><span class='fu'>to_wrf</span>(<span class='no'>POL</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>file.choose</span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>profile</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>weights</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>POL</th>
       <td><p>matrix or array of emissions of spatial weights</p></td>
     </tr>
     <tr>
@@ -123,24 +123,24 @@ time by profile and split between variables with diferent weights.</p>
       <td><p>emission file name</p></td>
     </tr>
     <tr>
-      <th>total</th>
-      <td><p>total of emited species</p></td>
-    </tr>
-    <tr>
-      <th>norm</th>
-      <td><p>if the spatial weights need to be normalized</p></td>
-    </tr>
-    <tr>
-      <th>profile</th>
-      <td><p>temporal profile to expand the emissions</p></td>
-    </tr>
-    <tr>
-      <th>names</th>
+      <th>name</th>
       <td><p>species to be write</p></td>
     </tr>
     <tr>
+      <th>total</th>
+      <td><p>total of emited species (modifier)</p></td>
+    </tr>
+    <tr>
+      <th>norm</th>
+      <td><p>if the spatial weights need to be normalized (modifier)</p></td>
+    </tr>
+    <tr>
+      <th>profile</th>
+      <td><p>temporal profile to expand the emissions (modifier)</p></td>
+    </tr>
+    <tr>
       <th>weights</th>
-      <td><p>weight of each species</p></td>
+      <td><p>weight of each species (modifier)</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -177,11 +177,11 @@ create this file).</p>
 <span class='fu'>data</span>(<span class='no'>Lights</span>)
 
 <span class='no'>perfil</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.010760058</span>, <span class='fl'>0.005280596</span>, <span class='fl'>0.002883553</span>, <span class='fl'>0.002666932</span>,
-           <span class='fl'>0.005781312</span>, <span class='fl'>0.018412838</span>, <span class='fl'>0.051900411</span>, <span class='fl'>0.077834636</span>,
-           <span class='fl'>0.067919758</span>, <span class='fl'>0.060831614</span>, <span class='fl'>0.055852868</span>, <span class='fl'>0.052468599</span>,
-           <span class='fl'>0.050938043</span>, <span class='fl'>0.051921718</span>, <span class='fl'>0.052756244</span>, <span class='fl'>0.052820165</span>,
-           <span class='fl'>0.058388406</span>, <span class='fl'>0.072855890</span>, <span class='fl'>0.075267137</span>, <span class='fl'>0.063246412</span>,
-           <span class='fl'>0.042713523</span>, <span class='fl'>0.029108975</span>, <span class='fl'>0.022091855</span>, <span class='fl'>0.015298458</span>)
+            <span class='fl'>0.005781312</span>, <span class='fl'>0.018412838</span>, <span class='fl'>0.051900411</span>, <span class='fl'>0.077834636</span>,
+            <span class='fl'>0.067919758</span>, <span class='fl'>0.060831614</span>, <span class='fl'>0.055852868</span>, <span class='fl'>0.052468599</span>,
+            <span class='fl'>0.050938043</span>, <span class='fl'>0.051921718</span>, <span class='fl'>0.052756244</span>, <span class='fl'>0.052820165</span>,
+            <span class='fl'>0.058388406</span>, <span class='fl'>0.072855890</span>, <span class='fl'>0.075267137</span>, <span class='fl'>0.063246412</span>,
+            <span class='fl'>0.042713523</span>, <span class='fl'>0.029108975</span>, <span class='fl'>0.022091855</span>, <span class='fl'>0.015298458</span>)
 
 <span class='fu'>plot</span>(<span class='no'>perfil</span>, <span class='kw'>ty</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span><span class='kw'>=</span> <span class='st'>"purple"</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Hour"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Time profile"</span>,
     <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Weight"</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>24</span>))
@@ -189,7 +189,7 @@ create this file).</p>
 <span class='fu'>axis</span>(<span class='fl'>1</span>, <span class='kw'>at</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span>),
     <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>,<span class='st'>"00:00"</span>))
 
-<span class='fu'>to_wrf</span>(<span class='no'>Lights</span>, <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>, <span class='kw'>profile</span> <span class='kw'>=</span> <span class='no'>perfil</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
+<span class='fu'>to_wrf</span>(<span class='no'>Lights</span>, <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>1521983</span>, <span class='kw'>profile</span> <span class='kw'>=</span> <span class='no'>perfil</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
