@@ -27,5 +27,5 @@ Depends: R (>= 3.3.0)
 Imports: sf, ncdf4, raster, sp, methods, cptcity
 Encoding: UTF-8
 LazyData: no
-RoxygenNote: 6.1.0.9000
+RoxygenNote: 6.1.1
 Suggests: testthat, covr, lwgeom
