@@ -96,7 +96,7 @@ to_wrf <- function(POL, file = file.choose(), name = NA,
       }
     }
     if(verbose)
-      cat(paste("writing emissions:", name[i],"weight", weights[i]))
+      cat(paste("writing emissions:", name[i],"weight", weights[i],'\n'))
     wrf_put(file,name = name[i],weights[i]*VAR)
   }
 }
