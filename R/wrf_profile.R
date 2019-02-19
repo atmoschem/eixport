@@ -66,8 +66,8 @@ wrf_profile <- function(x,file,verbose = T){
     dia      <- weekdays(as.Date(data[1]))
     profile[i] <- as.numeric(x[hora+1,s+1])
     if(verbose){
-      print(unlist(strsplit(times[i],"_")))
-      print(paste0("Weekday: ",dia," Activity intensity: ",profile[i]))
+      cat(unlist(strsplit(times[i],"_")))
+      cat(paste0("\nWeekday: ",dia," | Activity intensity: ",profile[i],"\n"))
     }
   }
   return(profile)
