@@ -2,7 +2,7 @@ NEWS
 ===========
 
 # eixport 0.3.8 (Release date: 19 fev 2019)
-- windowns files now has '%3A' on ':' to autorename when transferred with WinSCP
+- windowns files has '%3A' on ':' to autorename when transferred with WinSCP
 - wrf_profile update
 
 # eixport 0.3.7 (Release date: 01 nov 2018)
