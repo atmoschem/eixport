@@ -7,6 +7,7 @@
 #' @param as_raster return a raster instead of an array
 #' @param raster_crs crs to use if as_raster is TRUE
 #' @param raster_lev level for rasters from a 4D variable
+#' @param verbose display additional information
 #'
 #' @format array or raster object
 #'
@@ -41,7 +42,10 @@
 #'}
 wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-                    raster_lev = 1){
+                    raster_lev = 1,verbose = F){
+  if(verbose)
+    cat(paste0('reading ',name,' from ', file,'\n'))                     # nocov
+
   wrfchem <- ncdf4::nc_open(file)                                       # iteractive
   if(is.na(name)){                                                      # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")

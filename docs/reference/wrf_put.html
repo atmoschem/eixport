@@ -108,7 +108,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.choose'>file.choose</a></span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>POL</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.choose'>file.choose</a></span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>POL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -124,6 +124,10 @@
     <tr>
       <th>POL</th>
       <td><p>input</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>display additional information</p></td>
     </tr>
     </table>
     
@@ -148,7 +152,7 @@
 <span class='no'>CO</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wrf_get.html'>wrf_get</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
 <span class='no'>CO</span>[] <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>CO</span>))
 <span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: 'C:\Users\Schuch\AppData\Local\Temp\RtmpO2GsrT\EMISS' já existe</span></div><div class='output co'>#&gt; 
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: 'C:\Users\Schuch\AppData\Local\Temp\RtmpSOFwtR\EMISS' já existe</span></div><div class='output co'>#&gt; 
 #&gt; NOTE: note the filename before run</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

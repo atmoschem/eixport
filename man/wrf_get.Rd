@@ -7,7 +7,7 @@
 \usage{
 wrf_get(file = file.choose(), name = NA, as_raster = FALSE,
   raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-  raster_lev = 1)
+  raster_lev = 1, verbose = F)
 }
 \arguments{
 \item{file}{name of file interactively (default) or specified}
@@ -19,6 +19,8 @@ wrf_get(file = file.choose(), name = NA, as_raster = FALSE,
 \item{raster_crs}{crs to use if as_raster is TRUE}
 
 \item{raster_lev}{level for rasters from a 4D variable}
+
+\item{verbose}{display additional information}
 }
 \description{
 Read a variable

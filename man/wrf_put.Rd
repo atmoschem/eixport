@@ -4,7 +4,7 @@
 \alias{wrf_put}
 \title{Function to write variables in emission files}
 \usage{
-wrf_put(file = file.choose(), name = NA, POL)
+wrf_put(file = file.choose(), name = NA, POL, verbose = F)
 }
 \arguments{
 \item{file}{name of file interactively (default) or specified}
@@ -12,6 +12,8 @@ wrf_put(file = file.choose(), name = NA, POL)
 \item{name}{name of the variable (any variable)}
 
 \item{POL}{input}
+
+\item{verbose}{display additional information}
 }
 \description{
 Extract variable
