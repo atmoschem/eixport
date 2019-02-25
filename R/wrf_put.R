@@ -33,7 +33,7 @@
 #' }
 wrf_put <- function(file = file.choose(),name = NA,POL,verbose = F){
   if(verbose)
-    cat(paste0('writing ',name,' from ', file,'\n'))   # nocov
+    cat(paste0('writing ',name,' to   ', file,'\n'))   # nocov
   wrfchem <- ncdf4::nc_open(file,write = T)
   ncdf4::ncvar_put(wrfchem,varid = name,POL)
   ncdf4::nc_close(wrfchem)
