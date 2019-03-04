@@ -5,13 +5,15 @@
 \title{Create a spatial profile from a wrf emission file and a data frame with}
 \format{a numeric vector}
 \usage{
-wrf_profile(x, file, verbose = T)
+wrf_profile(x, file, adjust = 0, verbose = T)
 }
 \arguments{
 \item{x}{data.frame of intenticy of traffic by hours (rows) and weekdays
 (columns)}
 
 \item{file}{emission file name}
+
+\item{adjust}{numer of hours to advance (positive value) or delay (negative value)}
 
 \item{verbose}{display additional information}
 }

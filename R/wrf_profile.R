@@ -6,6 +6,7 @@
 #' @param x data.frame of intenticy of traffic by hours (rows) and weekdays
 #' (columns)
 #' @param file emission file name
+#' @param adjust numer of hours to advance (positive value) or delay (negative value)
 #' @param verbose display additional information
 #'
 #' @format a numeric vector
@@ -52,7 +53,7 @@
 #' axis(1, at = 0.5 + c(0, 6, 12, 18, 24),
 #'     labels = c("00:00","06:00","12:00","18:00", "00:00"))
 #'}
-wrf_profile <- function(x,file,verbose = T){
+wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
   x       <- as.data.frame(x)
   times   <- wrf_get(file,"Times")
   profile <- vector(mode = "numeric",length = length(times))
@@ -67,8 +68,21 @@ wrf_profile <- function(x,file,verbose = T){
     profile[i] <- as.numeric(x[hora+1,s+1])
     if(verbose){
       cat(unlist(strsplit(times[i],"_")))
-      cat(paste0("\nWeekday: ",dia," | Activity intensity: ",profile[i],"\n")) #
+      cat(paste0("\nWeekday: ",dia," - Activity intensity: ",profile[i],"\n")) #
     }
   }
-  return(profile)
+  if(adjust == 0)
+    return(profile)
+  else{
+    if(adjust < 0){
+      cat(paste0('delaying the profile by ',-adjust,' hour'))
+      profile <- c( profile[(length(profile)+adjust+1):length(profile)] ,
+                    profile[1:(length(profile)+adjust)] )
+    }
+    if(adjust > 0){
+      cat(paste0('advancing the profile by ',adjust,' hour'))
+      profile <- c( profile[(adjust+1):length(profile)] , profile[1:adjust] )
+    }
+    return(profile)
+  }
 }

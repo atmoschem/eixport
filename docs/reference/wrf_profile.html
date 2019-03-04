@@ -110,7 +110,7 @@ and a traffic intensity data frame</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_profile</span>(<span class='no'>x</span>, <span class='no'>file</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_profile</span>(<span class='no'>x</span>, <span class='no'>file</span>, <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,6 +123,10 @@ and a traffic intensity data frame</p>
     <tr>
       <th>file</th>
       <td><p>emission file name</p></td>
+    </tr>
+    <tr>
+      <th>adjust</th>
+      <td><p>numer of hours to advance (positive value) or delay (negative value)</p></td>
     </tr>
     <tr>
       <th>verbose</th>
