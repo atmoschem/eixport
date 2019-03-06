@@ -82,13 +82,12 @@ wrf_plot <- function(file = file.choose(),
   }
 
   if(verbose){
-    cat(wrfchem$filename)            # nocov
-    cat(name)                        # nocov
-    if(max(POL) == min(POL)){        # nocov
-      cat("Max value = Min Value!")  # nocov
+    cat(wrfchem$filename,"\n",name,":\n",sep = "")  # nocov
+    if(max(POL) == min(POL)){                       # nocov
+      cat("Max value = Min Value!\n")               # nocov
     }
     else{
-      cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "")) # nocov
+      cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "","\n")) # nocov
     }
   }
 
