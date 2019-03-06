@@ -56,9 +56,9 @@ wrf_plot <- function(file = file.choose(),
                      ...){
   wrfchem <- ncdf4::nc_open(file)                                      # iteractive
   if(is.na(name)){                                                     # nocov start
-    name  <- menu(names(wrfchem$var), title = "Choose the variable:")
-    POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
-    name  <- names(wrfchem$var)[name]                                  # nocov end
+    name  <- menu(names(wrfchem$var)[c(-1,-2,-3)], title = "Choose the variable:")
+    POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name+3])
+    name  <- names(wrfchem$var)[name+3]                                # nocov end
   }else{
     POL   <- ncvar_get(wrfchem,name)
   }
@@ -82,13 +82,12 @@ wrf_plot <- function(file = file.choose(),
   }
 
   if(verbose){
-    cat(wrfchem$filename)            # nocov
-    cat(name)                        # nocov
-    if(max(POL) == min(POL)){        # nocov
-      cat("Max value = Min Value!")  # nocov
+    cat(wrfchem$filename,"\n",name,":\n",sep = "")  # nocov
+    if(max(POL) == min(POL)){                       # nocov
+      cat("Max value = Min Value!\n")               # nocov
     }
     else{
-      cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "")) # nocov
+      cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "","\n")) # nocov
     }
   }
 
@@ -144,7 +143,7 @@ wrf_plot <- function(file = file.choose(),
     if (!is.double(z))
       storage.mode(z) <- "double"                    # nocov
     .filled.contour(as.double(x), as.double(y), z, as.double(levels), col = col)
-    .filled.contour(x, y, z, c(levels[length(levels)],999999), col[length(col)])
+    .filled.contour(x, y, z, c(levels[length(levels)],999999999), col[length(col)])
     if (missing(plot.axes)) {
       if (axes) {
         title(main = "", xlab = "", ylab = "")
