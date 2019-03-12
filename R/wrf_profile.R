@@ -75,12 +75,12 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
     return(profile)
   else{
     if(adjust < 0){
-      cat(paste0('delaying the profile by ',-adjust,' hour'))
+      cat(paste0('delaying the profile by ',-adjust,' hour\n'))
       profile <- c( profile[(length(profile)+adjust+1):length(profile)] ,
                     profile[1:(length(profile)+adjust)] )
     }
     if(adjust > 0){
-      cat(paste0('advancing the profile by ',adjust,' hour'))
+      cat(paste0('advancing the profile by ',adjust,' hour\n'))
       profile <- c( profile[(adjust+1):length(profile)] , profile[1:adjust] )
     }
     return(profile)
