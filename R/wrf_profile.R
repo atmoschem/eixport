@@ -73,7 +73,7 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
   }
   if(adjust == 0)
     return(profile)
-  else{
+  else{                             # nocov start
     if(adjust < 0){
       cat(paste0('delaying the profile by ',-adjust,' hour\n'))
       profile <- c( profile[(length(profile)+adjust+1):length(profile)] ,
@@ -83,6 +83,6 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
       cat(paste0('advancing the profile by ',adjust,' hour\n'))
       profile <- c( profile[(adjust+1):length(profile)] , profile[1:adjust] )
     }
-    return(profile)
+    return(profile)                 # nocov end
   }
 }
