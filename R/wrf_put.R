@@ -5,6 +5,7 @@
 #' @param file name of file interactively (default) or specified
 #' @param name name of the variable (any variable)
 #' @param POL input
+#' @param mult multiplier
 #' @param verbose display additional information
 #'
 #' @export
@@ -31,10 +32,19 @@
 #' CO[] = rnorm(length(CO))
 #' wrf_put(file = files[1], name = "E_CO", POL = CO)
 #' }
-wrf_put <- function(file = file.choose(),name = NA,POL,verbose = F){
-  if(verbose)
-    cat(paste0('writing ',name,' to   ', file,'\n'))   # nocov
+wrf_put <- function(file = file.choose(),name = NA,POL,mult = NA,verbose = F){
+  if(verbose){
+    if(is.na(mult)){
+      cat(paste0('writing ',name,' to   ', file,'\n'))   # nocov
+    }else{
+      cat(paste0('writing ',name,' to   ', file,' multiplier ',mult,'\n'))   # nocov
+    }
+  }
   wrfchem <- ncdf4::nc_open(file,write = T)
-  ncdf4::ncvar_put(wrfchem,varid = name,POL)
+  if(is.na(mult)){
+    ncdf4::ncvar_put(wrfchem,varid = name,POL)
+  }else{
+    ncdf4::ncvar_put(wrfchem,varid = name,mult * POL) # nocov
+  }
   ncdf4::nc_close(wrfchem)
 }

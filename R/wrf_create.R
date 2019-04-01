@@ -74,7 +74,7 @@
 #'}
 
 wrf_create  <- function(wrfinput_dir         = getwd(),
-                        wrfchemi_dir         = getwd(),
+                        wrfchemi_dir         = wrfinput_dir,
                         domains              = 1,
                         frames_per_auxinput5 = 1,
                         auxinput5_interval_m = 60,
