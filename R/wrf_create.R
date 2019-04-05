@@ -124,7 +124,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       }
     }
 
-    date <- date + 86400 * day_offset
+    date         <- date + 86400 * day_offset
     hora         <- format(date,"%H")
     minuto       <- format(date,"%M")
     segundo      <- format(date,"%S")
