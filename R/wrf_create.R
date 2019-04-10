@@ -93,7 +93,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
   if(a[[1]] == "Windows") linux = F else linux = T # nocov
   if(a[[1]] == "Windows")
     if(io_style_emissions == 2) #nocov
-      cat("\nNOTE: see wrf_create domumentation notes before run\n")#nocov
+      cat("NOTE: see wrf_create domumentation notes before run\n")#nocov
 
   if(length(variables) == 1){
     emis_opt <- NULL
