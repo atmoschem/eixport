@@ -10,7 +10,7 @@
 
 
 
-## Exporting emissions to atmospheric models, **eixport**
+## Exporting emissions to atmospheric models
 
 ![](https://i.imgur.com/BcZ2tfW.png)
 
