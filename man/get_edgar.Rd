@@ -35,35 +35,30 @@ pollutants by country and on spatial grid. \code{\link{get_edgar}} provide
 functions to download any of the EDGAR datasets.
 }
 \note{
-\tabular{lllll}{
-dataset  \tab pollutant \tab            sector  \tab years\tab monthly \cr
--     \tab      -    \tab      -            \tab -\cr
+\tabular{llll}{
+dataset  \tab pollutant \tab            sector  \tab years \cr
 v432  \tab    CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C
 \tab     AGS, CHE, ENE, ENF, FFF, IND, IRO, MNM, PRO, REF_TRF, SWD_INC,
 SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
-TOTALS, TRO, WWT \tab 1970-2012 \tab 2010\cr
--     \tab    -      \tab - \tab -  \cr
+TOTALS, TRO, WWT \tab 1970-2012 \cr
 v432_AP  \tab   BC, CO, CO2, NH3, NMVOC, NOx, OC, PM10,
 PM2.5, PM2.5_bio, PM2.5_fossil, SO2  \tab  AWB, CHE, ENE, FFF, FOO_PAP, IND, IRO, NFE, NMM, PRO,
 RCO, REF_TRF, SWD_INC, TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
-TRO \tab 1970-2012 \tab 2010\cr
--     \tab    -      \tab  -\tab  - \cr
+TRO \tab 1970-2012 \cr
 v432_VOC_spec \tab   voc1, voc2, voc3, voc3, voc5, voc6, voc7, voc8, bvoc9, voc10.
 voc11, voc12, voc13, voc14, voc15, voc16, voc17, voc18, voc19, voc20,
 voc21, voc22, voc23, voc24, voc25, TOTALS
 \tab  ENE, IND, PPA, RCO, REF
 TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
-TRO, TRF \tab 1970-2012 \tab 2010\cr
--     \tab    -      \tab  -\tab  - \cr
+TRO, TRF \tab 1970-2012 \cr
 v4tox2  \tab    HG, HG_D, HG_G, HG_P \tab Iro,  cement, chlor, comb_power_ind,
 comb_res_oth, glass, gold_A, gold_L, nfe_oth, shipping, totals, tro_roa,
-waste \tab 1970-2008 \tab no \cr
--     \tab    -      \tab  -\tab  - \cr
+waste \tab 1970-2008  \cr
 htap_v2_2  \tab BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2 \tab
-AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \tab 2008 and 2010\cr
+AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \cr
 }
 }
 \examples{
