@@ -6,7 +6,7 @@
 \title{Raw profile}
 \format{A matrix with 1 column and 168 rows
 \describe{
-  data(rawprofile)
+data(rawprofile)
 }}
 \usage{
 data(rawprofile)

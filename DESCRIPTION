@@ -1,7 +1,7 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.3.8
-Date: 2019-02-19
+Version: 0.3.9
+Date: 2019-10-12
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -23,9 +23,11 @@ Description: Emissions are the mass of pollutants released into the atmosphere. 
 License: MIT + file LICENSE
 URL: https://atmoschem.github.io/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
-Depends: R (>= 3.3.0)
-Imports: sf, ncdf4, raster, sp, methods, cptcity
+Depends: R (>= 3.5.0)
+Imports: sf, ncdf4, raster, sp, methods, cptcity, utils
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 6.1.1
 Suggests: testthat, covr, lwgeom
+Roxygen: list(markdown = TRUE)
+
