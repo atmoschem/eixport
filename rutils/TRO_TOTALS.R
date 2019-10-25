@@ -20,11 +20,12 @@ for(j in 1:length(pols)){
 }
 
 # v432_VOC_spec ####
-pols <- c(#"voc1", "voc2", "voc3", "voc3", "voc5", "voc6", 
-          # "voc7", "voc8", "voc9", "voc10", 
-          "voc11" #, "voc12", 
-          # "voc13", "voc14", "voc15", "voc16", "voc17", "voc18",
-          # "voc19", "voc20", "voc21", "voc22", "voc23", "voc24", "voc25"
+pols <- c("voc1", "voc2", "voc3", "voc3", "voc5", "voc6", 
+           "voc7", "voc8", "voc9", "voc10", 
+          # "voc11" Only year 2008
+          "voc12", 
+           "voc13", "voc14", "voc15", "voc16", "voc17", "voc18",
+           "voc19", "voc20", "voc21", "voc22", "voc23", "voc24", "voc25"
           )
 
 si <- c("TRO", "TOTALS")
