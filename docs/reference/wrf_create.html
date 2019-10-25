@@ -8,13 +8,11 @@
 
 <title>Create emission files for the WRF-Chem model — wrf_create • eixport</title>
 
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,15 +32,14 @@
 
 
 
-
 <meta property="og:title" content="Create emission files for the WRF-Chem model — wrf_create" />
+
 <meta property="og:description" content="Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
 There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
 The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
 The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).
 Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains &quot;V4.&quot;, this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input." />
 <meta name="twitter:card" content="summary" />
-
 
 
 
@@ -92,6 +89,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -113,11 +111,13 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
     </div>
 
     <div class="ref-description">
+    
     <p>Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.</p>
 <p>There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).</p>
 <p>The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).</p>
 <p>The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).</p>
 <p>Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains "V4.", this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input.</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>wrf_create</span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='no'>wrfinput_dir</span>,
@@ -126,7 +126,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
   <span class='kw'>variables</span> <span class='kw'>=</span> <span class='st'>"ecbmz_mosaic"</span>, <span class='kw'>n_aero</span> <span class='kw'>=</span> <span class='fl'>14</span>, <span class='kw'>COMPRESS</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>force_ncdf4</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Anthropogenic emissions for WRF V4.0"</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -190,15 +190,17 @@ no compression</p></td>
       <td><p>print file info</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
 wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).</p>
 <p>Windows users may need to rename the emission files or change in namelist the defoult filename before run wrf.exe with these emission files.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='to_wrf.html'>to_wrf</a></code> and <code><a href='emis_opt.html'>emis_opt</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -237,8 +239,11 @@ wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#note">Note</a></li>
+
       <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -254,7 +259,7 @@ wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

@@ -60,6 +60,7 @@ waste \tab 1970-2008  \cr
 htap_v2_2  \tab BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2 \tab
 AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \cr
 }
+voc11 only 2008
 }
 \examples{
 \dontrun{

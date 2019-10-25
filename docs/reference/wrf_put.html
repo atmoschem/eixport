@@ -8,13 +8,11 @@
 
 <title>Function to write variables in emission files — wrf_put • eixport</title>
 
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -34,11 +32,10 @@
 
 
 
-
 <meta property="og:title" content="Function to write variables in emission files — wrf_put" />
+
 <meta property="og:description" content="Extract variable" />
 <meta name="twitter:card" content="summary" />
-
 
 
 
@@ -88,6 +85,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -109,12 +107,14 @@
     </div>
 
     <div class="ref-description">
+    
     <p>Extract variable</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>POL</span>, <span class='kw'>mult</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -139,10 +139,11 @@
       <td><p>display additional information</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='wrf_plot.html'>wrf_plot</a></code> and <code><a href='wrf_get.html'>wrf_get</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>{
@@ -160,13 +161,15 @@
 <span class='no'>CO</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wrf_get.html'>wrf_get</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
 <span class='no'>CO</span>[] <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>CO</span>))
 <span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpumjWBr/EMISS' already exists</span></div></pre>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpNE8o83/EMISS' já existe</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -182,7 +185,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
