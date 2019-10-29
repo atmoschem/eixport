@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.3.9 (Release date: 24 oct 2019)
+- adds get_edgar
+
 # eixport 0.3.8 (Release date: 19 fev 2019)
 - wrf_create update: windowns files has '%3A' on ':' to autorename when transferred with WinSCP
 - wrf_profile update
