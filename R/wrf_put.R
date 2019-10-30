@@ -34,7 +34,7 @@
 #' }
 wrf_put <- function(file = file.choose(),name = NA,POL,mult = NA,verbose = F){
   if(verbose){
-    if(is.na(mult)){
+    if(is.na(mult)){                                     # nocov
       cat(paste0('writing ',name,' to   ', file,'\n'))   # nocov
     }else{
       cat(paste0('writing ',name,' to   ', file,' multiplier ',mult,'\n'))   # nocov
