@@ -161,12 +161,12 @@ get_edgar <- function(dataset = "v432_AP",
   }
   # more checks
   if(dataset == "htap_v2_2") {
-    if(!year %in% c(2008, 2010)) {
-      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")
+    if(!year %in% c(2008, 2010)) {                                       # nocov
+      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")  # nocov
     }
   } else {
-    if(!year %in% 1970:2012){
-      stop("For this datasets, years go from 1970 to 2012 only")
+    if(!year %in% 1970:2012){                                            # nocov
+      stop("For this datasets, years go from 1970 to 2012 only")         # nocov
     }
   }
 
