@@ -120,8 +120,8 @@ functions to download any of the EDGAR datasets.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>pol</span> <span class='kw'>=</span> <span class='st'>"CO"</span>, <span class='kw'>sector</span> <span class='kw'>=</span> <span class='st'>"TRO"</span>,
-  <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>txt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>copyright</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='no'>pol</span>, <span class='no'>sector</span>, <span class='no'>year</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+  <span class='kw'>txt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>return_url</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>copyright</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +153,10 @@ functions to download any of the EDGAR datasets.</p>
 if FALSE units are ug/m2/s</p></td>
     </tr>
     <tr>
+      <th>return_url</th>
+      <td><p>Logical; return url?</p></td>
+    </tr>
+    <tr>
       <th>copyright</th>
       <td><p>Logical; to show copyright information.</p></td>
     </tr>
@@ -164,18 +168,28 @@ if FALSE units are ug/m2/s</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    
+    <p><strong>I recommend 2 ways:</strong></p>
+<p><strong>1. include 'sector' and dont include 'pol', which download all pollutants as default</strong></p>
+<p>get_edgar(dataset = "v432_AP",
+destpath = tempdir(),
+sector = c("TRO", "TOTALS"),
+year = 2012)</p>
+<p><strong>2. include 'pol' and dont include 'sector', which download all sectors as default</strong></p>
+<p>get_edgar(dataset = "v432_AP",
+destpath = tempdir(),
+pol = c("CO", "NOx"),
+year = 2012)</p>
 <table class='table'>
 <tr><td>dataset</td><td>pollutant</td><td>sector</td><td>years</td></tr>
 <tr><td>v432</td><td>CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C</td><td>AGS, CHE, ENE, ENF, FFF, IND, IRO, MNM, PRO, REF_TRF, SWD_INC,
 SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
 TOTALS, TRO, WWT</td><td>1970-2012</td></tr>
-<tr><td>v432_AP</td><td>BC, CO, CO2, NH3, NMVOC, NOx, OC, PM10,
-PM2.5, PM2.5_bio, PM2.5_fossil, SO2</td><td>AWB, CHE, ENE, FFF, FOO_PAP, IND, IRO, NFE, NMM, PRO,
-RCO, REF_TRF, SWD_INC, TNR_Aviation_CDS, TNR_Aviation_CRS,
-TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
-TRO</td><td>1970-2012</td></tr>
+<tr><td>v432_AP</td><td>BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+PM2.5_bio, PM2.5_fossil, SO2</td><td>AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
+PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
+NEU</td><td>1970-2012</td></tr>
 <tr><td>v432_VOC_spec</td><td>voc1, voc2, voc3, voc3, voc5, voc6, voc7, voc8, bvoc9, voc10.
 voc11, voc12, voc13, voc14, voc15, voc16, voc17, voc18, voc19, voc20,
 voc21, voc22, voc23, voc24, voc25, TOTALS</td><td>ENE, IND, PPA, RCO, REF
@@ -220,12 +234,19 @@ hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.</p></li>
 </ul>
 
+<p>MNM is MNN for NOx v432_AP</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'># Do not run</span>
-<span class='fu'>get_edgar</span>()
+<span class='co'># Download all pollutants for sector TRO</span>
+<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TOTALS"</span>),
+<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
+<span class='co'># Download all sectors for pollutant CO</span>
+<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+<span class='kw'>pol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CO"</span>),
+<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

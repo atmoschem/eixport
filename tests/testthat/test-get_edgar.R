@@ -1,3 +1,11 @@
 context("get_edgar")
-a <- get_edgar()
-a <- get_edgar(txt = FALSE)
+a <- get_edgar(dataset = "v432_AP", destpath = tempdir(),
+               sector = c("TRO"),
+               pol = "CO",
+               year = 2012,
+               copyright = F)
+a <- get_edgar(dataset = "v432_AP", destpath = tempdir(),
+               sector = c("TRO"),
+               pol = "CO",
+               year = 2012,
+               copyright = F, txt = FALSE)

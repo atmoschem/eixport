@@ -15,9 +15,26 @@
 #' @param destpath Character: Path to create the directory for downloads datasets
 #' @param txt Logical; if TRUE, download data as .txt and untis t/year,
 #' if FALSE units are ug/m2/s
+#' @param return_url Logical; return url?
 #' @param copyright Logical; to show copyright information.
 #' @return Downloads data
 #' @note
+#'
+#' **I recommend 2 ways:**
+#'
+#' **1. include 'sector' and dont include 'pol', which download all pollutants as default**
+#'
+#'   get_edgar(dataset = "v432_AP",
+#'             destpath = tempdir(),
+#'             sector = c("TRO", "TOTALS"),
+#'             year = 2012)
+#'
+#' **2. include 'pol' and dont include 'sector', which download all sectors as default**
+#'
+#'   get_edgar(dataset = "v432_AP",
+#'             destpath = tempdir(),
+#'             pol = c("CO", "NOx"),
+#'             year = 2012)
 #'
 #' \tabular{llll}{
 #'   dataset  \tab pollutant \tab            sector  \tab years \cr
@@ -26,11 +43,11 @@
 #'             SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
 #'             TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
 #'             TOTALS, TRO, WWT \tab 1970-2012 \cr
-#'   v432_AP  \tab   BC, CO, CO2, NH3, NMVOC, NOx, OC, PM10,
-#'   PM2.5, PM2.5_bio, PM2.5_fossil, SO2  \tab  AWB, CHE, ENE, FFF, FOO_PAP, IND, IRO, NFE, NMM, PRO,
-#'                RCO, REF_TRF, SWD_INC, TNR_Aviation_CDS, TNR_Aviation_CRS,
-#'                TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
-#'                TRO \tab 1970-2012 \cr
+#'   v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+#'   PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
+#'   PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+#'   TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
+#'   NEU \tab 1970-2012 \cr
 #'   v432_VOC_spec \tab   voc1, voc2, voc3, voc3, voc5, voc6, voc7, voc8, bvoc9, voc10.
 #'                       voc11, voc12, voc13, voc14, voc15, voc16, voc17, voc18, voc19, voc20,
 #'                       voc21, voc22, voc23, voc24, voc25, TOTALS
@@ -74,18 +91,28 @@
 #'regional and global emission grid maps for 2008 and 2010 to study
 #'hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 #'11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.
+#'
+#'MNM is MNN for NOx v432_AP
+#'
 #' @importFrom utils download.file
 #' @export
 #' @examples \dontrun{
-#' # Do not run
-#' get_edgar()
+#' # Download all pollutants for sector TRO
+#' get_edgar(dataset = "v432_AP", destpath = tempdir(),
+#' sector = c("TOTALS"),
+#' year = 2012)
+#' # Download all sectors for pollutant CO
+#' get_edgar(dataset = "v432_AP", destpath = tempdir(),
+#' pol = c("CO"),
+#' year = 2012)
 #' }
 get_edgar <- function(dataset = "v432_AP",
-                      pol = "CO",
-                      sector = "TRO",
-                      year = 2012,
+                      pol,
+                      sector,
+                      year,
                       destpath = tempdir(),
                       txt = TRUE,
+                      return_url = TRUE,
                       copyright = TRUE){
   if(copyright) message(
     paste0(c(
@@ -99,9 +126,40 @@ get_edgar <- function(dataset = "v432_AP",
   )
 
 
-  ed <- sysdata$edgar
+  # Check
+  if(length(dataset) > 1) stop("Only one dataset per time")
+  if(dataset == "v432_AP") {
+    ed <- sysdata$v432_AP
+  } else {
+    ed <- sysdata$edgar
+  }
 
-  # Check years
+  # links
+  df <- ed[ed$dataset == dataset, ]
+
+  if(missing(year)){
+    stop("missing year")
+  } else if(length(year) > 1){
+    stop("One year per time please")
+  }
+
+  if(missing(sector)){
+    if(missing(pol)) stop("Include pollutants")
+    df <- ed[ed$dataset %in% dataset &
+               ed$pol %in% pol, ]
+
+  } else if(missing(pol)){
+    if(missing(sector))stop("Include sector")
+    df <- ed[ed$dataset %in% dataset &
+               ed$sector %in% sector, ]
+
+  } else {
+    df <- ed[ed$dataset %in% dataset &
+               ed$pol %in% pol &
+               ed$sector %in% sector, ]
+
+  }
+  # more checks
   if(dataset == "htap_v2_2") {
     if(!year %in% c(2008, 2010)) {
       stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")
@@ -112,34 +170,26 @@ get_edgar <- function(dataset = "v432_AP",
     }
   }
 
-  # links
-  df <- ed[ed$dataset %in% dataset &
-             ed$pol %in% pol &
-             ed$sector %in% sector, ]
-
-    links = unlist(lapply(1:length(df$URL), function(i) {
+  links = unlist(lapply(1:length(df$URL), function(i) {
+    year <- eval(parse(text = df$years[i]))
     eval(parse(text = df$URL[i]))
   }))
+
+  txzz <- paste0(eval(parse(text = df$years)),
+                 "_", df$pol, "_",df$sector,
+                 ".zip")
   if(txt){
     links <- gsub(pattern = ".0.1x0.1", replacement = "", x = links)
+    txzz <- gsub(pattern = ".0.1x0.1", replacement = "", x = txzz)
   }
   df$links <- links
-
-  # extension
-  txz <- if(txt){
-    ".zip"
-  } else {
-    ".0.1x0.1.zip"
-  }
-  txzz <- eval(parse(text = df$txz))
-
+  df$txzz <- txzz
   # paths
   for (i in 1:length(links)){
     utils::download.file(paste0(url = df$links[i]),
-                         destfile =  paste0(destpath, "/",
-                                            txzz[i]))
+                         destfile =  paste0(destpath, "/", df$txzz[i]))
     message(paste0(
-      "Files at", destpath, "/", txzz[i], "\n"))
+      "Files at ", destpath,  "\n"))
   }
-
+  if(return_url) return(links)
 }

@@ -4,8 +4,8 @@
 \alias{get_edgar}
 \title{Download datasets of EDGAR emissions}
 \usage{
-get_edgar(dataset = "v432_AP", pol = "CO", sector = "TRO",
-  year = 2012, destpath = tempdir(), txt = TRUE, copyright = TRUE)
+get_edgar(dataset = "v432_AP", pol, sector, year, destpath = tempdir(),
+  txt = TRUE, return_url = TRUE, copyright = TRUE)
 }
 \arguments{
 \item{dataset}{Character; name of the datasets: "v432", "v432_AP", "v432_VOC_spec",
@@ -22,6 +22,8 @@ get_edgar(dataset = "v432_AP", pol = "CO", sector = "TRO",
 \item{txt}{Logical; if TRUE, download data as .txt and untis t/year,
 if FALSE units are ug/m2/s}
 
+\item{return_url}{Logical; return url?}
+
 \item{copyright}{Logical; to show copyright information.}
 }
 \value{
@@ -35,6 +37,22 @@ pollutants by country and on spatial grid. \code{\link{get_edgar}} provide
 functions to download any of the EDGAR datasets.
 }
 \note{
+\strong{I recommend 2 ways:}
+
+\strong{1. include 'sector' and dont include 'pol', which download all pollutants as default}
+
+get_edgar(dataset = "v432_AP",
+destpath = tempdir(),
+sector = c("TRO", "TOTALS"),
+year = 2012)
+
+\strong{2. include 'pol' and dont include 'sector', which download all sectors as default}
+
+get_edgar(dataset = "v432_AP",
+destpath = tempdir(),
+pol = c("CO", "NOx"),
+year = 2012)
+
 \tabular{llll}{
 dataset  \tab pollutant \tab            sector  \tab years \cr
 v432  \tab    CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C
@@ -42,11 +60,11 @@ v432  \tab    CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C
 SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
 TOTALS, TRO, WWT \tab 1970-2012 \cr
-v432_AP  \tab   BC, CO, CO2, NH3, NMVOC, NOx, OC, PM10,
-PM2.5, PM2.5_bio, PM2.5_fossil, SO2  \tab  AWB, CHE, ENE, FFF, FOO_PAP, IND, IRO, NFE, NMM, PRO,
-RCO, REF_TRF, SWD_INC, TNR_Aviation_CDS, TNR_Aviation_CRS,
-TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
-TRO \tab 1970-2012 \cr
+v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
+PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
+NEU \tab 1970-2012 \cr
 v432_VOC_spec \tab   voc1, voc2, voc3, voc3, voc5, voc6, voc7, voc8, bvoc9, voc10.
 voc11, voc12, voc13, voc14, voc15, voc16, voc17, voc18, voc19, voc20,
 voc21, voc22, voc23, voc24, voc25, TOTALS
@@ -64,8 +82,14 @@ voc11 only 2008
 }
 \examples{
 \dontrun{
-# Do not run
-get_edgar()
+# Download all pollutants for sector TRO
+get_edgar(dataset = "v432_AP", destpath = tempdir(),
+sector = c("TOTALS"),
+year = 2012)
+# Download all sectors for pollutant CO
+get_edgar(dataset = "v432_AP", destpath = tempdir(),
+pol = c("CO"),
+year = 2012)
 }
 }
 \references{
@@ -96,4 +120,6 @@ regional and global emission grid maps for 2008 and 2010 to study
 hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.
 }
+
+MNM is MNN for NOx v432_AP
 }
