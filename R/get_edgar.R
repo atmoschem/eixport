@@ -130,8 +130,10 @@ get_edgar <- function(dataset = "v432_AP",
   if(length(dataset) > 1) stop("Only one dataset per time")
   if(dataset == "v432_AP") {
     ed <- sysdata$v432_AP
+  } else if(dataset == "v432_VOC_spec"){
+    ed <- sysdata$v432_VOC
   } else {
-    ed <- sysdata$edgar
+    stop("Sorry, we are updating other datasets")
   }
 
   # links
