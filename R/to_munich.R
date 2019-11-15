@@ -23,7 +23,10 @@
 #' @note The user must ensure that the spatial object has one line feature
 #' per vertex and lines with more than one vertex must be previously splitted.
 #' @export
-#' @importFrom sf st_coordinates st_transform st_set_geometry  st_length st_geometry
+#' @importFrom sf st_coordinates st_transform st_set_geometry  st_length st_geometry st_set_crs
+#' @importFrom  silicate SC0
+#' @importFrom  tidyr unnest
+#' @importFrom sfheaders sf_linestring
 #' @examples {
 #' # Do not run
 #' data(emisco)
@@ -46,8 +49,9 @@ to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   }
   sdf$id <- NULL
   if(length(unique(sapply(sf::st_geometry(sdf), length))) > 1){
-    cat("Split your data. One vertex per line is required") # nocov
+    sdf <- sfx_explode(sdf)
   }
+
   dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
   lista <- split(x = dft, f = dft$L1)
   df <- do.call("rbind",(lapply(1:length(lista), function(i){
