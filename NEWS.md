@@ -3,6 +3,7 @@ NEWS
 
 # eixport 0.4.0 (Release date: 14 nov 2019)
 - adds sfx_explode to split lines with https://github.com/hypertidy/silicate/issues/102
+- adds as-raster in wrf_grid
 
 # eixport 0.3.9 (Release date: 24 oct 2019)
 - adds get_edgar

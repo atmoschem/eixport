@@ -7,8 +7,9 @@
 #' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
-#'
+#' @param as_raster = logical, to return a raster
 #' @import ncdf4
+#' @importFrom raster raster
 #' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
 #' @export
 #' @examples {
@@ -18,7 +19,7 @@
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf, axes = TRUE)
 #'}
-wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
+wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326, as_raster = F){
   cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
   if(type == "wrfinput"){
@@ -85,6 +86,10 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326){
 
   if (matrix == T){
     return(EM)
+  } else if (as_raster){
+    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat),
+                        crs = "+init=espg:4326")
+    return(r)
   } else {
     return(grid)
   }
