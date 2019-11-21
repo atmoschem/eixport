@@ -7,7 +7,7 @@
 #' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
-#' @param as_raster = logical, to return a raster
+#' @param as_raster  logical, to return a raster
 #' @import ncdf4
 #' @importFrom raster raster
 #' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
@@ -87,8 +87,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326, as_ras
   if (matrix == T){
     return(EM)
   } else if (as_raster){
-    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat),
-                        crs = "+init=espg:4326")
+    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = "+init=epsg:4326")
     return(r)
   } else {
     return(grid)

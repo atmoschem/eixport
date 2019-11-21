@@ -17,7 +17,7 @@ long comes from mass grid, XLONG_M and XLAT_M}
 
 \item{epsg}{epsg code number (see http://spatialreference.org/ref/epsg/)}
 
-\item{as_raster}{= logical, to return a raster}
+\item{as_raster}{logical, to return a raster}
 }
 \description{
 Return a Spatial Feature multipolygon or matrix
