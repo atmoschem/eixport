@@ -49,7 +49,6 @@ write.table(x = etm$Emissions, file = paste0(tempfile(), "_Emissions.txt"),
 row.names = FALSE, sep = " ", quote = FALSE)
 write.table(x = etm$Street, file = paste0(tempfile(), "_Street.txt"),
 row.names = FALSE, sep = " ", quote = FALSE)
-
 }
 }
 \references{

@@ -8,6 +8,8 @@ sfx_explode(x, ...)
 }
 \arguments{
 \item{x}{spatial lines.}
+
+\item{...}{ignored}
 }
 \value{
 spatial lines
@@ -19,6 +21,7 @@ spatial lines
 {
 # Do not run
 data(emisco)
+emisco <- emisco[1:100, "V8"]
 dfco <- sfx_explode(emisco)
 etm <- to_munich(sdf = dfco)
 names(etm)

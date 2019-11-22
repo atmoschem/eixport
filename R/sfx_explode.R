@@ -3,6 +3,7 @@
 #' @description \code{\link{sfx_explode}} splits line by vertex
 #'
 #' @param x spatial lines.
+#' @param ... ignored
 #' @return spatial lines
 #' @author Michael Summer github[dot]/hypertidy/silicate/issues/102
 #' @export
@@ -13,6 +14,7 @@
 #' @examples {
 #' # Do not run
 #' data(emisco)
+#' emisco <- emisco[1:100, "V8"]
 #' dfco <- sfx_explode(emisco)
 #' etm <- to_munich(sdf = dfco)
 #' names(etm)
