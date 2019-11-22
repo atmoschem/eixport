@@ -13,6 +13,7 @@
 #' @export
 #'
 #' @author Daniel Schuch
+#' @note this function might be deprecated in future
 #'
 #' @examples{
 #' # create the folder and emission file

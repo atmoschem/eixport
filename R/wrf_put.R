@@ -2,17 +2,18 @@
 #'
 #' @description Extract variable
 #'
-#' @param file name of file interactively (default) or specified
-#' @param name name of the variable (any variable)
-#' @param POL input
-#' @param mult multiplier
+#' @param file Character; name of file interactively (default) or specified
+#' @param name Character; name of the variable (any variable)
+#' @param POL Numeric; emissions input
+#' @param mult Numeric; multiplier. If the length is more than 1, it multiplies POL for each
+#' value of mult. It can be used if you want to add an hourly profile to your emissions.
 #' @param verbose display additional information
 #'
 #' @export
 #'
-#' @author Daniel Schuch
+#' @author Daniel Schuch and Sergio Ibarra
 #'
-#' @import ncdf4
+#' @importFrom  ncdf4 nc_open nc_close ncvar_put
 #'
 #' @seealso \code{\link{wrf_plot}} and \code{\link{wrf_get}}
 #'
@@ -32,19 +33,26 @@
 #' CO[] = rnorm(length(CO))
 #' wrf_put(file = files[1], name = "E_CO", POL = CO)
 #' }
-wrf_put <- function(file = file.choose(),name = NA,POL,mult = NA,verbose = F){
-  if(verbose){
-    if(is.na(mult)){                                     # nocov
-      cat(paste0('writing ',name,' to   ', file,'\n'))   # nocov
-    }else{
-      cat(paste0('writing ',name,' to   ', file,' multiplier ',mult,'\n'))   # nocov
+wrf_put <- function (file = file.choose(),
+                      name = NA,
+                      POL,
+                      mult = NA,
+                      verbose = F) {
+  if (verbose) {
+    if (missing(mult)) {
+      cat(paste0("writing ", name, " to   ", file, "\n"))
+    }
+    else {
+      cat(paste0("writing ", name, " to   ", file, " multiplier ",
+                 mult, "\n"))
     }
   }
-  wrfchem <- ncdf4::nc_open(file,write = T)
-  if(is.na(mult)){
-    ncdf4::ncvar_put(wrfchem,varid = name,POL)
-  }else{
-    ncdf4::ncvar_put(wrfchem,varid = name,mult * POL) # nocov
+  wrfchem <- ncdf4::nc_open(file, write = T)
+  if (missing(mult)) {
+    ncdf4::ncvar_put(wrfchem, varid = name, POL)
+  }
+  else {
+    ncdf4::ncvar_put(wrfchem, varid = name, unlist(lapply(seq_along(mult), function(i) {POL*mult[i]})))
   }
   ncdf4::nc_close(wrfchem)
 }

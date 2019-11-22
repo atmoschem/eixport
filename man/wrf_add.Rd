@@ -18,6 +18,9 @@ Add values to a variable in a netCDF file, the main use is to combine different
 emissions like top-down emission (EmissV emissions) and inventary emission (sush as EDGAR,
 GAINS, RETRO, etc).
 }
+\note{
+this function might be deprecated in future
+}
 \examples{
 {
 # create the folder and emission file

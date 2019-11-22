@@ -16,7 +16,7 @@
 #' @import ncdf4
 #'
 #' @export
-#'
+#' @note It might be deprecatedin future release
 #' @seealso \code{\link{wrf_create}} and \code{\link{to_wrf}}
 #'
 #' @examples \dontrun{

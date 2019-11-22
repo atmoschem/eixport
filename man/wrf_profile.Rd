@@ -21,6 +21,9 @@ wrf_profile(x, file, adjust = 0, verbose = T)
 returns a traffic intensity profile (based on wrf file Times)
 and a traffic intensity data frame
 }
+\note{
+It might be deprecatedin future release
+}
 \examples{
 \dontrun{
 # Do not run

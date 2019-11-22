@@ -14,7 +14,6 @@ f1 <- list.files(path = file.path(tempdir()),pattern = "wrfchemi",
 CO <- wrf_get(file = f1, name = "E_CO")
 CO[] = 1:length(CO)
 wrf_put(file = f1, name = "E_CO", POL = CO)
-wrf_put(file = f1, name = "E_CO", POL = CO, mult = NA)
 
 wrf_add(file = f1, name = "E_CO", POL = CO)
 

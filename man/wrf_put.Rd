@@ -8,13 +8,14 @@ wrf_put(file = file.choose(), name = NA, POL, mult = NA,
   verbose = F)
 }
 \arguments{
-\item{file}{name of file interactively (default) or specified}
+\item{file}{Character; name of file interactively (default) or specified}
 
-\item{name}{name of the variable (any variable)}
+\item{name}{Character; name of the variable (any variable)}
 
-\item{POL}{input}
+\item{POL}{Numeric; emissions input}
 
-\item{mult}{multiplier}
+\item{mult}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
+value of mult. It can be used if you want to add an hourly profile to your emissions.}
 
 \item{verbose}{display additional information}
 }
@@ -43,5 +44,5 @@ wrf_put(file = files[1], name = "E_CO", POL = CO)
 \code{\link{wrf_plot}} and \code{\link{wrf_get}}
 }
 \author{
-Daniel Schuch
+Daniel Schuch and Sergio Ibarra
 }
