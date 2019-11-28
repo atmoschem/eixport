@@ -12,7 +12,7 @@ wrf_get(file = file.choose(), name = NA, as_raster = FALSE,
 \arguments{
 \item{file}{name of file interactively (default) or specified}
 
-\item{name}{name of the variable (any variable)}
+\item{name}{name of the variable (any variable) or time to return a POSIXlt object from model}
 
 \item{as_raster}{return a raster instead of an array}
 

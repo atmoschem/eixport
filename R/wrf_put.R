@@ -4,7 +4,7 @@
 #'
 #' @param file Character; name of file interactively (default) or specified
 #' @param name Character; name of the variable (any variable)
-#' @param POL Numeric; emissions input
+#' @param POL Numeric; emissions input or string/POSIXlt time
 #' @param mult Numeric; multiplier. If the length is more than 1, it multiplies POL for each
 #' value of mult. It can be used if you want to add an hourly profile to your emissions.
 #' @param verbose display additional information
@@ -38,13 +38,18 @@ wrf_put <- function (file = file.choose(),
                       POL,
                       mult = NA,
                       verbose = F) {
+  if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
+    cat('converting POSIXlt to string\n')      # nocov
+    POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov
+    if(name == 'time')                         # nocov
+      name <- 'Times'                          # nocov
+  }
   if (verbose) {
     if (missing(mult)) {
       cat(paste0("writing ", name, " to   ", file, "\n"))
     }
     else {
-      cat(paste0("writing ", name, " to   ", file, " multiplier ",
-                 mult, "\n"))
+      cat(paste0("writing ", name, " to   ", file, " multiplier ",mult, "\n"))
     }
   }
   wrfchem <- ncdf4::nc_open(file, write = T)

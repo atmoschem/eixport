@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.4.2 (Release date: 22 nov 2019)
+- added 'time' option to wrf_get to return a POSIXlt object from model time
+- wrf_put works with POSIXlt objects for Times/time variable
+
 # eixport 0.4.1 (Release date: 22 nov 2019)
 - improves wrf_put, argument mult now can have any length supporting different hourly profiles
 

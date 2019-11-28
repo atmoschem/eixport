@@ -15,12 +15,10 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -41,12 +39,12 @@
 
 
 
-
 <meta property="og:title" content="Function to read variables of emission files — wrf_get" />
+
 <meta property="og:description" content="Read a variable" />
+
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
-
 
 
 
@@ -77,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -96,6 +94,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -117,13 +116,15 @@
     </div>
 
     <div class="ref-description">
+    
     <p>Read a variable</p>
+    
     </div>
 
     <pre class="usage"><span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>raster_crs</span> <span class='kw'>=</span> <span class='st'>"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"</span>,
   <span class='kw'>raster_lev</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -133,7 +134,7 @@
     </tr>
     <tr>
       <th>name</th>
-      <td><p>name of the variable (any variable)</p></td>
+      <td><p>name of the variable (any variable) or time to return a POSIXlt object from model</p></td>
     </tr>
     <tr>
       <th>as_raster</th>
@@ -152,13 +153,15 @@
       <td><p>display additional information</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>array or raster object</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='wrf_plot.html'>wrf_plot</a></code> and <code><a href='wrf_put.html'>wrf_put</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>{
@@ -179,14 +182,17 @@
 <span class='fu'><a href='wrf_put.html'>wrf_put</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
 <span class='no'>COr</span> <span class='kw'>&lt;-</span> <span class='fu'>wrf_get</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpfgOAO8/EMISS' already exists</span></div></pre>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: 'C:\Users\Schuch\AppData\Local\Temp\RtmpqM62m4\EMISS' já existe</span></div><div class='output co'>#&gt; NOTE: see wrf_create domumentation notes before run</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#format">Format</a></li>
+
       <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -202,7 +208,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

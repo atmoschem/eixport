@@ -3,7 +3,7 @@
 #' @description Read a variable
 #'
 #' @param file name of file interactively (default) or specified
-#' @param name name of the variable (any variable)
+#' @param name name of the variable (any variable) or time to return a POSIXlt object from model
 #' @param as_raster return a raster instead of an array
 #' @param raster_crs crs to use if as_raster is TRUE
 #' @param raster_lev level for rasters from a 4D variable
@@ -43,6 +43,15 @@
 wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
                     raster_lev = 1, verbose = F){
+  if(name == 'time'){
+    wrfchem <- ncdf4::nc_open(file)                                                     # nocov
+    if(verbose)                                                                         # nocov
+      cat(paste0('reading Times from ', file,'\n'))                                     # nocov
+    TIME   <- ncvar_get(wrfchem,'Times')                                                # nocov
+    TIME   <- as.POSIXlt(TIME, tz = "UTC", format="%Y-%m-%d_%H:%M:%OS", optional=FALSE) # nocov
+    cat('returning Times in POSIXct\n')                                                 # nocov
+    return(TIME)                                                                        # nocov
+  }
   if(verbose)
     cat(paste0('reading ',name,' from ', file,'\n'))                     # nocov
 

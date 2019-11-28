@@ -12,7 +12,7 @@ wrf_put(file = file.choose(), name = NA, POL, mult = NA,
 
 \item{name}{Character; name of the variable (any variable)}
 
-\item{POL}{Numeric; emissions input}
+\item{POL}{Numeric; emissions input or string/POSIXlt time}
 
 \item{mult}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
 value of mult. It can be used if you want to add an hourly profile to your emissions.}
