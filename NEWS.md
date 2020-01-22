@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.4.3 (Release date: 22 jan 2020)
+- add argument 'os' in wrf_create to control the name in the resulting file
+
 # eixport 0.4.2 (Release date: 22 nov 2019)
 - added 'time' option to wrf_get to return a POSIXlt object from model time
 - wrf_put works with POSIXlt objects for Times/time variable

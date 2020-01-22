@@ -27,6 +27,7 @@
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
 #' @param verbose print file info
+#' @param os Operative System which determines if the file use colons or not
 #'
 #' @note Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
 #' wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).
@@ -86,12 +87,12 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         COMPRESS             = NA,
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
-                        verbose              = FALSE)
+                        verbose              = FALSE,
+                        os = Sys.info()[["sysname"]])
 {
-  a <- Sys.info()["sysname"]
   # to avoid special chacacteres in the filename
-  if(a[[1]] == "Windows") linux = F else linux = T # nocov
-  if(a[[1]] == "Windows")
+  if(os == "Windows") linux = F else linux = T # nocov
+  if(os == "Windows")
     if(io_style_emissions == 2) #nocov
       cat("NOTE: see wrf_create domumentation notes before run\n")#nocov
 

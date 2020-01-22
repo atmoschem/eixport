@@ -1,5 +1,13 @@
 ---
 template:
   params:
-    bootswatch: cerulean
+    bootswatch: darkly
+authors:
+  Sergio Ibarra-Espinosa:
+    href: http://www.sergioibarra.github.io
+  Daniel Schuch:
+navbar:
+  structure:
+    left:  [home, intro, reference,  news]
+    right: [github]
 ---
