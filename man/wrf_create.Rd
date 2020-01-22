@@ -9,7 +9,8 @@ wrf_create(wrfinput_dir = getwd(), wrfchemi_dir = wrfinput_dir,
   day_offset = 0, io_style_emissions = 2, kemit = 1,
   variables = "ecbmz_mosaic", n_aero = 14, COMPRESS = NA,
   force_ncdf4 = FALSE, title = "Anthropogenic emissions for WRF V4.0",
-  verbose = FALSE, os = Sys.info()[["sysname"]])
+  verbose = FALSE, colon = ifelse(Sys.info()[["sysname"]] == "Linux",
+  ":", "_"))
 }
 \arguments{
 \item{wrfinput_dir}{input folder with the wrfinput file(s)}
@@ -43,7 +44,8 @@ no compression}
 
 \item{verbose}{print file info}
 
-\item{os}{Operative System which determines if the file use colons or not}
+\item{colon}{Character used as colon. In linux systems is ":" and default Windows
+"_" or another you can choose.}
 }
 \description{
 Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
