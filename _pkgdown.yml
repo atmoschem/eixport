@@ -1,7 +1,8 @@
 ---
 template:
   params:
-    bootswatch: darkly
+    bootswatch: flatly
+    ganalytics: UA-2642843-6
 authors:
   Sergio Ibarra-Espinosa:
     href: http://www.sergioibarra.github.io
