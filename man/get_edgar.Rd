@@ -4,8 +4,16 @@
 \alias{get_edgar}
 \title{Download datasets of EDGAR emissions}
 \usage{
-get_edgar(dataset = "v432_AP", pol, sector, year, destpath = tempdir(),
-  txt = TRUE, return_url = TRUE, copyright = TRUE)
+get_edgar(
+  dataset = "v432_AP",
+  pol,
+  sector,
+  year,
+  destpath = tempdir(),
+  txt = TRUE,
+  return_url = TRUE,
+  copyright = TRUE
+)
 }
 \arguments{
 \item{dataset}{Character; name of the datasets: "v432", "v432_AP", "v432_VOC_spec",
@@ -76,7 +84,7 @@ v4tox2  \tab    HG, HG_D, HG_G, HG_P \tab Iro,  cement, chlor, comb_power_ind,
 comb_res_oth, glass, gold_A, gold_L, nfe_oth, shipping, totals, tro_roa,
 waste \tab 1970-2008  \cr
 htap_v2_2  \tab BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2 \tab
-AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \cr
+AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \\cr
 }
 voc11 only 2008
 }
