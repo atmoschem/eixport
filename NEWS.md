@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.4.3 (Release date: 28 jan 2020)
+- add argument change_latlon in wrf_grid
+
 # eixport 0.4.3 (Release date: 22 jan 2020)
 - add argument 'os' in wrf_create to control the name in the resulting file
 

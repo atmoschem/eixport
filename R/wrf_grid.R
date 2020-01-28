@@ -6,8 +6,9 @@
 #' @param type Type of wrf file: "wrfinput" or "geo". When type is "geo", lat
 #' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
-#' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
+#' @param change_latlon Logical, to change lat for lons. Default FALSE
 #' @param as_raster  logical, to return a raster
+#' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #' @import ncdf4
 #' @importFrom raster raster
 #' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
@@ -19,7 +20,12 @@
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf, axes = TRUE)
 #'}
-wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326, as_raster = F){
+wrf_grid <- function(filewrf,
+                      type = "wrfinput",
+                      matrix = FALSE,
+                      change_latlon = FALSE,
+                      as_raster = FALSE,
+                      epsg = 4326){
   cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
   if(type == "wrfinput"){
@@ -41,7 +47,19 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326, as_ras
   ncdf4::nc_close(wrf)
   r.lat  <- range(lon)
   r.lon  <- range(lat)
-  EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
+
+  if(change_latlon) {
+    EM  <- matrix(0, nrow = n.lat, ncol = n.lat)
+  } else {
+    EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
+  }
+  if (matrix == T){
+    return(EM)
+  }
+  if (as_raster){
+    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = "+init=epsg:4326")
+    return(r)
+  }
 
   points      <- data.frame(lat  = c(lat),
                             long = c(lon))
@@ -84,13 +102,7 @@ wrf_grid <- function(filewrf, type = "wrfinput", matrix = F, epsg = 4326, as_ras
                       to = "POLYGON")
   grid$id <- 1:nrow(grid)
 
-  if (matrix == T){
-    return(EM)
-  } else if (as_raster){
-    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = "+init=epsg:4326")
-    return(r)
-  } else {
-    return(grid)
-  }
+  return(grid)
+
 
 }

@@ -4,23 +4,13 @@
 \alias{wrf_create}
 \title{Create emission files for the WRF-Chem model}
 \usage{
-wrf_create(
-  wrfinput_dir = getwd(),
-  wrfchemi_dir = wrfinput_dir,
-  domains = 1,
-  frames_per_auxinput5 = 1,
-  auxinput5_interval_m = 60,
-  day_offset = 0,
-  io_style_emissions = 2,
-  kemit = 1,
-  variables = "ecbmz_mosaic",
-  n_aero = 14,
-  COMPRESS = NA,
-  force_ncdf4 = FALSE,
-  title = "Anthropogenic emissions for WRF V4.0",
-  verbose = FALSE,
-  colon = ifelse(Sys.info()[["sysname"]] == "Linux", ":", "_")
-)
+wrf_create(wrfinput_dir = getwd(), wrfchemi_dir = wrfinput_dir,
+  domains = 1, frames_per_auxinput5 = 1, auxinput5_interval_m = 60,
+  day_offset = 0, io_style_emissions = 2, kemit = 1,
+  variables = "ecbmz_mosaic", n_aero = 14, COMPRESS = NA,
+  force_ncdf4 = FALSE, title = "Anthropogenic emissions for WRF V4.0",
+  verbose = FALSE, colon = ifelse(Sys.info()[["sysname"]] == "Linux",
+  ":", "_"))
 }
 \arguments{
 \item{wrfinput_dir}{input folder with the wrfinput file(s)}
