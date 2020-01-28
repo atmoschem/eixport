@@ -49,7 +49,7 @@ wrf_grid <- function(filewrf,
   r.lon  <- range(lat)
 
   if(change_latlon) {
-    EM  <- matrix(0, nrow = n.lat, ncol = n.lat)
+    EM  <- matrix(0, nrow = n.lat, ncol = n.lon)
   } else {
     EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
   }
