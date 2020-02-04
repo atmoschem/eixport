@@ -75,7 +75,7 @@ wrf_plot <- function(file = file.choose(),
   ncdf4::nc_close(wrfchem)
 
   if(length(dim(POL)) == 3){
-    POL <- POL[,,time]               # nocov
+    POL <- POL[,,max(time,nivel,na.rm=TRUE)]               # nocov
   }
   if(length(dim(POL)) == 4){
     POL <- POL[,,nivel,time]         # nocov
