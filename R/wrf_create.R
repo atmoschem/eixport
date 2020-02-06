@@ -90,7 +90,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         title                = "Anthropogenic emissions for WRF V4.0",
                         verbose              = FALSE,
                         colon = ifelse(Sys.info()[["sysname"]] == "Linux", ":",
-                        "_"))
+                        "%3A"))
 {
   # to avoid special chacacteres in the filename
   if(colon != ":") linux = F else linux = T # nocov
