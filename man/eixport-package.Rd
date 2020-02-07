@@ -6,7 +6,7 @@
 \alias{eixport-package}
 \title{eixport: Export Emissions to Atmospheric Models}
 \description{
-\if{html}{\figure{logo.png}{options: align='right'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Emissions are the mass of pollutants released into the atmosphere. Air quality models need emissions data, with spatial and temporal distribution, to represent air pollutant concentrations. This package, eixport, creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) <doi:10.1016/j.atmosenv.2005.04.027>, 'BRAMS-SPM' Freitas et al (2005) <doi:10.1016/j.atmosenv.2005.07.017> and 'RLINE' Snyder et al (2013) <doi:10.1016/j.atmosenv.2013.05.074>. See the eixport website (<https://atmoschem.github.io/eixport/>) for more information, documentations and examples. More details in Ibarra-Espinosa et al (2018) <doi.org/10.21105/joss.00607>.
 }
@@ -19,12 +19,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Sergio Ibarra-Espinosa \email{sergio.ibarra@usp.br} (0000-0002-3162-1905)
+\strong{Maintainer}: Sergio Ibarra-Espinosa \email{sergio.ibarra@usp.br} (\href{https://orcid.org/0000-0002-3162-1905}{ORCID})
 
 Other contributors:
 \itemize{
-  \item Daniel Schuch \email{underschuch@gmail.com} (0000-0001-5977-4519) [contributor]
-  \item Edmilson Freitas \email{edmilson.freitas@iag.usp.br} (0000-0001-8783-2747) [contributor]
+  \item Daniel Schuch \email{underschuch@gmail.com} (\href{https://orcid.org/0000-0001-5977-4519}{ORCID}) [contributor]
+  \item Edmilson Freitas \email{edmilson.freitas@iag.usp.br} (\href{https://orcid.org/0000-0001-8783-2747}{ORCID}) [contributor]
 }
 
 }

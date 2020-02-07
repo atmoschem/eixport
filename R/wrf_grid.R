@@ -49,17 +49,17 @@ wrf_grid <- function(filewrf,
   r.lon  <- range(lat)
 
   if(change_latlon) {
-    EM  <- matrix(0, nrow = n.lat, ncol = n.lon)
+    EM  <- matrix(0, nrow = n.lat, ncol = n.lon) # nocov
   } else {
     EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
   }
   if (matrix == T){
     return(EM)
   }
-  if (as_raster){
+  if (as_raster){ # nocov start
     r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = "+init=epsg:4326")
     return(r)
-  }
+  }               # nocov end
 
   points      <- data.frame(lat  = c(lat),
                             long = c(lon))

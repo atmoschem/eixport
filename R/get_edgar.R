@@ -127,7 +127,7 @@ get_edgar <- function(dataset = "v432_AP",
 
 
   # Check
-  if(length(dataset) > 1) stop("Only one dataset per time")
+  if(length(dataset) > 1) stop("Only one dataset per time")      # nocov start
   if(dataset == "v432_AP") {
     ed <- sysdata$v432_AP
   } else if(dataset == "v432_VOC_spec"){
@@ -163,14 +163,14 @@ get_edgar <- function(dataset = "v432_AP",
   }
   # more checks
   if(dataset == "htap_v2_2") {
-    if(!year %in% c(2008, 2010)) {                                       # nocov
-      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")  # nocov
+    if(!year %in% c(2008, 2010)) {
+      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")
     }
   } else {
-    if(!year %in% 1970:2012){                                            # nocov
-      stop("For this datasets, years go from 1970 to 2012 only")         # nocov
+    if(!year %in% 1970:2012){
+      stop("For this datasets, years go from 1970 to 2012 only")
     }
-  }
+  }                                                                      # nocov end
 
   links = unlist(lapply(1:length(df$URL), function(i) {
     year <- eval(parse(text = df$years[i]))

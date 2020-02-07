@@ -4,8 +4,14 @@
 \alias{wrf_grid}
 \title{Creates grid from wrf file}
 \usage{
-wrf_grid(filewrf, type = "wrfinput", matrix = FALSE,
-  change_latlon = FALSE, as_raster = FALSE, epsg = 4326)
+wrf_grid(
+  filewrf,
+  type = "wrfinput",
+  matrix = FALSE,
+  change_latlon = FALSE,
+  as_raster = FALSE,
+  epsg = 4326
+)
 }
 \arguments{
 \item{filewrf}{wrf file}

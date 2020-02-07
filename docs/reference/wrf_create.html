@@ -44,7 +44,7 @@
 
 <meta property="og:title" content="Create emission files for the WRF-Chem model — wrf_create" />
 <meta property="og:description" content="Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
-There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
+There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default), see notes for more detail.
 The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
 The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).
 Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains &quot;V4.&quot;, this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input." />
@@ -132,7 +132,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
 
     <div class="ref-description">
     <p>Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.</p>
-<p>There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).</p>
+<p>There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default), see notes for more detail.</p>
 <p>The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).</p>
 <p>The variables created on output file is based on emis_opt data or a character vector contains the species, any change in variables need to be followed by a change in the n_aero for the correspondent number of aerosol species in the emission file (the n_aero last variables).</p>
 <p>Title argument will be written on global attribute TITLE, from the version 4.0 the model checks if the TITLE version contains "V4.", this can be disabled setting 'force_use_old_data = .true.' on WRF namelist.input.</p>
@@ -152,8 +152,8 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
   <span class='kw'>COMPRESS</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>force_ncdf4</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Anthropogenic emissions for WRF V4.0"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>colon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.info.html'>Sys.info</a></span>()<span class='kw'>[[</span><span class='st'>"sysname"</span>]] <span class='kw'>==</span> <span class='st'>"Linux"</span>, <span class='st'>":"</span>, <span class='st'>"_"</span>)
+  <span class='kw'>separator</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -215,13 +215,12 @@ no compression</p></td>
       <td><p>TITLE attribute for the NetCDF</p></td>
     </tr>
     <tr>
-      <th>verbose</th>
-      <td><p>print file info</p></td>
+      <th>separator</th>
+      <td><p>filename alternative separator when io_style_emission=1</p></td>
     </tr>
     <tr>
-      <th>colon</th>
-      <td><p>Character used as colon. In linux systems is ":" and default Windows
-"_" or another you can choose.</p></td>
+      <th>verbose</th>
+      <td><p>print file info</p></td>
     </tr>
     </table>
 
@@ -230,6 +229,7 @@ no compression</p></td>
     <p>Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
 wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).</p>
 <p>Windows users may need to rename the emission files or change in namelist the defoult filename before run wrf.exe with these emission files.</p>
+<p>The separator argument can be useful for write in NTSF format discs on linux systems, for 'default' the separator is ':' for linux-like systems and '%3A' for windowns.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='to_wrf.html'>to_wrf</a></code> and <code><a href='emis_opt.html'>emis_opt</a></code></p></div>

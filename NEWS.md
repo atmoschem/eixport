@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.4.3 (Release date: 07 feb 2020)
+- internal changes on wrf_create, os replaced for separator for minimal structural changes
+
 # eixport 0.4.3 (Release date: 28 jan 2020)
 - add argument change_latlon in wrf_grid
 

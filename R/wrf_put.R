@@ -45,11 +45,11 @@ wrf_put <- function (file = file.choose(),
       name <- 'Times'                          # nocov
   }
   if (verbose) {
-    if (missing(mult)) {
-      cat(paste0("writing ", name, " to   ", file, "\n"))
+    if (missing(mult)) {                                                           # nocov
+      cat(paste0("writing ", name, " to   ", file, "\n"))                          # nocov
     }
     else {
-      cat(paste0("writing ", name, " to   ", file, " multiplier ",mult, "\n"))
+      cat(paste0("writing ", name, " to   ", file, " multiplier ",mult, "\n"))     # nocov
     }
   }
   wrfchem <- ncdf4::nc_open(file, write = T)
@@ -57,7 +57,7 @@ wrf_put <- function (file = file.choose(),
     ncdf4::ncvar_put(wrfchem, varid = name, POL)
   }
   else {
-    ncdf4::ncvar_put(wrfchem, varid = name, unlist(lapply(seq_along(mult), function(i) {POL*mult[i]})))
+    ncdf4::ncvar_put(wrfchem, varid = name, unlist(lapply(seq_along(mult), function(i) {POL*mult[i]}))) # nocov
   }
   ncdf4::nc_close(wrfchem)
 }

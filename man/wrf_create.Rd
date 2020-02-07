@@ -4,13 +4,23 @@
 \alias{wrf_create}
 \title{Create emission files for the WRF-Chem model}
 \usage{
-wrf_create(wrfinput_dir = getwd(), wrfchemi_dir = wrfinput_dir,
-  domains = 1, frames_per_auxinput5 = 1, auxinput5_interval_m = 60,
-  day_offset = 0, io_style_emissions = 2, kemit = 1,
-  variables = "ecbmz_mosaic", n_aero = 14, COMPRESS = NA,
-  force_ncdf4 = FALSE, title = "Anthropogenic emissions for WRF V4.0",
-  verbose = FALSE, colon = ifelse(Sys.info()[["sysname"]] == "Linux",
-  ":", "_"))
+wrf_create(
+  wrfinput_dir = getwd(),
+  wrfchemi_dir = wrfinput_dir,
+  domains = 1,
+  frames_per_auxinput5 = 1,
+  auxinput5_interval_m = 60,
+  day_offset = 0,
+  io_style_emissions = 2,
+  kemit = 1,
+  variables = "ecbmz_mosaic",
+  n_aero = 14,
+  COMPRESS = NA,
+  force_ncdf4 = FALSE,
+  title = "Anthropogenic emissions for WRF V4.0",
+  separator = "default",
+  verbose = FALSE
+)
 }
 \arguments{
 \item{wrfinput_dir}{input folder with the wrfinput file(s)}
@@ -42,15 +52,14 @@ no compression}
 
 \item{title}{TITLE attribute for the NetCDF}
 
-\item{verbose}{print file info}
+\item{separator}{filename alternative separator when io_style_emission=1}
 
-\item{colon}{Character used as colon. In linux systems is ":" and default Windows
-"_" or another you can choose.}
+\item{verbose}{print file info}
 }
 \description{
 Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
 
-There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
+There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default), see notes for more detail.
 
 The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
 
@@ -63,6 +72,8 @@ Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset
 wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).
 
 Windows users may need to rename the emission files or change in namelist the defoult filename before run wrf.exe with these emission files.
+
+The separator argument can be useful for write in NTSF format discs on linux systems, for 'default' the separator is ':' for linux-like systems and '\%3A' for windowns.
 }
 \examples{
 \dontrun{

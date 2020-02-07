@@ -2,7 +2,7 @@
 #'
 #' @description Create WRF-chem emission files using information from the WRF initial condictions (wrfinput) file(s). The wrfinput file of the corresponding domain is read from the current folder or from the wrfinput_dir.
 #'
-#' There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default).
+#' There are two emission styles available: the 12 hour pair of emissions (that will be recycled by the model) using io_style_emissions = 1 and the date_hour format using io_style_emissions = 2 (default), see notes for more detail.
 #'
 #' The initial time is the original (wrfinput file) adjusted by the day_offset argument, this argument can be useful for split the emissions into several files or for a restarted simulation. The emissions are recorded at the interval of 60 minutes (or the auxinput5_interval_m argument) for 1 time (or frames_per_auxinput5 argument times).
 #'
@@ -26,12 +26,15 @@
 #' no compression
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
+#' @param separator filename alternative separator when io_style_emission=1
 #' @param verbose print file info
 #'
 #' @note Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
 #' wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_m will have no effect).
 #'
 #' @note Windows users may need to rename the emission files or change in namelist the defoult filename before run wrf.exe with these emission files.
+#'
+#' @note The separator argument can be useful for write in NTSF format discs on linux systems, for 'default' the separator is ':' for linux-like systems and '%3A' for windowns.
 #'
 #' @author Daniel Schuch
 #'
@@ -86,6 +89,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         COMPRESS             = NA,
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
+                        separator            = 'default',
                         verbose              = FALSE)
 {
   a <- Sys.info()["sysname"]
@@ -93,7 +97,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
   if(a[[1]] == "Windows") linux = F else linux = T # nocov
   if(a[[1]] == "Windows")
     if(io_style_emissions == 2) #nocov
-      cat("NOTE: see wrf_create domumentation notes before run\n")#nocov
+      cat("NOTE: see wrf_create domumentation notes before run\n")  #nocov
 
   if(length(variables) == 1){
     emis_opt <- NULL
@@ -132,6 +136,12 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     minuto       <- paste(formatC(minuto,  width = 2, format = "d", flag = "0"))
     segundo      <- paste(formatC(segundo, width = 2, format = "d", flag = "0"))
 
+    if(separator == 'default'){
+      separator <- "%3A"           # nocov
+    }else{
+      linux <- FALSE               # nocov
+    }
+
     if(io_style_emissions == 1){
       frames_per_auxinput5 <- 12  # nocov start
       if(day_offset == 0){
@@ -148,7 +158,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                                    "_",hora,":", minuto,":", segundo, sep = "")
       } else  file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
                                  format(date,"%Y-%m-%d"),
-                                 "_", hora, "%3A", minuto, "%3A", segundo, sep = "")# nocov end
+                                 "_", hora, separator, minuto, separator, segundo, sep = "")# nocov end
     }
 
     if(frames_per_auxinput5 == 1){

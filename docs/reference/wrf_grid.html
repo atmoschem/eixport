@@ -130,7 +130,14 @@
     <p>Return a Spatial Feature multipolygon or matrix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_grid</span>(<span class='no'>filewrf</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"wrfinput"</span>, <span class='kw'>matrix</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>epsg</span> <span class='kw'>=</span> <span class='fl'>4326</span>, <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_grid</span>(
+  <span class='no'>filewrf</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"wrfinput"</span>,
+  <span class='kw'>matrix</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>change_latlon</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>as_raster</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>epsg</span> <span class='kw'>=</span> <span class='fl'>4326</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,12 +156,16 @@ long comes from mass grid, XLONG_M and XLAT_M</p></td>
       <td><p>if the output is matrix or polygon (sf)</p></td>
     </tr>
     <tr>
-      <th>epsg</th>
-      <td><p>epsg code number (see http://spatialreference.org/ref/epsg/)</p></td>
+      <th>change_latlon</th>
+      <td><p>Logical, to change lat for lons. Default FALSE</p></td>
     </tr>
     <tr>
       <th>as_raster</th>
       <td><p>logical, to return a raster</p></td>
+    </tr>
+    <tr>
+      <th>epsg</th>
+      <td><p>epsg code number (see http://spatialreference.org/ref/epsg/)</p></td>
     </tr>
     </table>
 
@@ -166,7 +177,7 @@ long comes from mass grid, XLONG_M and XLAT_M</p></td>
                          <span class='st'>"/wrfinput_d02"</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>)
 <span class='no'>gwrf</span>  <span class='kw'>&lt;-</span> <span class='fu'>wrf_grid</span>(<span class='no'>wrf</span>)
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>gwrf</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-}</div><div class='output co'>#&gt; using grid info from: /home/sergio/models/eixport/inst/extdata/wrfinput_d02 
+}</div><div class='output co'>#&gt; using grid info from: C:/Users/schuch/AppData/Local/Temp/Rtmps7wQMY/temp_libpath22c410f04a09/eixport/extdata/wrfinput_d02 
 #&gt; Number of lat points 51
 #&gt; Number of lon points 63</div><div class='img'><img src='wrf_grid-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

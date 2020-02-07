@@ -4,8 +4,16 @@
 \alias{to_wrf}
 \title{Combine total/spatial/temporal/split and write emission to file}
 \usage{
-to_wrf(POL, file = file.choose(), name = NA, total = NA, norm = F,
-  profile = 1, weights = 1, verbose = T)
+to_wrf(
+  POL,
+  file = file.choose(),
+  name = NA,
+  total = NA,
+  norm = F,
+  profile = 1,
+  weights = 1,
+  verbose = T
+)
 }
 \arguments{
 \item{POL}{matrix or array of emissions of spatial weights}

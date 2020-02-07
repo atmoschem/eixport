@@ -27,6 +27,6 @@ Depends: R (>= 3.5.0)
 Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate, sfheaders
 Encoding: UTF-8
 LazyData: no
-RoxygenNote: 7.0.2
+RoxygenNote: 7.0.2.9000
 Suggests: testthat, covr, lwgeom
 Roxygen: list(markdown = TRUE)
