@@ -8,6 +8,7 @@
 #' @param matrix if the output is matrix or polygon (sf)
 #' @param change_latlon Logical, to change lat for lons. Default FALSE
 #' @param as_raster  logical, to return a raster
+#' @param as_stars  logical, to return a raster
 #' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
 #' @import ncdf4
 #' @importFrom raster raster
@@ -25,6 +26,7 @@ wrf_grid <- function(filewrf,
                       matrix = FALSE,
                       change_latlon = FALSE,
                       as_raster = FALSE,
+                      as_stars = FALSE,
                       epsg = 4326){
   cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
@@ -53,53 +55,65 @@ wrf_grid <- function(filewrf,
   } else {
     EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
   }
+
   if (matrix == T){
     return(EM)
   }
+
+  r <- raster::raster(EM,
+                      xmn = min(lon),
+                      xmx = max(lon),
+                      ymn = min(lat),
+                      ymx = max(lat),
+                      crs = "+init=epsg:4326")
   if (as_raster){ # nocov start
-    r <- raster::raster(EM, xmn = min(lon), xmx = max(lon), ymn = min(lat), ymx = max(lat), crs = "+init=epsg:4326")
     return(r)
   }               # nocov end
 
-  points      <- data.frame(lat  = c(lat),
-                            long = c(lon))
-  points$lat  <- as.numeric(points$lat)
-  points$long <- as.numeric(points$long)
+  # points      <- data.frame(lat  = c(lat),
+  #                           long = c(lon))
+  # points$lat  <- as.numeric(points$lat)
+  # points$long <- as.numeric(points$long)
+  #
+  # dx <- 1.0 * (r.lat[1] - r.lat[2]) / (n.lat+1)
+  # dy <- 1.0 * (r.lon[2] - r.lon[1]) / (n.lon+1)
+  # alpha = 0 * (pi / 180)
+  # dxl <- cos(alpha) * dx - sin(alpha) * dy
+  # dyl <- sin(alpha) * dx + cos(alpha) * dy
+  #
+  # grid = list()
+  #
+  # for(i in 1:nrow(points)){
+  #   # for(i in 1:2){
+  #   p1_lat = points$lat[i]  - dx/2
+  #   p1_lon = points$long[i] + dy/2
+  #
+  #   p2_lat = points$lat[i]  + dx/2
+  #   p2_lon = points$long[i] + dy/2
+  #
+  #   p3_lat = points$lat[i]  + dx/2
+  #   p3_lon = points$long[i] - dy/2
+  #
+  #   p4_lat = points$lat[i]  - dx/2
+  #   p4_lon = points$long[i] - dy/2
+  #
+  #   mat  <- matrix(c(p1_lon,p1_lat,
+  #                    p2_lon,p2_lat,
+  #                    p3_lon,p3_lat,
+  #                    p4_lon,p4_lat,
+  #                    p1_lon,p1_lat),
+  #                  ncol=2, byrow=TRUE)
+  #   cell <- sf::st_polygon(list(mat))
+  #   grid[[i]] = cell
+  # }
+  # geometry <- sf::st_sfc(sf::st_multipolygon(grid))
 
-  dx <- 1.0 * (r.lat[1] - r.lat[2]) / (n.lat+1)
-  dy <- 1.0 * (r.lon[2] - r.lon[1]) / (n.lon+1)
-  alpha = 0 * (pi / 180)
-  dxl <- cos(alpha) * dx - sin(alpha) * dy
-  dyl <- sin(alpha) * dx + cos(alpha) * dy
+  grid <- stars::st_as_stars(r)
+  if(as_stars) return(grid)
+  grid <- sf::st_as_sf(grid)
 
-  grid = list()
+  if(!missing(epsg)) grid <- sf::st_transform(grid, epsg)
 
-  for(i in 1:nrow(points)){
-    # for(i in 1:2){
-    p1_lat = points$lat[i]  - dx/2
-    p1_lon = points$long[i] + dy/2
-
-    p2_lat = points$lat[i]  + dx/2
-    p2_lon = points$long[i] + dy/2
-
-    p3_lat = points$lat[i]  + dx/2
-    p3_lon = points$long[i] - dy/2
-
-    p4_lat = points$lat[i]  - dx/2
-    p4_lon = points$long[i] - dy/2
-
-    mat  <- matrix(c(p1_lon,p1_lat,
-                     p2_lon,p2_lat,
-                     p3_lon,p3_lat,
-                     p4_lon,p4_lat,
-                     p1_lon,p1_lat),
-                   ncol=2, byrow=TRUE)
-    cell <- sf::st_polygon(list(mat))
-    grid[[i]] = cell
-  }
-  geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-  grid <- sf::st_cast(x = st_sf(geometry = geometry, crs = epsg),
-                      to = "POLYGON")
   grid$id <- 1:nrow(grid)
 
   return(grid)

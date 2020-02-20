@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.4.4 (Release date: 20 feb 2020)
+- important change in wrf_grid, fix error. Adds imports from stars
+
 # eixport 0.4.3 (Release date: 07 feb 2020)
 - internal changes on wrf_create, os replaced for separator for minimal structural changes
 
