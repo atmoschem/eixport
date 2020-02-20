@@ -110,11 +110,12 @@ wrf_grid <- function(filewrf,
 
   grid <- stars::st_as_stars(r)
   if(as_stars) return(grid)
-  grid <- sf::st_as_sf(grid)
 
+  grid <- sf::st_as_sf(grid)
+  grid$id <- 1:nrow(grid)
+  grid$layer <- NULL
   if(!missing(epsg)) grid <- sf::st_transform(grid, epsg)
 
-  grid$id <- 1:nrow(grid)
 
   return(grid)
 
