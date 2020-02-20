@@ -10,7 +10,6 @@ wrf_grid(
   matrix = FALSE,
   change_latlon = FALSE,
   as_raster = FALSE,
-  as_stars = FALSE,
   epsg = 4326
 )
 }
@@ -25,8 +24,6 @@ long comes from mass grid, XLONG_M and XLAT_M}
 \item{change_latlon}{Logical, to change lat for lons. Default FALSE}
 
 \item{as_raster}{logical, to return a raster}
-
-\item{as_stars}{logical, to return a raster}
 
 \item{epsg}{epsg code number (see http://spatialreference.org/ref/epsg/)}
 }
