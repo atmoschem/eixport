@@ -68,47 +68,37 @@ wrf_grid <- function(filewrf,
     return(r)
   }               # nocov end
 
-  points      <- data.frame(lat  = c(lat),
-                            long = c(lon))
-  points$lat  <- as.numeric(points$lat)
-  points$long <- as.numeric(points$long)
+  r <- raster::rasterToPolygons(r)
+  grid <- sf::st_as_sf(r)
 
-  dx <- 1.0 * (r.lat[1] - r.lat[2]) / (n.lat+1)
-  dy <- 1.0 * (r.lon[2] - r.lon[1]) / (n.lon+1)
-  alpha = 0 * (pi / 180)
-  dxl <- cos(alpha) * dx - sin(alpha) * dy
-  dyl <- sin(alpha) * dx + cos(alpha) * dy
-
-  grid = list()
-
-  for(i in 1:nrow(points)){
-    # for(i in 1:2){
-    p1_lat = points$lat[i]  - dx/2
-    p1_lon = points$long[i] + dy/2
-
-    p2_lat = points$lat[i]  + dx/2
-    p2_lon = points$long[i] + dy/2
-
-    p3_lat = points$lat[i]  + dx/2
-    p3_lon = points$long[i] - dy/2
-
-    p4_lat = points$lat[i]  - dx/2
-    p4_lon = points$long[i] - dy/2
-
-    mat  <- matrix(c(p1_lon,p1_lat,
-                     p2_lon,p2_lat,
-                     p3_lon,p3_lat,
-                     p4_lon,p4_lat,
-                     p1_lon,p1_lat),
-                   ncol=2, byrow=TRUE)
-    cell <- sf::st_polygon(list(mat))
-    grid[[i]] = cell
-  }
-  geometry <- sf::st_sfc(sf::st_multipolygon(grid))
-
-  grid <- sf::st_cast(x = st_sf(geometry = geometry, crs = epsg),
-                      to = "POLYGON")
-  grid$id <- 1:nrow(grid)
+  # points      <- data.frame(lat  = c(lat), long = c(lon))
+  # points$lat  <- as.numeric(points$lat)
+  # points$long <- as.numeric(points$long)
+  # dx <- 1.0 * (r.lat[1] - r.lat[2]) / (n.lat+1)
+  # dy <- 1.0 * (r.lon[2] - r.lon[1]) / (n.lon+1)
+  # alpha = 0 * (pi / 180)
+  # dxl <- cos(alpha) * dx - sin(alpha) * dy
+  # dyl <- sin(alpha) * dx + cos(alpha) * dy
+  # grid = list()
+  # for(i in 1:nrow(points)){
+  #   # for(i in 1:2){
+  #   p1_lat = points$lat[i]  - dx/2
+  #   p1_lon = points$long[i] + dy/2
+  #   p2_lat = points$lat[i]  + dx/2
+  #   p2_lon = points$long[i] + dy/2
+  #   p3_lat = points$lat[i]  + dx/2
+  #   p3_lon = points$long[i] - dy/2
+  #   p4_lat = points$lat[i]  - dx/2
+  #   p4_lon = points$long[i] - dy/2
+  #   mat  <- matrix(c(p1_lon,p1_lat, p2_lon,p2_lat, p3_lon,p3_lat,
+  #                    p4_lon,p4_lat, p1_lon,p1_lat),
+  #                  ncol=2, byrow=TRUE)
+  #   cell <- sf::st_polygon(list(mat))
+  #   grid[[i]] = cell
+  # }
+  # geometry <- sf::st_sfc(sf::st_multipolygon(grid))
+  # grid <- sf::st_cast(x = st_sf(geometry = geometry, crs = epsg), to = "POLYGON")
+  # grid$id <- 1:nrow(grid)
   return(grid)
 
 }

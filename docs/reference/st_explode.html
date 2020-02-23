@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • eixport</title>
+<title>Split line by vertex (experimental) — st_explode • eixport</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Split line by vertex (experimental) — st_explode" />
+<meta property="og:description" content="st_explode split a lines data.frame into
+each vertex. It to mimic the function explode from qgis, that the reason for the name
+st_explode" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -73,7 +76,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,156 +121,54 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Split line by vertex (experimental)</h1>
+    
+    <div class="hidden name"><code>st_explode.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p><code>st_explode</code> split a lines data.frame into
+each vertex. It to mimic the function explode from qgis, that the reason for the name
+<code>st_explode</code></p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>st_explode</span>(<span class='no'>net</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="Lights.html">Lights</a></code> </p>
-        </td>
-        <td><p>Spatial distribution example</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="emis_opt.html">emis_opt</a></code> </p>
-        </td>
-        <td><p>List of WRF emission species</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="emisco.html">emisco</a></code> </p>
-        </td>
-        <td><p>Emissions from VEIN demo</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="gCO.html">gCO</a></code> </p>
-        </td>
-        <td><p>Gridded emissions from VEIN demo</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_edgar.html">get_edgar()</a></code> </p>
-        </td>
-        <td><p>Download datasets of EDGAR emissions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rawprofile.html">rawprofile</a></code> </p>
-        </td>
-        <td><p>Raw profile</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sfx_explode.html">sfx_explode()</a></code> </p>
-        </td>
-        <td><p>splits line by vertex</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="st_explode.html">st_explode()</a></code> </p>
-        </td>
-        <td><p>Split line by vertex (experimental)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_as4wrf.html">to_as4wrf()</a></code> </p>
-        </td>
-        <td><p>Generates emissions dataframe to generate WRF-Chem inputs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_brams_spm.html">to_brams_spm()</a></code> </p>
-        </td>
-        <td><p>Inputs for BRAMS-SPM</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_munich.html">to_munich()</a></code> </p>
-        </td>
-        <td><p>Export emissions to Model of Urban Network of Intersecting Canyons and Highways (MUNICH)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_rline.html">to_rline()</a></code> </p>
-        </td>
-        <td><p>Export emissions to other formats</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_wrf.html">to_wrf()</a></code> </p>
-        </td>
-        <td><p>Combine total/spatial/temporal/split and write emission to file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_add.html">wrf_add()</a></code> </p>
-        </td>
-        <td><p>Function to add values for variables on emission files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_create.html">wrf_create()</a></code> </p>
-        </td>
-        <td><p>Create emission files for the WRF-Chem model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_get.html">wrf_get()</a></code> </p>
-        </td>
-        <td><p>Function to read variables of emission files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_grid.html">wrf_grid()</a></code> </p>
-        </td>
-        <td><p>Creates grid from wrf file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_plot.html">wrf_plot()</a></code> </p>
-        </td>
-        <td><p>Simple plot from wrf emission file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_profile.html">wrf_profile()</a></code> </p>
-        </td>
-        <td><p>Create a spatial profile from a wrf emission file and a data frame with</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wrf_put.html">wrf_put()</a></code> </p>
-        </td>
-        <td><p>Function to write variables in emission files</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>net</th>
+      <td><p>A spatial dataframe of class "sp" or "sf". When class is "sp"
+it is transformed to "sf".</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>All variables are transformed into numeric.</p>
+<p>Thanks Michael Summer (mdsummer)  for the function sfx_explode!</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># do not run</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>vein</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>net</span>)
+<span class='no'>net2</span> <span class='kw'>&lt;-</span> <span class='fu'>st_explode</span>(<span class='no'>net</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>net</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>net2</span>)
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#note">Note</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
