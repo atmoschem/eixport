@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.4.5 (Release date: 24 feb 2020)
+- update wrf_grid.
+- improves docs.
+
 # eixport 0.4.4 (Release date: 23 feb 2020)
 - update wrf_grid.
 

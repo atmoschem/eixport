@@ -1,6 +1,6 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.4.4
+Version: 0.4.5
 Date: 2020-02-23
 Authors@R: c(
   person(given = "Sergio",
