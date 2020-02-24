@@ -56,7 +56,7 @@ wrf_grid <- function(filewrf,
   }
 
   # raster
-  r <- raster::raster(t(EM),
+  r <- raster::raster(EM,
                       xmn = min(lon),
                       xmx = max(lon),
                       ymn = min(lat),
