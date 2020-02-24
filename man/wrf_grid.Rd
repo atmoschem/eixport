@@ -4,14 +4,7 @@
 \alias{wrf_grid}
 \title{Creates grid from wrf file}
 \usage{
-wrf_grid(
-  filewrf,
-  type = "wrfinput",
-  matrix = FALSE,
-  change_latlon = FALSE,
-  as_raster = FALSE,
-  epsg = 4326
-)
+wrf_grid(filewrf, type = "wrfinput", matrix = FALSE, as_raster = FALSE)
 }
 \arguments{
 \item{filewrf}{wrf file}
@@ -21,14 +14,13 @@ long comes from mass grid, XLONG_M and XLAT_M}
 
 \item{matrix}{if the output is matrix or polygon (sf)}
 
-\item{change_latlon}{Logical, to change lat for lons. Default FALSE}
-
 \item{as_raster}{logical, to return a raster}
-
-\item{epsg}{epsg code number (see http://spatialreference.org/ref/epsg/)}
 }
 \description{
 Return a Spatial Feature multipolygon or matrix
+}
+\note{
+The default crs is 4326 (see http://spatialreference.org/ref/epsg/)
 }
 \examples{
 {

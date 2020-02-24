@@ -6,12 +6,11 @@
 #' @param type Type of wrf file: "wrfinput" or "geo". When type is "geo", lat
 #' long comes from mass grid, XLONG_M and XLAT_M
 #' @param matrix if the output is matrix or polygon (sf)
-#' @param change_latlon Logical, to change lat for lons. Default FALSE
 #' @param as_raster  logical, to return a raster
-#' @param epsg epsg code number (see http://spatialreference.org/ref/epsg/)
-#' @import ncdf4
-#' @importFrom raster raster
-#' @importFrom sf st_polygon st_multipolygon st_sf st_sfc st_cast
+#' @importFrom ncdf4 ncvar_get nc_close nc_open ncatt_get
+#' @importFrom raster raster rasterToPolygons
+#' @importFrom sf st_as_sf
+#' @note The default crs is 4326 (see http://spatialreference.org/ref/epsg/)
 #' @export
 #' @examples {
 #' # Do not run
@@ -23,9 +22,7 @@
 wrf_grid <- function(filewrf,
                       type = "wrfinput",
                       matrix = FALSE,
-                      change_latlon = FALSE,
-                      as_raster = FALSE,
-                      epsg = 4326){
+                      as_raster = FALSE){
   cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
   if(type == "wrfinput"){
@@ -36,8 +33,8 @@ wrf_grid <- function(filewrf,
     lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG_M") # nocov
   }
   time   <- ncdf4::ncvar_get(wrf, varid = "Times")
-  dx     <- ncdf4::ncatt_get(wrf, varid = 0,
-                             attname = "DX")$value
+  # dx     <- ncdf4::ncatt_get(wrf, varid = 0,
+  #                            attname = "DX")$value
   n.lat  <- ncdf4::ncatt_get(wrf, varid = 0,
                              attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
   n.lon  <- ncdf4::ncatt_get(wrf, varid = 0,
@@ -45,20 +42,21 @@ wrf_grid <- function(filewrf,
   cat(paste0("Number of lat points ", n.lat, "\n"))
   cat(paste0("Number of lon points ", n.lon, "\n"))
   ncdf4::nc_close(wrf)
-  r.lat  <- range(lon)
-  r.lon  <- range(lat)
+  # r.lat  <- range(lon)
+  # r.lon  <- range(lat)
 
-  if(change_latlon) {
+  # if(change_latlon) {
     EM  <- matrix(0, nrow = n.lat, ncol = n.lon) # nocov
-  } else {
-    EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
-  }
+  # } else {
+    # EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
+  # }
 
   if (matrix == T){
     return(EM)
   }
 
-  r <- raster::raster(EM,
+  # raster
+  r <- raster::raster(t(EM),
                       xmn = min(lon),
                       xmx = max(lon),
                       ymn = min(lat),
@@ -68,6 +66,7 @@ wrf_grid <- function(filewrf,
     return(r)
   }               # nocov end
 
+  #sf
   r <- raster::rasterToPolygons(r)
   grid <- sf::st_as_sf(r)
 
