@@ -36,7 +36,8 @@ sfx_explode <- function(x, ...) {
   sc <- silicate::SC0(x)
   ## unnest the nested segment indexes
   ## can remove unnest with a bit of do.call and lapply nrow set-up
-  segs <- tidyr::unnest(sc$object, cols = c("topology_"))
+  segs <- tidyr::unnest(sc$object, cols = c("topology_"))[c(".vx0", ".vx1")]
+
   ## index vertices x_ y_ by segment matrix
   coords <- sc$vertex[as.vector(t(as.matrix(segs[c(".vx0", ".vx1")]))), c("x_", "y_")]
   ## column name to avoid clash with existing data
