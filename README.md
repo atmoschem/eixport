@@ -18,7 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.4.3
+## Exporting emissions to atmospheric models, eixport: 0.4.7
 
 ![](https://i.imgur.com/BcZ2tfW.png)
 
@@ -43,8 +43,7 @@ version:
 install.packages("eixport")
 ```
 
-To install the development
-    version:
+To install the development version:
 
 ``` r
 devtools::install_github("atmoschem/eixport")
@@ -52,34 +51,34 @@ devtools::install_github("atmoschem/eixport")
 
 ``` r
 library(eixport)
+a <- list.files(
+system.file("extdata", package = "eixport"), full.names = T)
+wrf <- grep(pattern = "d01", x = a, value = T)
+wrf_meta(file = wrf)
+#>    vars  description                memory_order field_type stagger coordinates
+#> 1 Times         <NA>                        <NA>       <NA>      NA          NA
+#> 2  XLAT  degree east LONGITUDE, WEST IS NEGATIVE         XY     104          NA
+#> 3 XLONG degree north LATITUDE, SOUTH IS NEGATIVE         XY     104          NA
 ```
 
 ## Some functions:
 
   - [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
-    Export emissions to other
-    formats
+    Export emissions to other formats
   - [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
-    Combine total/spatial/temporal/split and write emission to
-    file
+    Combine total/spatial/temporal/split and write emission to file
   - [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
-    inputs for SPM
-    BRAMS
+    inputs for SPM BRAMS
   - [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
-    Create spatial profile for
-    WRF-Chem
+    Create spatial profile for WRF-Chem
   - [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
-    Create emission files to the
-    WRF-Chem
+    Create emission files to the WRF-Chem
   - [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
-    simple plot for
-    emissions
+    simple plot for emissions
   - [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
-    Read variables of emission
-    files
+    Read variables of emission files
   - [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
-    Write variables in emission
-    files
+    Write variables in emission files
   - [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
     Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
 

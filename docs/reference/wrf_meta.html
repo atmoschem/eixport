@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function to write variables in emission files — wrf_put • eixport</title>
+<title>Returns metadata (attributes) of wrf file in a data.frame — wrf_meta • eixport</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,10 @@
 
 
 
-<meta property="og:title" content="Function to write variables in emission files — wrf_put" />
-<meta property="og:description" content="Extract variable" />
+<meta property="og:title" content="Returns metadata (attributes) of wrf file in a data.frame — wrf_meta" />
+<meta property="og:description" content="wrf_meta returns the attributes of a wrf
+NetCDF file in a data.frame. Therefore, there is no need to
+use ncdump -h &quot;wrf_file&quot;" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -121,16 +123,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function to write variables in emission files</h1>
+    <h1>Returns metadata (attributes) of wrf file in a data.frame</h1>
     
-    <div class="hidden name"><code>wrf_put.Rd</code></div>
+    <div class="hidden name"><code>wrf_meta.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract variable</p>
+    <p><code>wrf_meta</code> returns the attributes of a wrf
+NetCDF file in a data.frame. Therefore, there is no need to
+use ncdump -h "wrf_file"</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span>(), <span class='kw'>name</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>POL</span>, <span class='kw'>mult</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>wrf_meta</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,57 +143,21 @@
       <th>file</th>
       <td><p>Character; name of file interactively (default) or specified</p></td>
     </tr>
-    <tr>
-      <th>name</th>
-      <td><p>Character; name of the variable (any variable)</p></td>
-    </tr>
-    <tr>
-      <th>POL</th>
-      <td><p>Numeric; emissions input or string/POSIXlt time</p></td>
-    </tr>
-    <tr>
-      <th>mult</th>
-      <td><p>Numeric; multiplier. If the length is more than 1, it multiplies POL for each
-value of mult. It can be used if you want to add an hourly profile to your emissions.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>display additional information</p></td>
-    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='wrf_plot.html'>wrf_plot</a></code> and <code><a href='wrf_get.html'>wrf_get</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>{
-<span class='co'># create the folder and emission file</span>
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"EMISS"</span>))
-<span class='fu'><a href='wrf_create.html'>wrf_create</a></span>(<span class='kw'>wrfinput_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"eixport"</span>),
-          <span class='kw'>wrfchemi_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"EMISS"</span>))
-
-<span class='co'># get the name of created file</span>
-<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"EMISS"</span>),
-                    <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"wrfchemi"</span>,
-                    <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># open, put some numbers and write</span>
-<span class='no'>CO</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='wrf_get.html'>wrf_get</a></span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>)
-<span class='no'>CO</span>[] <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>CO</span>))
-<span class='fu'>wrf_put</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>files</span>[<span class='fl'>1</span>], <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"E_CO"</span>, <span class='kw'>POL</span> <span class='kw'>=</span> <span class='no'>CO</span>)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpygKyY8/EMISS' already exists</span></div></pre>
+<span class='co'># Do not run</span>
+}</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Daniel Schuch and Sergio Ibarra</p>
   </div>
 </div>
 

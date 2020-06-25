@@ -51,6 +51,10 @@ devtools::install_github("atmoschem/eixport")
 
 ```{r}
 library(eixport)
+a <- list.files(
+system.file("extdata", package = "eixport"), full.names = T)
+wrf <- grep(pattern = "d01", x = a, value = T)
+wrf_meta(file = wrf)
 ```
 
 ## Some functions:
@@ -64,6 +68,7 @@ library(eixport)
 - [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
 - [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
 - [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html): Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+
 
 ## Paper accepted on Journal of Open Source Software
 

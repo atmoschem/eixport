@@ -57,5 +57,7 @@ sfx_explode <- function(x, ...) {
   }
   sflines[[idname]] <- NULL
   ## restore projection metadata
-  sf::st_set_crs(sflines, sf::st_crs(x))
+  x <- sf::st_set_crs(sflines, sf::st_crs(x))
+  x$path_ <- NULL
+  return(x)
 }
