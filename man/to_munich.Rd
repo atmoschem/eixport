@@ -36,7 +36,7 @@ The user must ensure that the spatial object has one line feature
 per vertex and lines with more than one vertex must be previously splitted.
 }
 \examples{
-\dontrun{
+{
 # Do not run
 library(vein)
 data(net)

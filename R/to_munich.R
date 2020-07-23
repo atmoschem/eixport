@@ -23,7 +23,7 @@
 #' @note The user must ensure that the spatial object has one line feature
 #' per vertex and lines with more than one vertex must be previously splitted.
 #' @export
-#' @examples \dontrun{
+#' @examples {
 #' # Do not run
 #' library(vein)
 #' data(net)
