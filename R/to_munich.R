@@ -23,14 +23,37 @@
 #' @note The user must ensure that the spatial object has one line feature
 #' per vertex and lines with more than one vertex must be previously splitted.
 #' @export
-#' @importFrom sf st_coordinates st_transform st_set_geometry  st_length st_geometry st_set_crs
-#' @importFrom  silicate SC0
-#' @importFrom  tidyr unnest
-#' @importFrom sfheaders sf_linestring
-#' @examples {
+#' @examples \dontrun{
 #' # Do not run
-#' data(emisco)
-#' dfco <- emisco[1:1000,"V8"]
+#' library(vein)
+#' data(net)
+#' data(pc_profile)
+#' data(profiles)
+#' data(fkm)
+#' PC_G <- c(33491,22340,24818,31808,46458,28574,24856,28972,37818,49050,87923,
+#'           133833,138441,142682,171029,151048,115228,98664,126444,101027,
+#'           84771,55864,36306,21079,20138,17439, 7854,2215,656,1262,476,512,
+#'           1181, 4991, 3711, 5653, 7039, 5839, 4257,3824, 3068)
+#' pc1 <- my_age(x = net$ldv, y = PC_G, name = "PC")
+#'
+#' # Estimation for morning rush hour and local emission factors and speed
+#' speed <- data.frame(S8 = net$ps)
+#' lef <- EmissionFactorsList(ef_cetesb("CO", "PC_G", agemax = ncol(pc1)))
+#' E_CO <- emis(veh = pc1,lkm = net$lkm, ef = lef, speed = speed)
+#' # rowSums drop units
+#' net$CO  <- set_units(rowSums(E_CO), g/h)
+#' # selecting only CO and exploding lines and updating emissions
+#' df <- st_explode(net["CO"])
+#' # st_explode should not drop units, must fix
+#' df$CO  <- set_units(df$CO, g/h)
+#' # now we have split line in vertex
+#' # selecting 1000 links
+#' dfco <- df[1:1000,"CO"]
+#' ###########
+#' MUNICH relyes in a python script that reads emissions with units \strong{ug/km/h}
+#' # Therefore
+#' dfco$CO <- set_units(dfco$CO, ug/h)
+#' dfco$CO<- dfco$CO/set_units(st_length(dfco), km)
 #' etm <- to_munich(sdf = dfco)
 #' names(etm)
 #' class(etm)
@@ -40,6 +63,8 @@
 #' row.names = FALSE, sep = " ", quote = FALSE)
 #' write.table(x = etm$Street, file = paste0(tempfile(), "_Street.txt"),
 #' row.names = FALSE, sep = " ", quote = FALSE)
+#' ######
+#' # todo: handle all unit checks and conversion internally
 #' }
 to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   sdf <- sf::st_as_sf(sdf)

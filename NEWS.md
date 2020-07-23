@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.4.8 (Release date: 23 jul 2020)
+- Improved example of to_munich, emissions must enter into MUNICH with units ug/km/h
+
+
 # eixport 0.4.7 (Release date: 24 jun 2020)
 - Add wrf_meta to return attributes from a wrf tile into a data.frame.
 

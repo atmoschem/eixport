@@ -68,6 +68,8 @@ wrf_meta(file = wrf)
 - [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
 - [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
 - [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html): Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+- [to_munich](https://atmoschem.github.io/eixport/reference/to_munich.html): To generate inputs for
+MUNICH model.
 
 
 ## Paper accepted on Journal of Open Source Software

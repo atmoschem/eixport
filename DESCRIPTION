@@ -1,7 +1,7 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.4.7
-Date: 2020-06-24
+Version: 0.4.8
+Date: 2020-07-23
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -28,5 +28,5 @@ Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate (>= 0.3
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 7.0.2
-Suggests: testthat, covr, lwgeom
+Suggests: testthat, covr, lwgeom, vein
 Roxygen: list(markdown = TRUE)

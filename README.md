@@ -18,7 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.4.7
+## Exporting emissions to atmospheric models, eixport: 0.4.8
 
 ![](https://i.imgur.com/BcZ2tfW.png)
 
@@ -81,6 +81,8 @@ wrf_meta(file = wrf)
     Write variables in emission files
   - [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
     Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+  - [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
+    To generate inputs for MUNICH model.
 
 ## Paper accepted on Journal of Open Source Software
 
