@@ -22,10 +22,12 @@
 #' https://doi.org/10.5194/gmd-11-611-2018, 2018.
 #' @note The user must ensure that the spatial object has one line feature
 #' per vertex and lines with more than one vertex must be previously splitted.
+#' the resulting units must be \strong{ug/km/h}
 #' @export
 #' @examples {
-#' # Do not run
 #' library(vein)
+#' library(units)
+#' library(sf)
 #' data(net)
 #' data(pc_profile)
 #' data(profiles)
@@ -50,7 +52,7 @@
 #' # selecting 1000 links
 #' dfco <- df[1:1000,"CO"]
 #' ###########
-#' MUNICH relyes in a python script that reads emissions with units \strong{ug/km/h}
+#' #MUNICH relies in a python script that reads emissions with units ug/km/h
 #' # Therefore
 #' dfco$CO <- set_units(dfco$CO, ug/h)
 #' dfco$CO<- dfco$CO/set_units(st_length(dfco), km)

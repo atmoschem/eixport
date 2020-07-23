@@ -28,5 +28,5 @@ Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate (>= 0.3
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 7.0.2
-Suggests: testthat, covr, lwgeom, vein
+Suggests: testthat, covr, lwgeom, vein, units
 Roxygen: list(markdown = TRUE)
