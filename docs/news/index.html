@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,7 +48,6 @@
 
 <meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -72,7 +75,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -86,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -106,7 +109,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/atmoschem/eixport/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -120,12 +128,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/atmoschem/eixport/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="eixport-049-release-date-26-ago-2020" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.9">
+<a href="#eixport-049-release-date-26-ago-2020" class="anchor"></a>eixport 0.4.9 (Release date: 26 ago 2020)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Included EDGAR 5 and updated links in get_edgar</li>
+</ul>
+</div>
     <div id="eixport-048-release-date-23-jul-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.8">
 <a href="#eixport-048-release-date-23-jul-2020" class="anchor"></a>eixport 0.4.8 (Release date: 23 jul 2020)<small> Unreleased </small>
 </h1>
 <ul>
@@ -133,7 +149,7 @@
 </ul>
 </div>
     <div id="eixport-047-release-date-24-jun-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.7">
 <a href="#eixport-047-release-date-24-jun-2020" class="anchor"></a>eixport 0.4.7 (Release date: 24 jun 2020)<small> 2020-06-25 </small>
 </h1>
 <ul>
@@ -141,7 +157,7 @@
 </ul>
 </div>
     <div id="eixport-046-release-date-13-apr-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.6">
 <a href="#eixport-046-release-date-13-apr-2020" class="anchor"></a>eixport 0.4.6 (Release date: 13 apr 2020)<small> 2020-04-16 </small>
 </h1>
 <ul>
@@ -149,7 +165,7 @@
 </ul>
 </div>
     <div id="eixport-045-release-date-24-feb-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.5">
 <a href="#eixport-045-release-date-24-feb-2020" class="anchor"></a>eixport 0.4.5 (Release date: 24 feb 2020)<small> 2020-03-18 </small>
 </h1>
 <ul>
@@ -158,7 +174,7 @@
 </ul>
 </div>
     <div id="eixport-044-release-date-23-feb-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.4">
 <a href="#eixport-044-release-date-23-feb-2020" class="anchor"></a>eixport 0.4.4 (Release date: 23 feb 2020)<small> 2020-02-24 </small>
 </h1>
 <ul>
@@ -166,7 +182,7 @@
 </ul>
 </div>
     <div id="eixport-043-release-date-07-feb-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.3">
 <a href="#eixport-043-release-date-07-feb-2020" class="anchor"></a>eixport 0.4.3 (Release date: 07 feb 2020)<small> Unreleased </small>
 </h1>
 <ul>
@@ -174,7 +190,7 @@
 </ul>
 </div>
     <div id="eixport-043-release-date-28-jan-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.3">
 <a href="#eixport-043-release-date-28-jan-2020" class="anchor"></a>eixport 0.4.3 (Release date: 28 jan 2020)<small> Unreleased </small>
 </h1>
 <ul>
@@ -182,7 +198,7 @@
 </ul>
 </div>
     <div id="eixport-043-release-date-22-jan-2020" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.3">
 <a href="#eixport-043-release-date-22-jan-2020" class="anchor"></a>eixport 0.4.3 (Release date: 22 jan 2020)<small> Unreleased </small>
 </h1>
 <ul>
@@ -190,7 +206,7 @@
 </ul>
 </div>
     <div id="eixport-042-release-date-22-nov-2019" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.2">
 <a href="#eixport-042-release-date-22-nov-2019" class="anchor"></a>eixport 0.4.2 (Release date: 22 nov 2019)<small> Unreleased </small>
 </h1>
 <ul>
@@ -199,7 +215,7 @@
 </ul>
 </div>
     <div id="eixport-041-release-date-22-nov-2019" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.1">
 <a href="#eixport-041-release-date-22-nov-2019" class="anchor"></a>eixport 0.4.1 (Release date: 22 nov 2019)<small> Unreleased </small>
 </h1>
 <ul>
@@ -207,7 +223,7 @@
 </ul>
 </div>
     <div id="eixport-040-release-date-14-nov-2019" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.0">
 <a href="#eixport-040-release-date-14-nov-2019" class="anchor"></a>eixport 0.4.0 (Release date: 14 nov 2019)<small> 2019-11-22 </small>
 </h1>
 <ul>
@@ -217,7 +233,7 @@
 </ul>
 </div>
     <div id="eixport-039-release-date-24-oct-2019" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.9">
 <a href="#eixport-039-release-date-24-oct-2019" class="anchor"></a>eixport 0.3.9 (Release date: 24 oct 2019)<small> Unreleased </small>
 </h1>
 <ul>
@@ -225,7 +241,7 @@
 </ul>
 </div>
     <div id="eixport-038-release-date-19-fev-2019" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.8">
 <a href="#eixport-038-release-date-19-fev-2019" class="anchor"></a>eixport 0.3.8 (Release date: 19 fev 2019)<small> Unreleased </small>
 </h1>
 <ul>
@@ -235,7 +251,7 @@
 </ul>
 </div>
     <div id="eixport-037-release-date-01-nov-2018" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.7">
 <a href="#eixport-037-release-date-01-nov-2018" class="anchor"></a>eixport 0.3.7 (Release date: 01 nov 2018)<small> Unreleased </small>
 </h1>
 <ul>
@@ -243,24 +259,24 @@
 </ul>
 </div>
     <div id="eixport-036-release-date-05-out-2018" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.6">
 <a href="#eixport-036-release-date-05-out-2018" class="anchor"></a>eixport 0.3.6 (Release date: 05 out 2018)<small> 2018-10-06 </small>
 </h1>
 <ul>
-<li>update wrf_create for WRF 4.0.1 and detailed documentation for this function ( fix #36 )</li>
+<li>update wrf_create for WRF 4.0.1 and detailed documentation for this function ( fix <a href='https://github.com/atmoschem/eixport/issues/36'>#36</a> )</li>
 <li>update emis_opt for WRF 4.0.1</li>
 </ul>
 </div>
     <div id="eixport-035-release-date-21-jun-2018" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.5">
 <a href="#eixport-035-release-date-21-jun-2018" class="anchor"></a>eixport 0.3.5 (Release date: 21 Jun 2018)<small> Unreleased </small>
 </h1>
 <ul>
-<li>Add to_munich. Fix #18.</li>
+<li>Add to_munich. Fix <a href='https://github.com/atmoschem/eixport/issues/18'>#18</a>.</li>
 </ul>
 </div>
     <div id="eixport-034-release-date-26-may-2018" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.4">
 <a href="#eixport-034-release-date-26-may-2018" class="anchor"></a>eixport 0.3.4 (Release date: 26 May 2018)<small> Unreleased </small>
 </h1>
 <div id="eixport-034-release-date-26-may-2018-1" class="section level3">
@@ -272,7 +288,7 @@
 </div>
 </div>
     <div id="eixport-033-release-date-23-april-2018" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.3">
 <a href="#eixport-033-release-date-23-april-2018" class="anchor"></a>eixport 0.3.3 (Release date: 23 April 2018)<small> Unreleased </small>
 </h1>
 <div id="eixport-033-release-date-23-april-2018-1" class="section level3">
@@ -338,7 +354,7 @@
 <h2 class="hasAnchor">
 <a href="#eixport-v027-release-date-26-december-2017" class="anchor"></a>eixport v0.2.7 (Release date: 26 December 2017)</h2>
 <ul>
-<li>Fix #6: Incuding functions to SPM BRAMS.</li>
+<li>Fix <a href='https://github.com/atmoschem/eixport/issues/6'>#6</a>: Incuding functions to SPM BRAMS.</li>
 <li>Improve documentation of emisco, example of to_rline and Readme.md.</li>
 </ul>
 </div>
@@ -403,30 +419,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#eixport-048-release-date-23-jul-2020">0.4.8</a></li>
-        <li><a href="#eixport-047-release-date-24-jun-2020">0.4.7</a></li>
-        <li><a href="#eixport-046-release-date-13-apr-2020">0.4.6</a></li>
-        <li><a href="#eixport-045-release-date-24-feb-2020">0.4.5</a></li>
-        <li><a href="#eixport-044-release-date-23-feb-2020">0.4.4</a></li>
-        <li><a href="#eixport-043-release-date-07-feb-2020">0.4.3</a></li>
-        <li><a href="#eixport-043-release-date-28-jan-2020">0.4.3</a></li>
-        <li><a href="#eixport-043-release-date-22-jan-2020">0.4.3</a></li>
-        <li><a href="#eixport-042-release-date-22-nov-2019">0.4.2</a></li>
-        <li><a href="#eixport-041-release-date-22-nov-2019">0.4.1</a></li>
-        <li><a href="#eixport-040-release-date-14-nov-2019">0.4.0</a></li>
-        <li><a href="#eixport-039-release-date-24-oct-2019">0.3.9</a></li>
-        <li><a href="#eixport-038-release-date-19-fev-2019">0.3.8</a></li>
-        <li><a href="#eixport-037-release-date-01-nov-2018">0.3.7</a></li>
-        <li><a href="#eixport-036-release-date-05-out-2018">0.3.6</a></li>
-        <li><a href="#eixport-035-release-date-21-jun-2018">0.3.5</a></li>
-        <li><a href="#eixport-034-release-date-26-may-2018">0.3.4</a></li>
-        <li><a href="#eixport-033-release-date-23-april-2018">0.3.3</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -438,7 +434,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

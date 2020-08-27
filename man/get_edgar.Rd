@@ -5,32 +5,35 @@
 \title{Download datasets of EDGAR emissions}
 \usage{
 get_edgar(
-  dataset = "v432_AP",
+  dataset = "v50_AP",
   pol,
   sector,
   year,
+  n = parallel::detectCores()/2,
   destpath = tempdir(),
   txt = TRUE,
-  return_url = TRUE,
+  ask = TRUE,
   copyright = TRUE
 )
 }
 \arguments{
-\item{dataset}{Character; name of the datasets: "v432", "v432_AP", "v432_VOC_spec",
-"v4tox2", "htap_v2_2"}
+\item{dataset}{Character; name of the datasets:  "v50_AP",  "v432_AP", "v432_VOC_spec",
+"htap_v2_2"}
 
 \item{pol}{Character; one of the pollutants shown on note.}
 
 \item{sector}{Character; one of the sectors shown on note.}
 
-\item{year}{Integer; on of the years shown on note.}
+\item{year}{Integer;  years.}
+
+\item{n}{Integer; Number of cores in the machine, by default the half.}
 
 \item{destpath}{Character: Path to create the directory for downloads datasets}
 
 \item{txt}{Logical; if TRUE, download data as .txt and untis t/year,
 if FALSE units are ug/m2/s}
 
-\item{return_url}{Logical; return url?}
+\item{ask}{Logical; Are these URL ok?}
 
 \item{copyright}{Logical; to show copyright information.}
 }
@@ -63,11 +66,11 @@ year = 2012)
 
 \tabular{llll}{
 dataset  \tab pollutant \tab            sector  \tab years \cr
-v432  \tab    CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C
-\tab     AGS, CHE, ENE, ENF, FFF, IND, IRO, MNM, PRO, REF_TRF, SWD_INC,
-SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
-TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
-TOTALS, TRO, WWT \tab 1970-2012 \cr
+v50_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+PM2.5, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
+PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
+NEU \tab 1970-2015 \cr
 v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -80,9 +83,6 @@ voc21, voc22, voc23, voc24, voc25, TOTALS
 TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
 TRO, TRF \tab 1970-2012 \cr
-v4tox2  \tab    HG, HG_D, HG_G, HG_P \tab Iro,  cement, chlor, comb_power_ind,
-comb_res_oth, glass, gold_A, gold_L, nfe_oth, shipping, totals, tro_roa,
-waste \tab 1970-2008  \cr
 htap_v2_2  \tab BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2 \tab
 AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \\cr
 }
@@ -90,10 +90,11 @@ voc11 only 2008
 }
 \examples{
 \dontrun{
-# Download all pollutants for sector TRO
-get_edgar(dataset = "v432_AP", destpath = tempdir(),
-sector = c("TOTALS"),
-year = 2012)
+# see all the links:
+data(edgar)
+# Download all pollutants for sector
+get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS",
+year = 2014)
 # Download all sectors for pollutant CO
 get_edgar(dataset = "v432_AP", destpath = tempdir(),
 pol = c("CO"),
@@ -102,6 +103,10 @@ year = 2012)
 }
 \references{
 \itemize{
+\item \strong{v50_AP} Crippa, M., Solazzo, E., Huang, G., Guizzardi, D., Koffi, E.,
+Muntean, M., Schieberle, C., Friedrich, R., Janssens-Maenhout, G.:
+High resolution temporal profiles in the Emissions Database for
+Global Atmospheric Research, Nature Scientific Data, 2020, in press.
 \item \strong{v432}:  Muntean, M., Guizzardi, D., Schaaf, E., Crippa, M., Solazzo, E.,
 Olivier, J.G.J., Vignati, E. Fossil CO2 emissions of all world countries - 2018
 Report, EUR 29433 EN, Publications Office  of the European Union, Luxembourg,
@@ -116,10 +121,6 @@ Schieberle, C., Dore, C., Guizzardi, D., Muntean, M., Schaaf, E., and Friedrich,
 Speciation of anthropogenic emissions of non-methane volatile organic compounds: a
 global gridded data set for 1970–2012, Atmos. Chem. Phys., 17, 7683-7701,
 https://doi.org/10.5194/acp-17-7683-2017, 2017.
-\item \strong{v4tox2}: Muntean, M., Janssens-Maenhout, G., Song, S., Giang, A., Selin, N. E.,
-Zhong, H., ... & Schaaf, E. (2018). Evaluating EDGARv4. tox2 speciated mercury
-emissions ex-post scenarios and their impacts on modelled global and regional
-wet deposition patterns. Atmospheric Environment, 184, 56-68.
 \item \strong{htap_v2_2}: Janssens-Maenhout, G., Crippa, M., Guizzardi, D.,
 Dentener, F., Muntean, M., Pouliot, G., Keating, T., Zhang, Q., Kurokawa, J.,
 Wankmüller, R., Denier van der Gon, H., Kuenen, J. J. P., Klimont, Z.,

@@ -4,7 +4,9 @@
 \name{Lights}
 \alias{Lights}
 \title{Spatial distribution example}
-\format{A matrix of spatial distribution}
+\format{
+A matrix of spatial distribution
+}
 \source{
 \url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
 }

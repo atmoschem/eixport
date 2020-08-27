@@ -18,7 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.4.8
+## Exporting emissions to atmospheric models, eixport: 0.4.9
 
 ![](https://i.imgur.com/BcZ2tfW.png)
 
@@ -63,6 +63,8 @@ wrf_meta(file = wrf)
 
 ## Some functions:
 
+  - [get\_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
+    Download EDGAR emissions data.
   - [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
     Export emissions to other formats
   - [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
@@ -83,6 +85,12 @@ wrf_meta(file = wrf)
     Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
   - [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
     To generate inputs for MUNICH model.
+
+## Download EDGAR 5
+
+``` r
+get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS", year = 2014)
+```
 
 ## Paper accepted on Journal of Open Source Software
 

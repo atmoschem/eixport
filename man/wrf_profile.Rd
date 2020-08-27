@@ -3,7 +3,9 @@
 \name{wrf_profile}
 \alias{wrf_profile}
 \title{Create a spatial profile from a wrf emission file and a data frame with}
-\format{a numeric vector}
+\format{
+a numeric vector
+}
 \usage{
 wrf_profile(x, file, adjust = 0, verbose = T)
 }

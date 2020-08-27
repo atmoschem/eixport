@@ -4,7 +4,8 @@
 \name{emisco}
 \alias{emisco}
 \title{Emissions from VEIN demo}
-\format{A \code{sf} object of type LINESTRING with 288 rows and 15 variables:
+\format{
+A \code{sf} object of type LINESTRING with 288 rows and 15 variables:
 \describe{
 \item{ldv}{Light Duty Vehicles (1/h)}
 \item{hdv}{Heavy Duty Vehicles (1/h)}
@@ -22,7 +23,8 @@
 \item{ymax}{Ending y coordinates}
 \item{geometry}{geometry column of the sf object}
 data(emisco)
-}}
+}
+}
 \source{
 \url{https://github.com/atmoschem/vein}
 }

@@ -3,7 +3,9 @@
 \name{wrf_get}
 \alias{wrf_get}
 \title{Function to read variables of emission files}
-\format{array or raster object}
+\format{
+array or raster object
+}
 \usage{
 wrf_get(
   file = file.choose(),

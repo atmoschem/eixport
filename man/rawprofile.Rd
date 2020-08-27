@@ -4,10 +4,12 @@
 \name{rawprofile}
 \alias{rawprofile}
 \title{Raw profile}
-\format{A matrix with 1 column and 168 rows
+\format{
+A matrix with 1 column and 168 rows
 \describe{
 data(rawprofile)
-}}
+}
+}
 \usage{
 data(rawprofile)
 }

@@ -1,7 +1,7 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.4.8
-Date: 2020-07-23
+Version: 0.4.9
+Date: 2020-08-26
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -24,9 +24,9 @@ License: MIT + file LICENSE
 URL: https://atmoschem.github.io/eixport
 BugReports: https://github.com/atmoschem/eixport/issues/
 Depends: R (>= 3.5.0)
-Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate (>= 0.3), sfheaders (>= 0.2.1)
+Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate (>= 0.3), sfheaders (>= 0.2.1), parallel
 Encoding: UTF-8
 LazyData: no
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Suggests: testthat, covr, lwgeom, vein, units
 Roxygen: list(markdown = TRUE)
