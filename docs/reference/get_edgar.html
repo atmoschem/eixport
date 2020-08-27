@@ -220,10 +220,11 @@ year = 2012)</p>
 <table class='table'>
 <tr><td>dataset</td><td>pollutant</td><td>sector</td><td>years</td></tr>
 <tr><td>v50_AP</td><td>BC, CO,  NH3, NMVOC, NOx, OC, PM10,
-PM2.5, SO2</td><td>AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
-PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
-TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
-NEU</td><td>1970-2015</td></tr>
+PM2.5, SO2</td><td>"AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
+"NFE" "NMM" "PRO" "RCO" "REF_TRF" "SWD_INC" "TNR_Aviation_CDS"
+"TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
+"TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
+"SWD_LDF" "WWT" "NEU"</td><td>1970-2015</td></tr>
 <tr><td>v432_AP</td><td>BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 PM2.5_bio, PM2.5_fossil, SO2</td><td>AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -276,12 +277,22 @@ hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 <span class='co'># see all the links:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>edgar</span>)
 <span class='co'># Download all pollutants for sector</span>
-<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v50_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>sector</span> <span class='kw'>=</span> <span class='st'>"TOTALS"</span>,
-<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2014</span>)
+<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v50_AP"</span>,
+          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='st'>"TOTALS"</span>,
+          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2014</span>)
 <span class='co'># Download all sectors for pollutant CO</span>
-<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='kw'>pol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CO"</span>),
-<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
+<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>,
+          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+          <span class='kw'>pol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CO"</span>),
+         <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
+<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v50_AP"</span>,
+          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
+          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CHE"</span>),
+          <span class='kw'>pol</span> <span class='kw'>=</span> <span class='st'>"CO"</span>,
+          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>:<span class='fl'>2013</span>,
+          <span class='kw'>ask</span> <span class='kw'>=</span> <span class='no'>F</span>,
+          <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

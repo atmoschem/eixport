@@ -67,10 +67,11 @@ year = 2012)
 \tabular{llll}{
 dataset  \tab pollutant \tab            sector  \tab years \cr
 v50_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
-PM2.5, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
-PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
-TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
-NEU \tab 1970-2015 \cr
+PM2.5, SO2  \tab "AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
+"NFE" "NMM" "PRO" "RCO" "REF_TRF" "SWD_INC" "TNR_Aviation_CDS"
+"TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
+"TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
+"SWD_LDF" "WWT" "NEU"  \tab 1970-2015 \cr
 v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -93,12 +94,22 @@ voc11 only 2008
 # see all the links:
 data(edgar)
 # Download all pollutants for sector
-get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS",
-year = 2014)
+get_edgar(dataset = "v50_AP",
+          destpath = tempdir(),
+          sector = "TOTALS",
+          year = 2014)
 # Download all sectors for pollutant CO
-get_edgar(dataset = "v432_AP", destpath = tempdir(),
-pol = c("CO"),
-year = 2012)
+get_edgar(dataset = "v432_AP",
+          destpath = tempdir(),
+          pol = c("CO"),
+         year = 2012)
+get_edgar(dataset = "v50_AP",
+          destpath = tempdir(),
+          sector = c("CHE"),
+          pol = "CO",
+          year = 2012:2013,
+          ask = F,
+          n = 2)
 }
 }
 \references{

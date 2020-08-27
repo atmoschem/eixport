@@ -39,10 +39,11 @@
 #' \tabular{llll}{
 #'   dataset  \tab pollutant \tab            sector  \tab years \cr
 #'   v50_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
-#'    PM2.5, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
-#'   PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
-#'   TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO AGS MNM PRU_SOL SWD_LDF
-#'   NEU \tab 1970-2015 \cr
+#'    PM2.5, SO2  \tab "AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
+#'    "NFE" "NMM" "PRO" "RCO" "REF_TRF" "SWD_INC" "TNR_Aviation_CDS"
+#'    "TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
+#'    "TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
+#'    "SWD_LDF" "WWT" "NEU"  \tab 1970-2015 \cr
 #'   v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 #'   PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 #'   PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -98,12 +99,22 @@
 #' # see all the links:
 #' data(edgar)
 #' # Download all pollutants for sector
-#' get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS",
-#' year = 2014)
+#' get_edgar(dataset = "v50_AP",
+#'           destpath = tempdir(),
+#'           sector = "TOTALS",
+#'           year = 2014)
 #' # Download all sectors for pollutant CO
-#' get_edgar(dataset = "v432_AP", destpath = tempdir(),
-#' pol = c("CO"),
-#' year = 2012)
+#' get_edgar(dataset = "v432_AP",
+#'           destpath = tempdir(),
+#'           pol = c("CO"),
+#'          year = 2012)
+#' get_edgar(dataset = "v50_AP",
+#'           destpath = tempdir(),
+#'           sector = c("CHE"),
+#'           pol = "CO",
+#'           year = 2012:2013,
+#'           ask = F,
+#'           n = 2)
 #' }
 get_edgar <- function(dataset = "v50_AP",
                       pol,
@@ -126,37 +137,46 @@ get_edgar <- function(dataset = "v50_AP",
   )
   ed <- sysdata$edgar
 
+  eda <- ed
   ed <- ed[ed$data %in% dataset, ]
+  if(nrow(ed) == 0) {
+    cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n")
+    stop("No dataset")
+  }
 
-
-
-
+  eda <- ed
   if(missing(year)){
     warning("Downloading all available years")
   } else {
     ed <- ed[ed$year %in% year, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following years:\n", unique(eda$year), "\n")
+      stop("No Year")
+    }
   }
 
-
+  eda <- ed
   if(missing(sector)){
     warning("Downloading all available sector")
   } else {
     ed <- ed[ed$sector %in% sector, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n")
+      stop("No sector")
+    }
   }
 
+  eda <- ed
   if(missing(pol)){
     warning("Downloading all available pollutants")
   } else {
     ed <- ed[ed$pol %in% pol, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following pollutants:\n", unique(eda$pol), "\n")
+      stop("No pollutants")
+    }
   }
 
-
-  # more checks
-  if(dataset == "htap_v2_2") {
-    if(!year %in% c(2008, 2010)) {
-      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")
-    }
-  }                                                                       # nocov end
 
   if(txt){
     ed <- ed[ed$type == "txt", ]
@@ -167,10 +187,10 @@ get_edgar <- function(dataset = "v50_AP",
   cat("Downloading the following data:\n")
   print(ed$url)
 
-  if(ask){
+  if(ask){  # nocov start
     a <- utils::askYesNo("Are this links ok?")
     if(!a) stop("Make a selection again. Remember, you can see the urls with data(edgar)")
-  }
+  } # nocov end
 
 
   # paths

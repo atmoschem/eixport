@@ -13,7 +13,7 @@ Emissions are the mass of pollutants released into the atmosphere. Air quality m
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://atmoschem.github.io/eixport}
+  \item \url{https://atmoschem.github.io/eixport/}
   \item Report bugs at \url{https://github.com/atmoschem/eixport/issues/}
 }
 
