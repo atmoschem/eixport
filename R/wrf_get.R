@@ -50,7 +50,8 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
         cat(paste0('reading Times from ', file,'\n'))                                     # nocov
       TIME   <- ncvar_get(wrfchem,'Times')                                                # nocov
       TIME   <- as.POSIXlt(TIME, tz = "UTC", format="%Y-%m-%d_%H:%M:%OS", optional=FALSE) # nocov
-      cat('returning Times in POSIXct\n')                                                 # nocov
+      if(verbose)                                                                         # nocov
+        cat('returning Times in POSIXct\n')                                               # nocov
       return(TIME)                                                                        # nocov
     }
   }
