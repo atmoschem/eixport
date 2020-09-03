@@ -12,8 +12,7 @@ get_edgar(dataset = "v50_AP",
           sector = c("CHE"),
           pol = "CO",
           year = 2012:2013,
-          ask = F,
-          n = 2)
+          ask = F)
 
 
  test_that("get_edgar stops", {
