@@ -11,7 +11,7 @@ get_edgar(
   year,
   n = parallel::detectCores()/2,
   destpath = tempdir(),
-  txt = TRUE,
+  type = "nc",
   ask = TRUE,
   copyright = TRUE
 )
@@ -30,8 +30,8 @@ get_edgar(
 
 \item{destpath}{Character: Path to create the directory for downloads datasets}
 
-\item{txt}{Logical; if TRUE, download data as .txt and untis t/year,
-if FALSE units are ug/m2/s}
+\item{type}{Extension, character/ Indicates if the file should be "txt", "nc" or "other".
+txt with untis t/year and nc with units are ug/m2/s}
 
 \item{ask}{Logical; Are these URL ok?}
 
@@ -72,6 +72,16 @@ PM2.5, SO2  \tab "AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
 "TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
 "TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
 "SWD_LDF" "WWT" "NEU"  \tab 1970-2015 \cr
+v50_GHG  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+\tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO PRO_COAL PRO_GAS PRO_OIL RCO
+REF_TRF SWD_INC SWD_LDF TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+\tab 1970-2018 \cr
+v432  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+\tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO RCO REF_TRF SWD_INC SWD_LDF
+TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO TNR_Aviation_SPS
+TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+\tab 1970-2012 \cr
 v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -93,6 +103,7 @@ voc11 only 2008
 \dontrun{
 # see all the links:
 data(edgar)
+head(edgar)
 # Download all pollutants for sector
 get_edgar(dataset = "v50_AP",
           destpath = tempdir(),
@@ -110,6 +121,10 @@ get_edgar(dataset = "v50_AP",
           year = 2012:2013,
           ask = F,
           n = 2)
+# Download all v432 for all years and TOTALS
+get_edgar(dataset = "v432",
+          destpath = tempdir(),
+          sector = "TOTALS")
 }
 }
 \references{

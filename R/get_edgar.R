@@ -13,8 +13,8 @@
 #' @param sector Character; one of the sectors shown on note.
 #' @param year Integer;  years.
 #' @param destpath Character: Path to create the directory for downloads datasets
-#' @param txt Logical; if TRUE, download data as .txt and untis t/year,
-#' if FALSE units are ug/m2/s
+#' @param type Extension, character/ Indicates if the file should be "txt", "nc" or "other".
+#' txt with untis t/year and nc with units are ug/m2/s
 #' @param ask Logical; Are these URL ok?
 #' @param copyright Logical; to show copyright information.
 #' @param n Integer; Number of cores in the machine, by default the half.
@@ -44,6 +44,16 @@
 #'    "TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
 #'    "TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
 #'    "SWD_LDF" "WWT" "NEU"  \tab 1970-2015 \cr
+#'   v50_GHG  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+#'   \tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO PRO_COAL PRO_GAS PRO_OIL RCO
+#'   REF_TRF SWD_INC SWD_LDF TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+#'   TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+#'   \tab 1970-2018 \cr
+#'   v432  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+#'   \tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO RCO REF_TRF SWD_INC SWD_LDF
+#'   TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO TNR_Aviation_SPS
+#'   TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+#'   \tab 1970-2012 \cr
 #'   v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 #'   PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 #'   PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -98,6 +108,7 @@
 #' @examples \dontrun{
 #' # see all the links:
 #' data(edgar)
+#' head(edgar)
 #' # Download all pollutants for sector
 #' get_edgar(dataset = "v50_AP",
 #'           destpath = tempdir(),
@@ -115,6 +126,10 @@
 #'           year = 2012:2013,
 #'           ask = F,
 #'           n = 2)
+#' # Download all v432 for all years and TOTALS
+#' get_edgar(dataset = "v432",
+#'           destpath = tempdir(),
+#'           sector = "TOTALS")
 #' }
 get_edgar <- function(dataset = "v50_AP",
                       pol,
@@ -122,7 +137,7 @@ get_edgar <- function(dataset = "v50_AP",
                       year,
                       n = parallel::detectCores()/2,
                       destpath = tempdir(),
-                      txt = TRUE,
+                      type = "nc",
                       ask = TRUE,
                       copyright = TRUE){
   if(copyright) message(
@@ -178,10 +193,15 @@ get_edgar <- function(dataset = "v50_AP",
   }
 
 
-  if(txt){
-    ed <- ed[ed$type == "txt", ]
+  eda <- ed
+  if(missing(type)){
+    warning("Downloading all available pollutants")
   } else {
-    ed <- ed[ed$type == "nc", ]
+    ed <- ed[ed$type %in% type, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following pollutants:\n", unique(eda$type), "\n")
+      stop("No type")
+    }
   }
 
   cat("Downloading the following data:\n")
