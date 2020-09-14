@@ -1,18 +1,18 @@
 context("get_edgar")
 
-get_edgar(dataset = "v50_AP",
+suppressWarnings(get_edgar(dataset = "v50_AP",
           destpath = tempdir(),
           sector = c("CHE"),
           pol = "CO",
           year = 2012,
-          ask = F)
+          ask = FALSE))
 
-get_edgar(dataset = "v50_AP",
+suppressWarnings(get_edgar(dataset = "v50_AP",
           destpath = tempdir(),
           sector = c("CHE"),
           pol = "CO",
           year = 2012:2013,
-          ask = F)
+          ask = FALSE))
 
 
  test_that("get_edgar stops", {
