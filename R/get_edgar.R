@@ -216,12 +216,11 @@ get_edgar <- function(dataset = "v50_AP",
   # paths
   if(missing(n)) {
     for (i in 1:length(ed$url)){
-      utils::download.file(paste0(url = ed$url[i]),
+      utils::download.file(url = ed$url[i],
                            destfile =  paste0(destpath, "/", ed$links[i]))
       message(paste0(
         "Files at ", destpath,  "\n"))
     }
-
   } else {
     parallel::mclapply(seq_along(ed$url), function(i) {
       utils::download.file(paste0(url = ed$url[i]),
