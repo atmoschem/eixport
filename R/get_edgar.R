@@ -208,7 +208,7 @@ get_edgar <- function(dataset = "v50_AP",
   print(ed$url)
 
   if(ask){  # nocov start
-    a <- utils::askYesNo("Are this links ok?")
+    a <- utils::askYesNo("Are these links ok?")
     if(!a) stop("Make a selection again. Remember, you can see the urls with data(edgar)")
   } # nocov end
 
