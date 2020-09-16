@@ -8,7 +8,7 @@
 #'
 #'
 #' @param dataset Character; name of the datasets:  "v50_AP",  "v432_AP", "v432_VOC_spec",
-#'  "htap_v2_2"
+#'  "htap_v2_2", "v50_GHG
 #' @param pol Character; one of the pollutants shown on note.
 #' @param sector Character; one of the sectors shown on note.
 #' @param year Integer;  years.
