@@ -75,6 +75,7 @@ chem_edgar <- function(path,
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
 
+
   #no covr, becuase it would take too much time
   ncs <- list.files(path = path, #nocov start
                     full.names = TRUE,
@@ -143,6 +144,11 @@ chem_edgar <- function(path,
   bp@history <- list("units: g km-2 h-1")
   names(bp) <- NCS_EDGAR$GEIA_id
 
+  if(missing(chem)) {
+    mech <- c("edgar", "radm", "radmsorg", "cbmz_mosaic", "cptec", "ecb05_opt1")
+    choice <- utils::menu(mech, title="Choose:")
+    chem <- mech[choice]
+  }
   # chemical mechanisms
   if(chem == "edgar") return(bp)
 
