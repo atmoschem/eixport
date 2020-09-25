@@ -125,7 +125,7 @@ chem_edgar <- function(path,
 cat("Detecting the following files:\n")
 print(as.data.frame(cbind(lncs)))
 
-if(sapply(l, length) > 1) stop("There are more than 1 NetCDF file per pollutant")
+if(sapply(lncs, length) > 1) stop("There are more than 1 NetCDF file per pollutant")
 
     NCS_EDGAR <- data.frame(
       GEIA_id = c(paste0("voc", 1:25),
