@@ -122,10 +122,14 @@ chem_edgar <- function(path,
     pm25 = grep("PM2.5_", ncs, value = T),
     bc = grep("BC_", ncs, value = T),
     oc = grep("_OC_", ncs, value = T))
+
   cat("Detecting the following files:\n")
+
   print(as.data.frame(cbind(lncs)))
+
   la <- unique(unlist(lapply(lncs, length)))
-  if(la != 1) stop("There should be 1 NetCDF per pollutantt")
+
+  if(length(la) > 1) stop("There should be 1 NetCDF per pollutantt")
 
   NCS_EDGAR <- data.frame(
     GEIA_id = c(paste0("voc", 1:25),
