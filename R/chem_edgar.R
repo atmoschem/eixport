@@ -14,6 +14,9 @@
 #'
 #' - When chem is "edgar" units are: "g km-2 h-1"
 #' - Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"
+#' @param merge Logical; in the case that tehre are more than one NetCDF per pollutant,
+#' merge = TRUE will merge them with sum. Default is FALSE.
+#' @param k, Numeric; Value to factorize each pollutant.
 #' @return RasterStack
 #' @importFrom raster stack raster rotate
 #' @importFrom ncdf4 nc_open nc_close
@@ -70,7 +73,9 @@
 #' edgar_chem("V50_432_AP/TOT", "radm")
 #' }
 chem_edgar <- function(path,
-                       chem){
+                       chem,
+                       merge = FALSE,
+                       k = rep(1, 34)){
 
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
@@ -129,32 +134,47 @@ chem_edgar <- function(path,
 
   la <- unique(unlist(lapply(lncs, length)))
 
-  if(length(la) > 1) stop("There should be 1 NetCDF per pollutantt")
+  if(length(la) > 1 & !merge) stop("There should be 1 NetCDF per pollutantt")
 
-  NCS_EDGAR <- data.frame(
-    GEIA_id = c(paste0("voc", 1:25),
-                c("co", "nox", "nmvoc","so2", "nh3",
-                  "pm10", "pm2.5", "bc", "oc")),
-    ncs = unlist(lncs))
+  fr <- function(x) raster::rotate(raster::raster(x))*1000*3600*1000*1000
 
 
   #EDGAR ####
-  dte <- cbind(dte, NCS_EDGAR)
 
   cat("EDGAR data: ")
-  lp <- lapply(1:nrow(dte), function(i){
-    cat(dte$GEIA_id[i], " ")
-    raster::rotate(
-      raster::raster(
-        dte$ncs[i]))*1000*3600*1000*1000
+  NCS_EDGAR <- data.frame(
+    GEIA_id = c(paste0("voc", 1:25),
+                        c("co", "nox", "nmvoc","so2", "nh3",
+                          "pm10", "pm2.5", "bc", "oc")))
+
+
+  dte <- cbind(dte, NCS_EDGAR)
+
+lp <- lapply(1:length(lncs), function(i) {
+      cat(dte$GEIA_id[i], " ")
+
+    if(merge & length(lncs[[i]]) > 1) {
+      cat("merging ", lncs[[i]])
+      cat("\n")
+      do.call("+", lapply(lncs[[i]], fr))*k[i]
+    } else {
+      fr(lncs[[i]])*k[i]
+    }
+
   })
+  # lp <- lapply(1:nrow(dte), function(i){
+  #   cat(dte$GEIA_id[i], " ")
+  #   raster::rotate(
+  #     raster::raster(
+  #       dte$ncs[i]))*1000*3600*1000*1000
+  # })
+
   # ug/m2/s
-  cat("\n")
   bp <- raster::stack(lp)
   bp@history <- list("units: g km-2 h-1")
   names(bp) <- NCS_EDGAR$GEIA_id
 
-  if(missing(chem)) {
+    if(missing(chem)) {
     mech <- c("edgar", "radm", "radmsorg", "cbmz_mosaic", "cptec", "ecb05_opt1")
     choice <- utils::menu(mech, title="Choose:")
     chem <- mech[choice]

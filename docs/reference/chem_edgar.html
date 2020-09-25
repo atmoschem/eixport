@@ -142,7 +142,7 @@ project from the Joint Research Centre. This function reads the NetCDF and
 merge/aggregate into diferent chemical mechanisms</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chem_edgar</span>(<span class='no'>path</span>, <span class='no'>chem</span>)</pre>
+    <pre class="usage"><span class='fu'>chem_edgar</span>(<span class='no'>path</span>, <span class='no'>chem</span>, <span class='kw'>merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>34</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +161,15 @@ merge/aggregate into diferent chemical mechanisms</p>
 <li><p>When chem is "edgar" units are: "g km-2 h-1"</p></li>
 <li><p>Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>merge</th>
+      <td><p>Logical; in the case that tehre are more than one NetCDF per pollutant,
+merge = TRUE will merge them with sum. Default is FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>k, </th>
+      <td><p>Numeric; Value to factorize each pollutant.</p></td>
     </tr>
     </table>
 

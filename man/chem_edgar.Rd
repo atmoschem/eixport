@@ -4,7 +4,7 @@
 \alias{chem_edgar}
 \title{Agregate EDGAR emissions NetCDF files into a RasterStack by}
 \usage{
-chem_edgar(path, chem)
+chem_edgar(path, chem, merge = FALSE, k = rep(1, 34))
 }
 \arguments{
 \item{path}{Character; path to the NetCDF files from EDGAR. The directory
@@ -18,6 +18,11 @@ chem_edgar(path, chem)
 \item When chem is "edgar" units are: "g km-2 h-1"
 \item Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"
 }}
+
+\item{merge}{Logical; in the case that tehre are more than one NetCDF per pollutant,
+merge = TRUE will merge them with sum. Default is FALSE.}
+
+\item{k, }{Numeric; Value to factorize each pollutant.}
 }
 \value{
 RasterStack
