@@ -41,7 +41,7 @@ interval in minutes between different times (frames) see Details}
 
 \item{kemit}{from wrf &chem namelist.input, number of vertical levels of the emission file}
 
-\item{variables}{emission species, can be used data(emis_opt)}
+\item{variables}{emission species, can be used \code{emis_opt}}
 
 \item{n_aero}{number of aerosol species}
 

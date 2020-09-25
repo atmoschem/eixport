@@ -20,7 +20,7 @@
 #' @param day_offset number of days (can be a fraction) see Details
 #' @param io_style_emissions from wrf &chem namelist.input see Details
 #' @param kemit from wrf &chem namelist.input, number of vertical levels of the emission file
-#' @param variables emission species, can be used data(emis_opt)
+#' @param variables emission species, can be used `emis_opt`
 #' @param n_aero number of aerosol species
 #' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for
 #' no compression
@@ -100,8 +100,9 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       cat("NOTE: see wrf_create domumentation notes before run\n")  #nocov
 
   if(length(variables) == 1){
-    emis_opt <- NULL
-    load(system.file("data/emis_opt.rda", package = "eixport"))
+    emis_opt <- sysdata$emis_opt
+    # emis_opt <- NULL
+    # load(system.file("data/emis_opt.rda", package = "eixport"))
     if(variables %in% names(emis_opt)){
       variables <- emis_opt[[variables]]
     }else{

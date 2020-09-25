@@ -3,12 +3,26 @@ library(sf)
 library(hexSticker)
 data(net)
 g2 <- st_make_grid(st_as_sfc(st_bbox(st_as_sf(net))),
-                   cellsize = .055,
+                   cellsize = .01,
                    square = FALSE)
 ge <- st_sf(id = 1:length(g2), geometry = st_sfc(g2))
-netg <- emis_grid(spobj = sf::st_as_sf(net)[, "hdv"], g = ge)
+hdv <- sf::st_as_sf(net)[, "hdv"]
+netg <- emis_grid(spobj = hdv[as.numeric(hdv$hdv)>600, ], g = ge)
+hdv2 <- netg[as.numeric(netg$hdv) > 760, ]
+hdv2$hdv[25] <- NA
+plot(hdv2["hdv"],
+     axes = F,
+     main = "",
+     key.pos=NULL,
+     pal = cptcity::cpt(3681, colorRampPalette = T, rev = T),
+     lty= 0)
 
-sticker(~plot(netg["hdv"], axes = F, main = "", key.pos=NULL),
+sticker(~plot(hdv2["hdv"],
+              axes = F,
+              main = "",
+              key.pos=NULL,
+              pal = cptcity::cpt(3681, colorRampPalette = T, rev = T),
+              lty= 0),
         package="eixport",
         s_x = 0.8,
         s_y = 0.7,
