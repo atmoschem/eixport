@@ -303,7 +303,12 @@ chem_edgar <- function(path,
     E_ORGC <- bp$pm2.5*0/3600                            # emis_opt$ecbmz_mosaic[35]
     E_ECC <- bp$pm2.5*0/3600                             # emis_opt$ecbmz_mosaic[36]
 
-    CBMZ_MOSAIC <- raster::brick(lapply(emis_opt$ecbmz_mosaic, get))
+    CBMZ_MOSAIC <- raster::brick(list(
+      E_ISO, E_SO2, E_NO, E_CO, E_ETH, E_HC3, E_HC5, E_HC8, E_XYL, E_OL2,
+      E_OLT, E_OLI, E_TOL, E_CSL, E_HCHO, E_ALD, E_KET, E_ORA2, E_NH3, E_NO2,
+      E_CH3OH, E_C2H5OH, E_PM25I, E_PM25J, E_ECI, E_ECJ, E_ORGI, E_ORGJ, E_SO4I, E_SO4J,
+      E_NO3I, E_NO3J, E_SO4C, E_NO3C, E_ORGC, E_ECC
+    ))
     names(CBMZ_MOSAIC) <- emis_opt$ecbmz_mosaic
     cat("units of gases: mol/km2/h\n")
     cat("units of aerosols: ug/m2/s\n")
