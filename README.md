@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# eixport <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# eixport <img src="man/figures/logo.png" align="right" alt="" width="140" />
 
 [![Travis-CI Build
 Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build

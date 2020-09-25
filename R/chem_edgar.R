@@ -69,7 +69,7 @@
 #' lapply(tros, unzip, exdir = "V50_432_AP/TRO/")
 #' edgar_chem("V50_432_AP/TOT", "radm")
 #' }
-edgar_chem <- function(path,
+chem_edgar <- function(path,
                        chem){
 
   dte <- sysdata$dte
@@ -81,7 +81,7 @@ edgar_chem <- function(path,
   # just checking units again
   a <- ncdf4::nc_open(ncs[1])
   cat("units: ", a$var[[1]]$units, "\n")
-  ncdf4::nc_close(ncs[1])
+  ncdf4::nc_close(a)
 
   # unidades  kg m-2 s-1
 
