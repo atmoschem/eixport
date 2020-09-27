@@ -76,6 +76,12 @@ chem_edgar <- function(path,
                        chem,
                        merge = FALSE,
                        k = rep(1, 34)){
+  k1 <- rep(1, 34)
+  k1[11] <- 0
+  chem_edgar(path = "/media/sergio/ext5/edgar_ecb05_opt1/MASP/V50_432_AP/TRO",
+             chem = "cbmz_mosaic",
+             merge = T,
+             k = k1)
 
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
@@ -156,11 +162,11 @@ lp <- lapply(1:length(lncs), function(i) {
     if(merge & length(lncs[[i]]) > 1) {
       cat("merging ", lncs[[i]])
       cat("\n")
-      do.call("+", lapply(lncs[[i]], fr))*k[i]
+      a <- do.call("+", lapply(lncs[[i]], fr))*k[i]
     } else {
-      fr(lncs[[i]])*k[i]
+      a <- fr(lncs[[i]])*k[i]
     }
-
+a
   })
   # lp <- lapply(1:nrow(dte), function(i){
   #   cat(dte$GEIA_id[i], " ")
@@ -289,6 +295,8 @@ lp <- lapply(1:length(lncs), function(i) {
     # cbmz_mosaic ####
   } else if (chem == "cbmz_mosaic") {
     E_ISO <- bp$voc10/dte[dte$GEIA_id == "voc10", ]$g_mol   # emis_opt$ecbmz_mosaic[1]
+    print(E_ISO)
+
     E_SO2 <- bp$so2/(64+16*2)                             # emis_opt$ecbmz_mosaic[2]
     E_NO <- bp$nox*0.9/(14+16)                            # emis_opt$ecbmz_mosaic[3]
     E_CO <- bp$co/(12+18)                                 # emis_opt$ecbmz_mosaic[4]
