@@ -76,12 +76,6 @@ chem_edgar <- function(path,
                        chem,
                        merge = FALSE,
                        k = rep(1, 34)){
-  k1 <- rep(1, 34)
-  k1[11] <- 0
-  chem_edgar(path = "/media/sergio/ext5/edgar_ecb05_opt1/MASP/V50_432_AP/TRO",
-             chem = "cbmz_mosaic",
-             merge = T,
-             k = k1)
 
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
