@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.5.0 (Release date: 09 oct 2020)
+- Add wrf_summary.
+
 # eixport 0.4.10 (Release date: 24 sep 2020)
 - Add `chem_edgar` to read EDGAR`s NetCDF and return RasterStack from Chemical Mechanism.
 `chem_edgar` includes units conversion and messages.

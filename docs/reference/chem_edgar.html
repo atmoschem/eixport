@@ -92,7 +92,7 @@ merge/aggregate into diferent chemical mechanisms" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -142,7 +142,7 @@ project from the Joint Research Centre. This function reads the NetCDF and
 merge/aggregate into diferent chemical mechanisms</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chem_edgar</span>(<span class='no'>path</span>, <span class='no'>chem</span>, <span class='kw'>merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fl'>34</span>))</pre>
+    <pre class="usage"><span class='fu'>chem_edgar</span><span class='op'>(</span><span class='va'>path</span>, <span class='va'>chem</span>, merge <span class='op'>=</span> <span class='cn'>FALSE</span>, k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>34</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,45 +189,46 @@ VOLATILES PARA EL MODELO WRF-CHEM, APLICADO A LOS ESQUEMAS RADM-2,
 CBM-Z Y MOZART-4.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># do not run</span>
 <span class='co'># Get EDGAR ####</span>
-<span class='fu'><a href='get_edgar.html'>get_edgar</a></span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_VOC_spec"</span>,
-          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TOT/"</span>,
-          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"TOTALS"</span>),
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"nc"</span>,
-          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
+<span class='fu'><a href='get_edgar.html'>get_edgar</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"v432_VOC_spec"</span>,
+          destpath <span class='op'>=</span> <span class='st'>"V50_432_AP/TOT/"</span>,
+          sector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"TOTALS"</span><span class='op'>)</span>,
+          type <span class='op'>=</span> <span class='st'>"nc"</span>,
+          year <span class='op'>=</span> <span class='fl'>2012</span><span class='op'>)</span>
 
-<span class='fu'><a href='get_edgar.html'>get_edgar</a></span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v50_AP"</span>,
-          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TOT"</span>,
-          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"TOTALS"</span>),
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"nc"</span>,
-          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2014</span>)
+<span class='fu'><a href='get_edgar.html'>get_edgar</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"v50_AP"</span>,
+          destpath <span class='op'>=</span> <span class='st'>"V50_432_AP/TOT"</span>,
+          sector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"TOTALS"</span><span class='op'>)</span>,
+          type <span class='op'>=</span> <span class='st'>"nc"</span>,
+          year <span class='op'>=</span> <span class='fl'>2014</span><span class='op'>)</span>
 
-<span class='fu'><a href='get_edgar.html'>get_edgar</a></span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_VOC_spec"</span>,
-          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TRO/"</span>,
-          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"TRO"</span>),
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"nc"</span>,
-          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>, <span class='kw'>ask</span> <span class='kw'>=</span> <span class='no'>F</span>)
+<span class='fu'><a href='get_edgar.html'>get_edgar</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"v432_VOC_spec"</span>,
+          destpath <span class='op'>=</span> <span class='st'>"V50_432_AP/TRO/"</span>,
+          sector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"TRO"</span><span class='op'>)</span>,
+          type <span class='op'>=</span> <span class='st'>"nc"</span>,
+          year <span class='op'>=</span> <span class='fl'>2012</span>, ask <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span>
 
-<span class='fu'><a href='get_edgar.html'>get_edgar</a></span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v50_AP"</span>,
-          <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TRO"</span>,
-          <span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>( <span class='st'>"TRO_RES"</span>, <span class='st'>"TRO_noRES"</span>),
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"nc"</span>,
-          <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2014</span>)
+<span class='fu'><a href='get_edgar.html'>get_edgar</a></span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"v50_AP"</span>,
+          destpath <span class='op'>=</span> <span class='st'>"V50_432_AP/TRO"</span>,
+          sector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"TRO_RES"</span>, <span class='st'>"TRO_noRES"</span><span class='op'>)</span>,
+          type <span class='op'>=</span> <span class='st'>"nc"</span>,
+          year <span class='op'>=</span> <span class='fl'>2014</span><span class='op'>)</span>
 
-<span class='no'>totals</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TOT/"</span>,
-                     <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                     <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>".zip"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>totals</span>, <span class='no'>unzip</span>, <span class='kw'>exdir</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TOT//"</span>)
+<span class='va'>totals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"V50_432_AP/TOT/"</span>,
+                     full.names <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                     pattern <span class='op'>=</span> <span class='st'>".zip"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>totals</span>, <span class='va'>unzip</span>, exdir <span class='op'>=</span> <span class='st'>"V50_432_AP/TOT//"</span><span class='op'>)</span>
 
 
-<span class='no'>tros</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TRO"</span>,
-                     <span class='kw'>full.names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                     <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>".zip"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>tros</span>, <span class='no'>unzip</span>, <span class='kw'>exdir</span> <span class='kw'>=</span> <span class='st'>"V50_432_AP/TRO/"</span>)
-<span class='fu'>edgar_chem</span>(<span class='st'>"V50_432_AP/TOT"</span>, <span class='st'>"radm"</span>)
-}</div></pre>
+<span class='va'>tros</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"V50_432_AP/TRO"</span>,
+                     full.names <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                     pattern <span class='op'>=</span> <span class='st'>".zip"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tros</span>, <span class='va'>unzip</span>, exdir <span class='op'>=</span> <span class='st'>"V50_432_AP/TRO/"</span><span class='op'>)</span>
+<span class='fu'>edgar_chem</span><span class='op'>(</span><span class='st'>"V50_432_AP/TOT"</span>, <span class='st'>"radm"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +244,7 @@ CBM-Z Y MOZART-4.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

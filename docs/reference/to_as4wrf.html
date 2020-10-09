@@ -93,7 +93,7 @@ by Vera-Vala et al (2016)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -144,7 +144,7 @@ assimilation system: "Another Asimilation System 4 WRF (AAS4WRF)" as published
 by Vera-Vala et al (2016)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>to_as4wrf</span>(<span class='no'>sdf</span>, <span class='kw'>nr</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>dmyhm</span>, <span class='no'>tz</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4326</span>, <span class='no'>islist</span>)</pre>
+    <pre class="usage"><span class='fu'>to_as4wrf</span><span class='op'>(</span><span class='va'>sdf</span>, nr <span class='op'>=</span> <span class='fl'>1</span>, <span class='va'>dmyhm</span>, <span class='va'>tz</span>, crs <span class='op'>=</span> <span class='fl'>4326</span>, <span class='va'>islist</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,15 +207,16 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
     <div class='dont-index'><p><code><a href='wrf_create.html'>wrf_create</a></code> <code><a href='to_wrf.html'>to_wrf</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>{
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gCO</span>)
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>to_as4wrf</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>dmyhm</span> <span class='kw'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
-               <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>df</span>)
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'>to_as4wrf</span>(<span class='kw'>sdf</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>co</span> <span class='kw'>=</span> <span class='no'>gCO</span>, <span class='kw'>pm</span> <span class='kw'>=</span> <span class='no'>gCO</span>), <span class='kw'>dmyhm</span> <span class='kw'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
-               <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"America/Sao_Paulo"</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>df2</span>)
-}</div><div class='output co'>#&gt;   id      long    lat       co       pm    time_lt            time_utc dutch
+    <pre class="examples"><div class='input'><span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>gCO</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>to_as4wrf</span><span class='op'>(</span>sdf <span class='op'>=</span> <span class='va'>gCO</span>, dmyhm <span class='op'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
+               tz <span class='op'>=</span> <span class='st'>"America/Sao_Paulo"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'>to_as4wrf</span><span class='op'>(</span>sdf <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>co <span class='op'>=</span> <span class='va'>gCO</span>, pm <span class='op'>=</span> <span class='va'>gCO</span><span class='op'>)</span>, dmyhm <span class='op'>=</span> <span class='st'>"29-04-2018 00:00"</span>,
+               tz <span class='op'>=</span> <span class='st'>"America/Sao_Paulo"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt;   id      long    lat       co       pm    time_lt            time_utc dutch
 #&gt; 1  1 -46.80660 -23.62 8391.282 8391.282 2018-04-29 2018-04-29 03:00:00  2900
 #&gt; 2  2 -46.80172 -23.62 8340.653 8340.653 2018-04-29 2018-04-29 03:00:00  2900
 #&gt; 3  3 -46.79684 -23.62 8549.459 8549.459 2018-04-29 2018-04-29 03:00:00  2900
@@ -237,7 +238,7 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

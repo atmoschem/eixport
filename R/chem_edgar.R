@@ -80,6 +80,7 @@ chem_edgar <- function(path,
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
 
+  if (length(k) < 34) stop("k must have 34 elements")
 
   #no covr, becuase it would take too much time
   ncs <- list.files(path = path, #nocov start
@@ -144,14 +145,14 @@ chem_edgar <- function(path,
   cat("EDGAR data: ")
   NCS_EDGAR <- data.frame(
     GEIA_id = c(paste0("voc", 1:25),
-                        c("co", "nox", "nmvoc","so2", "nh3",
-                          "pm10", "pm2.5", "bc", "oc")))
+                c("co", "nox", "nmvoc","so2", "nh3",
+                  "pm10", "pm2.5", "bc", "oc")))
 
 
   dte <- cbind(dte, NCS_EDGAR)
 
-lp <- lapply(1:length(lncs), function(i) {
-      cat(dte$GEIA_id[i], " ")
+  lp <- lapply(1:length(lncs), function(i) {
+    cat(dte$GEIA_id[i], " ")
 
     if(merge & length(lncs[[i]]) > 1) {
       cat("merging ", lncs[[i]])
@@ -160,7 +161,7 @@ lp <- lapply(1:length(lncs), function(i) {
     } else {
       a <- fr(lncs[[i]])*k[i]
     }
-a
+    a
   })
   # lp <- lapply(1:nrow(dte), function(i){
   #   cat(dte$GEIA_id[i], " ")
@@ -174,7 +175,7 @@ a
   bp@history <- list("units: g km-2 h-1")
   names(bp) <- NCS_EDGAR$GEIA_id
 
-    if(missing(chem)) {
+  if(missing(chem)) {
     mech <- c("edgar", "radm", "radmsorg", "cbmz_mosaic", "cptec", "ecb05_opt1")
     choice <- utils::menu(mech, title="Choose:")
     chem <- mech[choice]
@@ -289,7 +290,6 @@ a
     # cbmz_mosaic ####
   } else if (chem == "cbmz_mosaic") {
     E_ISO <- bp$voc10/dte[dte$GEIA_id == "voc10", ]$g_mol   # emis_opt$ecbmz_mosaic[1]
-    print(E_ISO)
 
     E_SO2 <- bp$so2/(64+16*2)                             # emis_opt$ecbmz_mosaic[2]
     E_NO <- bp$nox*0.9/(14+16)                            # emis_opt$ecbmz_mosaic[3]

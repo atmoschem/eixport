@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -218,7 +218,7 @@
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
 <p>The following example creates a directory <strong>EMISS</strong> and then create a wrfchem input in that file. The package already counts with wrfinput files required to run eixport and create inputs for WRF-Chem. The line <code><a href="https://rdrr.io/r/utils/data.html">data(Lights)</a></code> load a matrix of night light to spatially distribute the emissions. The perfil argument is used to temporally distribute the emissions. Lastly, the function <code>to_wrf</code> in one line reads the 1521983 <span class="math inline"><em>t</em> ⋅ <em>y</em><sup> − 1</sup></span> of CO, spatially distribute it using nighttime traffic matrix Lights, temporally distribute it with the perfil, injecting the array of emissions directly into the wrfchemi file. The colour palette is “mpl_inferno” from the R package cptcity [@cpt].</p>
-<pre><code><a href="https://rdrr.io/pkg/eixport/man">library(eixport)
+<pre><code><a href="https://atmoschem.github.io/eixport/">library(eixport)
 dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
           wrfchemi_dir = file.path(tempdir(), "EMISS"))
@@ -271,7 +271,7 @@ wrf_plot(files[1], "E_CO")
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

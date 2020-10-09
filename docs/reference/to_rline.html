@@ -91,7 +91,7 @@ of the model R-LINE" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -140,26 +140,26 @@ of the model R-LINE" />
 of the model R-LINE</p>
     </div>
 
-    <pre class="usage"><span class='fu'>to_rline</span>(
-  <span class='no'>X_b</span>,
-  <span class='no'>Y_b</span>,
-  <span class='no'>Z_b</span>,
-  <span class='no'>X_e</span>,
-  <span class='no'>Y_e</span>,
-  <span class='no'>Z_e</span>,
-  <span class='no'>dCL</span>,
-  <span class='no'>sigmaz0</span>,
-  <span class='no'>lanes</span>,
-  <span class='no'>Emis</span>,
-  <span class='no'>Hw1</span>,
-  <span class='no'>dw1</span>,
-  <span class='no'>Hw2</span>,
-  <span class='no'>dw2</span>,
-  <span class='no'>Depth</span>,
-  <span class='no'>Wtop</span>,
-  <span class='no'>Wbottom</span>,
-  <span class='kw'>experimental</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>to_rline</span><span class='op'>(</span>
+  <span class='va'>X_b</span>,
+  <span class='va'>Y_b</span>,
+  <span class='va'>Z_b</span>,
+  <span class='va'>X_e</span>,
+  <span class='va'>Y_e</span>,
+  <span class='va'>Z_e</span>,
+  <span class='va'>dCL</span>,
+  <span class='va'>sigmaz0</span>,
+  <span class='va'>lanes</span>,
+  <span class='va'>Emis</span>,
+  <span class='va'>Hw1</span>,
+  <span class='va'>dw1</span>,
+  <span class='va'>Hw2</span>,
+  <span class='va'>dw2</span>,
+  <span class='va'>Depth</span>,
+  <span class='va'>Wtop</span>,
+  <span class='va'>Wbottom</span>,
+  experimental <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -250,23 +250,24 @@ for near-surface releases, In Atmospheric Environment, Volume 77, 2013,
 Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Do not run</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>emisco</span>)
-<span class='no'>Source</span> <span class='kw'>&lt;-</span> <span class='fu'>to_rline</span>(<span class='kw'>X_b</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>xmin</span>,
-               <span class='kw'>Y_b</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>ymin</span>,
-               <span class='kw'>Z_b</span> <span class='kw'>=</span><span class='fl'>0</span>,
-               <span class='kw'>X_e</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>xmin</span>,
-               <span class='kw'>Y_e</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>ymin</span>,
-               <span class='kw'>Z_e</span> <span class='kw'>=</span><span class='fl'>0</span>,
-               <span class='kw'>dCL</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-               <span class='kw'>Emis</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>V8</span>,
-               <span class='kw'>sigmaz0</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-               <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='no'>emisco</span>$<span class='no'>lanes</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>Source</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Source</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"/Sources.txt"</span>),
-<span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>" "</span>, <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span>
+<span class='va'>Source</span> <span class='op'>&lt;-</span> <span class='fu'>to_rline</span><span class='op'>(</span>X_b <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>xmin</span>,
+               Y_b <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>ymin</span>,
+               Z_b <span class='op'>=</span><span class='fl'>0</span>,
+               X_e <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>xmin</span>,
+               Y_e <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>ymin</span>,
+               Z_e <span class='op'>=</span><span class='fl'>0</span>,
+               dCL <span class='op'>=</span> <span class='fl'>0</span>,
+               Emis <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span>,
+               sigmaz0 <span class='op'>=</span> <span class='fl'>2</span>,
+               lanes <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>lanes</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Source</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Source</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/Sources.txt"</span><span class='op'>)</span>,
+row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -282,7 +283,7 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
