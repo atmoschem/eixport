@@ -6,41 +6,32 @@
 #' @param file Character; name of file interactively (default) or specified
 #' @export
 #' @examples {
-#' # Do not run
+#' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
+#' wrf_meta(file)
 #' }
 wrf_meta <- function(file = file.choose()){
   nc <- ncdf4::nc_open(file)
   na <- names(nc$var)
-  a <- as.data.frame(
-    do.call("rbind",
-            lapply(1:length(na), function(i) {
-              dl <- lapply(1:6, function(j){
-                atts <- ncatt_get( nc, nc$var[[i]]$name )
+  na <- data.frame(vars = names(nc$var))
+  na <- data.frame(vars = na[na$vars != "Times", ])
 
-                x <- ncdf4::ncatt_get(nc = nc, varid = na[i])[j]
-                ifelse(is.null(x), NA, x)
-              })
-              df <- as.data.frame(do.call("cbind", dl))
+  latts <- as.data.frame(unlist(ncdf4::ncatt_get(nc, 0)))
+  latts <- data.frame(att = row.names(latts),
+                      vars = latts[[1]])
 
-              df$vars <- na[i]
-              df
-            })))
+  ti <- ncdf4::ncatt_get(nc, "Times")
 
-  names(a) <- c("field_type", "memory_order", "description",
-                "units", "stagger", "coordinates", "vars")
+  la <- lapply(1:nrow(na), function(i) {
+    unlist(ncdf4::ncatt_get(nc = nc, varid = na$vars[i]))
+  })
+  a <- as.data.frame(do.call("rbind", la))
+
+  a <- cbind(na, a)
 
   ncdf4::nc_close(nc)
-  df <- data.frame(
-    vars = as.character(unlist(a$vars)),
-    description = as.character(
-      ifelse(sapply(a$description, is.null),NA, unlist(a$description))),
-    memory_order = as.character(
-      ifelse(sapply(a$memory_order, is.null),NA, unlist(a$memory_order))),
-    field_type = ifelse(sapply(a$field_type, is.null),NA, unlist(a$field_type)),
-    stagger = ifelse(sapply(a$stagger, is.null),NA, unlist(a$stagger)),
-    coordinates = ifelse(sapply(a$coordinates, is.null),NA, unlist(a$coordinates)),
-    stringsAsFactors = FALSE
-  )
-  df <- df[order(df$vars), ]
+
+  a <- a[order(a$vars), ]
+  df <- list(global = latts,
+             vars = a)
   return(df)
 }
