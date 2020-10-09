@@ -18,13 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.4.10
-
-![](https://i.imgur.com/BcZ2tfW.png)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gXt3hOlpYts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-</iframe>
+## Exporting emissions to atmospheric models, eixport: 0.5.0
 
 Emissions are mass that affects atmosphere in complex ways, not only
 physical, but also, in the health of humans, ecosystems, economically,
@@ -43,8 +37,12 @@ suitable to other models.
 To install the [CRAN](https://CRAN.R-project.org/package=eixport)
 version:
 
+\=(
+
+Currently, not on CRAN, but we will submit in the following days
+
 ``` r
-install.packages("eixport")
+#install.packages("eixport")
 ```
 
 To install the development version:
@@ -95,6 +93,8 @@ wrf_meta(file = wrf)
 ``` r
 get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS", year = 2014)
 ```
+
+check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 
 ## Paper accepted on Journal of Open Source Software
 

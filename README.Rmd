@@ -26,10 +26,6 @@ knitr::opts_chunk$set(
 
 ## Exporting emissions to atmospheric models, eixport: `r packageVersion("eixport")`
 
-![](https://i.imgur.com/BcZ2tfW.png)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gXt3hOlpYts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
 Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.
 
 There are several models whose inputs are emissions, such as [R-Line](https://www.cmascenter.org/r-line/) or [WRF-Chem](https://ruc.noaa.gov/wrf/wrf-chem/). 
@@ -41,8 +37,12 @@ in different formats and export the emissions into the appropiate format suitabl
 
 To install the [CRAN](https://CRAN.R-project.org/package=eixport) version:
 
+=(
+
+Currently, not on CRAN, but we will submit in the following days
+
 ```{r eval = FALSE}
-install.packages("eixport")
+#install.packages("eixport")
 ```
 
 To install the development version:
@@ -79,6 +79,8 @@ MUNICH model.
 ```{r eval = FALSE}
 get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS", year = 2014)
 ```
+
+check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 
 ## Paper accepted on Journal of Open Source Software
 
