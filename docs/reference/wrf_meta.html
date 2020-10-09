@@ -156,9 +156,96 @@ use ncdump -h "wrf_file"</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='op'>{</span>
-<span class='co'># Do not run</span>
+<span class='va'>file</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package <span class='op'>=</span> <span class='st'>"eixport"</span><span class='op'>)</span>,<span class='st'>"/wrfinput_d02"</span><span class='op'>)</span>
+<span class='fu'>wrf_meta</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; NULL</div></pre>
+</div><div class='output co'>#&gt; $global
+#&gt;                               att                                       vars
+#&gt; 1                           TITLE  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
+#&gt; 2                      START_DATE                        2011-08-01_00:00:00
+#&gt; 3           SIMULATION_START_DATE                        2011-08-01_00:00:00
+#&gt; 4        WEST-EAST_GRID_DIMENSION                                         64
+#&gt; 5      SOUTH-NORTH_GRID_DIMENSION                                         52
+#&gt; 6       BOTTOM-TOP_GRID_DIMENSION                                         35
+#&gt; 7                              DX                                       3000
+#&gt; 8                              DY                                       3000
+#&gt; 9                        GRIDTYPE                                          C
+#&gt; 10                       DIFF_OPT                                          1
+#&gt; 11                         KM_OPT                                          4
+#&gt; 12                       DAMP_OPT                                          3
+#&gt; 13                       DAMPCOEF                          0.200000002980232
+#&gt; 14                          KHDIF                                          0
+#&gt; 15                          KVDIF                                          0
+#&gt; 16                     MP_PHYSICS                                         10
+#&gt; 17                  RA_LW_PHYSICS                                          4
+#&gt; 18                  RA_SW_PHYSICS                                          4
+#&gt; 19              SF_SFCLAY_PHYSICS                                          1
+#&gt; 20             SF_SURFACE_PHYSICS                                          2
+#&gt; 21                 BL_PBL_PHYSICS                                          1
+#&gt; 22                     CU_PHYSICS                                          0
+#&gt; 23                SF_LAKE_PHYSICS                                          0
+#&gt; 24           SURFACE_INPUT_SOURCE                                          1
+#&gt; 25                     SST_UPDATE                                          0
+#&gt; 26                      GRID_FDDA                                          0
+#&gt; 27               GFDDA_INTERVAL_M                                          0
+#&gt; 28                    GFDDA_END_H                                          0
+#&gt; 29                     GRID_SFDDA                                          0
+#&gt; 30              SGFDDA_INTERVAL_M                                          0
+#&gt; 31                   SGFDDA_END_H                                          0
+#&gt; 32                HYPSOMETRIC_OPT                                          2
+#&gt; 33                    USE_THETA_M                                          0
+#&gt; 34                 USE_MAXW_LEVEL                                          0
+#&gt; 35                 USE_TROP_LEVEL                                          0
+#&gt; 36                        GWD_OPT                                          0
+#&gt; 37               SF_URBAN_PHYSICS                                          1
+#&gt; 38               SF_OCEAN_PHYSICS                                          0
+#&gt; 39 SIMULATION_INITIALIZATION_TYPE                             REAL-DATA CASE
+#&gt; 40   WEST-EAST_PATCH_START_UNSTAG                                          1
+#&gt; 41     WEST-EAST_PATCH_END_UNSTAG                                         63
+#&gt; 42     WEST-EAST_PATCH_START_STAG                                          1
+#&gt; 43       WEST-EAST_PATCH_END_STAG                                         64
+#&gt; 44 SOUTH-NORTH_PATCH_START_UNSTAG                                          1
+#&gt; 45   SOUTH-NORTH_PATCH_END_UNSTAG                                         51
+#&gt; 46   SOUTH-NORTH_PATCH_START_STAG                                          1
+#&gt; 47     SOUTH-NORTH_PATCH_END_STAG                                         52
+#&gt; 48  BOTTOM-TOP_PATCH_START_UNSTAG                                          1
+#&gt; 49    BOTTOM-TOP_PATCH_END_UNSTAG                                         34
+#&gt; 50    BOTTOM-TOP_PATCH_START_STAG                                          1
+#&gt; 51      BOTTOM-TOP_PATCH_END_STAG                                         35
+#&gt; 52                        GRID_ID                                          2
+#&gt; 53                      PARENT_ID                                          1
+#&gt; 54                 I_PARENT_START                                         48
+#&gt; 55                 J_PARENT_START                                         40
+#&gt; 56              PARENT_GRID_RATIO                                          3
+#&gt; 57                             DT                                         15
+#&gt; 58                        CEN_LAT                          -23.7047119140625
+#&gt; 59                        CEN_LON                          -46.5030517578125
+#&gt; 60                       TRUELAT1                                        -23
+#&gt; 61                       TRUELAT2                                        -24
+#&gt; 62                   MOAD_CEN_LAT                          -23.5499954223633
+#&gt; 63                      STAND_LON                                        -45
+#&gt; 64                       POLE_LAT                                         90
+#&gt; 65                       POLE_LON                                          0
+#&gt; 66                            GMT                                          0
+#&gt; 67                          JULYR                                       2011
+#&gt; 68                         JULDAY                                        213
+#&gt; 69                       MAP_PROJ                                          1
+#&gt; 70                  MAP_PROJ_CHAR                          Lambert Conformal
+#&gt; 71                         MMINLU                   MODIFIED_IGBP_MODIS_NOAH
+#&gt; 72                   NUM_LAND_CAT                                         21
+#&gt; 73                        ISWATER                                         17
+#&gt; 74                         ISLAKE                                         21
+#&gt; 75                          ISICE                                         15
+#&gt; 76                        ISURBAN                                         13
+#&gt; 77                     ISOILWATER                                         14
+#&gt; 78                     HYBRID_OPT                                         -1
+#&gt; 79                           ETAC                                          0
+#&gt; 
+#&gt; $vars
+#&gt;    vars MemoryOrder                 description        units stagger FieldType
+#&gt; 1  XLAT          XY LATITUDE, SOUTH IS NEGATIVE degree north               104
+#&gt; 2 XLONG          XY LONGITUDE, WEST IS NEGATIVE  degree east               104
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

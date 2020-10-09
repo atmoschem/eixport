@@ -87,12 +87,9 @@
 <a href="#eixport-" class="anchor"></a>eixport <img src="reference/figures/logo.png" align="right" alt="" width="140">
 </h1></div>
 
-<div id="exporting-emissions-to-atmospheric-models-eixport-0410" class="section level2">
+<div id="exporting-emissions-to-atmospheric-models-eixport-050" class="section level2">
 <h2 class="hasAnchor">
-<a href="#exporting-emissions-to-atmospheric-models-eixport-0410" class="anchor"></a>Exporting emissions to atmospheric models, eixport: 0.4.10</h2>
-<p><img src="https://i.imgur.com/BcZ2tfW.png"></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gXt3hOlpYts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+<a href="#exporting-emissions-to-atmospheric-models-eixport-050" class="anchor"></a>Exporting emissions to atmospheric models, eixport: 0.5.0</h2>
 <p>Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.</p>
 <p>There are several models whose inputs are emissions, such as <a href="https://www.cmascenter.org/r-line/">R-Line</a> or <a href="https://ruc.noaa.gov/wrf/wrf-chem/">WRF-Chem</a>. This R-Package provide functions to read emissions from <a href="https://github.com/ibarraespinosa/vein">VEIN</a> and from other models in different formats and export the emissions into the appropiate format suitable to other models.</p>
 </div>
@@ -100,8 +97,10 @@
 <h2 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h2>
 <p>To install the <a href="https://CRAN.R-project.org/package=eixport">CRAN</a> version:</p>
+<p>=(</p>
+<p>Currently, not on CRAN, but we will submit in the following days</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eixport"</span><span class="op">)</span></pre></div>
+<span class="co">#install.packages("eixport")</span></pre></div>
 <p>To install the development version:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"atmoschem/eixport"</span><span class="op">)</span></pre></div>
@@ -149,6 +148,7 @@
 <a href="#download-edgar-5" class="anchor"></a>Download EDGAR 5</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="reference/get_edgar.html">get_edgar</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"v50_AP"</span>, destpath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, sector <span class="op">=</span> <span class="st">"TOTALS"</span>, year <span class="op">=</span> <span class="fl">2014</span><span class="op">)</span></pre></div>
+<p>check this <a href="https://www.youtube.com/embed/gXt3hOlpYts">video</a></p>
 </div>
 <div id="paper-accepted-on-journal-of-open-source-software" class="section level2">
 <h2 class="hasAnchor">
