@@ -15,10 +15,10 @@
 #' @export
 #' @examples \dontrun{
 #' # do not run
-#' file <- "/home/sergio/R/x86_64-pc-linux-gnu-library/4.0/eixport/extdata/wrfinput_d02"
+#' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 #' wrf_summary(file = file,
 #'             name = c("XLAT", "XLONG"),
-#'             fn = "mean")
+#'                         fn = "mean")
 #' }
 wrf_summary <- function(file, name, fn = "sum") {
   ti <- wrf_get(file = file,

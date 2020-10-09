@@ -104,16 +104,6 @@
 <p>To install the development version:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"atmoschem/eixport"</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/">eixport</a></span><span class="op">)</span>
-<span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>
-<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"eixport"</span><span class="op">)</span>, full.names <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">wrf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"d01"</span>, x <span class="op">=</span> <span class="va">a</span>, value <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="fu"><a href="reference/wrf_meta.html">wrf_meta</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">wrf</span><span class="op">)</span>
-<span class="co">#&gt;    vars  description                memory_order field_type stagger coordinates</span>
-<span class="co">#&gt; 1 Times         &lt;NA&gt;                        &lt;NA&gt;       &lt;NA&gt;      NA          NA</span>
-<span class="co">#&gt; 2  XLAT  degree east LONGITUDE, WEST IS NEGATIVE         XY     104          NA</span>
-<span class="co">#&gt; 3 XLONG degree north LATITUDE, SOUTH IS NEGATIVE         XY     104          NA</span></pre></div>
 </div>
 <div id="some-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -132,11 +122,11 @@
 <li>
 <a href="https://atmoschem.github.io/eixport/reference/wrf_create.html">wrf_create</a>: Create emission files to the WRF-Chem</li>
 <li>
-<a href="https://atmoschem.github.io/eixport/reference/wrf_plot.html">wrf_plot</a>: simple plot for emissions</li>
+<a href="https://atmoschem.github.io/eixport/reference/wrf_plot.html">wrf_plot</a>: simple but useful plot</li>
 <li>
-<a href="https://atmoschem.github.io/eixport/reference/wrf_get.html">wrf_get</a>: Read variables of emission files</li>
+<a href="https://atmoschem.github.io/eixport/reference/wrf_get.html">wrf_get</a>: Read variables</li>
 <li>
-<a href="https://atmoschem.github.io/eixport/reference/wrf_put.html">wrf_put</a>: Write variables in emission files</li>
+<a href="https://atmoschem.github.io/eixport/reference/wrf_put.html">wrf_put</a>: Write variables</li>
 <li>
 <a href="https://atmoschem.github.io/eixport/reference/to_as4wrf.html">to_as4wrf</a>: Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.</li>
 <li>
@@ -146,22 +136,127 @@
 <div id="download-edgar-5" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-edgar-5" class="anchor"></a>Download EDGAR 5</h2>
-<div class="sourceCode" id="cb4"><pre class="downlit">
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="reference/get_edgar.html">get_edgar</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">"v50_AP"</span>, destpath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, sector <span class="op">=</span> <span class="st">"TOTALS"</span>, year <span class="op">=</span> <span class="fl">2014</span><span class="op">)</span></pre></div>
 <p>check this <a href="https://www.youtube.com/embed/gXt3hOlpYts">video</a></p>
+<div id="summary" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary" class="anchor"></a>Summary</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/">eixport</a></span><span class="op">)</span>
+<span class="va">file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"eixport"</span><span class="op">)</span>,<span class="st">"/wrfinput_d02"</span><span class="op">)</span>
+<span class="fu"><a href="reference/wrf_summary.html">wrf_summary</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file</span>,
+            name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"XLAT"</span>, <span class="st">"XLONG"</span><span class="op">)</span>,
+            fn <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span>
+<span class="co">#&gt;                 Times      XLAT     XLONG</span>
+<span class="co">#&gt; 1 2011-08-01_00:00:00 -23.70379 -46.50304</span></pre></div>
+</div>
+<div id="attributes-as-dataframe" class="section level3">
+<h3 class="hasAnchor">
+<a href="#attributes-as-dataframe" class="anchor"></a>Attributes as data.frame</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"eixport"</span><span class="op">)</span>,<span class="st">"/wrfinput_d02"</span><span class="op">)</span>
+<span class="fu"><a href="reference/wrf_meta.html">wrf_meta</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span>
+<span class="co">#&gt; $global</span>
+<span class="co">#&gt;                               att                                       vars</span>
+<span class="co">#&gt; 1                           TITLE  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR</span>
+<span class="co">#&gt; 2                      START_DATE                        2011-08-01_00:00:00</span>
+<span class="co">#&gt; 3           SIMULATION_START_DATE                        2011-08-01_00:00:00</span>
+<span class="co">#&gt; 4        WEST-EAST_GRID_DIMENSION                                         64</span>
+<span class="co">#&gt; 5      SOUTH-NORTH_GRID_DIMENSION                                         52</span>
+<span class="co">#&gt; 6       BOTTOM-TOP_GRID_DIMENSION                                         35</span>
+<span class="co">#&gt; 7                              DX                                       3000</span>
+<span class="co">#&gt; 8                              DY                                       3000</span>
+<span class="co">#&gt; 9                        GRIDTYPE                                          C</span>
+<span class="co">#&gt; 10                       DIFF_OPT                                          1</span>
+<span class="co">#&gt; 11                         KM_OPT                                          4</span>
+<span class="co">#&gt; 12                       DAMP_OPT                                          3</span>
+<span class="co">#&gt; 13                       DAMPCOEF                          0.200000002980232</span>
+<span class="co">#&gt; 14                          KHDIF                                          0</span>
+<span class="co">#&gt; 15                          KVDIF                                          0</span>
+<span class="co">#&gt; 16                     MP_PHYSICS                                         10</span>
+<span class="co">#&gt; 17                  RA_LW_PHYSICS                                          4</span>
+<span class="co">#&gt; 18                  RA_SW_PHYSICS                                          4</span>
+<span class="co">#&gt; 19              SF_SFCLAY_PHYSICS                                          1</span>
+<span class="co">#&gt; 20             SF_SURFACE_PHYSICS                                          2</span>
+<span class="co">#&gt; 21                 BL_PBL_PHYSICS                                          1</span>
+<span class="co">#&gt; 22                     CU_PHYSICS                                          0</span>
+<span class="co">#&gt; 23                SF_LAKE_PHYSICS                                          0</span>
+<span class="co">#&gt; 24           SURFACE_INPUT_SOURCE                                          1</span>
+<span class="co">#&gt; 25                     SST_UPDATE                                          0</span>
+<span class="co">#&gt; 26                      GRID_FDDA                                          0</span>
+<span class="co">#&gt; 27               GFDDA_INTERVAL_M                                          0</span>
+<span class="co">#&gt; 28                    GFDDA_END_H                                          0</span>
+<span class="co">#&gt; 29                     GRID_SFDDA                                          0</span>
+<span class="co">#&gt; 30              SGFDDA_INTERVAL_M                                          0</span>
+<span class="co">#&gt; 31                   SGFDDA_END_H                                          0</span>
+<span class="co">#&gt; 32                HYPSOMETRIC_OPT                                          2</span>
+<span class="co">#&gt; 33                    USE_THETA_M                                          0</span>
+<span class="co">#&gt; 34                 USE_MAXW_LEVEL                                          0</span>
+<span class="co">#&gt; 35                 USE_TROP_LEVEL                                          0</span>
+<span class="co">#&gt; 36                        GWD_OPT                                          0</span>
+<span class="co">#&gt; 37               SF_URBAN_PHYSICS                                          1</span>
+<span class="co">#&gt; 38               SF_OCEAN_PHYSICS                                          0</span>
+<span class="co">#&gt; 39 SIMULATION_INITIALIZATION_TYPE                             REAL-DATA CASE</span>
+<span class="co">#&gt; 40   WEST-EAST_PATCH_START_UNSTAG                                          1</span>
+<span class="co">#&gt; 41     WEST-EAST_PATCH_END_UNSTAG                                         63</span>
+<span class="co">#&gt; 42     WEST-EAST_PATCH_START_STAG                                          1</span>
+<span class="co">#&gt; 43       WEST-EAST_PATCH_END_STAG                                         64</span>
+<span class="co">#&gt; 44 SOUTH-NORTH_PATCH_START_UNSTAG                                          1</span>
+<span class="co">#&gt; 45   SOUTH-NORTH_PATCH_END_UNSTAG                                         51</span>
+<span class="co">#&gt; 46   SOUTH-NORTH_PATCH_START_STAG                                          1</span>
+<span class="co">#&gt; 47     SOUTH-NORTH_PATCH_END_STAG                                         52</span>
+<span class="co">#&gt; 48  BOTTOM-TOP_PATCH_START_UNSTAG                                          1</span>
+<span class="co">#&gt; 49    BOTTOM-TOP_PATCH_END_UNSTAG                                         34</span>
+<span class="co">#&gt; 50    BOTTOM-TOP_PATCH_START_STAG                                          1</span>
+<span class="co">#&gt; 51      BOTTOM-TOP_PATCH_END_STAG                                         35</span>
+<span class="co">#&gt; 52                        GRID_ID                                          2</span>
+<span class="co">#&gt; 53                      PARENT_ID                                          1</span>
+<span class="co">#&gt; 54                 I_PARENT_START                                         48</span>
+<span class="co">#&gt; 55                 J_PARENT_START                                         40</span>
+<span class="co">#&gt; 56              PARENT_GRID_RATIO                                          3</span>
+<span class="co">#&gt; 57                             DT                                         15</span>
+<span class="co">#&gt; 58                        CEN_LAT                          -23.7047119140625</span>
+<span class="co">#&gt; 59                        CEN_LON                          -46.5030517578125</span>
+<span class="co">#&gt; 60                       TRUELAT1                                        -23</span>
+<span class="co">#&gt; 61                       TRUELAT2                                        -24</span>
+<span class="co">#&gt; 62                   MOAD_CEN_LAT                          -23.5499954223633</span>
+<span class="co">#&gt; 63                      STAND_LON                                        -45</span>
+<span class="co">#&gt; 64                       POLE_LAT                                         90</span>
+<span class="co">#&gt; 65                       POLE_LON                                          0</span>
+<span class="co">#&gt; 66                            GMT                                          0</span>
+<span class="co">#&gt; 67                          JULYR                                       2011</span>
+<span class="co">#&gt; 68                         JULDAY                                        213</span>
+<span class="co">#&gt; 69                       MAP_PROJ                                          1</span>
+<span class="co">#&gt; 70                  MAP_PROJ_CHAR                          Lambert Conformal</span>
+<span class="co">#&gt; 71                         MMINLU                   MODIFIED_IGBP_MODIS_NOAH</span>
+<span class="co">#&gt; 72                   NUM_LAND_CAT                                         21</span>
+<span class="co">#&gt; 73                        ISWATER                                         17</span>
+<span class="co">#&gt; 74                         ISLAKE                                         21</span>
+<span class="co">#&gt; 75                          ISICE                                         15</span>
+<span class="co">#&gt; 76                        ISURBAN                                         13</span>
+<span class="co">#&gt; 77                     ISOILWATER                                         14</span>
+<span class="co">#&gt; 78                     HYBRID_OPT                                         -1</span>
+<span class="co">#&gt; 79                           ETAC                                          0</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $vars</span>
+<span class="co">#&gt;    vars MemoryOrder                 description        units stagger FieldType</span>
+<span class="co">#&gt; 1  XLAT          XY LATITUDE, SOUTH IS NEGATIVE degree north               104</span>
+<span class="co">#&gt; 2 XLONG          XY LONGITUDE, WEST IS NEGATIVE  degree east               104</span></pre></div>
+</div>
 </div>
 <div id="paper-accepted-on-journal-of-open-source-software" class="section level2">
 <h2 class="hasAnchor">
 <a href="#paper-accepted-on-journal-of-open-source-software" class="anchor"></a>Paper accepted on Journal of Open Source Software</h2>
 <p><a href="https://doi.org/10.21105/joss.00607" class="uri">https://doi.org/10.21105/joss.00607</a></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">@</span>article{eixport,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    title =<span class="st"> </span>{eixport<span class="op">:</span><span class="st"> </span>An R package to export emissions to atmospheric models},</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    journal =<span class="st"> </span>{The Journal of Open Source Software},</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    author =<span class="st"> </span>{Sergio Ibarra<span class="op">-</span>Espinosa and Daniel Schuch and Edmilson {Dias de Freitas}},</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    year =<span class="st"> </span>{<span class="dv">2018</span>},</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    doi =<span class="st"> </span>{<span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00607</span>},</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    url =<span class="st"> </span>{http<span class="op">:</span><span class="er">//</span>joss.theoj.org<span class="op">/</span>papers<span class="op">/</span><span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00607</span>},</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">@</span>article{eixport,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    title =<span class="st"> </span>{eixport<span class="op">:</span><span class="st"> </span>An R package to export emissions to atmospheric models},</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    journal =<span class="st"> </span>{The Journal of Open Source Software},</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    author =<span class="st"> </span>{Sergio Ibarra<span class="op">-</span>Espinosa and Daniel Schuch and Edmilson {Dias de Freitas}},</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    year =<span class="st"> </span>{<span class="dv">2018</span>},</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    doi =<span class="st"> </span>{<span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00607</span>},</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    url =<span class="st"> </span>{http<span class="op">:</span><span class="er">//</span>joss.theoj.org<span class="op">/</span>papers<span class="op">/</span><span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00607</span>},</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  }</span></code></pre></div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
