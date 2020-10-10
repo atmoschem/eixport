@@ -1,6 +1,8 @@
 pandoc: 2.9.2.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2020-10-09T16:36Z
+articles:
+  gallery1: gallery1.html
+  gallery2: gallery2.html
+last_built: 2020-10-09T23:53Z
 

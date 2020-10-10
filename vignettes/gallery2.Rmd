@@ -1,0 +1,65 @@
+---
+title: "Gallery WRF out files 2"
+author: "Sergio Ibarra-Espinosa"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gallery WRF out files 2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Based on this [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_5.ncl)
+
+```{r}
+library(eixport)
+library(raster)
+library(stars)
+library(cptcity)
+library(sf)
+```
+
+Reading Temperature
+```{r}
+t2 <- wrf_get("/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00", 
+               "T2", as_raster = T)
+t2 <- t2$T2_2014.10.04_15.00.00 -273.15# we select one
+```
+
+Adding coastlines and cropping for our study area
+```{r}
+cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
+cl <- st_cast(st_crop(cl, st_as_stars(t2)), "LINESTRING")
+```
+
+Find colour palette for temperature
+```{r}
+find_cpt("temperature")
+```
+
+
+Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
+```{r, fig.width=6,fig.height=4}
+plot(t2, main = "Temperature using plot", col = cpt("arendal_temperature"))
+plot(cl, add= T, col = "black")
+```
+
+```{r, fig.width=6,fig.height=4}
+spplot(t2, main = "Temperature 2m using spplot", scales=list(draw = TRUE),
+       col.regions = cpt("idv_temperature"),
+       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
+```   
+
+```{r, fig.width=6,fig.height=4}
+st2 <- st_as_stars(t2)
+plot(st2, axes = T, main = "Temperature 2m using stars", col = cpt("jjg_misc_temperature"), breaks = "fisher", reset = F)
+contour(st2, add = T)
+plot(cl$geometry, add= T, col = "black")
+```

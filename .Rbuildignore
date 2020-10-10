@@ -16,3 +16,4 @@
 ^rutils$
 ^_pkgdown.yml$
 ^pkgdown$
+^vignettes$
