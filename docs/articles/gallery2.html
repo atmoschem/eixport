@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery WRF out files 1 • eixport</title>
+<title>Gallery WRF out files 2 • eixport</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Gallery WRF out files 1">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Gallery WRF out files 2">
 <meta property="og:description" content="eixport">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -95,37 +95,22 @@
 
       
 
-      </header><script src="gallery1_files/header-attrs-2.4/header-attrs.js"></script><script src="gallery1_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="gallery2_files/header-attrs-2.4/header-attrs.js"></script><script src="gallery2_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Gallery WRF out files 1</h1>
+      <h1 data-toc-skip>Gallery WRF out files 2</h1>
                         <h4 class="author">Sergio Ibarra-Espinosa</h4>
             
             <h4 class="date">2020-10-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/master/vignettes/gallery1.Rmd"><code>vignettes/gallery1.Rmd</code></a></small>
-      <div class="hidden name"><code>gallery1.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/master/vignettes/gallery2.Rmd"><code>vignettes/gallery2.Rmd</code></a></small>
+      <div class="hidden name"><code>gallery2.Rmd</code></div>
 
     </div>
 
     
     
-<p>Here we attempt to provide useful code to generate figures from WRF outputs based on known galleries. For instance, NCL and WRF-Python provides extensive examples for plotting WRF outputs. Therefore, we aim to replicate some of these. Our approach to read wrfout files is based on eixport which relies r packages with GDAL bindings such as raster and stars. We do not try to provide a full gallery, instead, some basics and necessary plots to inspire other R used and receive more examples so share with the community.</p>
-<div id="packages" class="section level2">
-<h2 class="hasAnchor">
-<a href="#packages" class="anchor"></a>packages</h2>
-<ul>
-<li>
-<a href="https://atmoschem.github.io/eixport/">eixport</a> read and manipulate wrf files.</li>
-<li>
-<a href="https://github.com/rspatial/raster">raster</a> for gridded and raster data.</li>
-<li>
-<a href="https://github.com/r-spatial/stars">stars</a> for gridded and raster data.</li>
-<li>
-<a href="https://github.com/ibarraespinosa/cptcity">cptcity</a> colour palettes.</li>
-<li>
-<a href="https://github.com/r-spatial/sf">sf</a> for spatial vector data.</li>
-</ul>
+<p>Based on this <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_5.ncl">NCL</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/">eixport</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
@@ -136,12 +121,11 @@
 <span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity">cptcity</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></pre></div>
-<p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl">NCL</a>:</p>
-<p>Reading HGT from wrfout</p>
+<p>Reading Temperature</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="st">"/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"</span>, 
-               <span class="st">"HGT"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="va">HGT</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># bythefault one variable with each time, so we select one</span></pre></div>
+<span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="st">"/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"</span>, 
+               <span class="st">"T2"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">t2</span><span class="op">$</span><span class="va">T2_2014.10.04_15.00.00</span> <span class="op">-</span><span class="fl">273.15</span><span class="co"># we select one</span></pre></div>
 <p>Adding coastlines and cropping for our study area</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp"</span><span class="op">)</span>
@@ -151,39 +135,39 @@
 <span class="co">#&gt; dimension:      XY</span>
 <span class="co">#&gt; bbox:           xmin: -180 ymin: -68.92453 xmax: 180 ymax: 83.63339</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html">st_cast</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">HGT</span><span class="op">)</span><span class="op">)</span>, <span class="st">"LINESTRING"</span><span class="op">)</span>
+<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html">st_cast</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span>, <span class="st">"LINESTRING"</span><span class="op">)</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_intersection assumes that they are planar</span>
 <span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span>
 <span class="co">#&gt; geometries</span>
-<span class="co">#&gt; Warning in st_cast.sf(st_crop(cl, st_as_stars(HGT)), "LINESTRING"): repeating</span>
+<span class="co">#&gt; Warning in st_cast.sf(st_crop(cl, st_as_stars(t2)), "LINESTRING"): repeating</span>
 <span class="co">#&gt; attributes for all sub-geometries for which they may not be constant</span></pre></div>
-<p>Find colour palette for elevation</p>
+<p>Find colour palette for temperature</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html">find_cpt</a></span><span class="op">(</span><span class="st">"elevation"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "gmt_GMT_elevation" "grass_elevation"</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html">find_cpt</a></span><span class="op">(</span><span class="st">"temperature"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "arendal_temperature"    "idv_temperature"        "jjg_misc_temperature"  </span>
+<span class="co">#&gt; [4] "kst_03_red_temperature"</span></pre></div>
+<p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl">NCL</a>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">HGT</span>, main <span class="op">=</span> <span class="st">"HGT using plot"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">t2</span>, main <span class="op">=</span> <span class="st">"Temperature using plot"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"arendal_temperature"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cl</span>, add<span class="op">=</span> <span class="cn">T</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 <span class="co">#&gt; Warning in plot.sf(cl, add = T, col = "black"): ignoring all but the first</span>
 <span class="co">#&gt; attribute</span></pre></div>
-<p><img src="gallery1_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
+<p><img src="gallery2_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/spplot.html">spplot</a></span><span class="op">(</span><span class="va">HGT</span>, main <span class="op">=</span> <span class="st">"HGT using spplot"</span>, scales<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-       col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span><span class="op">)</span>,
+<span class="fu"><a href="https://rdrr.io/pkg/raster/man/spplot.html">spplot</a></span><span class="op">(</span><span class="va">t2</span>, main <span class="op">=</span> <span class="st">"Temperature 2m using spplot"</span>, scales<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+       col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"idv_temperature"</span><span class="op">)</span>,
        sp.layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sp.lines"</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/coerce-methods.html">as_Spatial</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></pre></div>
-<p><img src="gallery1_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<p><img src="gallery2_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co"># hgt &lt;- st_as_stars(HGT)</span>
-<span class="co"># plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)</span>
+<span class="co"># st2 &lt;- st_as_stars(t2)</span>
+<span class="co"># plot(st2, axes = T, main = "Temperature 2m using stars", col = cpt("jjg_misc_temperature"), breaks = "fisher", reset = F)</span>
+<span class="co"># contour(st2, add = T)</span>
 <span class="co"># plot(cl$geometry, add= T, col = "black")</span></pre></div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 

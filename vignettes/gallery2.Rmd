@@ -58,8 +58,8 @@ spplot(t2, main = "Temperature 2m using spplot", scales=list(draw = TRUE),
 ```   
 
 ```{r, fig.width=6,fig.height=4}
-st2 <- st_as_stars(t2)
-plot(st2, axes = T, main = "Temperature 2m using stars", col = cpt("jjg_misc_temperature"), breaks = "fisher", reset = F)
-contour(st2, add = T)
-plot(cl$geometry, add= T, col = "black")
+# st2 <- st_as_stars(t2)
+# plot(st2, axes = T, main = "Temperature 2m using stars", col = cpt("jjg_misc_temperature"), breaks = "fisher", reset = F)
+# contour(st2, add = T)
+# plot(cl$geometry, add= T, col = "black")
 ```

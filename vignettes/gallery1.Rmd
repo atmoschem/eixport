@@ -67,7 +67,7 @@ spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),
 ```   
 
 ```{r, fig.width=6,fig.height=5}
-hgt <- st_as_stars(HGT)
-plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)
-plot(cl$geometry, add= T, col = "black")
+# hgt <- st_as_stars(HGT)
+# plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)
+# plot(cl$geometry, add= T, col = "black")
 ```
