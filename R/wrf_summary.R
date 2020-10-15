@@ -29,8 +29,8 @@ rm(i)
 
     }
   })
-  df <- as.data.frame(t(do.call("rbind", df)))
-  names(df) <- vars
+  df <- as.data.frame(do.call("rbind", df))
+  row.names(df) <- vars
   return(df)
 
 }
