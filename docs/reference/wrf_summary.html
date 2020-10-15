@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary of WRF files — wrf_summary • eixport</title>
+<title>Summary of variables inside WRF files — wrf_summary • eixport</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Summary of WRF files — wrf_summary" />
-<meta property="og:description" content="This return returns a summary for each variable and hour.
-wrf_summary internally reads the wrf file using
-wrf_get, then applies raster::cellStats." />
+<meta property="og:title" content="Summary of variables inside WRF files — wrf_summary" />
+<meta property="og:description" content="This return returns a summary for each variable." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -146,18 +144,16 @@ wrf_get, then applies raster::cellStats." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary of WRF files</h1>
+    <h1>Summary of variables inside WRF files</h1>
     <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_summary.R'><code>R/wrf_summary.R</code></a></small>
     <div class="hidden name"><code>wrf_summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This return returns a summary for each variable and hour.
-<code>wrf_summary</code> internally reads the wrf file using
-<code><a href='wrf_get.html'>wrf_get</a></code>, then applies raster::cellStats.</p>
+    <p>This return returns a summary for each variable.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_summary</span><span class='op'>(</span><span class='va'>file</span>, <span class='va'>name</span>, fn <span class='op'>=</span> <span class='st'>"sum"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>wrf_summary</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,15 +161,6 @@ wrf_get, then applies raster::cellStats." />
     <tr>
       <th>file</th>
       <td><p>String path to the wrf.</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>String for variables in wrf file, internally read
-by <code><a href='wrf_get.html'>wrf_get</a></code> and transformed to raster.</p></td>
-    </tr>
-    <tr>
-      <th>fn</th>
-      <td><p>String of the function, for instance, "sum"</p></td>
     </tr>
     </table>
 
@@ -185,9 +172,7 @@ by <code><a href='wrf_get.html'>wrf_get</a></code> and transformed to raster.</p
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># do not run</span>
 <span class='va'>file</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package <span class='op'>=</span> <span class='st'>"eixport"</span><span class='op'>)</span>,<span class='st'>"/wrfinput_d02"</span><span class='op'>)</span>
-<span class='fu'>wrf_summary</span><span class='op'>(</span>file <span class='op'>=</span> <span class='va'>file</span>,
-            name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"XLAT"</span>, <span class='st'>"XLONG"</span><span class='op'>)</span>,
-                        fn <span class='op'>=</span> <span class='st'>"mean"</span><span class='op'>)</span>
+<span class='fu'>wrf_summary</span><span class='op'>(</span>file <span class='op'>=</span> <span class='va'>file</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

@@ -10,7 +10,7 @@
 #' "voc" from 1 to 25, "co", "nox", "nmvoc","so2", "nh3",
 #' "pm10", "pm2.5", "bc" and "oc"
 #' @param chem Character; chemical mechanism: "edgar", "radm", "radmsorg",
-#' "cbmz_mosaic", "cptec" and "ecb05_opt1".
+#' "cbmz_mosaic", "cptec", "ecb05_opt1" and "neu_ecb05".
 #'
 #' - When chem is "edgar" units are: "g km-2 h-1"
 #' - Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"

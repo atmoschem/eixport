@@ -13,7 +13,7 @@ chem_edgar(path, chem, merge = FALSE, k = rep(1, 34))
 "pm10", "pm2.5", "bc" and "oc"}
 
 \item{chem}{Character; chemical mechanism: "edgar", "radm", "radmsorg",
-"cbmz_mosaic", "cptec" and "ecb05_opt1".
+"cbmz_mosaic", "cptec", "ecb05_opt1" and "neu_ecb05".
 \itemize{
 \item When chem is "edgar" units are: "g km-2 h-1"
 \item Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"
