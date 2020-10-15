@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# eixport <img src="man/figures/logo.png" align="right" alt="" width="140" />
+# eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
 
 [![Travis-CI Build
 Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build
@@ -89,11 +89,15 @@ check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 ``` r
 library(eixport)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-wrf_summary(file = file,
-            name = c("XLAT", "XLONG"),
-            fn = "mean")
-#>                 Times      XLAT     XLONG
-#> 1 2011-08-01_00:00:00 -23.70379 -46.50304
+wrf_summary(file = file)
+#>              Times         XLAT         XLONG
+#> Min.    1312167600    -24.38538     -47.42899
+#> 1st Qu. 1312167600    -24.05025     -46.96930
+#> Median  1312167600    -23.70471     -46.50305
+#> Mean    1312167600    -23.70379     -46.50304
+#> 3rd Qu. 1312167600    -23.35773     -46.03427
+#> Max.    1312167600    -23.01877     -45.58643
+#> sum             NA -76160.28088 -149414.28107
 ```
 
 ### Attributes as data.frame

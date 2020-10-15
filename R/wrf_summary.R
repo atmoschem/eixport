@@ -1,39 +1,36 @@
-#' Summary of WRF files
+#' Summary of variables inside WRF files
 #'
-#' @description This return returns a summary for each variable and hour.
-#' \code{\link{wrf_summary}} internally reads the wrf file using
-#'  \code{\link{wrf_get}}, then applies raster::cellStats.
+#' @description This return returns a summary for each variable.
 #'
 #'
 #' @param file String path to the wrf.
-#' @param name String for variables in wrf file, internally read
-#' by \code{\link{wrf_get}} and transformed to raster.
-#' @param fn String of the function, for instance, "sum"
 #' @return data.frame
-#' @importFrom raster cellStats
 #'
 #' @export
 #' @examples \dontrun{
 #' # do not run
 #' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-#' wrf_summary(file = file,
-#'             name = c("XLAT", "XLONG"),
-#'                         fn = "mean")
+#' wrf_summary(file = file)
 #' }
-wrf_summary <- function(file, name, fn = "sum") {
-  ti <- wrf_get(file = file,
-                name = "Times")
-  dft <- data.frame(Times = ti)
+wrf_summary <- function(file) {
+  file
+  nc <- ncdf4::nc_open(file)
+  vars <- names(nc$var)
 
-  la <- lapply(seq_along(name), function(i) {
-    a <- wrf_get(file = file,
-                 name = name[i],
-                 as_raster = TRUE)
-    as.data.frame(raster::cellStats(a, fn))
+i = 1
+rm(i)
+  df <- lapply(seq_along(vars), function(i){
+    v <- ncdf4::ncvar_get(nc = nc, varid = vars[i])
+    if(vars[i] == "Times") {
+      v <- as.POSIXct(v, format = "%Y-%m-%d_%H:%M:%S")
+      c(summary(v), sum = NA)
+    } else {
+      c(summary(as.vector(v)), sum = sum(v))
+
+    }
   })
+  df <- as.data.frame(t(do.call("rbind", df)))
+  names(df) <- vars
+  return(df)
 
-  df <- do.call("cbind", la)
-  dt <- cbind(dft, df)
-  names(dt) <- c("Times", name)
-  return(dt)
 }

@@ -2,32 +2,23 @@
 % Please edit documentation in R/wrf_summary.R
 \name{wrf_summary}
 \alias{wrf_summary}
-\title{Summary of WRF files}
+\title{Summary of variables inside WRF files}
 \usage{
-wrf_summary(file, name, fn = "sum")
+wrf_summary(file)
 }
 \arguments{
 \item{file}{String path to the wrf.}
-
-\item{name}{String for variables in wrf file, internally read
-by \code{\link{wrf_get}} and transformed to raster.}
-
-\item{fn}{String of the function, for instance, "sum"}
 }
 \value{
 data.frame
 }
 \description{
-This return returns a summary for each variable and hour.
-\code{\link{wrf_summary}} internally reads the wrf file using
-\code{\link{wrf_get}}, then applies raster::cellStats.
+This return returns a summary for each variable.
 }
 \examples{
 \dontrun{
 # do not run
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-wrf_summary(file = file,
-            name = c("XLAT", "XLONG"),
-                        fn = "mean")
+wrf_summary(file = file)
 }
 }

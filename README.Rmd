@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# eixport <img src="man/figures/logo.png" align="right" alt="" width="140" />
+# eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
 
 [![Travis-CI Build Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
 [![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
@@ -79,9 +79,7 @@ check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 ```{r}
 library(eixport)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-wrf_summary(file = file,
-            name = c("XLAT", "XLONG"),
-            fn = "mean")
+wrf_summary(file = file)
 
 ```
 

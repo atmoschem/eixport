@@ -33,12 +33,17 @@ project from the Joint Research Centre. This function reads the NetCDF and
 merge/aggregate into diferent chemical mechanisms
 }
 \note{
-Molecular weights were obtained from Development of
-Improved Chemical Speciation Database for Processing Emissions of
+Molecular weights were obtained from
+
+Development of  Improved Chemical Speciation Database for Processing Emissions of
 Volatile Organic Compounds for Air Quality Models
 https://intra.engr.ucr.edu/~carter/emitdb/
 
 Some mappings were obtained from:
+
+Carter, W. P. (2015). Development of a database for chemical
+mechanism assignments for volatile organic emissions.
+Journal of the Air & Waste Management Association, 65(10), 1171-1184.
 
 Lopez-Norena, Ana and Fernandez, Rafael & Puliafito, SALVADOR. (2019).
 ESPECIACION DE INVENTARIOS DE EMISIONES DE AEROSOLES Y COMPUESTOS ORGANICOS

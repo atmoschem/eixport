@@ -61,7 +61,7 @@ wrf_grid <- function(filewrf,
                       xmx = max(lon),
                       ymn = min(lat),
                       ymx = max(lat),
-                      crs = "+init=epsg:4326")
+                      crs = "+proj=longlat +datum=WGS84")
   if (as_raster){ # nocov start
     return(r)
   }               # nocov end
