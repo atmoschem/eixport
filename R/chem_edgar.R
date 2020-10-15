@@ -557,8 +557,9 @@ chem_edgar <- function(path,
     cat("units of gases: mol/km2/h\n")
     cat("units of aerosols: ug/m2/s\n")
     return(CB05)
+    # neu_ecb05 ####
 
-  } else if (chem  == "neu_ecb05") {
+  } else if (chem  %in%  c("neu_ecb05", "neu_cb05")) {
     # emis_opt$ecb05_opt2[1]
     E_ACET <- bp$voc9/dte[dte$GEIA_id == "voc9", ]$g_mol
 
@@ -738,7 +739,7 @@ chem_edgar <- function(path,
       E_PM25J, E_ECI, E_ECJ, E_ORGI, E_ORGJ,
       E_SO4I, E_SO4J, E_NO3I, E_NO3J,
       E_SO4C, E_NO3C, E_ORGC, E_ECC, E_PM10))
-    names(CB05) <- emis_opt$ecb05_opt1
+    names(CB05) <- emis_opt$ecb05_opt2
     cat("units of gases: mol/km2/h\n")
     cat("units of aerosols: ug/m2/s\n")
     return(CB05) #nocov end
