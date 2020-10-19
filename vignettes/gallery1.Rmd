@@ -1,10 +1,10 @@
 ---
-title: "Gallery WRF out files 1"
+title: "plot WRF: Elevation"
 author: "Sergio Ibarra-Espinosa"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Gallery WRF out files 1}
+  %\VignetteIndexEntry{plot WRF: Elevation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
