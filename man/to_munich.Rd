@@ -18,7 +18,7 @@ The columns are the emissions.}
 
 \item{height}{Integer; heigth.}
 
-\item{crs}{Numeric; Coordenade Reference System with default value of 4326.}
+\item{crs}{Numeric; Coordenade Reference System to project data or not.}
 }
 \value{
 A list with a data frame with columns "i", "idbrin", "typo", "xa",

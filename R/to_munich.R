@@ -10,7 +10,7 @@
 #' @param typo Integer; id2.
 #' @param width Integer; width.
 #' @param height Integer; heigth.
-#' @param crs Numeric; Coordenade Reference System with default value of 4326.
+#' @param crs Numeric; Coordenade Reference System to project data or not.
 #' @return A list with a data frame with columns "i", "idbrin", "typo", "xa",
 #' "ya", "xb", "yb" and the pollutants; and another data.frame with "i",
 #' "length" (m), "width" (with value 0) and "height" (with value 0). Width and
@@ -80,7 +80,12 @@ to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   #   sdf <- sfx_explode(sdf)
   # }
 
-  dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
+  if(missing(crs)) {
+    dft <- as.data.frame(sf::st_coordinates(sdf))
+  } else {
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
+  }
+
   lista <- split(x = dft, f = dft$L1)
   df <- do.call("rbind",(lapply(1:length(lista), function(i){
     cbind(names(lista)[i], lista[[i]][1,], lista[[i]][2,])

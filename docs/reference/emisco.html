@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Emissions from VEIN demo — emisco • eixport</title>
+<title>Emissions from VEIN examples — emisco • eixport</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Emissions from VEIN demo — emisco" />
-<meta property="og:description" content="Emissions with units for R-LINE" />
+<meta property="og:title" content="Emissions from VEIN examples — emisco" />
+<meta property="og:description" content="Emissions for street models such as munich. They need to be splitted
+using st_explode" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,13 +145,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Emissions from VEIN demo</h1>
+    <h1>Emissions from VEIN examples</h1>
     <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/emisco.R'><code>R/emisco.R</code></a></small>
     <div class="hidden name"><code>emisco.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Emissions with units for R-LINE</p>
+    <p>Emissions for street models such as munich. They need to be splitted
+using st_explode</p>
     </div>
 
     <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span></pre>
@@ -158,22 +160,9 @@
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <code>sf</code> object of type LINESTRING with 288 rows and 15 variables:</p><dl>
-<dt>ldv</dt><dd><p>Light Duty Vehicles (1/h)</p></dd>
-<dt>hdv</dt><dd><p>Heavy Duty Vehicles (1/h)</p></dd>
-<dt>lkm</dt><dd><p>Length of the link (km)</p></dd>
-<dt>ps</dt><dd><p>Peak Speed (km/h)</p></dd>
-<dt>ffs</dt><dd><p>Free Flow Speed (km/h)</p></dd>
-<dt>tstreet</dt><dd><p>Type of street</p></dd>
-<dt>lanes</dt><dd><p>Number of lanes per link</p></dd>
-<dt>capacity</dt><dd><p>Capacity of vehicles in each link (1/h)</p></dd>
-<dt>tmin</dt><dd><p>Time for travelling each link (min)</p></dd>
-<dt>V8</dt><dd><p>Emissions (g/s)</p></dd>
-<dt>xmin</dt><dd><p>Initial x coordinates</p></dd>
-<dt>xmax</dt><dd><p>Ending x coordinates</p></dd>
-<dt>ymin</dt><dd><p>Initial y coordinates</p></dd>
-<dt>ymax</dt><dd><p>Ending y coordinates</p></dd>
-<dt>geometry</dt><dd><p>geometry column of the sf object</p></dd>
+    <p>A <code>sf</code> object of type LINESTRING with 1505 rows and 24 variables:</p><dl>
+<dt>V8</dt><dd><p>Emissions for 08:00-09:00 in Easth Sao Paulo, Brazil (g/h)</p></dd>
+<dt>geometry</dt><dd><p>Geometry class sfc_LINESTRING sfc</p></dd>
 data(emisco)
 
 </dl>

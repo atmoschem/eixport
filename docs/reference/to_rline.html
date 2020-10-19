@@ -156,16 +156,12 @@ of the model R-LINE</p>
     </div>
 
     <pre class="usage"><span class='fu'>to_rline</span><span class='op'>(</span>
-  <span class='va'>X_b</span>,
-  <span class='va'>Y_b</span>,
+  <span class='va'>Emis</span>,
   <span class='va'>Z_b</span>,
-  <span class='va'>X_e</span>,
-  <span class='va'>Y_e</span>,
   <span class='va'>Z_e</span>,
   <span class='va'>dCL</span>,
   <span class='va'>sigmaz0</span>,
   <span class='va'>lanes</span>,
-  <span class='va'>Emis</span>,
   <span class='va'>Hw1</span>,
   <span class='va'>dw1</span>,
   <span class='va'>Hw2</span>,
@@ -173,31 +169,20 @@ of the model R-LINE</p>
   <span class='va'>Depth</span>,
   <span class='va'>Wtop</span>,
   <span class='va'>Wbottom</span>,
-  experimental <span class='op'>=</span> <span class='cn'>FALSE</span>
+  experimental <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>crs</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>X_b</th>
-      <td><p>initial x coordinates.</p></td>
-    </tr>
-    <tr>
-      <th>Y_b</th>
-      <td><p>initial y coordinates.</p></td>
+      <th>Emis</th>
+      <td><p>Column with the emissions whose unit must be g/ms.</p></td>
     </tr>
     <tr>
       <th>Z_b</th>
       <td><p>initial meters above sea level (m).</p></td>
-    </tr>
-    <tr>
-      <th>X_e</th>
-      <td><p>final x coordinates.</p></td>
-    </tr>
-    <tr>
-      <th>Y_e</th>
-      <td><p>final y coordinates.</p></td>
     </tr>
     <tr>
       <th>Z_e</th>
@@ -214,10 +199,6 @@ of the model R-LINE</p>
     <tr>
       <th>lanes</th>
       <td><p>number of lanes at each street.</p></td>
-    </tr>
-    <tr>
-      <th>Emis</th>
-      <td><p>Column with the emissions whose unit must be g/ms.</p></td>
     </tr>
     <tr>
       <th>Hw1</th>
@@ -252,6 +233,10 @@ of the model R-LINE</p>
       <td><p>Boolean argument to denote the use of the experimental
 features (TRUE) or not (FALSE).</p></td>
     </tr>
+    <tr>
+      <th>crs</th>
+      <td><p>Numeric; Coordenade Reference System to project data or not.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -265,24 +250,21 @@ for near-surface releases, In Atmospheric Environment, Volume 77, 2013,
 Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Do not run</span>
+    <pre class="examples"><div class='input'><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span>
-<span class='va'>Source</span> <span class='op'>&lt;-</span> <span class='fu'>to_rline</span><span class='op'>(</span>X_b <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>xmin</span>,
-               Y_b <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>ymin</span>,
-               Z_b <span class='op'>=</span><span class='fl'>0</span>,
-               X_e <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>xmin</span>,
-               Y_e <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>ymin</span>,
-               Z_e <span class='op'>=</span><span class='fl'>0</span>,
-               dCL <span class='op'>=</span> <span class='fl'>0</span>,
-               Emis <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span>,
-               sigmaz0 <span class='op'>=</span> <span class='fl'>2</span>,
-               lanes <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>$</span><span class='va'>lanes</span><span class='op'>)</span>
+<span class='va'>emisco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='st_explode.html'>st_explode</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span>
+<span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span> <span class='op'>&lt;-</span> <span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span>, <span class='st'>"g/ms"</span><span class='op'>)</span>
+<span class='va'>Source</span> <span class='op'>&lt;-</span> <span class='fu'>to_rline</span><span class='op'>(</span>Emis <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>[</span><span class='st'>"V8"</span><span class='op'>]</span>,
+                   Z_b <span class='op'>=</span><span class='fl'>0</span>,
+                   Z_e <span class='op'>=</span><span class='fl'>0</span>,
+                   dCL <span class='op'>=</span> <span class='fl'>0</span>,
+                   sigmaz0 <span class='op'>=</span> <span class='fl'>2</span>,
+                   lanes <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Source</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Source</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/Sources.txt"</span><span class='op'>)</span>,
 row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div></pre>
+</div><div class='output co'>#&gt; Sum: 2090610.32</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

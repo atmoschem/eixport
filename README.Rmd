@@ -39,7 +39,7 @@ To install the [CRAN](https://CRAN.R-project.org/package=eixport) version:
 
 =(
 
-Currently, not on CRAN, but we will submit in the following days
+Currently, not on CRAN, but I am submitting now.
 
 ```{r eval = FALSE}
 #install.packages("eixport")

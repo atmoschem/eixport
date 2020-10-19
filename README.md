@@ -39,7 +39,7 @@ version:
 
 \=(
 
-Currently, not on CRAN, but we will submit in the following days
+Currently, not on CRAN, but I am submitting now.
 
 ``` r
 #install.packages("eixport")
@@ -90,14 +90,14 @@ check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 library(eixport)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 wrf_summary(file = file)
-#>              Times         XLAT         XLONG
-#> Min.    1312167600    -24.38538     -47.42899
-#> 1st Qu. 1312167600    -24.05025     -46.96930
-#> Median  1312167600    -23.70471     -46.50305
-#> Mean    1312167600    -23.70379     -46.50304
-#> 3rd Qu. 1312167600    -23.35773     -46.03427
-#> Max.    1312167600    -23.01877     -45.58643
-#> sum             NA -76160.28088 -149414.28107
+#>                Min.       1st Qu.        Median          Mean       3rd Qu.
+#> Times  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09
+#> XLAT  -2.438538e+01 -2.405025e+01 -2.370471e+01 -2.370379e+01 -2.335773e+01
+#> XLONG -4.742899e+01 -4.696930e+01 -4.650305e+01 -4.650304e+01 -4.603427e+01
+#>                Max.        sum
+#> Times  1.312168e+09         NA
+#> XLAT  -2.301877e+01  -76160.28
+#> XLONG -4.558643e+01 -149414.28
 ```
 
 ### Attributes as data.frame
