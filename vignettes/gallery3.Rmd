@@ -27,17 +27,19 @@ library(sf)
 library(vein)
 ```
 
-Reading Temperature
-```{r}
-t2 <- wrf_get("/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00", 
-              "T2", as_raster = T)
-t2 <- t2 -273.15# we select one
-```
 
 Adding coastlines and cropping for our study area
 ```{r}
 cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
-cl <- st_cast(st_crop(cl, st_as_stars(t2)), "LINESTRING")
+```
+
+
+Reading Temperature and crop coast lines for our study area
+```{r}
+t2 <- wrf_get("/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00", 
+              "T2", as_raster = T)
+t2 <- t2 -273.15
+cl <- st_cast(st_crop(cl, st_as_stars(t2)), "LINESTRING") # 
 ```
 
 Find colour palette for temperature
@@ -46,7 +48,7 @@ find_cpt("temperature")
 ```
 
 
-Let us create a line betweem c(-46.5,-23.85) and c(-46.35, -23.95)
+Let us create a line between c(-46.5,-23.85) and c(-46.35, -23.95)
 
 ```{r}
 m <- cbind(c(-46.5, -46.35),  # xini xend
@@ -65,8 +67,8 @@ Now, define several lines
 m2 <- cbind(c(-46.05, -46.36),  # xini xend
             c(-23.85, -23.95))   # yini yend
 ```
-Define a helper function
 
+Define a helper function
 ```{r}
 points_extract <- function(m, sta) {
   cross = st_linestring(m)
@@ -94,6 +96,14 @@ library(ggplot2)
 sta = st_as_stars(t2)
 names(sta) <- "temperature"
 df <- points_extract(m, sta = sta)
+```
+Let us check the data
+```{r}
+head(df)
+```
+
+Add time variable, select and plot
+```{r}
 df$time <- as.POSIXct(df$V3, format = "T2_%Y.%m.%d_%H.%M.%S")
 df$hour <- strftime(df$time, "%H")
 ggplot(df[df$hour %in% "15", ], 
