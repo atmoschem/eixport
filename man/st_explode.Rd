@@ -17,8 +17,6 @@ each vertex. It to mimic the function explode from qgis, that the reason for the
 }
 \note{
 All variables are transformed into numeric.
-
-Thanks Michael Summer (mdsummer)  for the function sfx_explode!
 }
 \examples{
 \dontrun{

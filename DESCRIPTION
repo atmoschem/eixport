@@ -24,7 +24,7 @@ License: MIT + file LICENSE
 URL: https://atmoschem.github.io/eixport/
 BugReports: https://github.com/atmoschem/eixport/issues/
 Depends: R (>= 3.5.0)
-Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, tidyr, silicate (>= 0.3), sfheaders (>= 0.2.1), parallel
+Imports: sf, ncdf4, raster, sp, methods, cptcity, utils, parallel, data.table
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 7.1.1
@@ -35,5 +35,6 @@ Suggests:
     units,
     knitr,
     rmarkdown
+NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

@@ -4,12 +4,10 @@
 \alias{sfx_explode}
 \title{splits line by vertex}
 \usage{
-sfx_explode(x, ...)
+sfx_explode(x)
 }
 \arguments{
-\item{x}{spatial lines.}
-
-\item{...}{ignored}
+\item{x}{sf LINESTRING.}
 }
 \value{
 spatial lines
@@ -21,19 +19,6 @@ spatial lines
 {
 # Do not run
 data(emisco)
-emisco <- emisco[1:100, "V8"]
-dfco <- sfx_explode(emisco)
-etm <- to_munich(sdf = dfco)
-names(etm)
-class(etm)
-head(etm$Emissions)
-head(etm$Street)
-write.table(x = etm$Emissions, file = paste0(tempfile(), "_Emissions.txt"),
-row.names = FALSE, sep = " ", quote = FALSE)
-write.table(x = etm$Street, file = paste0(tempfile(), "_Street.txt"),
-row.names = FALSE, sep = " ", quote = FALSE)
+system.time(dfco <- sfx_explode(emisco))
 }
-}
-\author{
-Michael Summer github\link{dot}/hypertidy/silicate/issues/102
 }
