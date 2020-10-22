@@ -66,8 +66,6 @@
 #' row.names = FALSE, sep = " ", quote = FALSE)
 #' write.table(x = etm$Street, file = paste0(tempfile(), "_Street.txt"),
 #' row.names = FALSE, sep = " ", quote = FALSE)
-#' ######
-#' # todo: handle all unit checks and conversion internally
 #' }
 to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
   sdf <- sf::st_as_sf(sdf)

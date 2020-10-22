@@ -101,13 +101,13 @@
 
       
 
-      </header><script src="gallery0_files/header-attrs-2.4/header-attrs.js"></script><script src="gallery0_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="gallery0_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>WRF out statistics</h1>
                         <h4 class="author">Sergio Ibarra-Espinosa</h4>
             
-            <h4 class="date">2020-10-21</h4>
+            <h4 class="date">2020-10-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/master/vignettes/gallery0.Rmd"><code>vignettes/gallery0.Rmd</code></a></small>
       <div class="hidden name"><code>gallery0.Rmd</code></div>
@@ -1048,32 +1048,32 @@
 <span class="co">#&gt; [126] "TSLB"        "U"           "V"           "W"           "xyl"        </span>
 <span class="co">#&gt; [131] "YCLNO2"</span></pre></div>
 <p>Now get some statistics</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">wrf_summary</span>(wrfo, <span class="kw">c</span>(<span class="st">"o3"</span>, <span class="st">"PM2_5_DRY"</span>, <span class="st">"T"</span>, <span class="st">"U"</span>, <span class="st">"V"</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; </span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="er">|</span><span class="st">                                                                      </span><span class="er">|</span><span class="st">   </span><span class="dv">0</span>%</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="er">|==============</span><span class="st">                                                        </span><span class="er">|</span><span class="st">  </span><span class="dv">20</span>%</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="st">  </span><span class="er">|============================</span><span class="st">                                          </span><span class="er">|</span><span class="st">  </span><span class="dv">40</span>%</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="st">  </span><span class="er">|==========================================</span><span class="st">                            </span><span class="er">|</span><span class="st">  </span><span class="dv">60</span>%</span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="er">|========================================================</span><span class="st">              </span><span class="er">|</span><span class="st">  </span><span class="dv">80</span>%</span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="op">|</span><span class="st">                                                                            </span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="er">|======================================================================|</span><span class="st"> </span><span class="dv">100</span>%</span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt;                    Min.       1st Qu.       Median         Mean      3rd Qu.</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; o3         1.000000e-16  5.597807e-09 1.270778e-07  0.008087115  0.006665367</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt; PM2_5_DRY  1.036929e-04  1.234772e-04 3.200465e-03 14.123984115  1.420974344</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; T         -1.392551e+01  1.261627e+00 2.172067e+01 35.916421125 50.358604431</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; U         -1.924914e+01 -3.512950e+00 1.805805e+00  2.932358629  7.634903789</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; V         -2.181067e+01 -2.632876e-01 4.279385e+00  6.222734005 12.059547901</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt;                 Max.         sum</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; o3          0.192915    102155.2</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; PM2_5_DRY 622.049194 178412048.7</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; T         193.409790 453690844.2</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; U          35.644695  37714589.2</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt; V          35.311325  80850489.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wrf_summary</span>(wrfo, <span class="fu">c</span>(<span class="st">"o3"</span>, <span class="st">"PM2_5_DRY"</span>, <span class="st">"T"</span>, <span class="st">"U"</span>, <span class="st">"V"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">40</span>%</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">60</span>%</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================================</span>              <span class="er">|</span>  <span class="dv">80</span>%</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    Min.       1st Qu.       Median         Mean      3rd Qu.</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; o3         1.000000e-16  5.597807e-09 1.270778e-07  0.008087115  0.006665367</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PM2_5_DRY  1.036929e-04  1.234772e-04 3.200465e-03 14.123984115  1.420974344</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; T         -1.392551e+01  1.261627e+00 2.172067e+01 35.916421125 50.358604431</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; U         -1.924914e+01 -3.512950e+00 1.805805e+00  2.932358629  7.634903789</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; V         -2.181067e+01 -2.632876e-01 4.279385e+00  6.222734005 12.059547901</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 Max.         sum</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; o3          0.192915    102155.2</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; PM2_5_DRY 622.049194 178412048.7</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; T         193.409790 453690844.2</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; U          35.644695  37714589.2</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; V          35.311325  80850489.5</span></span></code></pre></div>
 </div>
   </div>
 

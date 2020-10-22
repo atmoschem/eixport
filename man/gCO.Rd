@@ -5,7 +5,7 @@
 \alias{gCO}
 \title{Gridded emissions from VEIN demo}
 \format{
-A sf object of lines with 437 rows and 2 variables:
+A sf object of POLYGON with 437 rows and 2 variables:
 \describe{
 \item{V9}{Emissions of CO (g/h) for 08:00-09:00}
 \item{geometry}{geometry}
