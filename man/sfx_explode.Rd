@@ -19,6 +19,8 @@ spatial lines
 {
 # Do not run
 data(emisco)
-system.time(dfco <- sfx_explode(emisco))
+dim(emisco)
+dfco <- sfx_explode(emisco)
+dim(dfco)
 }
 }

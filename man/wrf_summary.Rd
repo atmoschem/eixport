@@ -4,10 +4,12 @@
 \alias{wrf_summary}
 \title{Summary of variables inside WRF files}
 \usage{
-wrf_summary(file)
+wrf_summary(file, vars)
 }
 \arguments{
 \item{file}{String path to the wrf.}
+
+\item{vars}{String of WRF variables. If missing, all variables.}
 }
 \value{
 data.frame

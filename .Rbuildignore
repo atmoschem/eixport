@@ -16,6 +16,7 @@
 ^rutils$
 ^_pkgdown.yml$
 ^pkgdown$
+^vignettes/gallery0.Rmd$
 ^vignettes/gallery1.Rmd$
 ^vignettes/gallery2.Rmd$
 ^vignettes/gallery3.Rmd$

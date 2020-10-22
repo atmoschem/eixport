@@ -13,7 +13,9 @@ chem_edgar(path, chem, merge = FALSE, k = rep(1, 34))
 "pm10", "pm2.5", "bc" and "oc"}
 
 \item{chem}{Character; chemical mechanism: "edgar", "radm", "radmsorg",
-"cbmz_mosaic", "cptec", "ecb05_opt1" and "neu_ecb05".
+"cbmz_mosaic", "cptec", "ecb05_opt1",
+"neu_cb05" (thanks to Daniel Schuch) and
+"ufpr_cbmz" (thanks to Leila Martins).
 \itemize{
 \item When chem is "edgar" units are: "g km-2 h-1"
 \item Other mechanisms: gases "mol km-2 h-1" and aerosols: "ug m-2 s-1"
@@ -54,39 +56,51 @@ CBM-Z Y MOZART-4.
 \dontrun{
 # do not run
 # Get EDGAR ####
-get_edgar(dataset = "v432_VOC_spec",
-          destpath = "V50_432_AP/TOT/",
-          sector = c( "TOTALS"),
-          type = "nc",
-          year = 2012)
+get_edgar(
+  dataset = "v432_VOC_spec",
+  destpath = "V50_432_AP/TOT/",
+  sector = c("TOTALS"),
+  type = "nc",
+  year = 2012
+)
 
-get_edgar(dataset = "v50_AP",
-          destpath = "V50_432_AP/TOT",
-          sector = c( "TOTALS"),
-          type = "nc",
-          year = 2014)
+get_edgar(
+  dataset = "v50_AP",
+  destpath = "V50_432_AP/TOT",
+  sector = c("TOTALS"),
+  type = "nc",
+  year = 2014
+)
 
-get_edgar(dataset = "v432_VOC_spec",
-          destpath = "V50_432_AP/TRO/",
-          sector = c( "TRO"),
-          type = "nc",
-          year = 2012, ask = F)
+get_edgar(
+  dataset = "v432_VOC_spec",
+  destpath = "V50_432_AP/TRO/",
+  sector = c("TRO"),
+  type = "nc",
+  year = 2012, ask = F
+)
 
-get_edgar(dataset = "v50_AP",
-          destpath = "V50_432_AP/TRO",
-          sector = c( "TRO_RES", "TRO_noRES"),
-          type = "nc",
-          year = 2014)
+get_edgar(
+  dataset = "v50_AP",
+  destpath = "V50_432_AP/TRO",
+  sector = c("TRO_RES", "TRO_noRES"),
+  type = "nc",
+  year = 2014
+)
 
-totals <- list.files(path = "V50_432_AP/TOT/",
-                     full.names = TRUE,
-                     pattern = ".zip")
+totals <- list.files(
+  path = "V50_432_AP/TOT/",
+  full.names = TRUE,
+  pattern = ".zip"
+)
 lapply(totals, unzip, exdir = "V50_432_AP/TOT//")
 
 
-tros <- list.files(path = "V50_432_AP/TRO",
-                     full.names = TRUE,
-                     pattern = ".zip")
+tros <- list.files(
+  path = "V50_432_AP/TRO",
+  full.names = TRUE,
+  pattern = ".zip"
+)
 lapply(tros, unzip, exdir = "V50_432_AP/TRO/")
 edgar_chem("V50_432_AP/TOT", "radm")
 }

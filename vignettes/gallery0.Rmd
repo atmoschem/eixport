@@ -1,10 +1,10 @@
 ---
-title: "plot WRF: Elevation"
+title: "WRF out statistics"
 author: "Sergio Ibarra-Espinosa"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{plot WRF: Elevation}
+  %\VignetteIndexEntry{WRF out statistics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -36,41 +36,20 @@ library(sf)
 
 Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
+First lets get a summary of a WRF output file
 ```{r}
 wrfo <- "/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"
+(dt <- wrf_meta(wrfo)$vars)
 ```
+Now we can select some variables
 
-Reading HGT from wrfout
 ```{r}
-HGT <- wrf_get(wrfo,  "HGT", as_raster = T)
-HGT <- HGT[[1]] # by default one variable with each time, so we select one
+(vars <- dt[dt$MemoryOrder == "XYZ", ]$vars)
 ```
 
-Adding coastlines and cropping for our study area
+Now get some statistics
+
 ```{r}
-cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
-cl <- st_cast(st_crop(cl, st_as_stars(HGT)), "LINESTRING")
+wrf_summary(wrfo, c("o3", "PM2_5_DRY", "T", "U", "V"))
 ```
 
-Find colour palette for elevation
-```{r}
-find_cpt("elevation")
-```
-
-
-```{r, fig.width=6,fig.height=4}
-plot(HGT, main = "HGT using plot", col = cpt("grass_elevation"))
-plot(cl, add= T, col = "black")
-```
-
-```{r, fig.width=6,fig.height=4}
-spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),
-       col.regions = cpt("grass_elevation"),
-       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
-```   
-
-```{r, fig.width=6,fig.height=5}
-# hgt <- st_as_stars(HGT)
-# plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)
-# plot(cl$geometry, add= T, col = "black")
-```

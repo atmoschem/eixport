@@ -63,3 +63,7 @@ spplot(t2, main = "Temperature 2m using spplot", scales=list(draw = TRUE),
 # contour(st2, add = T)
 # plot(cl$geometry, add= T, col = "black")
 ```
+
+## Temeprature and 
+
+contour(t2, add = T)

@@ -4,16 +4,18 @@
 #'
 #' @param x sf LINESTRING.
 #' @return spatial lines
-#' @importFrom sf st_sf st_as_sfc st_linestring st_as_text st_geometry st_crs
+#' @importFrom sf st_sf st_as_sfc st_geometry st_crs st_cast st_set_geometry
 #' @importFrom data.table as.data.table ".SD" ".N"
 #' @export
 #' @examples {
 #' # Do not run
 #' data(emisco)
-#' system.time(dfco <- sfx_explode(emisco))
+#' dim(emisco)
+#' dfco <- sfx_explode(emisco)
+#' dim(dfco)
 #' }
-
 sfx_explode <- function(x) {
+  x <- sf::st_cast(x, "LINESTRING")
   crs <- sf::st_crs(x)
   x$id <- 1:nrow(x)
   nosf <- sf::st_set_geometry(x, NULL)

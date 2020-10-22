@@ -116,6 +116,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/gallery0.html">WRF out statistics</a>
+    </li>
+    <li>
       <a href="../articles/gallery1.html">plot WRF: Elevation</a>
     </li>
     <li>
@@ -156,7 +159,7 @@
     <p>This return returns a summary for each variable.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>wrf_summary</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>wrf_summary</span><span class='op'>(</span><span class='va'>file</span>, <span class='va'>vars</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,6 +167,10 @@
     <tr>
       <th>file</th>
       <td><p>String path to the wrf.</p></td>
+    </tr>
+    <tr>
+      <th>vars</th>
+      <td><p>String of WRF variables. If missing, all variables.</p></td>
     </tr>
     </table>
 

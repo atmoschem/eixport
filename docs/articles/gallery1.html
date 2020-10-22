@@ -70,6 +70,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/gallery0.html">WRF out statistics</a>
+    </li>
+    <li>
       <a href="../articles/gallery1.html">plot WRF: Elevation</a>
     </li>
     <li>
@@ -140,13 +143,14 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity">cptcity</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></pre></div>
 <p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl">NCL</a>:</p>
-<p>Reading HGT from wrfout</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="st">"/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"</span>, 
-               <span class="st">"HGT"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="va">HGT</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># bythefault one variable with each time, so we select one</span></pre></div>
-<p>Adding coastlines and cropping for our study area</p>
+<span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"</span></pre></div>
+<p>Reading HGT from wrfout</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="va">wrfo</span>,  <span class="st">"HGT"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="va">HGT</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># by default one variable with each time, so we select one</span></pre></div>
+<p>Adding coastlines and cropping for our study area</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp"</span><span class="op">)</span>
 <span class="co">#&gt; Reading layer `GSHHS_f_L1' from data source `/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp' using driver `ESRI Shapefile'</span>
 <span class="co">#&gt; Simple feature collection with 179837 features and 6 fields</span>
@@ -161,21 +165,21 @@
 <span class="co">#&gt; Warning in st_cast.sf(st_crop(cl, st_as_stars(HGT)), "LINESTRING"): repeating</span>
 <span class="co">#&gt; attributes for all sub-geometries for which they may not be constant</span></pre></div>
 <p>Find colour palette for elevation</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html">find_cpt</a></span><span class="op">(</span><span class="st">"elevation"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "gmt_GMT_elevation" "grass_elevation"</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">HGT</span>, main <span class="op">=</span> <span class="st">"HGT using plot"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cl</span>, add<span class="op">=</span> <span class="cn">T</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>
 <span class="co">#&gt; Warning in plot.sf(cl, add = T, col = "black"): ignoring all but the first</span>
 <span class="co">#&gt; attribute</span></pre></div>
-<p><img src="gallery1_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<p><img src="gallery1_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/pkg/raster/man/spplot.html">spplot</a></span><span class="op">(</span><span class="va">HGT</span>, main <span class="op">=</span> <span class="st">"HGT using spplot"</span>, scales<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
        col.regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span><span class="op">)</span>,
        sp.layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"sp.lines"</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/coerce-methods.html">as_Spatial</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></pre></div>
-<p><img src="gallery1_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<p><img src="gallery1_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="co"># hgt &lt;- st_as_stars(HGT)</span>
 <span class="co"># plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)</span>
 <span class="co"># plot(cl$geometry, add= T, col = "black")</span></pre></div>
