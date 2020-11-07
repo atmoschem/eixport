@@ -582,15 +582,17 @@ chem_edgar <- function(path,
     # neu_ecb05 ####
   } else if (chem %in% c("neu_ecb05", "neu_cb05")) {
     # emis_opt$ecb05_opt2[1]
-    E_ACET <- bp$voc9 / dte[dte$GEIA_id == "voc9", ]$g_mol
+    E_ACET <- 0 * bp$voc9
 
     # emis_opt$ecb05_opt2[2]
-    E_PAR <- bp$voc1 / dte[dte$GEIA_id == "voc1", ]$g_mol +
-      bp$voc2 / dte[dte$GEIA_id == "voc2", ]$g_mol +
-      bp$voc3 / dte[dte$GEIA_id == "voc3", ]$g_mol +
-      bp$voc4 / dte[dte$GEIA_id == "voc4", ]$g_mol +
-      bp$voc5 / dte[dte$GEIA_id == "voc5", ]$g_mol +
-      bp$voc6 / dte[dte$GEIA_id == "voc6", ]$g_mol
+    E_PAR <- 1.00 * bp$voc3  / dte[dte$GEIA_id == "voc3", ]$g_mol +
+             4.00 * bp$voc4  / dte[dte$GEIA_id == "voc4", ]$g_mol +
+             5.00 * bp$voc5  / dte[dte$GEIA_id == "voc5", ]$g_mol +
+             5.86 * bp$voc6  / dte[dte$GEIA_id == "voc6", ]$g_mol +
+             1.00 * bp$voc9  / dte[dte$GEIA_id == "voc9", ]$g_mol +
+             1.00 * bp$voc13 / dte[dte$GEIA_id == "voc13", ]$g_mol +
+             1.00 * bp$voc18 / dte[dte$GEIA_id == "voc18", ]$g_mol +
+             1.00 * bp$voc19 / dte[dte$GEIA_id == "voc19", ]$g_mol
 
     # emis_opt$ecb05_opt2[3]
     E_ALK3 <- bp$voc9 * 0
@@ -602,13 +604,12 @@ chem_edgar <- function(path,
     E_ALK5 <- bp$voc9 * 0
 
     # emis_opt$ecb05_opt2[6]
-    E_TOL <- bp$voc15 / dte[dte$GEIA_id == "voc15", ]$g_mol +
-      bp$voc16 / dte[dte$GEIA_id == "voc16", ]$g_mol +
-      bp$voc17 / dte[dte$GEIA_id == "voc17", ]$g_mol
+    E_TOL <- bp$voc14 / dte[dte$GEIA_id == "voc14", ]$g_mol
 
     # emis_opt$ecb05_opt2[7]
-    E_XYL <- bp$voc13 / dte[dte$GEIA_id == "voc13", ]$g_mol +
-      bp$voc14 / dte[dte$GEIA_id == "voc14", ]$g_mol
+    E_XYL <- bp$voc15 / dte[dte$GEIA_id == "voc15", ]$g_mol +
+             bp$voc16 / dte[dte$GEIA_id == "voc16", ]$g_mol +
+             bp$voc17 / dte[dte$GEIA_id == "voc17", ]$g_mol
 
     # emis_opt$ecb05_opt2[8]
     E_BALD <- bp$voc13 * 0
@@ -623,14 +624,13 @@ chem_edgar <- function(path,
     E_CO <- bp$co / (12 + 16)
 
     # emis_opt$ecb05_opt2[12]
-    E_CRES <- bp$voc18 / dte[dte$GEIA_id == "voc18", ]$g_mol +
-      bp$voc19 / dte[dte$GEIA_id == "voc19", ]$g_mol
+    E_CRES <- 0 * bp$voc18
 
     # emis_opt$ecb05_opt2[13]
-    E_ETH <- bp$voc9 / dte[dte$GEIA_id == "voc9", ]$g_mol
+    E_ETH <- bp$voc7 / dte[dte$GEIA_id == "voc7", ]$g_mol
 
     # emis_opt$ecb05_opt2[14]
-    E_ETHA <- bp$voc7 / dte[dte$GEIA_id == "voc7", ]$g_mol
+    E_ETHA <- bp$voc2 / dte[dte$GEIA_id == "voc2", ]$g_mol
 
     # emis_opt$ecb05_opt2[15]
     E_GLY <- bp$voc7 * 0
@@ -654,13 +654,13 @@ chem_edgar <- function(path,
     E_MEK <- bp$voc10 * 0
 
     # emis_opt$ecb05_opt2[22]
-    E_MEOH <- bp$voc10 * 0
+    E_MEOH <- 0.80 * bp$voc1 / dte[dte$GEIA_id == "voc1", ]$g_mol
 
     # emis_opt$ecb05_opt2[23]
     E_MEO2 <- bp$voc10 * 0
 
     # emis_opt$ecb05_opt2[24]
-    E_ETOH <- bp$nmvoc * (5 / 100) / (12 * 2 + 5 + 16 + 1)
+    E_ETOH <- 0.20 * bp$voc1 / dte[dte$GEIA_id == "voc1", ]$g_mol
 
     # emis_opt$ecb05_opt2[25]
     E_MGLY <- bp$nmvoc * 0
@@ -669,7 +669,8 @@ chem_edgar <- function(path,
     E_NH3 <- bp$nh3 / (14 + 3)
 
     # emis_opt$ecb05_opt2[27]
-    E_HCL <- bp$voc20 * 1 / dte[dte$GEIA_id == "voc20", ]$g_mol[1]
+    E_HCL <- bp$voc20 * 0
+    # Chlorinated hydrocarbons	CH3Cl
 
     # emis_opt$ecb05_opt2[28]
     E_NO <- bp$nox * 0.9 / (14 + 16)
@@ -678,7 +679,7 @@ chem_edgar <- function(path,
     E_NO2 <- bp$nox * 0.1 / (14 + 16 * 2)
 
     # emis_opt$ecb05_opt2[30]
-    E_IOLE <- bp$voc12 / dte[dte$GEIA_id == "voc12", ]$g_mol
+    E_IOLE <- bp$voc12 / dte[dte$GEIA_id == "voc12", ]$g_mol * 0.75
 
     # emis_opt$ecb05_opt2[31]
     E_OLE <- bp$voc8 / dte[dte$GEIA_id == "voc8", ]$g_mol
@@ -690,7 +691,7 @@ chem_edgar <- function(path,
     E_PROD2 <- bp$voc8 * 0
 
     # emis_opt$ecb05_opt2[34]
-    E_ALDX <- bp$voc22 / dte[dte$GEIA_id == "voc22", ]$g_mol * 0.1
+    E_ALDX <- bp$voc12 / dte[dte$GEIA_id == "voc12", ]$g_mol * 0.25
 
     # emis_opt$ecb05_opt2[35]
     E_SO2 <- bp$so2 / (64 + 16 * 2)
@@ -702,31 +703,31 @@ chem_edgar <- function(path,
     E_TERP <- bp$voc11 / dte[dte$GEIA_id == "voc11", ]$g_mol
 
     # emis_opt$ecb05_opt2[38]
-    E_PM25I <- bp$pm2.5 * 0.2 / 3600 # not read by mechanism
+    E_PM25I <- bp$pm2.5 * 0.0 / 3600 # not read by mechanism
 
     # emis_opt$ecb05_opt2[39]
     E_PM25J <- bp$pm2.5 * (0.8 + 0.2) / 3600
 
     # emis_opt$ecb05_opt2[40]
-    E_ECI <- bp$bc * 0.2 / 3600 # not read by mechanism
+    E_ECI <- bp$bc * 0.0 / 3600 # not read by mechanism
 
     # emis_opt$ecb05_opt2[41]
     E_ECJ <- bp$bc * (0.8 + 0.2) / 3600
 
     # emis_opt$ecb05_opt2[42]
-    E_ORGI <- bp$oc * 0.2 / 3600 # not read by mechanism
+    E_ORGI <- bp$oc * 0.0 / 3600 # not read by mechanism
 
     # emis_opt$ecb05_opt2[43]
     E_ORGJ <- bp$oc * (0.8 + 0.2) / 3600
 
     # emis_opt$ecb05_opt2[44]
-    E_SO4I <- bp$pm2.5 * 0.0077 / 3600 # not read by mechanism
+    E_SO4I <- bp$pm2.5 * 0.0 / 3600 # not read by mechanism
 
     # emis_opt$ecb05_opt2[45]
     E_SO4J <- bp$pm2.5 * (0.0623 + 0.0077) / 3600
 
     # emis_opt$ecb05_opt2[46]
-    E_NO3I <- bp$pm2.5 * 0.00247 / 3600 # not read by mechanism
+    E_NO3I <- bp$pm2.5 * 0.0 / 3600 # not read by mechanism
 
     # emis_opt$ecb05_opt2[47]
     E_NO3J <- bp$pm2.5 * (0.01053 + 0.00247) / 3600
@@ -744,7 +745,7 @@ chem_edgar <- function(path,
     E_ECC <- bp$pm2.5 * 0 / 3600
 
     # emis_opt$ecb05_opt2[52]
-    E_PM10 <- bp$pm10 * 1 / 3600
+    E_PM10 <- (bp$pm10 - bp$pm2.5) * 1 / 3600
 
 
     emis_opt$ecb05_opt2
