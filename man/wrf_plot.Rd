@@ -12,7 +12,7 @@ wrf_plot(
   barra = T,
   lbarra = 0.2,
   col = cptcity::cpt(n = 13),
-  verbose = T,
+  verbose = TRUE,
   ...
 )
 }

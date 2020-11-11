@@ -17,7 +17,6 @@ spatial lines
 }
 \examples{
 {
-# Do not run
 data(emisco)
 dim(emisco)
 dfco <- sfx_explode(emisco)

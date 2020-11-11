@@ -8,7 +8,6 @@
 #' @importFrom data.table as.data.table ".SD" ".N"
 #' @export
 #' @examples {
-#' # Do not run
 #' data(emisco)
 #' dim(emisco)
 #' dfco <- sfx_explode(emisco)

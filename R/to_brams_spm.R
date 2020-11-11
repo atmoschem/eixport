@@ -27,9 +27,11 @@
 #'
 #' @examples \dontrun{
 #' data(gCO)
-#' df1 <- to_brams_spm(sdf = gCO, epsg = 4326)
+#' df1 <- to_brams_spm(sdf = gCO,
+#'                     epsg = 4326)
 #' head(df1)
-#' df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO), epsg = 4326)
+#' df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO),
+#'                     epsg = 4326)
 #' lapply(df2, head)
 #'}
 to_brams_spm <- function(sdf, epsg = 4326){
@@ -57,7 +59,6 @@ to_brams_spm <- function(sdf, epsg = 4326){
     # Initially, this function return rowsums and polygon separatly
     # sumdf <- sapply(sdf, rowSums, na.rm = TRUE)
     # names(sumdf) <- paste0("sum_" , names(sdf))
-    # print(sumdf)
     return(ldf)
   } else {
     # message("sf")

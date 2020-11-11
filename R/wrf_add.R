@@ -8,7 +8,7 @@
 #' @param name name of the variable (any variable)
 #' @param POL  variable to be written
 #'
-#' @import ncdf4
+#' @importFrom  ncdf4 nc_open nc_close ncvar_get ncvar_put
 #'
 #' @export
 #'
@@ -19,7 +19,7 @@
 #' # create the folder and emission file
 #' dir.create(file.path(tempdir(), "EMISS"))
 #' wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-#'           wrfchemi_dir = file.path(tempdir(), "EMISS"))
+#'            wrfchemi_dir = file.path(tempdir(), "EMISS"))
 #'
 #' # get the name of created file
 #' files <- list.files(path = file.path(tempdir(), "EMISS"),
@@ -42,7 +42,7 @@ wrf_add <- function(file = file.choose(), name = NA,POL){
     POL0   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]                                   # nocov end
   }else{
-    POL0   <- ncvar_get(wrfchem,name)
+    POL0   <- ncdf4::ncvar_get(wrfchem,name)
   }
   ncdf4::ncvar_put(wrfchem,varid = name,POL0+POL)
   ncdf4::nc_close(wrfchem)

@@ -13,7 +13,8 @@ get_edgar(
   destpath = tempdir(),
   type = "nc",
   ask = TRUE,
-  copyright = TRUE
+  copyright = TRUE,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -36,6 +37,8 @@ txt with untis t/year and nc with units are ug/m2/s}
 \item{ask}{Logical; Are these URL ok?}
 
 \item{copyright}{Logical; to show copyright information.}
+
+\item{verbose}{Logical, to print more information.}
 }
 \value{
 Downloads data
@@ -50,14 +53,14 @@ functions to download any of the EDGAR datasets.
 \note{
 \strong{I recommend 2 ways:}
 
-\strong{1. include 'sector' and dont include 'pol', which download all pollutants as default}
+\strong{1. include 'sector' and do not include 'pol', which download all pollutants as default}
 
 get_edgar(dataset = "v432_AP",
 destpath = tempdir(),
 sector = c("TRO", "TOTALS"),
 year = 2012)
 
-\strong{2. include 'pol' and dont include 'sector', which download all sectors as default}
+\strong{2. include 'pol' and do not include 'sector', which download all sectors as default}
 
 get_edgar(dataset = "v432_AP",
 destpath = tempdir(),
@@ -100,31 +103,18 @@ AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \\cr
 voc11 only 2008
 }
 \examples{
-\dontrun{
+\donttest{
 # see all the links:
 data(edgar)
 head(edgar)
 # Download all pollutants for sector
 get_edgar(dataset = "v50_AP",
-          destpath = tempdir(),
-          sector = "TOTALS",
-          year = 2014)
-# Download all sectors for pollutant CO
-get_edgar(dataset = "v432_AP",
-          destpath = tempdir(),
-          pol = c("CO"),
-         year = 2012)
-get_edgar(dataset = "v50_AP",
-          destpath = tempdir(),
-          sector = c("CHE"),
           pol = "CO",
-          year = 2012:2013,
-          ask = F,
-          n = 2)
-# Download all v432 for all years and TOTALS
-get_edgar(dataset = "v432",
+          sector = "TOTALS",
+          year = 2014,
           destpath = tempdir(),
-          sector = "TOTALS")
+          type = "nc",
+          ask = FALSE)
 }
 }
 \references{

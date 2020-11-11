@@ -43,7 +43,7 @@
 #'data(Lights)
 #'to_wrf(Lights, files[1], total = 1521983, name = "E_CO")
 #'
-#'wrf_plot(files[1], "E_CO")
+#' wrf_plot(files[1], "E_CO")
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
@@ -52,8 +52,11 @@ wrf_plot <- function(file = file.choose(),
                      barra = T,
                      lbarra = 0.2,
                      col = cptcity::cpt(n = 13),
-                     verbose = T,
+                     verbose = TRUE,
                      ...){
+  oldpar <- par(no.readonly = TRUE) #?
+  on.exit(par(oldpar))              #?
+
   wrfchem <- ncdf4::nc_open(file)                                      # iteractive
   if(is.na(name)){                                                     # nocov start
     name  <- menu(names(wrfchem$var)[c(-1,-2,-3)], title = "Choose the variable:")
@@ -111,6 +114,7 @@ wrf_plot <- function(file = file.choose(),
                                 axes = TRUE,
                                 frame.plot = axes,
                                 mar, ...) {
+
     if (missing(z)) {
       if (!missing(x)) {                             # nocov
         if (is.list(x)) {                            # nocov

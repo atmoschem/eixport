@@ -79,7 +79,10 @@ Source <- to_rline(Emis = emisco["V8"],
                    sigmaz0 = 2,
                    lanes = 1)
 head(Source)
-write.table(x = Source, file = paste0(tempdir(), "/Sources.txt"),
-row.names = FALSE, sep = " ", quote = FALSE)
+write.table(x = Source,
+            file = paste0(tempdir(), "/Sources.txt"),
+            row.names = FALSE,
+            sep = " ",
+            quote = FALSE)
 }
 }

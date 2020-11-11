@@ -40,11 +40,13 @@
 #' @seealso \code{\link{wrf_create}} \code{\link{to_wrf}}
 #' @examples {
 #' data(gCO)
-#' df <- to_as4wrf(sdf = gCO, dmyhm = "29-04-2018 00:00",
-#'                tz = "America/Sao_Paulo")
+#' df <- to_as4wrf(sdf = gCO,
+#'                 dmyhm = "29-04-2018 00:00",
+#'                 tz = "America/Sao_Paulo")
 #' head(df)
-#' df2 <- to_as4wrf(sdf = list(co = gCO, pm = gCO), dmyhm = "29-04-2018 00:00",
-#'                tz = "America/Sao_Paulo")
+#' df2 <- to_as4wrf(sdf = list(co = gCO, pm = gCO),
+#'                  dmyhm = "29-04-2018 00:00",
+#'                  tz = "America/Sao_Paulo")
 #' head(df2)
 #' }
 to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){

@@ -11,7 +11,7 @@
 #'
 #' @format array or raster object
 #'
-#' @import ncdf4
+#' @importFrom  ncdf4 nc_open nc_close ncvar_get ncatt_get
 #' @importFrom raster raster brick flip
 #' @importFrom sp CRS
 #'
@@ -34,15 +34,26 @@
 #'                    full.names = TRUE)
 #'
 #' # open, put some numbers and write
-#' CO <- wrf_get(file = files[1], name = "E_CO")
+#' CO <- wrf_get(file = files[1],
+#'               name = "E_CO")
+#'
 #' CO[] = rnorm(length(CO))
-#' wrf_put(file = files[1], name = "E_CO", POL = CO)
-#' COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+#'
+#' wrf_put(file = files[1],
+#'         name = "E_CO",
+#'         POL = CO)
+#'
+#' COr <- wrf_get(file = files[1],
+#'                name = "E_CO",
+#'                as_raster = TRUE)
 #'
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
+wrf_get <- function(file = file.choose(),
+                    name = NA,
+                    as_raster = FALSE,
                     raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-                    raster_lev = 1, verbose = F){
+                    raster_lev = 1,
+                    verbose = FALSE){
   if(!is.na(name)){
     if(name == 'time'){
       wrfchem <- ncdf4::nc_open(file)                                                     # nocov
@@ -73,7 +84,7 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
     if(length(dim(POL)) == 4){
       cat(paste0("4D images not supported, making a 3D RasterBrick using level ",
                  raster_lev," of the file\n"))
-      POL <- POL[,,raster_lev,,drop = T]
+      POL <- POL[,,raster_lev,,drop = TRUE]
     }                                                                          # nocov end
 
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")

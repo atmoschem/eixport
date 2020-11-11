@@ -37,7 +37,7 @@ suitable to other models.
 To install the [CRAN](https://CRAN.R-project.org/package=eixport)
 version:
 
-\=(
+=(
 
 Currently, not on CRAN, but I am submitting now.
 
@@ -53,27 +53,27 @@ devtools::install_github("atmoschem/eixport")
 
 ## Some functions:
 
-  - [get\_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
+-   [get\_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
     Download EDGAR emissions data.
-  - [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
+-   [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
     Export emissions to other formats
-  - [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
+-   [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
     Combine total/spatial/temporal/split and write emission to file
-  - [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
+-   [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
     inputs for SPM BRAMS
-  - [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
+-   [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
     Create spatial profile for WRF-Chem
-  - [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
+-   [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
     Create emission files to the WRF-Chem
-  - [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
+-   [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
     simple but useful plot
-  - [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
+-   [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
     Read variables
-  - [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
+-   [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
     Write variables
-  - [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
+-   [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
     Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
-  - [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
+-   [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
     To generate inputs for MUNICH model.
 
 ## Download EDGAR 5
@@ -90,6 +90,7 @@ check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
 library(eixport)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 wrf_summary(file = file)
+#>   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
 #>                Min.       1st Qu.        Median          Mean       3rd Qu.
 #> Times  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09
 #> XLAT  -2.438538e+01 -2.405025e+01 -2.370471e+01 -2.370379e+01 -2.335773e+01

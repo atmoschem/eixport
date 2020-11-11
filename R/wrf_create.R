@@ -38,7 +38,7 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @import ncdf4
+#' @importFrom  ncdf4 nc_open nc_close ncvar_get ncvar_put ncdim_def ncvar_def ncatt_put
 #'
 #' @export
 #'
@@ -94,7 +94,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
 {
   a <- Sys.info()["sysname"]
   # to avoid special chacacteres in the filename
-  if(a[[1]] == "Windows") linux = F else linux = T # nocov
+  if(a[[1]] == "Windows") linux = FALSE else linux = TRUE # nocov
   if(a[[1]] == "Windows")
     if(io_style_emissions == 2) #nocov
       cat("NOTE: see wrf_create domumentation notes before run\n")  #nocov
@@ -381,7 +381,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                        attval = 104)
     }
     if(verbose){
-      print(emiss_file)
+      print(emiss_file, "\n")
     }
     ncdf4::nc_close(emiss_file)
     ncdf4::nc_close(wrfinput)

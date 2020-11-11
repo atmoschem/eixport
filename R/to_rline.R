@@ -36,8 +36,11 @@
 #'                    sigmaz0 = 2,
 #'                    lanes = 1)
 #' head(Source)
-#' write.table(x = Source, file = paste0(tempdir(), "/Sources.txt"),
-#' row.names = FALSE, sep = " ", quote = FALSE)
+#' write.table(x = Source,
+#'             file = paste0(tempdir(), "/Sources.txt"),
+#'             row.names = FALSE,
+#'             sep = " ",
+#'             quote = FALSE)
 #' }
 to_rline <- function (Emis,
                       Z_b,
@@ -80,7 +83,7 @@ to_rline <- function (Emis,
   Emis <- Emis[[1]] #one column with emissions, no more
 
   if (missing(Emis) | is.null(Emis)) {
-    stop (print("No 'Emissions'")) # nocov
+    stop ("No 'Emissions'") # nocov
   } else if (experimental){
     df <- data.frame(
       Group = as.character(format(1:length(X_b), width = 5)))

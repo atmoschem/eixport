@@ -4,6 +4,7 @@
 #' NetCDF file in a data.frame. Therefore, there is no need to
 #' use ncdump -h "wrf_file"
 #' @param file Character; name of file interactively (default) or specified
+#' @importFrom ncdf4 nc_open ncatt_get nc_close
 #' @export
 #' @examples {
 #' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")

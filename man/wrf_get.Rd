@@ -13,7 +13,7 @@ wrf_get(
   as_raster = FALSE,
   raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
   raster_lev = 1,
-  verbose = F
+  verbose = FALSE
 )
 }
 \arguments{
@@ -46,10 +46,18 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
                    full.names = TRUE)
 
 # open, put some numbers and write
-CO <- wrf_get(file = files[1], name = "E_CO")
+CO <- wrf_get(file = files[1],
+              name = "E_CO")
+
 CO[] = rnorm(length(CO))
-wrf_put(file = files[1], name = "E_CO", POL = CO)
-COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+
+wrf_put(file = files[1],
+        name = "E_CO",
+        POL = CO)
+
+COr <- wrf_get(file = files[1],
+               name = "E_CO",
+               as_raster = TRUE)
 
 }
 }

@@ -4,7 +4,7 @@
 \alias{wrf_put}
 \title{Function to write variables in emission files}
 \usage{
-wrf_put(file = file.choose(), name = NA, POL, mult = NA, verbose = F)
+wrf_put(file = file.choose(), name = NA, POL, mult = NA, verbose = FALSE)
 }
 \arguments{
 \item{file}{Character; name of file interactively (default) or specified}
@@ -34,9 +34,14 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
                     full.names = TRUE)
 
 # open, put some numbers and write
-CO <- wrf_get(file = files[1], name = "E_CO")
+CO <- wrf_get(file = files[1],
+              name = "E_CO")
+
 CO[] = rnorm(length(CO))
-wrf_put(file = files[1], name = "E_CO", POL = CO)
+
+wrf_put(file = files[1],
+        name = "E_CO",
+        POL = CO)
 }
 }
 \seealso{

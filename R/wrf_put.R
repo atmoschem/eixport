@@ -29,15 +29,20 @@
 #'                     full.names = TRUE)
 #'
 #' # open, put some numbers and write
-#' CO <- wrf_get(file = files[1], name = "E_CO")
+#' CO <- wrf_get(file = files[1],
+#'               name = "E_CO")
+#'
 #' CO[] = rnorm(length(CO))
-#' wrf_put(file = files[1], name = "E_CO", POL = CO)
+#'
+#' wrf_put(file = files[1],
+#'         name = "E_CO",
+#'         POL = CO)
 #' }
 wrf_put <- function (file = file.choose(),
-                      name = NA,
-                      POL,
-                      mult = NA,
-                      verbose = F) {
+                     name = NA,
+                     POL,
+                     mult = NA,
+                     verbose = FALSE) {
   if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
     cat('converting POSIXlt to string\n')      # nocov
     POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov
@@ -52,12 +57,17 @@ wrf_put <- function (file = file.choose(),
       cat(paste0("writing ", name, " to   ", file, " multiplier ",mult, "\n"))     # nocov
     }
   }
-  wrfchem <- ncdf4::nc_open(file, write = T)
+  wrfchem <- ncdf4::nc_open(file, write = TRUE)
   if (missing(mult)) {
-    ncdf4::ncvar_put(wrfchem, varid = name, POL)
+    ncdf4::ncvar_put(wrfchem,
+                     varid = name,
+                     POL)
   }
   else {
-    ncdf4::ncvar_put(wrfchem, varid = name, unlist(lapply(seq_along(mult), function(i) {POL*mult[i]}))) # nocov
+    ncdf4::ncvar_put(wrfchem,
+                     varid = name,
+                     unlist(lapply(seq_along(mult),
+                                   function(i) {POL*mult[i]}))) # nocov
   }
   ncdf4::nc_close(wrfchem)
 }

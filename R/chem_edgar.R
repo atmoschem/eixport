@@ -19,6 +19,7 @@
 #' @param merge Logical; in the case that tehre are more than one NetCDF per pollutant,
 #' merge = TRUE will merge them with sum. Default is FALSE.
 #' @param k, Numeric; Value to factorize each pollutant.
+#' @param verbose Logical to print more information
 #' @return RasterStack
 #' @importFrom raster stack raster rotate
 #' @importFrom ncdf4 nc_open nc_close
@@ -43,7 +44,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' # do not run
+#' # Not run
 #' # Get EDGAR ####
 #' get_edgar(
 #'   dataset = "v432_VOC_spec",
@@ -96,7 +97,8 @@
 chem_edgar <- function(path,
                        chem,
                        merge = FALSE,
-                       k = rep(1, 34)) {
+                       k = rep(1, 34),
+                       verbose = TRUE) {
   dte <- sysdata$dte
   emis_opt <- sysdata$emis_opt
 
@@ -116,45 +118,45 @@ chem_edgar <- function(path,
   # unidades  kg m-2 s-1
 
   lncs <- list(
-    voc1 = grep("voc1_", ncs, value = T),
-    voc2 = grep("voc2_", ncs, value = T),
-    voc3 = grep("voc3_", ncs, value = T),
-    voc4 = grep("voc4_", ncs, value = T),
-    voc5 = grep("voc5_", ncs, value = T),
-    voc6 = grep("voc6_", ncs, value = T),
-    voc7 = grep("voc7_", ncs, value = T),
-    voc8 = grep("voc8_", ncs, value = T),
-    voc9 = grep("voc9_", ncs, value = T),
-    voc10 = grep("voc10_", ncs, value = T),
-    voc11 = grep("voc11_", ncs, value = T),
-    voc12 = grep("voc12_", ncs, value = T),
-    voc13 = grep("voc13_", ncs, value = T),
-    voc14 = grep("voc14_", ncs, value = T),
-    voc15 = grep("voc15_", ncs, value = T),
-    voc16 = grep("voc16_", ncs, value = T),
-    voc17 = grep("voc17_", ncs, value = T),
-    voc18 = grep("voc18_", ncs, value = T),
-    voc19 = grep("voc19_", ncs, value = T),
-    voc20 = grep("voc20_", ncs, value = T),
-    vpc21 = grep("voc21_", ncs, value = T),
-    voc22 = grep("voc22_", ncs, value = T),
-    voc23 = grep("voc23_", ncs, value = T),
-    voc24 = grep("voc24_", ncs, value = T),
-    voc25 = grep("voc25_", ncs, value = T),
-    co = grep("CO_", ncs, value = T),
-    nox = grep("NOx_", ncs, value = T),
-    nmvoc = grep("NMVOC_", ncs, value = T),
-    so2 = grep("SO2_", ncs, value = T),
-    nh3 = grep("NH3_", ncs, value = T),
-    pm10 = grep("PM10_", ncs, value = T),
-    pm25 = grep("PM2.5_", ncs, value = T),
-    bc = grep("BC_", ncs, value = T),
-    oc = grep("_OC_", ncs, value = T)
+    voc1 = grep("voc1_", ncs, value = TRUE),
+    voc2 = grep("voc2_", ncs, value = TRUE),
+    voc3 = grep("voc3_", ncs, value = TRUE),
+    voc4 = grep("voc4_", ncs, value = TRUE),
+    voc5 = grep("voc5_", ncs, value = TRUE),
+    voc6 = grep("voc6_", ncs, value = TRUE),
+    voc7 = grep("voc7_", ncs, value = TRUE),
+    voc8 = grep("voc8_", ncs, value = TRUE),
+    voc9 = grep("voc9_", ncs, value = TRUE),
+    voc10 = grep("voc10_", ncs, value = TRUE),
+    voc11 = grep("voc11_", ncs, value = TRUE),
+    voc12 = grep("voc12_", ncs, value = TRUE),
+    voc13 = grep("voc13_", ncs, value = TRUE),
+    voc14 = grep("voc14_", ncs, value = TRUE),
+    voc15 = grep("voc15_", ncs, value = TRUE),
+    voc16 = grep("voc16_", ncs, value = TRUE),
+    voc17 = grep("voc17_", ncs, value = TRUE),
+    voc18 = grep("voc18_", ncs, value = TRUE),
+    voc19 = grep("voc19_", ncs, value = TRUE),
+    voc20 = grep("voc20_", ncs, value = TRUE),
+    vpc21 = grep("voc21_", ncs, value = TRUE),
+    voc22 = grep("voc22_", ncs, value = TRUE),
+    voc23 = grep("voc23_", ncs, value = TRUE),
+    voc24 = grep("voc24_", ncs, value = TRUE),
+    voc25 = grep("voc25_", ncs, value = TRUE),
+    co = grep("CO_", ncs, value = TRUE),
+    nox = grep("NOx_", ncs, value = TRUE),
+    nmvoc = grep("NMVOC_", ncs, value = TRUE),
+    so2 = grep("SO2_", ncs, value = TRUE),
+    nh3 = grep("NH3_", ncs, value = TRUE),
+    pm10 = grep("PM10_", ncs, value = TRUE),
+    pm25 = grep("PM2.5_", ncs, value = TRUE),
+    bc = grep("BC_", ncs, value = TRUE),
+    oc = grep("_OC_", ncs, value = TRUE)
   )
 
-  cat("Detecting the following files:\n")
+  if(verbose) cat("Detecting the following files:\n")
 
-  print(as.data.frame(cbind(lncs)))
+  if(verbose) cat(as.data.frame(cbind(lncs)), "\n")
 
   la <- unique(unlist(lapply(lncs, length)))
 
