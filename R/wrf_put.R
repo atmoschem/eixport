@@ -64,10 +64,10 @@ wrf_put <- function (file = file.choose(),
                      POL)
   }
   else {
-    ncdf4::ncvar_put(wrfchem,
-                     varid = name,
-                     unlist(lapply(seq_along(mult),
-                                   function(i) {POL*mult[i]}))) # nocov
+    ncdf4::ncvar_put(wrfchem,                                      # nocov
+                     varid = name,                                 # nocov
+                     unlist(lapply(seq_along(mult),                # nocov
+                                   function(i) {POL*mult[i]})))    # nocov
   }
   ncdf4::nc_close(wrfchem)
 }

@@ -11,7 +11,7 @@ wrf_plot(
   nivel = 1,
   barra = T,
   lbarra = 0.2,
-  col = cptcity::cpt(n = 13),
+  col = cptcity::cpt(n = 20),
   verbose = TRUE,
   ...
 )

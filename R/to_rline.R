@@ -67,7 +67,7 @@ to_rline <- function (Emis,
   if(missing(crs)) {
     dft <- as.data.frame(sf::st_coordinates(sdf))
   } else {
-    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
+    dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs))) # nocov
   }
 
   lista <- split(x = dft, f = dft$L1)
