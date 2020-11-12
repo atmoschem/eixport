@@ -11,7 +11,8 @@ wrf_plot(
   nivel = 1,
   barra = T,
   lbarra = 0.2,
-  col = cptcity::cpt(n = 13),
+  col = cptcity::cpt(n = 20, rev = T),
+  map = NULL,
   verbose = TRUE,
   ...
 )
@@ -30,6 +31,8 @@ wrf_plot(
 \item{lbarra}{length of barplot}
 
 \item{col}{color vector}
+
+\item{map}{function call to plot map lines, points and annotation (experimental)}
 
 \item{verbose}{if TRUE print some information}
 

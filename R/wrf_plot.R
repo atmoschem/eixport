@@ -9,6 +9,7 @@
 #' @param barra barblot if TRUE
 #' @param lbarra length of barplot
 #' @param col color vector
+#' @param map function call to plot map lines, points and annotation (experimental)
 #' @param verbose if TRUE print some information
 #' @param ... Arguments to be passed to plot methods
 #'
@@ -51,11 +52,13 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = cptcity::cpt(n = 13),
+                     col = cptcity::cpt(n=20,rev=T),
+                     map = NULL,
                      verbose = TRUE,
                      ...){
-  oldpar <- par(no.readonly = TRUE) #?
-  on.exit(par(oldpar))              #?
+
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   wrfchem <- ncdf4::nc_open(file)                                      # iteractive
   if(is.na(name)){                                                     # nocov start
@@ -78,10 +81,10 @@ wrf_plot <- function(file = file.choose(),
   ncdf4::nc_close(wrfchem)
 
   if(length(dim(POL)) == 3){
-    POL <- POL[,,max(time,nivel,na.rm=TRUE)]               # nocov
+    POL <- POL[,,max(time,nivel,na.rm=TRUE)]        # nocov
   }
   if(length(dim(POL)) == 4){
-    POL <- POL[,,nivel,time]         # nocov
+    POL <- POL[,,nivel,time]                        # nocov
   }
 
   if(verbose){
@@ -107,6 +110,7 @@ wrf_plot <- function(file = file.choose(),
                                 plot.axes,
                                 key.title,
                                 key.axes,
+                                map = map,
                                 asp = NA,
                                 xaxs = "i",
                                 yaxs = "i",
@@ -192,6 +196,9 @@ wrf_plot <- function(file = file.choose(),
   mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
   mtext("Latitude", 2, line = 2.2,cex = 1.2, las=0)
   mtext("Longitude", 1, line = 2.2,cex = 1.2)
+  if(!is.null(map)){
+    map                 # nocov
+  }
   if(barra){
     par(mar = c(3.5, 1, 3, 4))
     barras(POL, col = col)

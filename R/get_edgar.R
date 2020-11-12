@@ -144,35 +144,35 @@ get_edgar <- function(dataset = "v50_AP",
   eda <- ed
   ed <- ed[ed$data %in% dataset, ]
   if(nrow(ed) == 0) {
-    cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n")
-    stop("No dataset")
+    cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n") # nocov
+    stop("No dataset")                                                             # nocov
   }
 
   eda <- ed
   if(missing(year)){
-    warning("Downloading all available years")
+    warning("Downloading all available years")                                    # nocov
   } else {
     ed <- ed[ed$year %in% year, ]
     if(nrow(ed) == 0) {
-      cat("Please, choose one of the following years:\n", unique(eda$year), "\n")
-      stop("No Year")
+      cat("Please, choose one of the following years:\n", unique(eda$year), "\n") # nocov
+      stop("No Year")                                                             # nocov
     }
   }
 
   eda <- ed
   if(missing(sector)){
-    warning("Downloading all available sector")
+    warning("Downloading all available sector")                                   # nocov
   } else {
     ed <- ed[ed$sector %in% sector, ]
     if(nrow(ed) == 0) {
-      cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n")
-      stop("No sector")
+      cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n") # nocov
+      stop("No sector")                                                              # nocov
     }
   }
 
   eda <- ed
   if(missing(pol)){
-    warning("Downloading all available pollutants")
+    warning("Downloading all available pollutants") # nocov
   } else {
     ed <- ed[ed$pol %in% pol, ]
     if(nrow(ed) == 0) {
@@ -181,6 +181,7 @@ get_edgar <- function(dataset = "v50_AP",
     }
   }
 
+  # nocov start
 
   eda <- ed
   if(missing(type)){
@@ -217,4 +218,5 @@ get_edgar <- function(dataset = "v50_AP",
 
     }, mc.cores = n)
   }
+  # nocov end
 }

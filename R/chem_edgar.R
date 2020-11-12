@@ -45,7 +45,7 @@
 #' @examples
 #' \dontrun{
 #' # Not run
-#' # Get EDGAR ####
+#' # Downloading EDGAR data ####
 #' get_edgar(
 #'   dataset = "v432_VOC_spec",
 #'   destpath = "V50_432_AP/TOT/",
