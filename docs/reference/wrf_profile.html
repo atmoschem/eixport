@@ -128,6 +128,9 @@ and a traffic intensity data frame" />
     <li>
       <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
     </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -200,7 +203,6 @@ and a traffic intensity data frame</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Do not run</span>
 
 <span class='co'># Profile based on Sao Paulo tunnel experiments</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>rawprofile</span><span class='op'>)</span>
@@ -227,10 +229,14 @@ and a traffic intensity data frame</p>
 
 <span class='va'>profile</span> <span class='op'>&lt;-</span> <span class='fu'>wrf_profile</span><span class='op'>(</span><span class='va'>rawprofile</span>,<span class='va'>files</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>profile</span>, ty<span class='op'>=</span><span class='st'>"l"</span>, lty <span class='op'>=</span> <span class='fl'>2</span>, axe <span class='op'>=</span> <span class='cn'>FALSE</span>,
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>profile</span>,
+     ty<span class='op'>=</span><span class='st'>"l"</span>,
+     lty <span class='op'>=</span> <span class='fl'>2</span>,
+     axe <span class='op'>=</span> <span class='cn'>FALSE</span>,
      main <span class='op'>=</span> <span class='st'>"Traffic Intensity for Sao Paulo"</span>, xlab <span class='op'>=</span> <span class='st'>"hour"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>, at <span class='op'>=</span> <span class='fl'>0.5</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span><span class='op'>)</span>,
+<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>,
+     at <span class='op'>=</span> <span class='fl'>0.5</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span><span class='op'>)</span>,
     labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>, <span class='st'>"00:00"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>

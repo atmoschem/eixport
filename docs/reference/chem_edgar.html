@@ -129,6 +129,9 @@ merge/aggregate into diferent chemical mechanisms" />
     <li>
       <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
     </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -163,7 +166,7 @@ project from the Joint Research Centre. This function reads the NetCDF and
 merge/aggregate into diferent chemical mechanisms</p>
     </div>
 
-    <pre class="usage"><span class='fu'>chem_edgar</span><span class='op'>(</span><span class='va'>path</span>, <span class='va'>chem</span>, merge <span class='op'>=</span> <span class='cn'>FALSE</span>, k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>34</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>chem_edgar</span><span class='op'>(</span><span class='va'>path</span>, <span class='va'>chem</span>, merge <span class='op'>=</span> <span class='cn'>FALSE</span>, k <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>34</span><span class='op'>)</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,6 +197,10 @@ merge = TRUE will merge them with sum. Default is FALSE.</p></td>
       <th>k, </th>
       <td><p>Numeric; Value to factorize each pollutant.</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical to print more information</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -216,8 +223,8 @@ CBM-Z Y MOZART-4.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># do not run</span>
-<span class='co'># Get EDGAR ####</span>
+<span class='co'># Not run</span>
+<span class='co'># Downloading EDGAR data ####</span>
 <span class='fu'><a href='get_edgar.html'>get_edgar</a></span><span class='op'>(</span>
   dataset <span class='op'>=</span> <span class='st'>"v432_VOC_spec"</span>,
   destpath <span class='op'>=</span> <span class='st'>"V50_432_AP/TOT/"</span>,

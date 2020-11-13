@@ -128,6 +128,9 @@ time by profile and split between variables with diferent weights." />
     <li>
       <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
     </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -166,10 +169,10 @@ time by profile and split between variables with diferent weights.</p>
   file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span><span class='op'>(</span><span class='op'>)</span>,
   name <span class='op'>=</span> <span class='cn'>NA</span>,
   total <span class='op'>=</span> <span class='cn'>NA</span>,
-  norm <span class='op'>=</span> <span class='cn'>F</span>,
+  norm <span class='op'>=</span> <span class='cn'>FALSE</span>,
   profile <span class='op'>=</span> <span class='fl'>1</span>,
   weights <span class='op'>=</span> <span class='fl'>1</span>,
-  verbose <span class='op'>=</span> <span class='cn'>T</span>
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -228,13 +231,13 @@ create this file).</p>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"EMISS"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='wrf_create.html'>wrf_create</a></span><span class='op'>(</span>wrfinput_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package <span class='op'>=</span> <span class='st'>"eixport"</span><span class='op'>)</span>,
-          wrfchemi_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"EMISS"</span><span class='op'>)</span>,
-          frames_per_auxinput5 <span class='op'>=</span> <span class='fl'>24</span><span class='op'>)</span>
+           wrfchemi_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"EMISS"</span><span class='op'>)</span>,
+           frames_per_auxinput5 <span class='op'>=</span> <span class='fl'>24</span><span class='op'>)</span>
 
 <span class='co'># get the name of created file</span>
 <span class='va'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span>path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"EMISS"</span><span class='op'>)</span>,
-                   pattern <span class='op'>=</span> <span class='st'>"wrfchemi"</span>,
-                   full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+                    pattern <span class='op'>=</span> <span class='st'>"wrfchemi"</span>,
+                    full.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Lights</span><span class='op'>)</span>
 
@@ -245,13 +248,24 @@ create this file).</p>
             <span class='fl'>0.058388406</span>, <span class='fl'>0.072855890</span>, <span class='fl'>0.075267137</span>, <span class='fl'>0.063246412</span>,
             <span class='fl'>0.042713523</span>, <span class='fl'>0.029108975</span>, <span class='fl'>0.022091855</span>, <span class='fl'>0.015298458</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>perfil</span>, ty <span class='op'>=</span> <span class='st'>"l"</span>, col<span class='op'>=</span> <span class='st'>"purple"</span>, xlab <span class='op'>=</span> <span class='st'>"Hour"</span>, main <span class='op'>=</span> <span class='st'>"Time profile"</span>,
-    ylab <span class='op'>=</span> <span class='st'>"Weight"</span>, axes <span class='op'>=</span> <span class='cn'>FALSE</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>24</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>perfil</span>,
+     ty <span class='op'>=</span> <span class='st'>"l"</span>,
+     col<span class='op'>=</span> <span class='st'>"purple"</span>,
+     xlab <span class='op'>=</span> <span class='st'>"Hour"</span>,
+     main <span class='op'>=</span> <span class='st'>"Time profile"</span>,
+     ylab <span class='op'>=</span> <span class='st'>"Weight"</span>,
+     axes <span class='op'>=</span> <span class='cn'>FALSE</span>,
+     xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>24</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>, at <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span><span class='op'>)</span>,
-    labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>,<span class='st'>"00:00"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>1</span>,
+     at <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>6</span>, <span class='fl'>12</span>, <span class='fl'>18</span>, <span class='fl'>24</span><span class='op'>)</span>,
+     labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"00:00"</span>,<span class='st'>"06:00"</span>,<span class='st'>"12:00"</span>,<span class='st'>"18:00"</span>,<span class='st'>"00:00"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>to_wrf</span><span class='op'>(</span><span class='va'>Lights</span>, <span class='va'>files</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, total <span class='op'>=</span> <span class='fl'>1521983</span>, profile <span class='op'>=</span> <span class='va'>perfil</span>, name <span class='op'>=</span> <span class='st'>"E_CO"</span><span class='op'>)</span>
+<span class='fu'>to_wrf</span><span class='op'>(</span><span class='va'>Lights</span>,
+      <span class='va'>files</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+      total <span class='op'>=</span> <span class='fl'>1521983</span>,
+      profile <span class='op'>=</span> <span class='va'>perfil</span>,
+      name <span class='op'>=</span> <span class='st'>"E_CO"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

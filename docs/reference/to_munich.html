@@ -129,6 +129,9 @@ read street emissions from VEIN by it can be used to read any other." />
     <li>
       <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
     </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -216,7 +219,7 @@ https://doi.org/10.5194/gmd-11-611-2018, 2018.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># do not run</span>
+<span class='co'># Not run</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gitlab.com/ibarraespinosa/vein'>vein</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-quantities/units/'>units</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
@@ -228,35 +231,56 @@ https://doi.org/10.5194/gmd-11-611-2018, 2018.</p>
           <span class='fl'>133833</span>,<span class='fl'>138441</span>,<span class='fl'>142682</span>,<span class='fl'>171029</span>,<span class='fl'>151048</span>,<span class='fl'>115228</span>,<span class='fl'>98664</span>,<span class='fl'>126444</span>,<span class='fl'>101027</span>,
           <span class='fl'>84771</span>,<span class='fl'>55864</span>,<span class='fl'>36306</span>,<span class='fl'>21079</span>,<span class='fl'>20138</span>,<span class='fl'>17439</span>, <span class='fl'>7854</span>,<span class='fl'>2215</span>,<span class='fl'>656</span>,<span class='fl'>1262</span>,<span class='fl'>476</span>,<span class='fl'>512</span>,
           <span class='fl'>1181</span>, <span class='fl'>4991</span>, <span class='fl'>3711</span>, <span class='fl'>5653</span>, <span class='fl'>7039</span>, <span class='fl'>5839</span>, <span class='fl'>4257</span>,<span class='fl'>3824</span>, <span class='fl'>3068</span><span class='op'>)</span>
-<span class='va'>pc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/my_age.html'>my_age</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>net</span><span class='op'>$</span><span class='va'>ldv</span>, y <span class='op'>=</span> <span class='va'>PC_G</span>, name <span class='op'>=</span> <span class='st'>"PC"</span><span class='op'>)</span>
+<span class='va'>pc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/my_age.html'>my_age</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>net</span><span class='op'>$</span><span class='va'>ldv</span>,
+              y <span class='op'>=</span> <span class='va'>PC_G</span>,
+              name <span class='op'>=</span> <span class='st'>"PC"</span><span class='op'>)</span>
 
 <span class='co'># Estimation for morning rush hour and local emission factors and speed</span>
 <span class='va'>speed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>S8 <span class='op'>=</span> <span class='va'>net</span><span class='op'>$</span><span class='va'>ps</span><span class='op'>)</span>
-<span class='va'>lef</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/EmissionFactorsList.html'>EmissionFactorsList</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/vein/man/ef_cetesb.html'>ef_cetesb</a></span><span class='op'>(</span><span class='st'>"CO"</span>, <span class='st'>"PC_G"</span>, agemax <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>pc1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>E_CO</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/emis.html'>emis</a></span><span class='op'>(</span>veh <span class='op'>=</span> <span class='va'>pc1</span>,lkm <span class='op'>=</span> <span class='va'>net</span><span class='op'>$</span><span class='va'>lkm</span>, ef <span class='op'>=</span> <span class='va'>lef</span>, speed <span class='op'>=</span> <span class='va'>speed</span><span class='op'>)</span>
+<span class='va'>lef</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/EmissionFactorsList.html'>EmissionFactorsList</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/vein/man/ef_cetesb.html'>ef_cetesb</a></span><span class='op'>(</span><span class='st'>"CO"</span>,
+                                     <span class='st'>"PC_G"</span>,
+                                     agemax <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>pc1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>E_CO</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/vein/man/emis.html'>emis</a></span><span class='op'>(</span>veh <span class='op'>=</span> <span class='va'>pc1</span>,
+             lkm <span class='op'>=</span> <span class='va'>net</span><span class='op'>$</span><span class='va'>lkm</span>,
+             ef <span class='op'>=</span> <span class='va'>lef</span>,
+             speed <span class='op'>=</span> <span class='va'>speed</span><span class='op'>)</span>
+
 <span class='co'># rowSums drop units</span>
 <span class='va'>net</span><span class='op'>$</span><span class='va'>CO</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>E_CO</span><span class='op'>)</span>, <span class='va'>g</span><span class='op'>/</span><span class='va'>h</span><span class='op'>)</span>
+
 <span class='co'># selecting only CO and exploding lines and updating emissions</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='st_explode.html'>st_explode</a></span><span class='op'>(</span><span class='va'>net</span><span class='op'>[</span><span class='st'>"CO"</span><span class='op'>]</span><span class='op'>)</span>
+
 <span class='co'># st_explode should not drop units, must fix</span>
 <span class='va'>df</span><span class='op'>$</span><span class='va'>CO</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>CO</span>, <span class='va'>g</span><span class='op'>/</span><span class='va'>h</span><span class='op'>)</span>
+
 <span class='co'># now we have split line in vertex</span>
 <span class='co'># selecting 1000 links</span>
 <span class='va'>dfco</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>1000</span>,<span class='st'>"CO"</span><span class='op'>]</span>
+
 <span class='co'>###########</span>
 <span class='co'>#MUNICH relies in a python script that reads emissions with units ug/km/h</span>
 <span class='co'># Therefore</span>
 <span class='va'>dfco</span><span class='op'>$</span><span class='va'>CO</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='va'>dfco</span><span class='op'>$</span><span class='va'>CO</span>, <span class='va'>ug</span><span class='op'>/</span><span class='va'>h</span><span class='op'>)</span>
 <span class='va'>dfco</span><span class='op'>$</span><span class='va'>CO</span><span class='op'>&lt;-</span> <span class='va'>dfco</span><span class='op'>$</span><span class='va'>CO</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_length</a></span><span class='op'>(</span><span class='va'>dfco</span><span class='op'>)</span>, <span class='va'>km</span><span class='op'>)</span>
 <span class='va'>etm</span> <span class='op'>&lt;-</span> <span class='fu'>to_munich</span><span class='op'>(</span>sdf <span class='op'>=</span> <span class='va'>dfco</span><span class='op'>)</span>
+
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>etm</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>etm</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>etm</span><span class='op'>$</span><span class='va'>Emissions</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>etm</span><span class='op'>$</span><span class='va'>Street</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>etm</span><span class='op'>$</span><span class='va'>Emissions</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"_Emissions.txt"</span><span class='op'>)</span>,
-row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>etm</span><span class='op'>$</span><span class='va'>Street</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"_Street.txt"</span><span class='op'>)</span>,
-row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>etm</span><span class='op'>$</span><span class='va'>Emissions</span>,
+            file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"_Emissions.txt"</span><span class='op'>)</span>,
+            row.names <span class='op'>=</span> <span class='cn'>FALSE</span>,
+            sep <span class='op'>=</span> <span class='st'>" "</span>,
+            quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>etm</span><span class='op'>$</span><span class='va'>Street</span>,
+            file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"_Street.txt"</span><span class='op'>)</span>,
+            row.names <span class='op'>=</span> <span class='cn'>FALSE</span>,
+            sep <span class='op'>=</span> <span class='st'>" "</span>,
+            quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

@@ -128,6 +128,9 @@ of the model R-LINE" />
     <li>
       <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
     </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -267,8 +270,11 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
                    sigmaz0 <span class='op'>=</span> <span class='fl'>2</span>,
                    lanes <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Source</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Source</span>, file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/Sources.txt"</span><span class='op'>)</span>,
-row.names <span class='op'>=</span> <span class='cn'>FALSE</span>, sep <span class='op'>=</span> <span class='st'>" "</span>, quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Source</span>,
+            file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"/Sources.txt"</span><span class='op'>)</span>,
+            row.names <span class='op'>=</span> <span class='cn'>FALSE</span>,
+            sep <span class='op'>=</span> <span class='st'>" "</span>,
+            quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span></div><div class='output co'>#&gt; Sum: 2090610.32</div></pre>
   </div>
