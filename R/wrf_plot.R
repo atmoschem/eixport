@@ -52,7 +52,7 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = cptcity::cpt(n=20,rev=T),
+                     col = cptcity::cpt(n = 20, rev = T),
                      map = NULL,
                      verbose = TRUE,
                      ...){
