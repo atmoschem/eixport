@@ -29,7 +29,7 @@ There are several models whose inputs are emissions, such as
 [WRF-Chem](https://ruc.noaa.gov/wrf/wrf-chem/). This R-Package provide
 functions to read emissions from
 [VEIN](https://github.com/ibarraespinosa/vein) and from other models in
-different formats and export the emissions into the appropiate format
+different formats and export the emissions into the appropriate format
 suitable to other models.
 
 ## Install
@@ -37,12 +37,8 @@ suitable to other models.
 To install the [CRAN](https://CRAN.R-project.org/package=eixport)
 version:
 
-=(
-
-Currently, not on CRAN, but I am submitting now.
-
 ``` r
-#install.packages("eixport")
+install.packages("eixport")
 ```
 
 To install the development version:
