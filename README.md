@@ -17,7 +17,8 @@ Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](h
 checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.org/web/checks/check_results_eixport.html)
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
-
+   [![R build
+    status](https://github.com/atmoschem/eixport/workflows/R-CMD-check/badge.svg)](https://github.com/atmoschem/eixport/actions)
 ## Exporting emissions to atmospheric models, eixport: 0.5.0
 
 Emissions are mass that affects atmosphere in complex ways, not only
