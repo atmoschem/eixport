@@ -22,4 +22,4 @@
 ^vignettes/gallery3.Rmd$
 ^vignettes/gallery4.Rmd$
 ^vignettes$
-
+^.github
