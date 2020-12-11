@@ -11,7 +11,7 @@ wrf_get(
   file = file.choose(),
   name = NA,
   as_raster = FALSE,
-  raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+  raster_crs = "+proj=longlat",
   raster_lev = 1,
   verbose = FALSE
 )
