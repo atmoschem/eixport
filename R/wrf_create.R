@@ -114,6 +114,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
   }
 
   for(domain in domains){
+    cat('creating emission for domain',domain,'...\n')
     # basic information from wrfinput
     wrfinput     <- paste(wrfinput_dir, "/wrfinput_d0", domain, sep = "")
     wrfinput     <- ncdf4::nc_open(wrfinput,write = F)
@@ -383,6 +384,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     if(verbose){
       print(emiss_file, "\n")
     }
+    cat('output file:',emiss_file$filename,'\n')
     ncdf4::nc_close(emiss_file)
     ncdf4::nc_close(wrfinput)
   }
