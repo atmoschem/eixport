@@ -388,4 +388,5 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     ncdf4::nc_close(emiss_file)
     ncdf4::nc_close(wrfinput)
   }
+  return(emiss_file)
 }
