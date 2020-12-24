@@ -5,6 +5,7 @@
 #'
 #' @param file String path to the wrf.
 #' @param vars String of WRF variables. If missing, all variables.
+#' @param clean logical, default is FALSE, TRUE for remove Times, XLAT and XLONG
 #' @importFrom data.table rbindlist
 #' @importFrom ncdf4 nc_open ncvar_get nc_close
 #' @importFrom utils txtProgressBar setTxtProgressBar
@@ -16,7 +17,7 @@
 #' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 #' wrf_summary(file = file)
 #' }
-wrf_summary <- function(file, vars) {
+wrf_summary <- function(file, vars, clean = FALSE) {
   nc <- ncdf4::nc_open(file)
 
   if(missing(vars))   vars <- names(nc$var)
@@ -39,6 +40,10 @@ wrf_summary <- function(file, vars) {
   ncdf4::nc_close(nc)
   df <- as.data.frame(data.table::rbindlist(df))
   row.names(df) <- vars
+
+  if(clean){
+    df <- df[!row.names(df) %in% c("Times","XLAT","XLONG"),]
+  }
   return(df)
 
 }

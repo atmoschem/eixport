@@ -4,12 +4,14 @@
 \alias{wrf_summary}
 \title{Summary of variables inside WRF files}
 \usage{
-wrf_summary(file, vars)
+wrf_summary(file, vars, clean = FALSE)
 }
 \arguments{
 \item{file}{String path to the wrf.}
 
 \item{vars}{String of WRF variables. If missing, all variables.}
+
+\item{clean}{logical, default is FALSE, TRUE for remove Times, XLAT and XLONG}
 }
 \value{
 data.frame
