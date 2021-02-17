@@ -5,6 +5,8 @@ wrf_create(wrfinput_dir          = system.file("extdata", package = "eixport"),
             wrfchemi_dir         = file.path(tempdir(), "EMISS"),
             domains              = 2,
             frames_per_auxinput5 = 1,
+            n_aero               = 2,
+            variables            = "ecbmz_mosaic",
             verbose              = TRUE)
 
 f1 <- dir(path = file.path(tempdir(), "EMISS"),
