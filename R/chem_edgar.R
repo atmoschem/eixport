@@ -156,7 +156,7 @@ chem_edgar <- function(path,
 
   if(verbose) cat("Detecting the following files:\n")
 
-  if(verbose) cat(as.data.frame(cbind(lncs)), "\n")
+  if(verbose) print(as.data.frame(cbind(lncs)))
 
   la <- unique(unlist(lapply(lncs, length)))
 

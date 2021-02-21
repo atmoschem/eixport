@@ -26,6 +26,7 @@ sfx_explode <- function(x) {
     co$yend <- co$yini[c(2:length(co$yini), NA)]
 
     id <- NULL
+    #selecionar de primero a penultimo por id
     df <- co[,
              .SD[1:(.N-1)],
              by=id]
