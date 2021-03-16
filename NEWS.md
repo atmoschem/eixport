@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.5.1 (Release date: 16 mar 2021)
+- updates in wrf_create for all wrf emission options
+- added argument return_fn to return the name of last file created
+
 # eixport 0.5.1 (Release date: 12 nov 2020)
 - wrf_create returns file_name
 

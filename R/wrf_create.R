@@ -27,6 +27,7 @@
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
 #' @param separator filename alternative separator when io_style_emission=1
+#' @param return_fn logical, return the name of the last created file
 #' @param verbose print file info
 #'
 #' @note Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
@@ -90,6 +91,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
                         separator            = 'default',
+                        return_fn            = FALSE,
                         verbose              = FALSE)
 {
   a <- Sys.info()["sysname"]
@@ -407,5 +409,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     ncdf4::nc_close(emiss_file)
     ncdf4::nc_close(wrfinput)
   }
-  return(emiss_file$filename)
+  if(return_fn){
+    return(emiss_file$filename)
+  }
 }

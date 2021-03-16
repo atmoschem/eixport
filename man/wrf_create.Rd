@@ -19,6 +19,7 @@ wrf_create(
   force_ncdf4 = FALSE,
   title = "Anthropogenic emissions for WRF V4.0",
   separator = "default",
+  return_fn = FALSE,
   verbose = FALSE
 )
 }
@@ -53,6 +54,8 @@ no compression}
 \item{title}{TITLE attribute for the NetCDF}
 
 \item{separator}{filename alternative separator when io_style_emission=1}
+
+\item{return_fn}{logical, return the name of the last created file}
 
 \item{verbose}{print file info}
 }
