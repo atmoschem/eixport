@@ -13,6 +13,7 @@ wrf_plot(
   lbarra = 0.2,
   col = cptcity::cpt(n = 20, rev = T),
   map = NULL,
+  skip = FALSE,
   verbose = TRUE,
   ...
 )
@@ -33,6 +34,8 @@ wrf_plot(
 \item{col}{color vector}
 
 \item{map}{function call to plot map lines, points and annotation (experimental)}
+
+\item{skip}{logical, skip plot of constant valuess}
 
 \item{verbose}{if TRUE print some information}
 
