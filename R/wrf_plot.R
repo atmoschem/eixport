@@ -9,6 +9,7 @@
 #' @param barra barblot if TRUE
 #' @param lbarra length of barplot
 #' @param col color vector
+#' @param skip logical, skip plot of constant valuess
 #' @param map function call to plot map lines, points and annotation (experimental)
 #' @param verbose if TRUE print some information
 #' @param ... Arguments to be passed to plot methods
@@ -54,6 +55,7 @@ wrf_plot <- function(file = file.choose(),
                      lbarra = 0.2,
                      col = cptcity::cpt(n = 20, rev = T),
                      map = NULL,
+                     skip = FALSE,
                      verbose = TRUE,
                      ...){
 
@@ -88,9 +90,10 @@ wrf_plot <- function(file = file.choose(),
   }
 
   if(verbose){
-    cat(wrfchem$filename,"\n",name,":\n",sep = "")  # nocov
-    if(max(POL) == min(POL)){                       # nocov
-      cat("Max value = Min Value!\n")               # nocov
+    cat(wrfchem$filename,"\n",name,":\n",sep = "")         # nocov
+    if(max(POL) == min(POL)){                              # nocov
+      cat(paste("Max value = Min Value =",max(POL),"\n"))  # nocov
+      if(skip) return()                                    # nocov
     }
     else{
       cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "","\n")) # nocov
