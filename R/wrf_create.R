@@ -410,6 +410,6 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     ncdf4::nc_close(wrfinput)
   }
   if(return_fn){
-    return(emiss_file$filename)
+    return(emiss_file$filename) # nocov
   }
 }

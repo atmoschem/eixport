@@ -99,14 +99,14 @@ chem_edgar <- function(path,
                        merge = FALSE,
                        k = rep(1, 34),
                        verbose = TRUE) {
-  dte <- sysdata$dte
-  emis_opt <- sysdata$emis_opt
+  dte <- sysdata$dte                         # nocov start
+  emis_opt <- sysdata$emis_opt               # to heavy to check cod-cov
 
   if (length(k) < 34) stop("k must have 34 elements")
 
   # no covr, becuase it would take too much time
   ncs <- list.files(
-    path = path, # nocov start
+    path = path,
     full.names = TRUE,
     pattern = ".nc"
   )
@@ -769,7 +769,7 @@ chem_edgar <- function(path,
     names(CB05) <- emis_opt$ecb05_opt2
     cat("units of gases: mol/km2/h\n")
     cat("units of aerosols: ug/m2/s\n")
-    return(CB05) # nocov end
+    return(CB05)
   } else if (chem == "utfpr_cbmz") {
     # emis_opt$ecbmz_mosaic[1]
     E_ISO <- bp$voc10 / dte[dte$GEIA_id == "voc10", ]$g_mol +
@@ -899,5 +899,5 @@ chem_edgar <- function(path,
     return(CBMZ_MOSAIC)
   } else {
     stop("other mechanisms not implemented")
-  }
+  }                                               # nocov end
 }

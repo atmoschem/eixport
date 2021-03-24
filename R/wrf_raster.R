@@ -54,20 +54,20 @@ wrf_raster <- function(file = file.choose(),
   cat(paste("crating raster for",name,'\n'))
 
   coordNC <- tryCatch(suppressWarnings(ncdf4::nc_open(file)),
-                      error=function(cond) {message(cond); return(NA)})
+                      error=function(cond) {message(cond); return(NA)})  # nocov
 
   coordvarList = names(coordNC[['var']])
   if ("XLONG_M" %in% coordvarList & "XLAT_M" %in% coordvarList) {
-    inNCLon <- ncdf4::ncvar_get(coordNC, "XLONG_M")
-    inNCLat <- ncdf4::ncvar_get(coordNC, "XLAT_M")
+    inNCLon <- ncdf4::ncvar_get(coordNC, "XLONG_M")                      # nocov
+    inNCLat <- ncdf4::ncvar_get(coordNC, "XLAT_M")                       # nocov
   } else if ("XLONG" %in% coordvarList & "XLAT" %in% coordvarList) {
     inNCLon <- ncdf4::ncvar_get(coordNC, "XLONG")
     inNCLat <- ncdf4::ncvar_get(coordNC, "XLAT")
-  } else if ("lon" %in% coordvarList & "lat" %in% coordvarList) {
-    inNCLon <- ncdf4::ncvar_get(coordNC, "lon")
-    inNCLat <- ncdf4::ncvar_get(coordNC, "lat")
+  } else if ("lon" %in% coordvarList & "lat" %in% coordvarList) {        # nocov
+    inNCLon <- ncdf4::ncvar_get(coordNC, "lon")                          # nocov
+    inNCLat <- ncdf4::ncvar_get(coordNC, "lat")                          # nocov
   } else {
-    stop('Error: Latitude and longitude fields not found (tried: XLAT_M/XLONG_M, XLAT/XLONG, lat/lon')
+    stop('Error: Latitude and longitude fields not found (tried: XLAT_M/XLONG_M, XLAT/XLONG, lat/lon') # nocov
   }
 
   nrows <- dim(inNCLon)[2]
@@ -91,13 +91,13 @@ wrf_raster <- function(file = file.choose(),
                           cen_lat, " +lon_0=", cen_lon,
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
   } else {
-    stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).')
+    stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).') # nocov
   }
 
   dx <- ncdf4::ncatt_get(coordNC, varid=0, attname="DX")$value
   dy <- ncdf4::ncatt_get(coordNC, varid=0, attname="DY")$value
   if ( dx != dy ) {
-    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy))
+    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy)) # nocov
   }
 
   projcoords <- rgdal::project(coords, geogrd.proj)
@@ -121,29 +121,29 @@ wrf_raster <- function(file = file.choose(),
                    crs = geogrd.proj))
 
   f2 <- function(a, wh){
-    dims <- seq_len(length(dim(a)))
-    dims <- setdiff(dims, wh)
-    x    <- apply(apply(a, dims, rev), dims, t)
-    return(x)
+    dims <- seq_len(length(dim(a)))                # nocov
+    dims <- setdiff(dims, wh)                      # nocov
+    x    <- apply(apply(a, dims, rev), dims, t)    # nocov
+    return(x)                                      # nocov
   }
 
   if(is.matrix(POL)){
     values(r) <- apply(t(POL), 2, rev)
   }else{
-    r         <- raster::brick(r,nl = dim(POL)[3])
-    values(r) <- f2(POL,2)
-    names(r)  <- paste(name,ncvar_get(wrf,'Times'),sep="_")
+    r         <- raster::brick(r,nl = dim(POL)[3])          # nocov
+    values(r) <- f2(POL,2)                                  # nocov
+    names(r)  <- paste(name,ncvar_get(wrf,'Times'),sep="_") # nocov
   }
 
   ncdf4::nc_close(wrf)
 
   if(as_polygons){
-    return(rasterToPolygons(r))
+    return(rasterToPolygons(r))                 # nocov
   }else{
     if(is.na(raster_crs)){
       return(r)
     }else{
-      return(projectRaster(r, crs=raster_crs))
+      return(projectRaster(r, crs=raster_crs))  # nocov
     }
   }
 }

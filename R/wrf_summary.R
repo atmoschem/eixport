@@ -42,7 +42,7 @@ wrf_summary <- function(file, vars, clean = FALSE) {
   row.names(df) <- vars
 
   if(clean){
-    df <- df[!row.names(df) %in% c("Times","XLAT","XLONG"),]
+    df <- df[!row.names(df) %in% c("Times","XLAT","XLONG"),] # nocov
   }
   return(df)
 
