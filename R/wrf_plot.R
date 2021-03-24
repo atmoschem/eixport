@@ -59,9 +59,6 @@ wrf_plot <- function(file = file.choose(),
                      verbose = TRUE,
                      ...){
 
-  oldpar <- par(no.readonly = TRUE)
-  on.exit(par(oldpar))
-
   wrfchem <- ncdf4::nc_open(file)                                      # iteractive
   if(is.na(name)){                                                     # nocov start
     name  <- menu(names(wrfchem$var)[c(-1,-2,-3)], title = "Choose the variable:")
@@ -98,9 +95,11 @@ wrf_plot <- function(file = file.choose(),
       cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "","\n")) # nocov
     }
   }
-  if(skip){
-    cat('skiping plot') # nocov
-    return()            # nocov
+
+  if(skip & max(POL) == min(POL)){
+    cat('skiping plot\n') # nocov
+    # par(oldpar)         # nocov
+    return()              # nocov
   }
 
   filled.contour2 <-  function (x = seq(0, 1, length.out = nrow(z)),
@@ -188,9 +187,12 @@ wrf_plot <- function(file = file.choose(),
     title(titulo)
   }
 
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if(barra){
-    old.par <- par(mar = c(0, 0, 0, 0))
+    # old.par <- par(mar = c(0, 0, 0, 0))
+    par(mar = c(0, 0, 0, 0))
     layout(matrix(c(1,2),
                   ncol = 2,
                   nrow = 1,
@@ -209,7 +211,7 @@ wrf_plot <- function(file = file.choose(),
     par(mar = c(3.5, 1, 3, 4))
     barras(POL, col = col)
     mtext(name, 3, line = 0.8)
-    par(old.par)
+    # par(old.par)
     par(mfrow = c(1, 1))
   }
 }
