@@ -41,7 +41,7 @@ wrf_raster <- function(file = file.choose(),
       return(TIME)                                                                        # nocov
     }
   }
-  cat(paste0('reading ',name,' from ', file,'\n'))                  # nocov
+  if(verbose) cat(paste0('reading ',name,' from ', file,'\n'))      # nocov
 
   wrf <- ncdf4::nc_open(file)                                       # iteractive
   if(is.na(name)){                                                  # nocov start
@@ -51,7 +51,7 @@ wrf_raster <- function(file = file.choose(),
   }else{
     POL   <- ncvar_get(wrf,name)
   }
-  cat(paste("crating raster for",name,'\n'))
+  if(verbose)  cat(paste("crating raster for",name,'\n'))           # nocov
 
   coordNC <- tryCatch(suppressWarnings(ncdf4::nc_open(file)),
                       error=function(cond) {message(cond); return(NA)})  # nocov
