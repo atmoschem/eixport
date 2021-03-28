@@ -74,8 +74,8 @@ wrf_raster <- function(file = file.choose(),
   ncols <- dim(inNCLon)[1]
 
   # Reverse column order to get UL in UL
-  x <- as.vector(inNCLon[,ncol(inNCLon):1])
-  y <- as.vector(inNCLat[,ncol(inNCLat):1])
+  x <- as.vector(inNCLon[ncol(inNCLon):1])
+  y <- as.vector(inNCLat[ncol(inNCLat):1])
 
   coords <- as.matrix(cbind(x, y))
 
