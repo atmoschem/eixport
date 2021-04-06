@@ -13,10 +13,10 @@
 wrf_meta <- function(file = file.choose()){
   nc <- ncdf4::nc_open(file)
   na <- names(nc$var)
-  na <- data.frame(vars = names(nc$var))
-  na <- data.frame(vars = na[na$vars != "Times", ])
+  na <- data.frame(vars = names(nc$var), stringsAsFactors = FALSE)
+  na <- data.frame(vars = na[na$vars != "Times", ], stringsAsFactors = FALSE)
 
-  latts <- as.data.frame(unlist(ncdf4::ncatt_get(nc, 0)))
+  latts <- as.data.frame(unlist(ncdf4::ncatt_get(nc, 0)), stringsAsFactors = FALSE)
   latts <- data.frame(att = row.names(latts),
                       vars = latts[[1]])
 
