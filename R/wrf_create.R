@@ -27,6 +27,7 @@
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
 #' @param separator filename alternative separator when io_style_emission=1
+#' @param overwrite logical, defoult is true, if FALSE check if the file exist
 #' @param return_fn logical, return the name of the last created file
 #' @param verbose print file info
 #'
@@ -91,6 +92,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
                         separator            = 'default',
+                        overwrite            = TRUE,
                         return_fn            = FALSE,
                         verbose              = FALSE)
 {
@@ -120,7 +122,6 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
   }
 
   for(domain in domains){
-    cat('creating emission for domain',domain,'...\n')
     # basic information from wrfinput
     wrfinput     <- paste(wrfinput_dir, "/wrfinput_d0", domain, sep = "")
     wrfinput     <- ncdf4::nc_open(wrfinput,write = F)
@@ -167,6 +168,12 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       } else  file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
                                  format(date,"%Y-%m-%d"),
                                  "_", hora, separator, minuto, separator, segundo, sep = "")# nocov end
+    }
+    if(!overwrite & file.exists(file_name)){
+      cat('using current file for domain',domain,'...\n')
+      next
+    }else{
+      cat('creating emission for domain',domain,'...\n')
     }
 
     if(frames_per_auxinput5 == 1){

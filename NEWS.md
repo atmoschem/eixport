@@ -2,6 +2,7 @@ NEWS
 ===========
 
 # eixport 0.5.1 (Release date: 16 mar 2021)
+- added overwrite option in wrf_create
 - updates in wrf_create for all wrf emission options
 - added argument return_fn to return the name of last file created
 - wrf_meta uses stringsAsFactors = FALSE
