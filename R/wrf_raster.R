@@ -134,10 +134,17 @@ wrf_raster <- function(file = file.choose(),
   if(is.matrix(POL)){
     values(r) <- apply(t(POL), 2, rev)
   }else{
-    r         <- raster::brick(r,nl = dim(POL)[3])          # nocov
-    values(r) <- f2(POL,2)                                  # nocov
-    names(r)  <- paste(name,ncvar_get(wrf,'Times'),sep="_") # nocov
-  }
+    r         <- raster::brick(r,nl = dim(POL)[3])          # nocov start
+    values(r) <- f2(POL,2)
+    ntimes    <- length(ncvar_get(wrf,'Times'))
+    ndim      <- length(dim(r))
+
+    if(ntimes == 1 & ndim > 2){
+      names(r)  <- paste(name,'level',formatC(1:dim(r)[3],width = 2, format = "d", flag = "0"),sep="_")
+    }else{
+      names(r)  <- paste(name,ncvar_get(wrf,'Times'),sep="_")
+    }
+  }                                                         # novoc end
 
   ncdf4::nc_close(wrf)
 
