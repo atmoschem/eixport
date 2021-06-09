@@ -41,7 +41,7 @@
 wrf_put <- function (file = file.choose(),
                      name = NA,
                      POL,
-                     mult = NA,
+                     mult,
                      verbose = FALSE) {
   if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
     cat('converting POSIXlt to string\n')      # nocov
