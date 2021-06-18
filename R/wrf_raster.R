@@ -5,6 +5,7 @@
 #' @param file wrf file
 #' @param name variable name
 #' @param raster_crs default crs is "+proj=longlat"
+#' @param level only for 4d data, default is 1 (surface)
 #' @param as_polygons logical, true to return a poligon instead of a raster
 #' @param verbose display additional information
 #'
@@ -26,6 +27,7 @@
 wrf_raster <- function(file = file.choose(),
                        name = NA,
                        raster_crs = NA,
+                       level = 1,
                        as_polygons = FALSE,
                        verbose = FALSE){
 
@@ -74,12 +76,13 @@ wrf_raster <- function(file = file.choose(),
   ncols <- dim(inNCLon)[1]
 
   # Reverse column order to get UL in UL
-  x <- as.vector(inNCLon[,ncol(inNCLon):1])
-  y <- as.vector(inNCLat[,ncol(inNCLat):1])
-
-  # novo
-  # x <- as.vector(inNCLon[ncol(inNCLon):1])
-  # y <- as.vector(inNCLat[ncol(inNCLat):1])
+  if(length(dim(inNCLon)) == 3){ # for special case of lat/lon has more dimensions
+    x <- as.vector(inNCLon[ncol(inNCLon):1]) # nocov
+    y <- as.vector(inNCLat[ncol(inNCLat):1]) # nocov
+  }else{
+    x <- as.vector(inNCLon[,ncol(inNCLon):1])
+    y <- as.vector(inNCLat[,ncol(inNCLat):1])
+  }
 
   coords <- as.matrix(cbind(x, y))
 
@@ -90,9 +93,10 @@ wrf_raster <- function(file = file.choose(),
   truelat1 <- ncdf4::ncatt_get(coordNC, varid=0, attname="TRUELAT1")$value
   truelat2 <- ncdf4::ncatt_get(coordNC, varid=0, attname="TRUELAT2")$value
   if (map_proj==1) {
-    geogrd.proj <- paste0("+proj=lcc +lat_1=",
-                          truelat1, " +lat_2=", truelat2, " +lat_0=",
-                          cen_lat, " +lon_0=", cen_lon,
+    geogrd.proj <- paste0("+proj=lcc +lat_1=",truelat1,
+                          " +lat_2=", truelat2,
+                          " +lat_0=", cen_lat,
+                          " +lon_0=", cen_lon,
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
   } else {
     stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).') # nocov
@@ -135,6 +139,10 @@ wrf_raster <- function(file = file.choose(),
     values(r) <- apply(t(POL), 2, rev)
   }else{
     r         <- raster::brick(r,nl = dim(POL)[3])          # nocov start
+    if(length(dim(POL)) == 4){
+      cat('raster::brick only support 3d data, using level',level,'\n')
+      POL <- POL[,,level,,drop = T]
+    }
     values(r) <- f2(POL,2)
     ntimes    <- length(ncvar_get(wrf,'Times'))
     ndim      <- length(dim(r))

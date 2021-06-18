@@ -8,6 +8,7 @@ wrf_raster(
   file = file.choose(),
   name = NA,
   raster_crs = NA,
+  level = 1,
   as_polygons = FALSE,
   verbose = FALSE
 )
@@ -18,6 +19,8 @@ wrf_raster(
 \item{name}{variable name}
 
 \item{raster_crs}{default crs is "+proj=longlat"}
+
+\item{level}{only for 4d data, default is 1 (surface)}
 
 \item{as_polygons}{logical, true to return a poligon instead of a raster}
 
