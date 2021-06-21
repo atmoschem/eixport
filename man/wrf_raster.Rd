@@ -9,6 +9,7 @@ wrf_raster(
   name = NA,
   raster_crs = NA,
   level = 1,
+  reverse = FALSE,
   as_polygons = FALSE,
   verbose = FALSE
 )
@@ -18,9 +19,11 @@ wrf_raster(
 
 \item{name}{variable name}
 
-\item{raster_crs}{default crs is "+proj=longlat"}
+\item{raster_crs}{csr to reproject the output (i.e. "+proj=longlat" or other)}
 
 \item{level}{only for 4d data, default is 1 (surface)}
+
+\item{reverse}{set TRUE to reverse lat/long, see notes}
 
 \item{as_polygons}{logical, true to return a poligon instead of a raster}
 
@@ -28,6 +31,10 @@ wrf_raster(
 }
 \description{
 Return a Raster
+}
+\note{
+newer versions of gdal/rgdal can present a issue related to lat/lon
+set TRUE to reverse the lat/lon order passed to rgdal::project function
 }
 \examples{
 {

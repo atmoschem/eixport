@@ -4,10 +4,14 @@
 #'
 #' @param file wrf file
 #' @param name variable name
-#' @param raster_crs default crs is "+proj=longlat"
+#' @param raster_crs csr to reproject the output (i.e. "+proj=longlat" or other)
 #' @param level only for 4d data, default is 1 (surface)
+#' @param reverse set TRUE to reverse lat/long, see notes
 #' @param as_polygons logical, true to return a poligon instead of a raster
 #' @param verbose display additional information
+#'
+#' @note newer versions of gdal/rgdal can present a issue related to lat/lon
+#' set TRUE to reverse the lat/lon order passed to rgdal::project function
 #'
 #' @import ncdf4
 #' @import raster
@@ -28,6 +32,7 @@ wrf_raster <- function(file = file.choose(),
                        name = NA,
                        raster_crs = NA,
                        level = 1,
+                       reverse = FALSE,
                        as_polygons = FALSE,
                        verbose = FALSE){
 
@@ -84,7 +89,11 @@ wrf_raster <- function(file = file.choose(),
     y <- as.vector(inNCLat[,ncol(inNCLat):1])
   }
 
-  coords <- as.matrix(cbind(x, y))
+  if(reverse){
+    coords <- as.matrix(cbind(y, x))
+  }else{
+    coords <- as.matrix(cbind(x, y))
+  }
 
   # Get geogrid and projection info
   map_proj <- ncdf4::ncatt_get(coordNC, varid=0, attname="MAP_PROJ")$value
@@ -109,7 +118,7 @@ wrf_raster <- function(file = file.choose(),
   }
 
   projcoords <- rgdal::project(coords, geogrd.proj)
-  # projcoords <- sf::st_transform(coords, geogrd.proj)
+  # projcoords <- sf::st_transform(coords, geogrd.proj) / spTransforms
 
   # coordinates here refere to the cell center,
   # We need to calculate the boundaries for the raster file
