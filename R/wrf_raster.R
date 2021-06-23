@@ -83,8 +83,8 @@ wrf_raster <- function(file = file.choose(),
 
   # Reverse column order to get UL in UL
   if(length(dim(inNCLon)) == 3){ # for special case of lat/lon has more dimensions
-    x <- as.vector(inNCLon[ncol(inNCLon):1]) # nocov
-    y <- as.vector(inNCLat[ncol(inNCLat):1]) # nocov
+    x <- as.vector(inNCLon[, ncol(inNCLon):1,]) # nocov
+    y <- as.vector(inNCLat[, ncol(inNCLat):1,]) # nocov
   }else{
     x <- as.vector(inNCLon[,ncol(inNCLon):1])
     y <- as.vector(inNCLat[,ncol(inNCLat):1])
@@ -109,7 +109,7 @@ wrf_raster <- function(file = file.choose(),
   dx <- ncdf4::ncatt_get(coordNC, varid=0, attname="DX")$value
   dy <- ncdf4::ncatt_get(coordNC, varid=0, attname="DY")$value
   if ( dx != dy ) {
-    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy)) # nocov
+    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy))  # nocov
   }
 
   if(use_sf){
@@ -147,6 +147,7 @@ wrf_raster <- function(file = file.choose(),
 
   if(is.matrix(POL)){
     values(r) <- apply(t(POL), 2, rev)
+    names(r)  <- paste(name)
   }else{
     r         <- raster::brick(r,nl = dim(POL)[3])          # nocov start
     if(length(dim(POL)) == 4){
@@ -155,7 +156,7 @@ wrf_raster <- function(file = file.choose(),
     }
     values(r) <- f2(POL,2)
     ntimes    <- length(ncvar_get(wrf,'Times'))
-    ndim      <- length(dim(r))
+    ndim      <- length(dim(POL))
 
     if(ntimes == 1 & ndim > 2){
       names(r)  <- paste(name,'level',formatC(1:dim(r)[3],width = 2, format = "d", flag = "0"),sep="_")
