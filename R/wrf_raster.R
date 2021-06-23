@@ -4,18 +4,19 @@
 #'
 #' @param file wrf file
 #' @param name variable name
-#' @param raster_crs csr to reproject the output (i.e. "+proj=longlat" or other)
+#' @param latlon project the output in "+proj=longlat +datum=WGS84 +no_defs"
 #' @param level only for 4d data, default is 1 (surface)
-#' @param reverse set TRUE to reverse lat/long, see notes
+#' @param use_sf set TRUE to use sf package instead of rgdal to project XLAT/XLONG
 #' @param as_polygons logical, true to return a poligon instead of a raster
 #' @param verbose display additional information
 #'
 #' @note newer versions of gdal/rgdal can present a issue related to lat/lon
-#' set TRUE to reverse the lat/lon order passed to rgdal::project function
+#' set use_sf to TRUE use functions of sf instead of rgdal
 #'
 #' @import ncdf4
 #' @import raster
 #' @importFrom rgdal project
+#' @import sf
 #'
 #' @export
 #' @examples {
@@ -30,9 +31,9 @@
 #'}
 wrf_raster <- function(file = file.choose(),
                        name = NA,
-                       raster_crs = NA,
+                       latlon = F,
                        level = 1,
-                       reverse = FALSE,
+                       use_sf = FALSE,
                        as_polygons = FALSE,
                        verbose = FALSE){
 
@@ -89,12 +90,6 @@ wrf_raster <- function(file = file.choose(),
     y <- as.vector(inNCLat[,ncol(inNCLat):1])
   }
 
-  if(reverse){
-    coords <- as.matrix(cbind(y, x))
-  }else{
-    coords <- as.matrix(cbind(x, y))
-  }
-
   # Get geogrid and projection info
   map_proj <- ncdf4::ncatt_get(coordNC, varid=0, attname="MAP_PROJ")$value
   cen_lat  <- ncdf4::ncatt_get(coordNC, varid=0, attname="CEN_LAT")$value
@@ -117,12 +112,18 @@ wrf_raster <- function(file = file.choose(),
     stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy)) # nocov
   }
 
-  projcoords <- rgdal::project(coords, geogrd.proj)
-  # projcoords <- sf::st_transform(coords, geogrd.proj) / spTransforms
+  if(use_sf){
+    pontos     <- sf::st_multipoint(x = as.matrix(cbind(x, y)), dim = "XY")           # nocov
+    coords     <- sf::st_sfc(x = pontos, crs = "+proj=longlat +datum=WGS84 +no_defs") # nocov
+    transform  <- sf::st_transform(x = coords, crs = geogrd.proj)                     # nocov
+    projcoords <- sf::st_coordinates(transform)[,1:2]                                 # nocov
+  }else{
+    coords     <- as.matrix(cbind(x, y))
+    projcoords <- rgdal::project(coords, geogrd.proj)
+  }
 
   # coordinates here refere to the cell center,
   # We need to calculate the boundaries for the raster file
-
   xmn <- projcoords[1,1] - dx/2.0   # Left border
   ymx <- projcoords[1,2] + dy/2.0   # upper border
   xmx <- xmn + ncols*dx             # Right border
@@ -168,10 +169,11 @@ wrf_raster <- function(file = file.choose(),
   if(as_polygons){
     return(rasterToPolygons(r))                 # nocov
   }else{
-    if(is.na(raster_crs)){
-      return(r)
+    if(latlon){
+      return(projectRaster(r, crs="+proj=longlat +datum=WGS84 +no_defs"))  # nocov
     }else{
-      return(projectRaster(r, crs=raster_crs))  # nocov
+      return(r)                                 # nocov
+
     }
   }
 }
