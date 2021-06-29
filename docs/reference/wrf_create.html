@@ -94,7 +94,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -102,7 +102,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -140,7 +140,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/atmoschem/eixport/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -179,12 +179,14 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
   day_offset <span class='op'>=</span> <span class='fl'>0</span>,
   io_style_emissions <span class='op'>=</span> <span class='fl'>2</span>,
   kemit <span class='op'>=</span> <span class='fl'>1</span>,
-  variables <span class='op'>=</span> <span class='st'>"ecbmz_mosaic"</span>,
-  n_aero <span class='op'>=</span> <span class='fl'>14</span>,
+  variables <span class='op'>=</span> <span class='st'>"ecb05_opt2"</span>,
+  n_aero <span class='op'>=</span> <span class='fl'>15</span>,
   COMPRESS <span class='op'>=</span> <span class='cn'>NA</span>,
   force_ncdf4 <span class='op'>=</span> <span class='cn'>FALSE</span>,
   title <span class='op'>=</span> <span class='st'>"Anthropogenic emissions for WRF V4.0"</span>,
   separator <span class='op'>=</span> <span class='st'>"default"</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  return_fn <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
@@ -249,6 +251,14 @@ no compression</p></td>
     <tr>
       <th>separator</th>
       <td><p>filename alternative separator when io_style_emission=1</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>logical, defoult is true, if FALSE check if the file exist</p></td>
+    </tr>
+    <tr>
+      <th>return_fn</th>
+      <td><p>logical, return the name of the last created file</p></td>
     </tr>
     <tr>
       <th>verbose</th>

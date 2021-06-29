@@ -64,14 +64,6 @@ devtools::install_github("atmoschem/eixport")
 - [to_munich](https://atmoschem.github.io/eixport/reference/to_munich.html): To generate inputs for
 MUNICH model.
 
-## Download EDGAR 5
-
-```{r eval = FALSE}
-get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS", year = 2014)
-```
-
-check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
-
 
 ### Summary
 ```{r}
@@ -85,11 +77,15 @@ wrf_summary(file = file)
 
 ```{r}
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-wrf_meta(file)
+f <- wrf_meta(file)
+names(f)
+head(f$global)
+head(f$vars)
+
 ```
 
 
-## Paper accepted on Journal of Open Source Software
+## Paper on Journal of Open Source Software (JOSS)
 
 https://doi.org/10.21105/joss.00607
 
@@ -104,6 +100,7 @@ https://doi.org/10.21105/joss.00607
   }
 ```
 
+<span class="__dimensions_badge_embed__" data-doi="10.21105/joss.00607"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
 
 ## Contributing
 

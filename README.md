@@ -17,9 +17,8 @@ Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](h
 checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.org/web/checks/check_results_eixport.html)
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
-   [![R build
-    status](https://github.com/atmoschem/eixport/workflows/R-CMD-check/badge.svg)](https://github.com/atmoschem/eixport/actions)
-## Exporting emissions to atmospheric models, eixport: 0.5.0
+
+## Exporting emissions to atmospheric models, eixport: 0.5.1
 
 Emissions are mass that affects atmosphere in complex ways, not only
 physical, but also, in the health of humans, ecosystems, economically,
@@ -73,14 +72,6 @@ devtools::install_github("atmoschem/eixport")
 -   [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
     To generate inputs for MUNICH model.
 
-## Download EDGAR 5
-
-``` r
-get_edgar(dataset = "v50_AP", destpath = tempdir(), sector = "TOTALS", year = 2014)
-```
-
-check this [video](https://www.youtube.com/embed/gXt3hOlpYts)
-
 ### Summary
 
 ``` r
@@ -102,96 +93,24 @@ wrf_summary(file = file)
 
 ``` r
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
-wrf_meta(file)
-#> $global
-#>                               att                                       vars
-#> 1                           TITLE  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
-#> 2                      START_DATE                        2011-08-01_00:00:00
-#> 3           SIMULATION_START_DATE                        2011-08-01_00:00:00
-#> 4        WEST-EAST_GRID_DIMENSION                                         64
-#> 5      SOUTH-NORTH_GRID_DIMENSION                                         52
-#> 6       BOTTOM-TOP_GRID_DIMENSION                                         35
-#> 7                              DX                                       3000
-#> 8                              DY                                       3000
-#> 9                        GRIDTYPE                                          C
-#> 10                       DIFF_OPT                                          1
-#> 11                         KM_OPT                                          4
-#> 12                       DAMP_OPT                                          3
-#> 13                       DAMPCOEF                          0.200000002980232
-#> 14                          KHDIF                                          0
-#> 15                          KVDIF                                          0
-#> 16                     MP_PHYSICS                                         10
-#> 17                  RA_LW_PHYSICS                                          4
-#> 18                  RA_SW_PHYSICS                                          4
-#> 19              SF_SFCLAY_PHYSICS                                          1
-#> 20             SF_SURFACE_PHYSICS                                          2
-#> 21                 BL_PBL_PHYSICS                                          1
-#> 22                     CU_PHYSICS                                          0
-#> 23                SF_LAKE_PHYSICS                                          0
-#> 24           SURFACE_INPUT_SOURCE                                          1
-#> 25                     SST_UPDATE                                          0
-#> 26                      GRID_FDDA                                          0
-#> 27               GFDDA_INTERVAL_M                                          0
-#> 28                    GFDDA_END_H                                          0
-#> 29                     GRID_SFDDA                                          0
-#> 30              SGFDDA_INTERVAL_M                                          0
-#> 31                   SGFDDA_END_H                                          0
-#> 32                HYPSOMETRIC_OPT                                          2
-#> 33                    USE_THETA_M                                          0
-#> 34                 USE_MAXW_LEVEL                                          0
-#> 35                 USE_TROP_LEVEL                                          0
-#> 36                        GWD_OPT                                          0
-#> 37               SF_URBAN_PHYSICS                                          1
-#> 38               SF_OCEAN_PHYSICS                                          0
-#> 39 SIMULATION_INITIALIZATION_TYPE                             REAL-DATA CASE
-#> 40   WEST-EAST_PATCH_START_UNSTAG                                          1
-#> 41     WEST-EAST_PATCH_END_UNSTAG                                         63
-#> 42     WEST-EAST_PATCH_START_STAG                                          1
-#> 43       WEST-EAST_PATCH_END_STAG                                         64
-#> 44 SOUTH-NORTH_PATCH_START_UNSTAG                                          1
-#> 45   SOUTH-NORTH_PATCH_END_UNSTAG                                         51
-#> 46   SOUTH-NORTH_PATCH_START_STAG                                          1
-#> 47     SOUTH-NORTH_PATCH_END_STAG                                         52
-#> 48  BOTTOM-TOP_PATCH_START_UNSTAG                                          1
-#> 49    BOTTOM-TOP_PATCH_END_UNSTAG                                         34
-#> 50    BOTTOM-TOP_PATCH_START_STAG                                          1
-#> 51      BOTTOM-TOP_PATCH_END_STAG                                         35
-#> 52                        GRID_ID                                          2
-#> 53                      PARENT_ID                                          1
-#> 54                 I_PARENT_START                                         48
-#> 55                 J_PARENT_START                                         40
-#> 56              PARENT_GRID_RATIO                                          3
-#> 57                             DT                                         15
-#> 58                        CEN_LAT                          -23.7047119140625
-#> 59                        CEN_LON                          -46.5030517578125
-#> 60                       TRUELAT1                                        -23
-#> 61                       TRUELAT2                                        -24
-#> 62                   MOAD_CEN_LAT                          -23.5499954223633
-#> 63                      STAND_LON                                        -45
-#> 64                       POLE_LAT                                         90
-#> 65                       POLE_LON                                          0
-#> 66                            GMT                                          0
-#> 67                          JULYR                                       2011
-#> 68                         JULDAY                                        213
-#> 69                       MAP_PROJ                                          1
-#> 70                  MAP_PROJ_CHAR                          Lambert Conformal
-#> 71                         MMINLU                   MODIFIED_IGBP_MODIS_NOAH
-#> 72                   NUM_LAND_CAT                                         21
-#> 73                        ISWATER                                         17
-#> 74                         ISLAKE                                         21
-#> 75                          ISICE                                         15
-#> 76                        ISURBAN                                         13
-#> 77                     ISOILWATER                                         14
-#> 78                     HYBRID_OPT                                         -1
-#> 79                           ETAC                                          0
-#> 
-#> $vars
+f <- wrf_meta(file)
+names(f)
+#> [1] "global" "vars"
+head(f$global)
+#>                          att                                       vars
+#> 1                      TITLE  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
+#> 2                 START_DATE                        2011-08-01_00:00:00
+#> 3      SIMULATION_START_DATE                        2011-08-01_00:00:00
+#> 4   WEST-EAST_GRID_DIMENSION                                         64
+#> 5 SOUTH-NORTH_GRID_DIMENSION                                         52
+#> 6  BOTTOM-TOP_GRID_DIMENSION                                         35
+head(f$vars)
 #>    vars MemoryOrder                 description        units stagger FieldType
 #> 1  XLAT          XY LATITUDE, SOUTH IS NEGATIVE degree north               104
 #> 2 XLONG          XY LONGITUDE, WEST IS NEGATIVE  degree east               104
 ```
 
-## Paper accepted on Journal of Open Source Software
+## Paper on Journal of Open Source Software (JOSS)
 
 <https://doi.org/10.21105/joss.00607>
 
@@ -203,6 +122,10 @@ wrf_meta(file)
         doi = {10.21105/joss.00607},
         url = {http://joss.theoj.org/papers/10.21105/joss.00607},
       }
+
+<span class="__dimensions_badge_embed__"
+data-doi="10.21105/joss.00607"></span>
+<script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
 
 ## Contributing
 

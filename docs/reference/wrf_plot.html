@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/atmoschem/eixport/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -171,6 +171,7 @@
   lbarra <span class='op'>=</span> <span class='fl'>0.2</span>,
   col <span class='op'>=</span> <span class='fu'>cptcity</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/cptcity/man/cpt.html'>cpt</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>20</span>, rev <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
   map <span class='op'>=</span> <span class='cn'>NULL</span>,
+  skip <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -209,6 +210,10 @@
     <tr>
       <th>map</th>
       <td><p>function call to plot map lines, points and annotation (experimental)</p></td>
+    </tr>
+    <tr>
+      <th>skip</th>
+      <td><p>logical, skip plot of constant valuess</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -250,8 +255,10 @@ time with control the level which will be ploted</p>
 
 <span class='fu'>wrf_plot</span><span class='op'>(</span><span class='va'>files</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, <span class='st'>"E_CO"</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpufrqTj/EMISS' already exists</span></div><div class='output co'>#&gt; writing emissions: E_CO weight 1 on file /tmp/RtmpufrqTj/EMISS/wrfchemi_d01_2011-08-01_00:00:00 
-#&gt; /tmp/RtmpufrqTj/EMISS/wrfchemi_d01_2011-08-01_00:00:00
+</div><div class='output co'>#&gt; <span class='warning'>Warning: '/tmp/RtmpOvHoAt/EMISS' already exists</span></div><div class='output co'>#&gt; creating emission for domain 1 ...
+#&gt; output file: /tmp/RtmpOvHoAt/EMISS/wrfchemi_d01_2011-08-01_00:00:00 
+#&gt; writing emissions: E_CO weight 1 on file /tmp/RtmpOvHoAt/EMISS/wrfchemi_d01_2011-08-01_00:00:00 
+#&gt; /tmp/RtmpOvHoAt/EMISS/wrfchemi_d01_2011-08-01_00:00:00
 #&gt; E_CO:
 #&gt; Max value: 2481.08618164062, Min value: 0</div><div class='img'><img src='wrf_plot-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

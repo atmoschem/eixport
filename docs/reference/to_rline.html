@@ -91,7 +91,7 @@ of the model R-LINE" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@ of the model R-LINE" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -137,7 +137,7 @@ of the model R-LINE" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/atmoschem/eixport/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -262,7 +262,7 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
     <pre class="examples"><div class='input'><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span>
 <span class='va'>emisco</span> <span class='op'>&lt;-</span> <span class='fu'><a href='st_explode.html'>st_explode</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>)</span>
-<span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span> <span class='op'>&lt;-</span> <span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/set_units.html'>set_units</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span>, <span class='st'>"g/ms"</span><span class='op'>)</span>
+<span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span> <span class='op'>&lt;-</span> <span class='fu'>units</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/units/man/units.html'>set_units</a></span><span class='op'>(</span><span class='va'>emisco</span><span class='op'>$</span><span class='va'>V8</span>, <span class='st'>"g/ms"</span><span class='op'>)</span>
 <span class='va'>Source</span> <span class='op'>&lt;-</span> <span class='fu'>to_rline</span><span class='op'>(</span>Emis <span class='op'>=</span> <span class='va'>emisco</span><span class='op'>[</span><span class='st'>"V8"</span><span class='op'>]</span>,
                    Z_b <span class='op'>=</span><span class='fl'>0</span>,
                    Z_e <span class='op'>=</span><span class='fl'>0</span>,
@@ -276,7 +276,7 @@ Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.</
             sep <span class='op'>=</span> <span class='st'>" "</span>,
             quote <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</span></div><div class='output co'>#&gt; Sum: 2090610.32</div></pre>
+</div><div class='output co'>#&gt; Sum: 2090610.32</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

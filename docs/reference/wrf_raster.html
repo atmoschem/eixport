@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split line by vertex (experimental) — st_explode • eixport</title>
+<title>Creates raster from a variable from a wrf file — wrf_raster • eixport</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Split line by vertex (experimental) — st_explode" />
-<meta property="og:description" content="st_explode split a lines data.frame into
-each vertex. It to mimic the function explode from qgis, that the reason for the name
-st_explode" />
+<meta property="og:title" content="Creates raster from a variable from a wrf file — wrf_raster" />
+<meta property="og:description" content="Return a Raster" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -155,43 +153,75 @@ st_explode" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split line by vertex (experimental)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/st_explode.R'><code>R/st_explode.R</code></a></small>
-    <div class="hidden name"><code>st_explode.Rd</code></div>
+    <h1>Creates raster from a variable from a wrf file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/wrf_raster.R'><code>R/wrf_raster.R</code></a></small>
+    <div class="hidden name"><code>wrf_raster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>st_explode</code> split a lines data.frame into
-each vertex. It to mimic the function explode from qgis, that the reason for the name
-<code>st_explode</code></p>
+    <p>Return a Raster</p>
     </div>
 
-    <pre class="usage"><span class='fu'>st_explode</span><span class='op'>(</span><span class='va'>net</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>wrf_raster</span><span class='op'>(</span>
+  file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.choose.html'>file.choose</a></span><span class='op'>(</span><span class='op'>)</span>,
+  name <span class='op'>=</span> <span class='cn'>NA</span>,
+  latlon <span class='op'>=</span> <span class='cn'>F</span>,
+  level <span class='op'>=</span> <span class='fl'>1</span>,
+  use_sf <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  as_polygons <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>net</th>
-      <td><p>A spatial dataframe of class "sp" or "sf". When class is "sp"
-it is transformed to "sf".</p></td>
+      <th>file</th>
+      <td><p>wrf file</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>variable name</p></td>
+    </tr>
+    <tr>
+      <th>latlon</th>
+      <td><p>project the output in "+proj=longlat +datum=WGS84 +no_defs"</p></td>
+    </tr>
+    <tr>
+      <th>level</th>
+      <td><p>only for 4d data, default is 1 (surface)</p></td>
+    </tr>
+    <tr>
+      <th>use_sf</th>
+      <td><p>set TRUE to use sf package instead of rgdal to project XLAT/XLONG</p></td>
+    </tr>
+    <tr>
+      <th>as_polygons</th>
+      <td><p>logical, true to return a poligon instead of a raster</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>display additional information</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>All variables are transformed into numeric.</p>
+    <p>newer versions of gdal/rgdal can present a issue related to lat/lon
+set use_sf to TRUE use functions of sf instead of rgdal</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># do not run</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/atmoschem/vein'>vein</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
-<span class='va'>net2</span> <span class='op'>&lt;-</span> <span class='fu'>st_explode</span><span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>net2</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='op'>{</span>
+
+<span class='va'>wrf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package <span class='op'>=</span> <span class='st'>"eixport"</span><span class='op'>)</span>,
+                         <span class='st'>"/wrfinput_d02"</span>, sep<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
+
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'>wrf_raster</span><span class='op'>(</span>file<span class='op'>=</span><span class='va'>wrf</span>, name<span class='op'>=</span><span class='st'>'XLAT'</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rspatial.org/raster'>raster</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/raster/man/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>r</span>, axes <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: sp</span></div><div class='img'><img src='wrf_raster-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
