@@ -170,8 +170,8 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                                  "_", hora, separator, minuto, separator, segundo, sep = "")# nocov end
     }
     if(!overwrite & file.exists(file_name)){
-      cat('using current file for domain',domain,'...\n')
-      next
+      cat('using current file for domain',domain,'...\n') # nocov
+      next                                                # nocov
     }else{
       cat('creating emission for domain',domain,'...\n')
     }

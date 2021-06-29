@@ -51,7 +51,7 @@ wrf_raster <- function(file = file.choose(),
   }
   if(verbose) cat(paste0('reading ',name,' from ', file,'\n'))      # nocov
 
-  wrf <- ncdf4::nc_open(file)                                       # iteractive
+  wrf <- ncdf4::nc_open(file)
   if(is.na(name)){                                                  # nocov start
     name  <- menu(names(wrf$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrf, names(wrf$var)[name])
@@ -102,9 +102,12 @@ wrf_raster <- function(file = file.choose(),
                           " +lat_0=", cen_lat,
                           " +lon_0=", cen_lon,
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
-  } else if(map_proj == 6){
-    geogrd.proj <- paste0("+proj=eqc +lat_ts=",0, 
-                          " +lat_0=",cen_lat, " +lon_0=",cen_lon, " +x_0=",0, " +y_0=",0," +ellps=WGS84 +units=m")
+  } else if(map_proj == 6){                         # nocov
+    geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,   # nocov
+                          " +lat_0=",cen_lat,       # nocov
+                          " +lon_0=",cen_lon,       # nocov
+                          " +x_0=",0," +y_0=",0,    # nocov
+                          " +ellps=WGS84 +units=m") # nocov
   }else {
     stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).') # nocov
   }
@@ -166,7 +169,7 @@ wrf_raster <- function(file = file.choose(),
     }else{
       names(r)  <- paste(name,ncvar_get(wrf,'Times'),sep="_")
     }
-  }                                                         # novoc end
+  }                                                         # nocov end
 
   ncdf4::nc_close(wrf)
 
