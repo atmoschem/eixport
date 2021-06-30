@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.5.1 (Release date: 30 jun 2021)
+- added support for 4d arrays in wrf_raster
+- added support to Equidistant Cylindrical projection in wrf_raster function
+
 # eixport 0.5.1 (Release date: 16 mar 2021)
 - added overwrite option in wrf_create
 - updates in wrf_create for all wrf emission options
