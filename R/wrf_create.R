@@ -18,17 +18,18 @@
 #' @param auxinput5_interval_m value from wrf &time_control namelist.input,
 #' interval in minutes between different times (frames) see Details
 #' @param day_offset number of days (can be a fraction) see Details
-#' @param io_style_emissions from wrf &chem namelist.input see Details
-#' @param kemit from wrf &chem namelist.input, number of vertical levels of the emission file
+#' @param io_style_emissions from wrf &chem namelist.input, 1 for 12z/00z style and 2 to date_hour style, see Details
+#' @param kemit from wrf &chem namelist.input number of vertical levels of the emission file
 #' @param variables emission species, can be used `emis_opt`
 #' @param n_aero number of aerosol species
-#' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for
+#' @param COMPRESS integer between 1 (least comp.) and 9 (most comp.) or NA for
 #' no compression
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
-#' @param separator filename alternative separator when io_style_emission=1
+#' @param separator filename alternative separator for hour:minutes:seconds with io_style_emission=2
+#' @param prefix file name prefix, default is wrfchemi (wrf default)
 #' @param overwrite logical, defoult is true, if FALSE check if the file exist
-#' @param return_fn logical, return the name of the last created file
+#' @param return_fn logical, return the name of the last file created
 #' @param verbose print file info
 #'
 #' @note Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
@@ -92,6 +93,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
                         separator            = 'default',
+                        prefix               = 'wrfchemi',
                         overwrite            = TRUE,
                         return_fn            = FALSE,
                         verbose              = FALSE)
@@ -158,14 +160,14 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       }else{
         h <- "12z"
       }
-      file_name <- paste(wrfchemi_dir, "/wrfchemi_", h, "_", "d0",domain, sep = "") # nocov end
+      file_name <- paste(wrfchemi_dir, "/",prefix,"_", h, "_", "d0",domain, sep = "") # nocov end
     }
     if(io_style_emissions ==2){                                                     # nocov start
       if(linux){
-        file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
+        file_name <- paste(wrfchemi_dir, "/",prefix,"_d0", domain, "_",
                            format(date,"%Y-%m-%d"),
                                    "_",hora,":", minuto,":", segundo, sep = "")
-      } else  file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
+      } else  file_name <- paste(wrfchemi_dir, "/",prefix,"_d0", domain, "_",
                                  format(date,"%Y-%m-%d"),
                                  "_", hora, separator, minuto, separator, segundo, sep = "")# nocov end
     }

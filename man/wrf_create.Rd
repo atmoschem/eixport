@@ -19,6 +19,7 @@ wrf_create(
   force_ncdf4 = FALSE,
   title = "Anthropogenic emissions for WRF V4.0",
   separator = "default",
+  prefix = "wrfchemi",
   overwrite = TRUE,
   return_fn = FALSE,
   verbose = FALSE
@@ -39,9 +40,9 @@ interval in minutes between different times (frames) see Details}
 
 \item{day_offset}{number of days (can be a fraction) see Details}
 
-\item{io_style_emissions}{from wrf &chem namelist.input see Details}
+\item{io_style_emissions}{from wrf &chem namelist.input, 1 for 12z/00z style and 2 to date_hour style, see Details}
 
-\item{kemit}{from wrf &chem namelist.input, number of vertical levels of the emission file}
+\item{kemit}{from wrf &chem namelist.input number of vertical levels of the emission file}
 
 \item{variables}{emission species, can be used \code{emis_opt}}
 
@@ -54,11 +55,13 @@ no compression}
 
 \item{title}{TITLE attribute for the NetCDF}
 
-\item{separator}{filename alternative separator when io_style_emission=1}
+\item{separator}{filename alternative separator for hour:minutes:seconds with io_style_emission=2}
+
+\item{prefix}{file name prefix, default is wrfchemi (wrf default)}
 
 \item{overwrite}{logical, defoult is true, if FALSE check if the file exist}
 
-\item{return_fn}{logical, return the name of the last created file}
+\item{return_fn}{logical, return the name of the last file created}
 
 \item{verbose}{print file info}
 }
