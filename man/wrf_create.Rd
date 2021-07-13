@@ -48,7 +48,7 @@ interval in minutes between different times (frames) see Details}
 
 \item{n_aero}{number of aerosol species}
 
-\item{COMPRESS}{integer between 1 (least compr) and 9 (most compr) or NA for
+\item{COMPRESS}{integer between 1 (least comp.) and 9 (most comp.) or NA for
 no compression}
 
 \item{force_ncdf4}{force NetCDF4 format}

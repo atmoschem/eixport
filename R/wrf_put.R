@@ -7,6 +7,7 @@
 #' @param POL Numeric; emissions input or string/POSIXlt time
 #' @param mult Numeric; multiplier. If the length is more than 1, it multiplies POL for each
 #' value of mult. It can be used if you want to add an hourly profile to your emissions.
+#' @param check logic (default is FALSE), TRUE to check for NA and negative values and replace with zeros
 #' @param verbose display additional information
 #'
 #' @export
@@ -42,7 +43,32 @@ wrf_put <- function (file = file.choose(),
                      name = NA,
                      POL,
                      mult,
+                     check = FALSE,
                      verbose = FALSE) {
+  if(check){
+    has_NA  = FALSE
+    has_neg = FALSE
+    n_neg   = 0
+    n_NA    = 0
+    for(i in 1:length(POL)){
+      if(is.na(POL[i])){
+        POL[i] = 0
+        n_NA   = n_NA + 1
+        has_NA = TRUE
+      }
+      if(POL[i] < 0){
+        POL[i]  = 0
+        n_neg   = n_neg + 1
+        has_neg = TRUE
+      }
+    }
+    if(has_NA){
+      warning(paste0(n_NA,' NA values found!\nreplaced by zeros'))
+    }
+    if(has_neg){
+      warning(paste0(n_neg,' negative values found!\nreplaced by zeros'))
+    }
+  }
   if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
     cat('converting POSIXlt to string\n')      # nocov
     POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov

@@ -4,7 +4,14 @@
 \alias{wrf_put}
 \title{Function to write variables in emission files}
 \usage{
-wrf_put(file = file.choose(), name = NA, POL, mult, verbose = FALSE)
+wrf_put(
+  file = file.choose(),
+  name = NA,
+  POL,
+  mult,
+  check = FALSE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{file}{Character; name of file interactively (default) or specified}
@@ -15,6 +22,8 @@ wrf_put(file = file.choose(), name = NA, POL, mult, verbose = FALSE)
 
 \item{mult}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
 value of mult. It can be used if you want to add an hourly profile to your emissions.}
+
+\item{check}{logic (default is FALSE), TRUE to check for NA and negative values and replace with zeros}
 
 \item{verbose}{display additional information}
 }

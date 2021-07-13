@@ -1,6 +1,10 @@
 NEWS
 ===========
 
+# eixport 0.5.1 (Release date: 13 jul 2021)
+- added prefix argument in wrf_create, doc update
+- added check option on wrf_put (to check NA and negative values)
+
 # eixport 0.5.1 (Release date: 30 jun 2021)
 - added support for 4d arrays in wrf_raster
 - added support to Equidistant Cylindrical projection in wrf_raster function
