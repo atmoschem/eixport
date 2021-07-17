@@ -20,6 +20,8 @@ newdir <- substr(wrfi, start = 12, stop = 100)
 
 newdir <- gsub(":", "_", newdir)
 
+newfir <- gsub(".nc", "",  newdir)
+
 dir.create(newdir)
 
 df <- xtractor(atmos = wrfi,
@@ -46,7 +48,7 @@ df <- xtractor(atmos = wrfi,
         )
      print(
      paste0(newdir, t2[i], ".nc")
-  )                                                                                           
+  )
    }
 
 
