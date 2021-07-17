@@ -25,21 +25,17 @@ library(stars)
 library(cptcity)
 library(sf)
 library(vein)
+library(ggplot2)
 ```
 
-
-Adding coastlines and cropping for our study area
-```{r}
-cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
-```
 
 
 Reading Temperature and crop coast lines for our study area
 ```{r}
-t2 <- wrf_get("/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00", 
-              "T2", as_raster = T)
+wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+
+t2 <- wrf_get(wrfo, "T2", as_raster = T)
 t2 <- t2 -273.15
-cl <- st_cast(st_crop(cl, st_as_stars(t2)), "LINESTRING") # 
 ```
 
 Find colour palette for temperature
@@ -55,11 +51,10 @@ m <- cbind(c(-46.5, -46.35),  # xini xend
            c(-23.85, -23.95)) # yini yend
 cross = st_linestring(m)
 (cross <- st_sfc(cross, crs = 4326))
-plot(t2$T2_2014.10.06_14.00.00, 
+plot(t2$T2_2014.11.03_00.00.00, 
      main = "Temperature using plot", 
      col = cpt("arendal_temperature"))
 plot(cross, add = T)
-plot(cl$geometry, add = T)
 ```
 
 Now, define several lines
@@ -92,7 +87,6 @@ points_extract <- function(m, sta) {
 
 
 ```{r}
-library(ggplot2)
 sta = st_as_stars(t2)
 names(sta) <- "temperature"
 df <- points_extract(m, sta = sta)

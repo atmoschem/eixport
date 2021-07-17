@@ -37,7 +37,7 @@ library(sf)
 Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
 ```{r}
-wrfo <- "/media/sergio/ext4/wrfoETA_COM_VEIN/wrfout_d03_2014-10-03_00:00:00"
+wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
 ```
 
 Reading HGT from wrfout
@@ -48,8 +48,11 @@ HGT <- HGT[[1]] # by default one variable with each time, so we select one
 
 Adding coastlines and cropping for our study area
 ```{r}
-cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
-cl <- st_cast(st_crop(cl, st_as_stars(HGT)), "LINESTRING")
+library(rnaturalearth)
+cl <- ne_countries(scale = "small", returnclass = "sf")
+cl <- st_transform(cl, 31983)
+HGT <- st_transform(st_as_stars(HGT), 31983)
+cl <- st_cast(st_crop(cl, HGT), "LINESTRING")
 ```
 
 Find colour palette for elevation
@@ -59,18 +62,13 @@ find_cpt("elevation")
 
 
 ```{r, fig.width=6,fig.height=4}
-plot(HGT, main = "HGT using plot", col = cpt("grass_elevation"))
-plot(cl, add= T, col = "black")
-```
-
-```{r, fig.width=6,fig.height=4}
-spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),
-       col.regions = cpt("grass_elevation"),
-       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
+#spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),
+#       col.regions = cpt("grass_elevation"),
+#       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
 ```   
 
 ```{r, fig.width=6,fig.height=5}
-# hgt <- st_as_stars(HGT)
-# plot(hgt, axes = T, main = "HGT using stars", col = cpt("grass_elevation"), breaks = "fisher", reset = F)
-# plot(cl$geometry, add= T, col = "black")
+cols <- classInt::classIntervals(HGT$HGT_2014.11.03_00.00.00, n = 100, style = "pretty")
+plot(HGT, axes = T, main = "HGT using stars", col = cpt("grass_elevation", n = length(cols$brks) - 1), breaks = cols$brks, reset = F)
+plot(cl$geometry, add= T, col = "black")
 ```

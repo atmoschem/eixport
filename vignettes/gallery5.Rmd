@@ -81,17 +81,11 @@ the coatlines and also another shapefile for reference
 library(eixport)
 library(sf)
 # d02
-g <- wrf_grid("/media/sergio/ext5/WRF4/WPS/geo_em.d02.nc", 
-                       type = "geo")
-rmsp <- st_read("/media/sergio/0A9AD66165F337621/MEGA/PhDgrive/Dados/OD2007-METRO/od.shp")
-
-cl <- st_read("/media/sergio/ext4/coasts_shapefile/gshhg-shp-2.3.7/GSHHS_shp/f/GSHHS_f_L1.shp")
-cl <- st_cast(st_crop(cl, g), "LINESTRING")
+g <- wrf_grid("/media/sergio/ext51/WRF4/WPS/geo_em.d02.nc", type = "geo")
+rmsp <- st_read("/media/sergio/0A9AD66165F337622/MEGA/PhDgrive/Dados/OD2007-METRO/od.shp")
 
 plot(g$geometry,axes = T, reset = F, lwd = 0.1)
-plot(cl,  add = T, lwd = 2, col = "blue")
 plot(rmsp$geometry, add= T)
-
 ```
 
 

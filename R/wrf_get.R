@@ -55,9 +55,8 @@ wrf_get <- function(file = file.choose(),
                     raster_lev = 1,
                     verbose = FALSE){
 
-  if(as_raster)
-    warning('The option as_raster will be deprecated, see eixport::wrf_raster()')
-
+  # if(as_raster) warning('The option as_raster will be deprecated, see eixport::wrf_raster()')
+  # I will need to better check wrf_raster
   if(!is.na(name)){
     if(name == 'time'){
       wrfchem <- ncdf4::nc_open(file)                                                     # nocov

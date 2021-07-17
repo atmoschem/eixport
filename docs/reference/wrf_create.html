@@ -185,6 +185,7 @@ Title argument will be written on global attribute TITLE, from the version 4.0 t
   force_ncdf4 <span class='op'>=</span> <span class='cn'>FALSE</span>,
   title <span class='op'>=</span> <span class='st'>"Anthropogenic emissions for WRF V4.0"</span>,
   separator <span class='op'>=</span> <span class='st'>"default"</span>,
+  prefix <span class='op'>=</span> <span class='st'>"wrfchemi"</span>,
   overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>,
   return_fn <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
@@ -221,11 +222,11 @@ interval in minutes between different times (frames) see Details</p></td>
     </tr>
     <tr>
       <th>io_style_emissions</th>
-      <td><p>from wrf &amp;chem namelist.input see Details</p></td>
+      <td><p>from wrf &amp;chem namelist.input, 1 for 12z/00z style and 2 to date_hour style, see Details</p></td>
     </tr>
     <tr>
       <th>kemit</th>
-      <td><p>from wrf &amp;chem namelist.input, number of vertical levels of the emission file</p></td>
+      <td><p>from wrf &amp;chem namelist.input number of vertical levels of the emission file</p></td>
     </tr>
     <tr>
       <th>variables</th>
@@ -237,7 +238,7 @@ interval in minutes between different times (frames) see Details</p></td>
     </tr>
     <tr>
       <th>COMPRESS</th>
-      <td><p>integer between 1 (least compr) and 9 (most compr) or NA for
+      <td><p>integer between 1 (least comp.) and 9 (most comp.) or NA for
 no compression</p></td>
     </tr>
     <tr>
@@ -250,7 +251,11 @@ no compression</p></td>
     </tr>
     <tr>
       <th>separator</th>
-      <td><p>filename alternative separator when io_style_emission=1</p></td>
+      <td><p>filename alternative separator for hour:minutes:seconds with io_style_emission=2</p></td>
+    </tr>
+    <tr>
+      <th>prefix</th>
+      <td><p>file name prefix, default is wrfchemi (wrf default)</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
@@ -258,7 +263,7 @@ no compression</p></td>
     </tr>
     <tr>
       <th>return_fn</th>
-      <td><p>logical, return the name of the last created file</p></td>
+      <td><p>logical, return the name of the last file created</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -323,7 +328,7 @@ wrfchemi_12z with day_offset = 0.5 (frames_per_auxinput5 and auxinput5_interval_
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://www.ibarraespinosa.github.io'>Sergio Ibarra-Espinosa</a>.</p>
+  <p>Developed by <a href='http://www.ibarraespinosa.github.io'>Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
 </div>
 
 <div class="pkgdown">
