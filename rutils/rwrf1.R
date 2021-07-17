@@ -25,7 +25,7 @@ newfir <- gsub(".nc", "",  newdir)
 dir.create(newdir)
 
 df <- xtractor(atmos = wrfi,
- i                vars = t2,
+                 vars = t2,
                  points = cetesb,
 #                 stations = cetesb$Station,
                  return_list = FALSE)
