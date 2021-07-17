@@ -20,7 +20,7 @@ newdir <- substr(wrfi, start = 12, stop = 100)
 
 newdir <- gsub(":", "_", newdir)
 
-newfir <- gsub(".nc", "",  newdir)
+newdir <- gsub(".nc", "",  newdir)
 
 dir.create(newdir)
 
@@ -28,16 +28,12 @@ df <- xtractor(atmos = wrfi,
                  vars = t2,
                  points = cetesb,
 #                 stations = cetesb$Station,
-                 return_list = FALSE)
-df$dir <- newdir
+                 return_list = TRUE)
 
-saveRDS(df, paste0(newdir, "/ROUT.rds"), compress = "xz")
+df$data$dir <- newdir
 
-# NetCDF ####
-df <- xtractor(atmos = wrfi,
-               vars = t2,
-               points = cetesb,
-               return_list = TRUE)
+saveRDS(df$data, paste0(newdir, "/DF.rds"), compress = "xz")
+
 
  for (i in seq_along(t2)) {
         print(names(df$raster)[i])
@@ -47,7 +43,7 @@ df <- xtractor(atmos = wrfi,
           overwrite = TRUE
         )
      print(
-     paste0(newdir, t2[i], ".nc")
+     paste0(newdir, "/", t2[i], ".nc")
   )
    }
 
