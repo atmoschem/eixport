@@ -4,7 +4,14 @@
 \alias{wrf_put}
 \title{Function to write variables in emission files}
 \usage{
-wrf_put(file = file.choose(), name = NA, POL, mult = NA, verbose = F)
+wrf_put(
+  file = file.choose(),
+  name = NA,
+  POL,
+  mult,
+  check = FALSE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{file}{Character; name of file interactively (default) or specified}
@@ -15,6 +22,8 @@ wrf_put(file = file.choose(), name = NA, POL, mult = NA, verbose = F)
 
 \item{mult}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
 value of mult. It can be used if you want to add an hourly profile to your emissions.}
+
+\item{check}{logic (default is FALSE), TRUE to check for NA and negative values and replace with zeros}
 
 \item{verbose}{display additional information}
 }
@@ -34,9 +43,14 @@ files <- list.files(path = file.path(tempdir(), "EMISS"),
                     full.names = TRUE)
 
 # open, put some numbers and write
-CO <- wrf_get(file = files[1], name = "E_CO")
+CO <- wrf_get(file = files[1],
+              name = "E_CO")
+
 CO[] = rnorm(length(CO))
-wrf_put(file = files[1], name = "E_CO", POL = CO)
+
+wrf_put(file = files[1],
+        name = "E_CO",
+        POL = CO)
 }
 }
 \seealso{

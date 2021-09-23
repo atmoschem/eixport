@@ -61,7 +61,7 @@ wrf_grid <- function(filewrf,
                       xmx = max(lon),
                       ymn = min(lat),
                       ymx = max(lat),
-                      crs = "+init=epsg:4326")
+                      crs = "+proj=longlat +datum=WGS84")
   if (as_raster){ # nocov start
     return(r)
   }               # nocov end
@@ -69,6 +69,8 @@ wrf_grid <- function(filewrf,
   #sf
   r <- raster::rasterToPolygons(r)
   grid <- sf::st_as_sf(r)
+  names(grid)[1] <- "id"
+  grid$id <- 1:nrow(grid)
 
   # points      <- data.frame(lat  = c(lat), long = c(lon))
   # points$lat  <- as.numeric(points$lat)

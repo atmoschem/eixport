@@ -26,7 +26,7 @@ this function might be deprecated in future
 # create the folder and emission file
 dir.create(file.path(tempdir(), "EMISS"))
 wrf_create(wrfinput_dir = system.file("extdata", package = "eixport"),
-          wrfchemi_dir = file.path(tempdir(), "EMISS"))
+           wrfchemi_dir = file.path(tempdir(), "EMISS"))
 
 # get the name of created file
 files <- list.files(path = file.path(tempdir(), "EMISS"),

@@ -11,7 +11,7 @@
 #'
 #' @format array or raster object
 #'
-#' @import ncdf4
+#' @importFrom ncdf4 nc_open nc_close ncvar_get ncatt_get
 #' @importFrom raster raster brick flip
 #' @importFrom sp CRS
 #'
@@ -34,26 +34,43 @@
 #'                    full.names = TRUE)
 #'
 #' # open, put some numbers and write
-#' CO <- wrf_get(file = files[1], name = "E_CO")
+#' CO <- wrf_get(file = files[1],
+#'               name = "E_CO")
+#'
 #' CO[] = rnorm(length(CO))
-#' wrf_put(file = files[1], name = "E_CO", POL = CO)
-#' COr <- wrf_get(file = files[1], name = "E_CO", as_raster = TRUE)
+#'
+#' wrf_put(file = files[1],
+#'         name = "E_CO",
+#'         POL = CO)
+#'
+#' COr <- wrf_get(file = files[1],
+#'                name = "E_CO",
+#'                as_raster = TRUE)
 #'
 #'}
-wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
-                    raster_crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-                    raster_lev = 1, verbose = F){
-  if(name == 'time'){
-    wrfchem <- ncdf4::nc_open(file)                                                     # nocov
-    if(verbose)                                                                         # nocov
-      cat(paste0('\nreading Times from ', file,'\n'))                                     # nocov
-    TIME   <- ncvar_get(wrfchem,'Times')                                                # nocov
-    TIME   <- as.POSIXlt(TIME, tz = "UTC", format="%Y-%m-%d_%H:%M:%OS", optional=FALSE) # nocov
-    cat('\nreturning Times in POSIXct\n')                                                 # nocov
-    return(TIME)                                                                        # nocov
+wrf_get <- function(file = file.choose(),
+                    name = NA,
+                    as_raster = FALSE,
+                    raster_crs = "+proj=longlat",
+                    raster_lev = 1,
+                    verbose = FALSE){
+
+  # if(as_raster) warning('The option as_raster will be deprecated, see eixport::wrf_raster()')
+  # I will need to better check wrf_raster
+  if(!is.na(name)){
+    if(name == 'time'){
+      wrfchem <- ncdf4::nc_open(file)                                                     # nocov
+      if(verbose)                                                                         # nocov
+        cat(paste0('reading Times from ', file,'\n'))                                     # nocov
+      TIME   <- ncvar_get(wrfchem,'Times')                                                # nocov
+      TIME   <- as.POSIXlt(TIME, tz = "UTC", format="%Y-%m-%d_%H:%M:%OS", optional=FALSE) # nocov
+      if(verbose)                                                                         # nocov
+        cat('returning Times in POSIXct\n')                                               # nocov
+      return(TIME)                                                                        # nocov
+    }
   }
   if(verbose)
-    cat(paste0('reading ',name,' from ', file,'\n'))                     # nocov
+    cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
 
   wrfchem <- ncdf4::nc_open(file)                                       # iteractive
   if(is.na(name)){                                                      # nocov start
@@ -64,14 +81,14 @@ wrf_get <- function(file = file.choose(), name = NA, as_raster = FALSE,
     POL   <- ncvar_get(wrfchem,name)
   }
   if(as_raster){
-    if(length(dim(POL)) >= 5)                                                  # nocov start
+    if(length(dim(POL)) >= 5)                                           # nocov start
       stop("images with 5D or more not suported")
 
     if(length(dim(POL)) == 4){
       cat(paste0("4D images not supported, making a 3D RasterBrick using level ",
                  raster_lev," of the file\n"))
-      POL <- POL[,,raster_lev,,drop = T]
-    }                                                                          # nocov end
+      POL <- POL[,,raster_lev,,drop = TRUE]
+    }                                                                   # nocov end
 
     lat    <- ncdf4::ncvar_get(wrfchem, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrfchem, varid = "XLONG")

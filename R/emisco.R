@@ -1,24 +1,12 @@
-#' Emissions from VEIN demo
+#' Emissions from VEIN examples
 #'
-#' Emissions with units for R-LINE
+#' Emissions for street models such as munich. They need to be splitted
+#' using st_explode
 #'
-#' @format A \code{sf} object of type LINESTRING with 288 rows and 15 variables:
+#' @format A \code{sf} object of type LINESTRING with 1505 rows and 24 variables:
 #' \describe{
-#'   \item{ldv}{Light Duty Vehicles (1/h)}
-#'   \item{hdv}{Heavy Duty Vehicles (1/h)}
-#'   \item{lkm}{Length of the link (km)}
-#'   \item{ps}{Peak Speed (km/h)}
-#'   \item{ffs}{Free Flow Speed (km/h)}
-#'   \item{tstreet}{Type of street}
-#'   \item{lanes}{Number of lanes per link}
-#'   \item{capacity}{Capacity of vehicles in each link (1/h)}
-#'   \item{tmin}{Time for travelling each link (min)}
-#'   \item{V8}{Emissions (g/s)}
-#'   \item{xmin}{Initial x coordinates}
-#'   \item{xmax}{Ending x coordinates}
-#'   \item{ymin}{Initial y coordinates}
-#'   \item{ymax}{Ending y coordinates}
-#'   \item{geometry}{geometry column of the sf object}
+#'   \item{V8}{Emissions for 08:00-09:00 in Easth Sao Paulo, Brazil (g/h)}
+#'   \item{geometry}{Geometry class sfc_LINESTRING sfc}
 #'   data(emisco)
 ##' }
 #' @source \url{https://github.com/atmoschem/vein}

@@ -13,14 +13,11 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @import ncdf4
-#'
 #' @export
 #' @note It might be deprecatedin future release
 #' @seealso \code{\link{wrf_create}} and \code{\link{to_wrf}}
 #'
 #' @examples \dontrun{
-#' # Do not run
 #'
 #' # Profile based on Sao Paulo tunnel experiments
 #' data(rawprofile)
@@ -47,10 +44,14 @@
 #'
 #' profile <- wrf_profile(rawprofile,files[1])
 #'
-#' plot(profile, ty="l", lty = 2, axe = FALSE,
+#' plot(profile,
+#'      ty="l",
+#'      lty = 2,
+#'      axe = FALSE,
 #'      main = "Traffic Intensity for Sao Paulo", xlab = "hour")
 #' axis(2)
-#' axis(1, at = 0.5 + c(0, 6, 12, 18, 24),
+#' axis(1,
+#'      at = 0.5 + c(0, 6, 12, 18, 24),
 #'     labels = c("00:00","06:00","12:00","18:00", "00:00"))
 #'}
 wrf_profile <- function(x,file,adjust = 0 ,verbose = T){

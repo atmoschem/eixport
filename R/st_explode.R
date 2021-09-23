@@ -9,7 +9,6 @@
 #' @export
 #' @note All variables are transformed into numeric.
 #'
-#' Thanks Michael Summer (mdsummer)  for the function sfx_explode!
 #' @examples \dontrun{
 #' # do not run
 #' library(vein)
@@ -31,7 +30,7 @@ st_explode <- function(net){
   snetdf <- sum(netdf, na.rm = TRUE)
   net$LKM <- sf::st_length(net)
 
-  df <- eixport::sfx_explode(net)# Thanks @mdsummer
+  df <- eixport::sfx_explode(net)
   for(i in 1:length(namesnet)) {
     df[[namesnet[i]]] <- as.numeric(as.character(df[[namesnet[i]]]))
   }
@@ -45,6 +44,6 @@ st_explode <- function(net){
 
   df <- sf::st_sf(as.data.frame(df), geometry = df$geometry)
 
-  sf::st_sf(as.data.frame(df), geometry = df$geometry)
-
+  df$LKM <- df$LKM2 <- NULL
+  return(df)
 }

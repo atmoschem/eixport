@@ -18,15 +18,18 @@
 #' @param auxinput5_interval_m value from wrf &time_control namelist.input,
 #' interval in minutes between different times (frames) see Details
 #' @param day_offset number of days (can be a fraction) see Details
-#' @param io_style_emissions from wrf &chem namelist.input see Details
-#' @param kemit from wrf &chem namelist.input, number of vertical levels of the emission file
-#' @param variables emission species, can be used data(emis_opt)
+#' @param io_style_emissions from wrf &chem namelist.input, 1 for 12z/00z style and 2 to date_hour style, see Details
+#' @param kemit from wrf &chem namelist.input number of vertical levels of the emission file
+#' @param variables emission species, can be used `emis_opt`
 #' @param n_aero number of aerosol species
-#' @param COMPRESS integer between 1 (least compr) and 9 (most compr) or NA for
+#' @param COMPRESS integer between 1 (least comp.) and 9 (most comp.) or NA for
 #' no compression
 #' @param force_ncdf4 force NetCDF4 format
 #' @param title TITLE attribute for the NetCDF
-#' @param separator filename alternative separator when io_style_emission=1
+#' @param separator filename alternative separator for hour:minutes:seconds with io_style_emission=2
+#' @param prefix file name prefix, default is wrfchemi (wrf default)
+#' @param overwrite logical, defoult is true, if FALSE check if the file exist
+#' @param return_fn logical, return the name of the last file created
 #' @param verbose print file info
 #'
 #' @note Using io_style_emissions = 1, the wrfchemi_00z will be generated with day_offset = 0 and
@@ -38,7 +41,7 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @import ncdf4
+#' @importFrom  ncdf4 nc_open nc_close ncvar_get ncvar_put ncdim_def ncvar_def ncatt_put
 #'
 #' @export
 #'
@@ -84,24 +87,26 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                         day_offset           = 0,
                         io_style_emissions   = 2,
                         kemit                = 1,
-                        variables            = "ecbmz_mosaic",
-                        n_aero               = 14,
+                        variables            = "ecb05_opt2",
+                        n_aero               = 15,
                         COMPRESS             = NA,
                         force_ncdf4          = FALSE,
                         title                = "Anthropogenic emissions for WRF V4.0",
                         separator            = 'default',
+                        prefix               = 'wrfchemi',
+                        overwrite            = TRUE,
+                        return_fn            = FALSE,
                         verbose              = FALSE)
 {
   a <- Sys.info()["sysname"]
   # to avoid special chacacteres in the filename
-  if(a[[1]] == "Windows") linux = F else linux = T # nocov
+  if(a[[1]] == "Windows") linux = FALSE else linux = TRUE           # nocov
   if(a[[1]] == "Windows")
-    if(io_style_emissions == 2) #nocov
-      cat("NOTE: see wrf_create domumentation notes before run\n")  #nocov
+    if(io_style_emissions == 2)                                     # nocov
+      cat("NOTE: see wrf_create domumentation notes before run\n")  # nocov
 
-  if(length(variables) == 1){
-    emis_opt <- NULL
-    load(system.file("data/emis_opt.rda", package = "eixport"))
+  if(length(variables) == 1 && !is.na(variables)[1]){
+    emis_opt <- sysdata$emis_opt
     if(variables %in% names(emis_opt)){
       variables <- emis_opt[[variables]]
     }else{
@@ -109,7 +114,13 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       cat(names(emis_opt))                                          # nocov
       stop("name, numeric value or a set of variable names")        # nocov
     }
-
+  }
+  if(is.na(variables)[1]){
+    cat("writing the emission file without emission variables\n")   # nocov
+  }else{
+    if(n_aero > length(variables)){
+      stop("n_aero cannot be greater than the number of variables ") # nocov
+    }
   }
 
   for(domain in domains){
@@ -149,16 +160,22 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
       }else{
         h <- "12z"
       }
-      file_name <- paste(wrfchemi_dir, "/wrfchemi_", h, "_", "d0",domain, sep = "") # nocov end
+      file_name <- paste(wrfchemi_dir, "/",prefix,"_", h, "_", "d0",domain, sep = "") # nocov end
     }
     if(io_style_emissions ==2){                                                     # nocov start
       if(linux){
-        file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
+        file_name <- paste(wrfchemi_dir, "/",prefix,"_d0", domain, "_",
                            format(date,"%Y-%m-%d"),
                                    "_",hora,":", minuto,":", segundo, sep = "")
-      } else  file_name <- paste(wrfchemi_dir, "/wrfchemi_d0", domain, "_",
+      } else  file_name <- paste(wrfchemi_dir, "/",prefix,"_d0", domain, "_",
                                  format(date,"%Y-%m-%d"),
                                  "_", hora, separator, minuto, separator, segundo, sep = "")# nocov end
+    }
+    if(!overwrite & file.exists(file_name)){
+      cat('using current file for domain',domain,'...\n') # nocov
+      next                                                # nocov
+    }else{
+      cat('creating emission for domain',domain,'...\n')
     }
 
     if(frames_per_auxinput5 == 1){
@@ -237,29 +254,37 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                              dim = list(west_east, south_north),
                              prec = "float",
                              compression = COMPRESS)
-    # GAS phase emissions
-    for(i in 1:(length(variables) - n_aero)){
-      assign(variables[i],
-             ncdf4::ncvar_def(name = variables[i],
-                              units = "",
-                              dim = list(west_east,
-                                         south_north,
-                                         emissions_zdim_stag,
-                                         Time),
-                              prec="float",
-                              compression = COMPRESS))
+
+    if(!is.na(variables)[1]){
+      # GAS phase emissions
+      if(n_aero != length(variables)){
+        for(i in 1:(length(variables) - n_aero)){
+          assign(variables[i],
+                 ncdf4::ncvar_def(name = variables[i],
+                                  units = "",
+                                  dim = list(west_east,
+                                             south_north,
+                                             emissions_zdim_stag,
+                                             Time),
+                                  prec="float",
+                                  compression = COMPRESS))
+        }
+      }
+      # AEROSOLS emissions
+      if(n_aero > 0){
+        for(i in (1+length(variables) - n_aero):length(variables)){
+          assign(variables[i],
+                 ncdf4::ncvar_def(name = variables[i],
+                                  units = "",
+                                  dim = list(west_east,
+                                             south_north,
+                                             emissions_zdim_stag,
+                                             Time),prec="float",
+                                  compression = COMPRESS))
+        }
+      }
     }
-    # AEROSOLS emissions
-    for(i in (1+length(variables) - n_aero):length(variables)){
-      assign(variables[i],
-             ncdf4::ncvar_def(name = variables[i],
-                              units = "",
-                              dim = list(west_east,
-                                         south_north,
-                                         emissions_zdim_stag,
-                                         Time),prec="float",
-                              compression = COMPRESS))
-    }
+
     emiss_file <- nc_create(filename = file_name,
                             vars = c(list('Times' = Times,
                                           'XLAT' = XLAT,
@@ -327,62 +352,73 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                        south_north$len,
                        emissions_zdim_stag$len,
                        Time$len))
-    # GASES initialization with zeros
-    for(i in 1:(length(variables) - n_aero)){
-      ncdf4::ncvar_put(emiss_file,
-                       varid = variables[i],
-                       zero)
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "MemoryOrder",
-                       attval = "XYZ")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "description",
-                       attval = "EMISSIONS")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "units",
-                       attval = "mol km^-2 hr^-1")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "stagger",
-                       attval = "Z")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "FieldType",
-                       attval = 104)
+    if(!is.na(variables)[1]){
+      # GASES initialization with zeros
+      if(n_aero != length(variables)){
+        for(i in 1:(length(variables) - n_aero)){
+          ncdf4::ncvar_put(emiss_file,
+                           varid = variables[i],
+                           zero)
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "MemoryOrder",
+                           attval = "XYZ")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "description",
+                           attval = "EMISSIONS")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "units",
+                           attval = "mol km^-2 hr^-1")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "stagger",
+                           attval = "Z")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "FieldType",
+                           attval = 104)
+        }
+      }
+      # AEROSOIS initialization with zeros
+      if(n_aero > 0){
+        for(i in (1 + length(variables) - n_aero):length(variables)){
+          ncdf4::ncvar_put(emiss_file,
+                           varid = variables[i],
+                           zero)
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "MemoryOrder",
+                           attval = "XYZ")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "description",
+                           attval = "EMISSIONS")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "units",
+                           attval = "ug m^-2 s^-1")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "stagger",
+                           attval = "Z")
+          ncdf4::ncatt_put(emiss_file,
+                           varid = variables[i],
+                           attname = "FieldType",
+                           attval = 104)
+        }
+      }
     }
-    # AEROSOIS initialization with zeros
-    for(i in (1 + length(variables) - n_aero):length(variables)){
-      ncdf4::ncvar_put(emiss_file,
-                       varid = variables[i],
-                       zero)
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "MemoryOrder",
-                       attval = "XYZ")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "description",
-                       attval = "EMISSIONS")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "units",
-                       attval = "ug m^-2 s^-1")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "stagger",
-                       attval = "Z")
-      ncdf4::ncatt_put(emiss_file,
-                       varid = variables[i],
-                       attname = "FieldType",
-                       attval = 104)
-    }
+
     if(verbose){
-      print(emiss_file)
+      print(emiss_file, "\n")
     }
+    cat('output file:',emiss_file$filename,'\n')
     ncdf4::nc_close(emiss_file)
     ncdf4::nc_close(wrfinput)
+  }
+  if(return_fn){
+    return(emiss_file$filename) # nocov
   }
 }

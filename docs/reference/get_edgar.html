@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -49,7 +53,6 @@ present day anthropogenic emissions of greenhouse gases and air
 pollutants by country and on spatial grid. get_edgar provide
 functions to download any of the EDGAR datasets." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -77,7 +80,7 @@ functions to download any of the EDGAR datasets." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -91,7 +94,7 @@ functions to download any of the EDGAR datasets." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -99,7 +102,7 @@ functions to download any of the EDGAR datasets." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,9 +112,38 @@ functions to download any of the EDGAR datasets." />
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/gallery0.html">WRF out statistics</a>
+    </li>
+    <li>
+      <a href="../articles/gallery1.html">plot WRF: Elevation</a>
+    </li>
+    <li>
+      <a href="../articles/gallery2.html">plot WRF: Temperature</a>
+    </li>
+    <li>
+      <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
+    </li>
+    <li>
+      <a href="../articles/gallery5.html">plot WRF: Domains</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/atmoschem/eixport/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -126,7 +158,7 @@ functions to download any of the EDGAR datasets." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Download datasets of EDGAR emissions</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/atmoschem/eixport/blob/master/R/get_edgar.R'><code>R/get_edgar.R</code></a></small>
     <div class="hidden name"><code>get_edgar.Rd</code></div>
     </div>
 
@@ -138,24 +170,26 @@ pollutants by country and on spatial grid. <code>get_edgar</code> provide
 functions to download any of the EDGAR datasets.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_edgar</span>(
-  <span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>,
-  <span class='no'>pol</span>,
-  <span class='no'>sector</span>,
-  <span class='no'>year</span>,
-  <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-  <span class='kw'>txt</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>return_url</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>copyright</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_edgar</span><span class='op'>(</span>
+  dataset <span class='op'>=</span> <span class='st'>"v50_AP"</span>,
+  <span class='va'>pol</span>,
+  <span class='va'>sector</span>,
+  <span class='va'>year</span>,
+  n <span class='op'>=</span> <span class='fu'>parallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,
+  destpath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
+  type <span class='op'>=</span> <span class='st'>"nc"</span>,
+  ask <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  copyright <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dataset</th>
-      <td><p>Character; name of the datasets: "v432", "v432_AP", "v432_VOC_spec",
-"v4tox2", "htap_v2_2"</p></td>
+      <td><p>Character; name of the datasets:  "v50_AP",  "v432_AP", "v432_VOC_spec",
+"htap_v2_2", "v50_GHG</p></td>
     </tr>
     <tr>
       <th>pol</th>
@@ -167,24 +201,32 @@ functions to download any of the EDGAR datasets.</p>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>Integer; on of the years shown on note.</p></td>
+      <td><p>Integer;  years.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>Integer; Number of cores in the machine, by default the half.</p></td>
     </tr>
     <tr>
       <th>destpath</th>
       <td><p>Character: Path to create the directory for downloads datasets</p></td>
     </tr>
     <tr>
-      <th>txt</th>
-      <td><p>Logical; if TRUE, download data as .txt and untis t/year,
-if FALSE units are ug/m2/s</p></td>
+      <th>type</th>
+      <td><p>Extension, character/ Indicates if the file should be "txt", "nc" or "other".
+txt with untis t/year and nc with units are ug/m2/s</p></td>
     </tr>
     <tr>
-      <th>return_url</th>
-      <td><p>Logical; return url?</p></td>
+      <th>ask</th>
+      <td><p>Logical; Are these URL ok?</p></td>
     </tr>
     <tr>
       <th>copyright</th>
       <td><p>Logical; to show copyright information.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical, to print more information.</p></td>
     </tr>
     </table>
 
@@ -194,22 +236,30 @@ if FALSE units are ug/m2/s</p></td>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><strong>I recommend 2 ways:</strong></p>
-<p><strong>1. include 'sector' and dont include 'pol', which download all pollutants as default</strong></p>
+<p><strong>1. include 'sector' and do not include 'pol', which download all pollutants as default</strong></p>
 <p>get_edgar(dataset = "v432_AP",
 destpath = tempdir(),
 sector = c("TRO", "TOTALS"),
 year = 2012)</p>
-<p><strong>2. include 'pol' and dont include 'sector', which download all sectors as default</strong></p>
+<p><strong>2. include 'pol' and do not include 'sector', which download all sectors as default</strong></p>
 <p>get_edgar(dataset = "v432_AP",
 destpath = tempdir(),
 pol = c("CO", "NOx"),
 year = 2012)</p>
 <table class='table'>
 <tr><td>dataset</td><td>pollutant</td><td>sector</td><td>years</td></tr>
-<tr><td>v432</td><td>CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C</td><td>AGS, CHE, ENE, ENF, FFF, IND, IRO, MNM, PRO, REF_TRF, SWD_INC,
-SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
-TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
-TOTALS, TRO, WWT</td><td>1970-2012</td></tr>
+<tr><td>v50_AP</td><td>BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+PM2.5, SO2</td><td>"AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
+"NFE" "NMM" "PRO" "RCO" "REF_TRF" "SWD_INC" "TNR_Aviation_CDS"
+"TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
+"TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
+"SWD_LDF" "WWT" "NEU"</td><td>1970-2015</td></tr>
+<tr><td>v50_GHG</td><td>CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O</td><td>AGS AWB CHE ENE ENF FFF IND IRO MNM PRO PRO_COAL PRO_GAS PRO_OIL RCO
+REF_TRF SWD_INC SWD_LDF TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O</td><td>1970-2018</td></tr>
+<tr><td>v432</td><td>CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O</td><td>AGS AWB CHE ENE ENF FFF IND IRO MNM PRO RCO REF_TRF SWD_INC SWD_LDF
+TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO TNR_Aviation_SPS
+TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O</td><td>1970-2012</td></tr>
 <tr><td>v432_AP</td><td>BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 PM2.5_bio, PM2.5_fossil, SO2</td><td>AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -221,9 +271,6 @@ voc21, voc22, voc23, voc24, voc25, TOTALS</td><td>ENE, IND, PPA, RCO, REF
 TNR_Aviation_CDS, TNR_Aviation_CRS,
 TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
 TRO, TRF</td><td>1970-2012</td></tr>
-<tr><td>v4tox2</td><td>HG, HG_D, HG_G, HG_P</td><td>Iro,  cement, chlor, comb_power_ind,
-comb_res_oth, glass, gold_A, gold_L, nfe_oth, shipping, totals, tro_roa,
-waste</td><td>1970-2008</td></tr>
 <tr><td>htap_v2_2</td><td>BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2</td><td>AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT</td><td>2008 and 2010 \cr</td></tr>
 </table>
 <p>voc11 only 2008</p>
@@ -231,6 +278,10 @@ waste</td><td>1970-2008</td></tr>
 
     
 <ul>
+<li><p><strong>v50_AP</strong> Crippa, M., Solazzo, E., Huang, G., Guizzardi, D., Koffi, E.,
+Muntean, M., Schieberle, C., Friedrich, R., Janssens-Maenhout, G.:
+High resolution temporal profiles in the Emissions Database for
+Global Atmospheric Research, Nature Scientific Data, 2020, in press.</p></li>
 <li><p><strong>v432</strong>:  Muntean, M., Guizzardi, D., Schaaf, E., Crippa, M., Solazzo, E.,
 Olivier, J.G.J., Vignati, E. Fossil CO2 emissions of all world countries - 2018
 Report, EUR 29433 EN, Publications Office  of the European Union, Luxembourg,
@@ -245,10 +296,6 @@ Schieberle, C., Dore, C., Guizzardi, D., Muntean, M., Schaaf, E., and Friedrich,
 Speciation of anthropogenic emissions of non-methane volatile organic compounds: a
 global gridded data set for 1970–2012, Atmos. Chem. Phys., 17, 7683-7701,
 https://doi.org/10.5194/acp-17-7683-2017, 2017.</p></li>
-<li><p><strong>v4tox2</strong>: Muntean, M., Janssens-Maenhout, G., Song, S., Giang, A., Selin, N. E.,
-Zhong, H., ... &amp; Schaaf, E. (2018). Evaluating EDGARv4. tox2 speciated mercury
-emissions ex-post scenarios and their impacts on modelled global and regional
-wet deposition patterns. Atmospheric Environment, 184, 56-68.</p></li>
 <li><p><strong>htap_v2_2</strong>: Janssens-Maenhout, G., Crippa, M., Guizzardi, D.,
 Dentener, F., Muntean, M., Pouliot, G., Keating, T., Zhang, Q., Kurokawa, J.,
 Wankmüller, R., Denier van der Gon, H., Kuenen, J. J. P., Klimont, Z.,
@@ -261,38 +308,64 @@ hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 <p>MNM is MNN for NOx v432_AP</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='co'># Download all pollutants for sector TRO</span>
-<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='kw'>sector</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TOTALS"</span>),
-<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
-<span class='co'># Download all sectors for pollutant CO</span>
-<span class='fu'>get_edgar</span>(<span class='kw'>dataset</span> <span class='kw'>=</span> <span class='st'>"v432_AP"</span>, <span class='kw'>destpath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-<span class='kw'>pol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CO"</span>),
-<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2012</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='co'># see all the links:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>edgar</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>edgar</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     data pol sector                       links
+#&gt; 1 v50_AP  BC    AWB                  AWB_nc.zip
+#&gt; 2 v50_AP  BC    AWB                 AWB_txt.zip
+#&gt; 3 v50_AP  BC    AWB v50_BC_1970_AWB.0.1x0.1.zip
+#&gt; 4 v50_AP  BC    AWB         v50_BC_1970_AWB.zip
+#&gt; 5 v50_AP  BC    AWB v50_BC_1971_AWB.0.1x0.1.zip
+#&gt; 6 v50_AP  BC    AWB         v50_BC_1971_AWB.zip
+#&gt;                                                                                                        url
+#&gt; 1                  http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/AWB_nc.zip
+#&gt; 2                 http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/AWB_txt.zip
+#&gt; 3 http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/v50_BC_1970_AWB.0.1x0.1.zip
+#&gt; 4         http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/v50_BC_1970_AWB.zip
+#&gt; 5 http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/v50_BC_1971_AWB.0.1x0.1.zip
+#&gt; 6         http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/BC/AWB/v50_BC_1971_AWB.zip
+#&gt;   year type note
+#&gt; 1 &lt;NA&gt;  txt &lt;NA&gt;
+#&gt; 2 &lt;NA&gt;  txt &lt;NA&gt;
+#&gt; 3 1970   nc &lt;NA&gt;
+#&gt; 4 1970  txt &lt;NA&gt;
+#&gt; 5 1971   nc &lt;NA&gt;
+#&gt; 6 1971  txt &lt;NA&gt;</div><div class='input'><span class='co'># Download all pollutants for sector</span>
+<span class='fu'>get_edgar</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='st'>"v50_AP"</span>,
+          pol <span class='op'>=</span> <span class='st'>"CO"</span>,
+          sector <span class='op'>=</span> <span class='st'>"TOTALS"</span>,
+          year <span class='op'>=</span> <span class='fl'>2014</span>,
+          destpath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
+          type <span class='op'>=</span> <span class='st'>"nc"</span>,
+          ask <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'> Copyright notice</span>
+#&gt; <span class='message'>------------------</span>
+#&gt; <span class='message'> (c) European Union, 1995-2019</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'> Reuse is authorised, provided the source is acknowledged. The reuse policy </span>
+#&gt; <span class='message'> of the European Commission is implemented by a Decision of 12 December 2011, see</span>
+#&gt; <span class='message'> http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2011:330:0039:0042:EN:PDF</span>
+#&gt; <span class='message'></span></div><div class='output co'>#&gt; Downloading the following data:
+#&gt; http://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/v50_AP/CO/TOTALS/v50_CO_2014.0.1x0.1.zip</div><div class='output co'>#&gt; <span class='message'>Files at /tmp/Rtmp0unmTl</span></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://www.sergioibarra.github.io'>Sergio Ibarra-Espinosa</a>.</p>
+  <p>Developed by <a href='http://www.ibarraespinosa.github.io'>Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

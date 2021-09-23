@@ -1,0 +1,52 @@
+---
+title: "plot WRF: Temperature"
+author: "Sergio Ibarra-Espinosa"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{plot WRF: Temperature}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Based on this [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_5.ncl)
+
+```{r}
+library(eixport)
+library(raster)
+library(stars)
+library(cptcity)
+library(sf)
+```
+
+Reading Temperature
+```{r}
+wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+t2 <- wrf_get(wrfo, "T2", as_raster = T)
+t2 <- t2$T2_2014.11.03_00.00.00 -273.15# we select one
+```
+
+Find colour palette for temperature
+```{r}
+find_cpt("temperature")
+```
+
+
+Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
+```{r, fig.width=6,fig.height=4}
+plot(t2, main = "Temperature using plot", col = cpt("arendal_temperature"))
+contour(t2, add = T)
+```
+
+```{r, fig.width=6,fig.height=4}
+#spplot(t2, main = "Temperature 2m using spplot", scales=list(draw = TRUE),
+#       col.regions = cpt("idv_temperature"),
+#       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
+```   

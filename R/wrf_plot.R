@@ -9,6 +9,8 @@
 #' @param barra barblot if TRUE
 #' @param lbarra length of barplot
 #' @param col color vector
+#' @param skip logical, skip plot of constant valuess
+#' @param map function call to plot map lines, points and annotation (experimental)
 #' @param verbose if TRUE print some information
 #' @param ... Arguments to be passed to plot methods
 #'
@@ -43,7 +45,7 @@
 #'data(Lights)
 #'to_wrf(Lights, files[1], total = 1521983, name = "E_CO")
 #'
-#'wrf_plot(files[1], "E_CO")
+#' wrf_plot(files[1], "E_CO")
 #'}
 wrf_plot <- function(file = file.choose(),
                      name = NA,
@@ -51,9 +53,12 @@ wrf_plot <- function(file = file.choose(),
                      nivel = 1,
                      barra = T,
                      lbarra = 0.2,
-                     col = cptcity::cpt(n = 13),
-                     verbose = T,
+                     col = cptcity::cpt(n = 20, rev = T),
+                     map = NULL,
+                     skip = FALSE,
+                     verbose = TRUE,
                      ...){
+
   wrfchem <- ncdf4::nc_open(file)                                      # iteractive
   if(is.na(name)){                                                     # nocov start
     name  <- menu(names(wrfchem$var)[c(-1,-2,-3)], title = "Choose the variable:")
@@ -75,20 +80,26 @@ wrf_plot <- function(file = file.choose(),
   ncdf4::nc_close(wrfchem)
 
   if(length(dim(POL)) == 3){
-    POL <- POL[,,max(time,nivel,na.rm=TRUE)]               # nocov
+    POL <- POL[,,max(time,nivel,na.rm=TRUE)]        # nocov
   }
   if(length(dim(POL)) == 4){
-    POL <- POL[,,nivel,time]         # nocov
+    POL <- POL[,,nivel,time]                        # nocov
   }
 
   if(verbose){
-    cat(wrfchem$filename,"\n",name,":\n",sep = "")  # nocov
-    if(max(POL) == min(POL)){                       # nocov
-      cat("Max value = Min Value!\n")               # nocov
+    cat(wrfchem$filename,"\n",name,":\n",sep = "")         # nocov
+    if(max(POL) == min(POL)){                              # nocov
+      cat(paste("Max value = Min Value =",max(POL),"\n"))  # nocov
     }
     else{
       cat(paste("Max value: ",max(POL),", Min value: ",min(POL),sep = "","\n")) # nocov
     }
+  }
+
+  if(skip & max(POL) == min(POL)){
+    cat('skiping plot\n') # nocov
+    # par(oldpar)         # nocov
+    return()              # nocov
   }
 
   filled.contour2 <-  function (x = seq(0, 1, length.out = nrow(z)),
@@ -104,6 +115,7 @@ wrf_plot <- function(file = file.choose(),
                                 plot.axes,
                                 key.title,
                                 key.axes,
+                                map = map,
                                 asp = NA,
                                 xaxs = "i",
                                 yaxs = "i",
@@ -111,6 +123,7 @@ wrf_plot <- function(file = file.choose(),
                                 axes = TRUE,
                                 frame.plot = axes,
                                 mar, ...) {
+
     if (missing(z)) {
       if (!missing(x)) {                             # nocov
         if (is.list(x)) {                            # nocov
@@ -174,9 +187,12 @@ wrf_plot <- function(file = file.choose(),
     title(titulo)
   }
 
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if(barra){
-    old.par <- par(mar = c(0, 0, 0, 0))
+    # old.par <- par(mar = c(0, 0, 0, 0))
+    par(mar = c(0, 0, 0, 0))
     layout(matrix(c(1,2),
                   ncol = 2,
                   nrow = 1,
@@ -188,11 +204,14 @@ wrf_plot <- function(file = file.choose(),
   mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
   mtext("Latitude", 2, line = 2.2,cex = 1.2, las=0)
   mtext("Longitude", 1, line = 2.2,cex = 1.2)
+  if(!is.null(map)){
+    map                 # nocov
+  }
   if(barra){
     par(mar = c(3.5, 1, 3, 4))
     barras(POL, col = col)
     mtext(name, 3, line = 0.8)
-    par(old.par)
+    # par(old.par)
     par(mfrow = c(1, 1))
   }
 }

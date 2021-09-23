@@ -4,7 +4,9 @@
 \name{emis_opt}
 \alias{emis_opt}
 \title{List of WRF emission species}
-\format{A list of emision variables names, same number as emis_opt in namelist.}
+\format{
+A list of emision variables names, same number as emis_opt in namelist.
+}
 \source{
 \url{https://github.com/wrf-model/WRF}
 }

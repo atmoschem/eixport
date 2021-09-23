@@ -1,0 +1,74 @@
+---
+title: "plot WRF: Elevation"
+author: "Sergio Ibarra-Espinosa"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{plot WRF: Elevation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Here we attempt to provide useful code to generate figures from WRF outputs based on known galleries. For instance, NCL and WRF-Python provides extensive examples for plotting WRF outputs. Therefore, we aim to replicate some of these. Our approach to read wrfout files is based on eixport which relies r packages with GDAL bindings such as raster and stars. We do not try to provide a full gallery, instead, some basics and necessary plots to inspire other R used and receive more examples so share with the community.
+
+## packages
+
+- [eixport](https://atmoschem.github.io/eixport/) read and manipulate wrf files.
+- [raster](https://github.com/rspatial/raster) for gridded and raster data.
+- [stars](https://github.com/r-spatial/stars) for gridded and raster data.
+- [cptcity](https://github.com/ibarraespinosa/cptcity) colour palettes.
+- [sf](https://github.com/r-spatial/sf) for spatial vector data.
+
+```{r}
+library(eixport)
+library(raster)
+library(stars)
+library(cptcity)
+library(sf)
+```
+
+Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
+
+```{r}
+wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+```
+
+Reading HGT from wrfout
+```{r}
+HGT <- wrf_get(wrfo,  "HGT", as_raster = T)
+HGT <- HGT[[1]] # by default one variable with each time, so we select one
+```
+
+Adding coastlines and cropping for our study area
+```{r}
+library(rnaturalearth)
+cl <- ne_countries(scale = "small", returnclass = "sf")
+cl <- st_transform(cl, 31983)
+HGT <- st_transform(st_as_stars(HGT), 31983)
+cl <- st_cast(st_crop(cl, HGT), "LINESTRING")
+```
+
+Find colour palette for elevation
+```{r}
+find_cpt("elevation")
+```
+
+
+```{r, fig.width=6,fig.height=4}
+#spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),
+#       col.regions = cpt("grass_elevation"),
+#       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))
+```   
+
+```{r, fig.width=6,fig.height=5}
+cols <- classInt::classIntervals(HGT$HGT_2014.11.03_00.00.00, n = 100, style = "pretty")
+plot(HGT, axes = T, main = "HGT using stars", col = cpt("grass_elevation", n = length(cols$brks) - 1), breaks = cols$brks, reset = F)
+plot(cl$geometry, add= T, col = "black")
+```

@@ -1,6 +1,52 @@
 NEWS
 ===========
 
+# eixport 0.5.1 (Release date: 13 jul 2021)
+- added prefix argument in wrf_create, doc update
+- added check option on wrf_put (to check NA and negative values)
+
+# eixport 0.5.1 (Release date: 30 jun 2021)
+- added support for 4d arrays in wrf_raster
+- added support to Equidistant Cylindrical projection in wrf_raster function
+
+# eixport 0.5.1 (Release date: 16 mar 2021)
+- added overwrite option in wrf_create
+- updates in wrf_create for all wrf emission options
+- added argument return_fn to return the name of last file created
+- wrf_meta uses stringsAsFactors = FALSE
+
+# eixport 0.5.1 (Release date: 12 nov 2020)
+- wrf_create returns file_name
+
+# eixport 0.5.0 (Release date: 12 nov 2020)
+- Add wrf_summary
+- fix #56
+- add neu_ecb05 which is ecb05_opt2 Northeastern University group.
+- update emisco
+- remove geometry arguments from to_rline, now derived in to_rline
+- replaces sfx_explode with own function with data.table.
+- Drops dependence on tidyr, silicate (>= 0.3), sfheaders (>= 0.2.1).
+- Update chem_edgar neu_cb05 (2020-11-07)
+- Add article to plot domains
+
+# eixport 0.4.10 (Release date: 24 sep 2020)
+- Add `chem_edgar` to read EDGAR`s NetCDF and return RasterStack from Chemical Mechanism.
+`chem_edgar` includes units conversion and messages.
+- Improve documentation
+
+# eixport 0.4.9 (Release date: 26 ago 2020)
+- Included EDGAR 5 and updated links in get_edgar
+
+# eixport 0.4.8 (Release date: 23 jul 2020)
+- Improved example of to_munich, emissions must enter into MUNICH with units ug/km/h
+
+
+# eixport 0.4.7 (Release date: 24 jun 2020)
+- Add wrf_meta to return attributes from a wrf tile into a data.frame.
+
+# eixport 0.4.6 (Release date: 13 apr 2020)
+- update imported packages to avoid errors for CRAN.
+
 # eixport 0.4.5 (Release date: 24 feb 2020)
 - update wrf_grid.
 - improves docs.

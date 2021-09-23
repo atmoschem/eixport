@@ -5,16 +5,12 @@
 \title{Export emissions to other formats}
 \usage{
 to_rline(
-  X_b,
-  Y_b,
+  Emis,
   Z_b,
-  X_e,
-  Y_e,
   Z_e,
   dCL,
   sigmaz0,
   lanes,
-  Emis,
   Hw1,
   dw1,
   Hw2,
@@ -22,19 +18,14 @@ to_rline(
   Depth,
   Wtop,
   Wbottom,
-  experimental = FALSE
+  experimental = FALSE,
+  crs
 )
 }
 \arguments{
-\item{X_b}{initial x coordinates.}
-
-\item{Y_b}{initial y coordinates.}
+\item{Emis}{Column with the emissions whose unit must be g/ms.}
 
 \item{Z_b}{initial meters above sea level (m).}
-
-\item{X_e}{final x coordinates.}
-
-\item{Y_e}{final y coordinates.}
 
 \item{Z_e}{final meters above sea level (m).}
 
@@ -43,8 +34,6 @@ to_rline(
 \item{sigmaz0}{vertical dispersion (m).}
 
 \item{lanes}{number of lanes at each street.}
-
-\item{Emis}{Column with the emissions whose unit must be g/ms.}
 
 \item{Hw1}{Height of the barrier 1 (m).}
 
@@ -62,6 +51,8 @@ to_rline(
 
 \item{experimental}{Boolean argument to denote the use of the experimental
 features (TRUE) or not (FALSE).}
+
+\item{crs}{Numeric; Coordenade Reference System to project data or not.}
 }
 \value{
 Data frame with format for R-LINE model.
@@ -77,21 +68,21 @@ for near-surface releases, In Atmospheric Environment, Volume 77, 2013,
 Pages 748-756, ISSN 1352-2310, https://doi.org/10.1016/j.atmosenv.2013.05.074.
 }
 \examples{
-\dontrun{
-# Do not run
+{
 data(emisco)
-Source <- to_rline(X_b = emisco$xmin,
-               Y_b = emisco$ymin,
-               Z_b =0,
-               X_e = emisco$xmin,
-               Y_e = emisco$ymin,
-               Z_e =0,
-               dCL = 0,
-               Emis = emisco$V8,
-               sigmaz0 = 2,
-               lanes = emisco$lanes)
+emisco <- st_explode(emisco)
+emisco$V8 <- units::set_units(emisco$V8, "g/ms")
+Source <- to_rline(Emis = emisco["V8"],
+                   Z_b =0,
+                   Z_e =0,
+                   dCL = 0,
+                   sigmaz0 = 2,
+                   lanes = 1)
 head(Source)
-write.table(x = Source, file = paste0(tempdir(), "/Sources.txt"),
-row.names = FALSE, sep = " ", quote = FALSE)
+write.table(x = Source,
+            file = paste0(tempdir(), "/Sources.txt"),
+            row.names = FALSE,
+            sep = " ",
+            quote = FALSE)
 }
 }

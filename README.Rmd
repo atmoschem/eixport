@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# eixport <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
 
 [![Travis-CI Build Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
 [![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
@@ -26,18 +26,18 @@ knitr::opts_chunk$set(
 
 ## Exporting emissions to atmospheric models, eixport: `r packageVersion("eixport")`
 
-![](https://i.imgur.com/BcZ2tfW.png)
-
 Emissions are mass that affects atmosphere in complex ways, not only physical, but also, in the health of humans, ecosystems, economically, etc.
 
 There are several models whose inputs are emissions, such as [R-Line](https://www.cmascenter.org/r-line/) or [WRF-Chem](https://ruc.noaa.gov/wrf/wrf-chem/). 
 This R-Package provide functions to read emissions from [VEIN](https://github.com/ibarraespinosa/vein) and from other models 
-in different formats and export the emissions into the appropiate format suitable to other models.
+in different formats and export the emissions into the appropriate format suitable to other models.
 
 
 ## Install
 
 To install the [CRAN](https://CRAN.R-project.org/package=eixport) version:
+
+
 
 ```{r eval = FALSE}
 install.packages("eixport")
@@ -49,23 +49,43 @@ To install the development version:
 devtools::install_github("atmoschem/eixport")
 ```
 
-```{r}
-library(eixport)
-```
-
 ## Some functions:
 
+- [get_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html): Download EDGAR emissions data.
 - [to_rline](https://atmoschem.github.io/eixport/reference/to_rline.html): Export emissions to other formats
 - [to_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):	Combine total/spatial/temporal/split and write emission to file
 - [to_brams_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):	inputs for SPM BRAMS
 - [wrf_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html): Create spatial profile for WRF-Chem
 - [wrf_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):	Create emission files to the WRF-Chem
-- [wrf_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html): simple plot for emissions
-- [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables of emission files
-- [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables in emission files
+- [wrf_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html): simple but useful plot
+- [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):	Read variables
+- [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):	Write variables
 - [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html): Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+- [to_munich](https://atmoschem.github.io/eixport/reference/to_munich.html): To generate inputs for
+MUNICH model.
 
-## Paper accepted on Journal of Open Source Software
+
+### Summary
+```{r}
+library(eixport)
+file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
+wrf_summary(file = file)
+
+```
+
+### Attributes as data.frame
+
+```{r}
+file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
+f <- wrf_meta(file)
+names(f)
+head(f$global)
+head(f$vars)
+
+```
+
+
+## Paper on Journal of Open Source Software (JOSS)
 
 https://doi.org/10.21105/joss.00607
 
@@ -80,6 +100,7 @@ https://doi.org/10.21105/joss.00607
   }
 ```
 
+<span class="__dimensions_badge_embed__" data-doi="10.21105/joss.00607"></span><script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
 
 ## Contributing
 

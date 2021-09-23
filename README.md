@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# eixport <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
 
 [![Travis-CI Build
 Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build
@@ -18,9 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.4.3
-
-![](https://i.imgur.com/BcZ2tfW.png)
+## Exporting emissions to atmospheric models, eixport: 0.5.1
 
 Emissions are mass that affects atmosphere in complex ways, not only
 physical, but also, in the health of humans, ecosystems, economically,
@@ -31,7 +29,7 @@ There are several models whose inputs are emissions, such as
 [WRF-Chem](https://ruc.noaa.gov/wrf/wrf-chem/). This R-Package provide
 functions to read emissions from
 [VEIN](https://github.com/ibarraespinosa/vein) and from other models in
-different formats and export the emissions into the appropiate format
+different formats and export the emissions into the appropriate format
 suitable to other models.
 
 ## Install
@@ -43,47 +41,76 @@ version:
 install.packages("eixport")
 ```
 
-To install the development
-    version:
+To install the development version:
 
 ``` r
 devtools::install_github("atmoschem/eixport")
 ```
 
-``` r
-library(eixport)
-```
-
 ## Some functions:
 
-  - [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
-    Export emissions to other
-    formats
-  - [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
-    Combine total/spatial/temporal/split and write emission to
-    file
-  - [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
-    inputs for SPM
-    BRAMS
-  - [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
-    Create spatial profile for
-    WRF-Chem
-  - [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
-    Create emission files to the
-    WRF-Chem
-  - [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
-    simple plot for
-    emissions
-  - [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
-    Read variables of emission
-    files
-  - [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
-    Write variables in emission
-    files
-  - [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
+-   [get\_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
+    Download EDGAR emissions data.
+-   [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
+    Export emissions to other formats
+-   [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
+    Combine total/spatial/temporal/split and write emission to file
+-   [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
+    inputs for SPM BRAMS
+-   [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
+    Create spatial profile for WRF-Chem
+-   [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
+    Create emission files to the WRF-Chem
+-   [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
+    simple but useful plot
+-   [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
+    Read variables
+-   [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
+    Write variables
+-   [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
     Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+-   [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
+    To generate inputs for MUNICH model.
 
-## Paper accepted on Journal of Open Source Software
+### Summary
+
+``` r
+library(eixport)
+file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
+wrf_summary(file = file)
+#>   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
+#>                Min.       1st Qu.        Median          Mean       3rd Qu.
+#> Times  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09
+#> XLAT  -2.438538e+01 -2.405025e+01 -2.370471e+01 -2.370379e+01 -2.335773e+01
+#> XLONG -4.742899e+01 -4.696930e+01 -4.650305e+01 -4.650304e+01 -4.603427e+01
+#>                Max.        sum
+#> Times  1.312168e+09         NA
+#> XLAT  -2.301877e+01  -76160.28
+#> XLONG -4.558643e+01 -149414.28
+```
+
+### Attributes as data.frame
+
+``` r
+file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
+f <- wrf_meta(file)
+names(f)
+#> [1] "global" "vars"
+head(f$global)
+#>                          att                                       vars
+#> 1                      TITLE  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
+#> 2                 START_DATE                        2011-08-01_00:00:00
+#> 3      SIMULATION_START_DATE                        2011-08-01_00:00:00
+#> 4   WEST-EAST_GRID_DIMENSION                                         64
+#> 5 SOUTH-NORTH_GRID_DIMENSION                                         52
+#> 6  BOTTOM-TOP_GRID_DIMENSION                                         35
+head(f$vars)
+#>    vars MemoryOrder                 description        units stagger FieldType
+#> 1  XLAT          XY LATITUDE, SOUTH IS NEGATIVE degree north               104
+#> 2 XLONG          XY LONGITUDE, WEST IS NEGATIVE  degree east               104
+```
+
+## Paper on Journal of Open Source Software (JOSS)
 
 <https://doi.org/10.21105/joss.00607>
 
@@ -95,6 +122,10 @@ library(eixport)
         doi = {10.21105/joss.00607},
         url = {http://joss.theoj.org/papers/10.21105/joss.00607},
       }
+
+<span class="__dimensions_badge_embed__"
+data-doi="10.21105/joss.00607"></span>
+<script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
 
 ## Contributing
 

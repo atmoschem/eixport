@@ -7,29 +7,30 @@
 #' functions to download any of the EDGAR datasets.
 #'
 #'
-#' @param dataset Character; name of the datasets: "v432", "v432_AP", "v432_VOC_spec",
-#' "v4tox2", "htap_v2_2"
+#' @param dataset Character; name of the datasets:  "v50_AP",  "v432_AP", "v432_VOC_spec",
+#'  "htap_v2_2", "v50_GHG
 #' @param pol Character; one of the pollutants shown on note.
 #' @param sector Character; one of the sectors shown on note.
-#' @param year Integer; on of the years shown on note.
+#' @param year Integer;  years.
+#' @param n Integer; Number of cores in the machine, by default the half.
 #' @param destpath Character: Path to create the directory for downloads datasets
-#' @param txt Logical; if TRUE, download data as .txt and untis t/year,
-#' if FALSE units are ug/m2/s
-#' @param return_url Logical; return url?
+#' @param type Extension, character/ Indicates if the file should be "txt", "nc" or "other".
+#' txt with untis t/year and nc with units are ug/m2/s
+#' @param ask Logical; Are these URL ok?
 #' @param copyright Logical; to show copyright information.
+#' @param verbose Logical, to print more information.
 #' @return Downloads data
 #' @note
-#'
 #' **I recommend 2 ways:**
 #'
-#' **1. include 'sector' and dont include 'pol', which download all pollutants as default**
+#' **1. include 'sector' and do not include 'pol', which download all pollutants as default**
 #'
 #'   get_edgar(dataset = "v432_AP",
 #'             destpath = tempdir(),
 #'             sector = c("TRO", "TOTALS"),
 #'             year = 2012)
 #'
-#' **2. include 'pol' and dont include 'sector', which download all sectors as default**
+#' **2. include 'pol' and do not include 'sector', which download all sectors as default**
 #'
 #'   get_edgar(dataset = "v432_AP",
 #'             destpath = tempdir(),
@@ -38,11 +39,22 @@
 #'
 #' \tabular{llll}{
 #'   dataset  \tab pollutant \tab            sector  \tab years \cr
-#'      v432  \tab    CH4, N2O, CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C
-#'            \tab     AGS, CHE, ENE, ENF, FFF, IND, IRO, MNM, PRO, REF_TRF, SWD_INC,
-#'             SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS,
-#'             TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship,
-#'             TOTALS, TRO, WWT \tab 1970-2012 \cr
+#'   v50_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
+#'    PM2.5, SO2  \tab "AWB" "CHE" "ENE" "FFF" "FOO_PAP" "IND" "IRO"
+#'    "NFE" "NMM" "PRO" "RCO" "REF_TRF" "SWD_INC" "TNR_Aviation_CDS"
+#'    "TNR_Aviation_CRS" "TNR_Aviation_LTO" "TNR_Aviation_SPS" "TNR_Other"
+#'    "TNR_Ship" "TOTALS" "TRO_RES" "TRO_noRES" "AGS" "MNM" "PRU_SOL"
+#'    "SWD_LDF" "WWT" "NEU"  \tab 1970-2015 \cr
+#'   v50_GHG  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+#'   \tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO PRO_COAL PRO_GAS PRO_OIL RCO
+#'   REF_TRF SWD_INC SWD_LDF TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
+#'   TNR_Aviation_SPS TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+#'   \tab 1970-2018 \cr
+#'   v432  \tab  CH4,CO2_excl_short-cycle_org_C, CO2_org_short-cycle_C, N2O
+#'   \tab AGS AWB CHE ENE ENF FFF IND IRO MNM PRO RCO REF_TRF SWD_INC SWD_LDF
+#'   TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO TNR_Aviation_SPS
+#'   TNR_Other TNR_Ship TOTALS TRO WWT NEU NFE NMM PRU_SOL IDE N2O
+#'   \tab 1970-2012 \cr
 #'   v432_AP  \tab   BC, CO,  NH3, NMVOC, NOx, OC, PM10,
 #'   PM2.5_bio, PM2.5_fossil, SO2  \tab AWB CHE ENE FFF FOO_PAP IND IRO NFE NMM
 #'   PRO RCO REF_TRF SWD_INC TNR_Aviation_CDS TNR_Aviation_CRS TNR_Aviation_LTO
@@ -55,9 +67,6 @@
 #'                          TNR_Aviation_CDS, TNR_Aviation_CRS,
 #'                TNR_Aviation_LTO, TNR_Aviation_SPS, TNR_Other, TNR_Ship, TOTALS,
 #'                TRO, TRF \tab 1970-2012 \cr
-#'      v4tox2  \tab    HG, HG_D, HG_G, HG_P \tab Iro,  cement, chlor, comb_power_ind,
-#'      comb_res_oth, glass, gold_A, gold_L, nfe_oth, shipping, totals, tro_roa,
-#'      waste \tab 1970-2008  \cr
 #'      htap_v2_2  \tab BC, CO, NH3, NMVOC, NOx, OCm, PM10, PM2.5, SO2 \tab
 #'      AIR, ENERGY, INDUSTRY, RESIDENTIAL, SHIPS TRANSPORT \tab 2008 and 2010 \\cr
 #' }
@@ -66,6 +75,10 @@
 #'
 #' @references
 #'
+#'- **v50_AP** Crippa, M., Solazzo, E., Huang, G., Guizzardi, D., Koffi, E.,
+#'Muntean, M., Schieberle, C., Friedrich, R., Janssens-Maenhout, G.:
+#'High resolution temporal profiles in the Emissions Database for
+#'Global Atmospheric Research, Nature Scientific Data, 2020, in press.
 #'- **v432**:  Muntean, M., Guizzardi, D., Schaaf, E., Crippa, M., Solazzo, E.,
 #'Olivier, J.G.J., Vignati, E. Fossil CO2 emissions of all world countries - 2018
 #'Report, EUR 29433 EN, Publications Office  of the European Union, Luxembourg,
@@ -80,10 +93,6 @@
 #'Speciation of anthropogenic emissions of non-methane volatile organic compounds: a
 #'global gridded data set for 1970–2012, Atmos. Chem. Phys., 17, 7683-7701,
 #'https://doi.org/10.5194/acp-17-7683-2017, 2017.
-#'- **v4tox2**: Muntean, M., Janssens-Maenhout, G., Song, S., Giang, A., Selin, N. E.,
-#'Zhong, H., ... & Schaaf, E. (2018). Evaluating EDGARv4. tox2 speciated mercury
-#'emissions ex-post scenarios and their impacts on modelled global and regional
-#'wet deposition patterns. Atmospheric Environment, 184, 56-68.
 #'- **htap_v2_2**: Janssens-Maenhout, G., Crippa, M., Guizzardi, D.,
 #'Dentener, F., Muntean, M., Pouliot, G., Keating, T., Zhang, Q., Kurokawa, J.,
 #'Wankmüller, R., Denier van der Gon, H., Kuenen, J. J. P., Klimont, Z.,
@@ -92,28 +101,34 @@
 #'hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
 #'11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.
 #'
-#'MNM is MNN for NOx v432_AP
+#' MNM is MNN for NOx v432_AP
 #'
-#' @importFrom utils download.file
+#' @importFrom utils download.file askYesNo data
+#' @importFrom parallel detectCores mclapply
 #' @export
-#' @examples \dontrun{
-#' # Download all pollutants for sector TRO
-#' get_edgar(dataset = "v432_AP", destpath = tempdir(),
-#' sector = c("TOTALS"),
-#' year = 2012)
-#' # Download all sectors for pollutant CO
-#' get_edgar(dataset = "v432_AP", destpath = tempdir(),
-#' pol = c("CO"),
-#' year = 2012)
+#' @examples \donttest{
+#' # see all the links:
+#' data(edgar)
+#' head(edgar)
+#' # Download all pollutants for sector
+#' get_edgar(dataset = "v50_AP",
+#'           pol = "CO",
+#'           sector = "TOTALS",
+#'           year = 2014,
+#'           destpath = tempdir(),
+#'           type = "nc",
+#'           ask = FALSE)
 #' }
-get_edgar <- function(dataset = "v432_AP",
+get_edgar <- function(dataset = "v50_AP",
                       pol,
                       sector,
                       year,
+                      n = parallel::detectCores()/2,
                       destpath = tempdir(),
-                      txt = TRUE,
-                      return_url = TRUE,
-                      copyright = TRUE){
+                      type = "nc",
+                      ask = TRUE,
+                      copyright = TRUE,
+                      verbose = TRUE){
   if(copyright) message(
     paste0(c(
       " Copyright notice\n",
@@ -124,74 +139,84 @@ get_edgar <- function(dataset = "v432_AP",
       " http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2011:330:0039:0042:EN:PDF\n\n"
     ))
   )
+  ed <- sysdata$edgar
 
-
-  # Check
-  if(length(dataset) > 1) stop("Only one dataset per time")      # nocov start
-  if(dataset == "v432_AP") {
-    ed <- sysdata$v432_AP
-  } else if(dataset == "v432_VOC_spec"){
-    ed <- sysdata$v432_VOC
-  } else {
-    stop("Sorry, we are updating other datasets")
+  eda <- ed
+  ed <- ed[ed$data %in% dataset, ]
+  if(nrow(ed) == 0) {
+    cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n") # nocov
+    stop("No dataset")                                                             # nocov
   }
 
-  # links
-  df <- ed[ed$dataset == dataset, ]
-
+  eda <- ed
   if(missing(year)){
-    stop("missing year")
-  } else if(length(year) > 1){
-    stop("One year per time please")
+    warning("Downloading all available years")                                    # nocov
+  } else {
+    ed <- ed[ed$year %in% year, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following years:\n", unique(eda$year), "\n") # nocov
+      stop("No Year")                                                             # nocov
+    }
   }
 
+  eda <- ed
   if(missing(sector)){
-    if(missing(pol)) stop("Include pollutants")
-    df <- ed[ed$dataset %in% dataset &
-               ed$pol %in% pol, ]
-
-  } else if(missing(pol)){
-    if(missing(sector))stop("Include sector")
-    df <- ed[ed$dataset %in% dataset &
-               ed$sector %in% sector, ]
-
+    warning("Downloading all available sector")                                   # nocov
   } else {
-    df <- ed[ed$dataset %in% dataset &
-               ed$pol %in% pol &
-               ed$sector %in% sector, ]
-
-  }
-  # more checks
-  if(dataset == "htap_v2_2") {
-    if(!year %in% c(2008, 2010)) {
-      stop("When dataset is htap_v2_2, years can be 2008 or 2010 only")
+    ed <- ed[ed$sector %in% sector, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n") # nocov
+      stop("No sector")                                                              # nocov
     }
+  }
+
+  eda <- ed
+  if(missing(pol)){
+    warning("Downloading all available pollutants") # nocov
   } else {
-    if(!year %in% 1970:2012){
-      stop("For this datasets, years go from 1970 to 2012 only")
+    ed <- ed[ed$pol %in% pol, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following pollutants:\n", unique(eda$pol), "\n")
+      stop("No pollutants")
     }
-  }                                                                      # nocov end
-
-  links = unlist(lapply(1:length(df$URL), function(i) {
-    year <- eval(parse(text = df$years[i]))
-    eval(parse(text = df$URL[i]))
-  }))
-
-  txzz <- paste0(eval(parse(text = df$years)),
-                 "_", df$pol, "_",df$sector,
-                 ".zip")
-  if(txt){
-    links <- gsub(pattern = ".0.1x0.1", replacement = "", x = links)
-    txzz <- gsub(pattern = ".0.1x0.1", replacement = "", x = txzz)
   }
-  df$links <- links
-  df$txzz <- txzz
+
+  # nocov start
+
+  eda <- ed
+  if(missing(type)){
+    warning("Downloading all available pollutants")
+  } else {
+    ed <- ed[ed$type %in% type, ]
+    if(nrow(ed) == 0) {
+      cat("Please, choose one of the following pollutants:\n", unique(eda$type), "\n")
+      stop("No type")
+    }
+  }
+
+  if(verbose)  cat("Downloading the following data:\n")
+  if(verbose)  cat(ed$url)
+
+  if(ask){  # nocov start
+    a <- utils::askYesNo("Are these links ok?")
+    if(!a) stop("Make a selection again. Remember, you can see the urls with data(edgar)")
+  } # nocov end
+
+
   # paths
-  for (i in 1:length(links)){
-    utils::download.file(paste0(url = df$links[i]),
-                         destfile =  paste0(destpath, "/", df$txzz[i]))
-    message(paste0(
-      "Files at ", destpath,  "\n"))
+  if(missing(n)) {
+    for (i in 1:length(ed$url)){
+      utils::download.file(url = ed$url[i],
+                           destfile =  paste0(destpath, "/", ed$links[i]))
+      message(paste0(
+        "Files at ", destpath,  "\n"))
+    }
+  } else {
+    parallel::mclapply(seq_along(ed$url), function(i) {
+      utils::download.file(paste0(url = ed$url[i]),
+                           destfile =  paste0(destpath, "/", ed$links[i]))
+
+    }, mc.cores = n)
   }
-  if(return_url) return(links)
+  # nocov end
 }
