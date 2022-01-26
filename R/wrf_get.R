@@ -75,7 +75,7 @@ wrf_get <- function(file = file.choose(),
     if(missing(k)){
       cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
     }else{
-      cat(paste0('reading ',name,' from ', file,'k =',k,'\n'))            # nocov
+      cat(paste0('reading ',name,' from ', file,' k = ',k,'\n'))            # nocov
     }
   }
 
