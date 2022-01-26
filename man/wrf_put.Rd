@@ -8,7 +8,7 @@ wrf_put(
   file = file.choose(),
   name = NA,
   POL,
-  mult,
+  k,
   check = FALSE,
   verbose = FALSE
 )
@@ -20,8 +20,8 @@ wrf_put(
 
 \item{POL}{Numeric; emissions input or string/POSIXlt time}
 
-\item{mult}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
-value of mult. It can be used if you want to add an hourly profile to your emissions.}
+\item{k}{Numeric; multiplier. If the length is more than 1, it multiplies POL for each
+value of k. It can be used if you want to add an hourly profile to your emissions.}
 
 \item{check}{logic (default is FALSE), TRUE to check for NA and negative values and replace with zeros}
 

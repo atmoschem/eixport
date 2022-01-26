@@ -7,6 +7,7 @@
 #' @param as_raster return a raster instead of an array
 #' @param raster_crs crs to use if as_raster is TRUE
 #' @param raster_lev level for rasters from a 4D variable
+#' @param k multiplier
 #' @param verbose display additional information
 #'
 #' @format array or raster object
@@ -53,6 +54,7 @@ wrf_get <- function(file = file.choose(),
                     as_raster = FALSE,
                     raster_crs = "+proj=longlat",
                     raster_lev = 1,
+                    k = NA,
                     verbose = FALSE){
 
   # if(as_raster) warning('The option as_raster will be deprecated, see eixport::wrf_raster()')
@@ -69,8 +71,13 @@ wrf_get <- function(file = file.choose(),
       return(TIME)                                                                        # nocov
     }
   }
-  if(verbose)
-    cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
+  if(verbose){
+    if(missing(k)){
+      cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
+    }else{
+      cat(paste0('reading ',name,' from ', file,'k =',k,'\n'))            # nocov
+    }
+  }
 
   wrfchem <- ncdf4::nc_open(file)                                       # iteractive
   if(is.na(name)){                                                      # nocov start
@@ -120,9 +127,15 @@ wrf_get <- function(file = file.choose(),
     raster::crs(r)   <- sp::CRS(raster_crs)
     names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
+    if(!missing(k)){
+      r <- k * r
+    }
     return(r)
   } else {
     ncdf4::nc_close(wrfchem)
+    if(!missing(k)){
+      POL <- k * POL
+    }
     return(POL)
   }
 }

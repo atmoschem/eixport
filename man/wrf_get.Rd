@@ -13,6 +13,7 @@ wrf_get(
   as_raster = FALSE,
   raster_crs = "+proj=longlat",
   raster_lev = 1,
+  k = NA,
   verbose = FALSE
 )
 }
@@ -26,6 +27,8 @@ wrf_get(
 \item{raster_crs}{crs to use if as_raster is TRUE}
 
 \item{raster_lev}{level for rasters from a 4D variable}
+
+\item{k}{multiplier}
 
 \item{verbose}{display additional information}
 }
