@@ -1,6 +1,9 @@
 NEWS
 ===========
 
+# eixport 0.5.2 (Release date: 19 Feb 2022)
+- updated wrf_raster cen_lon
+
 # eixport 0.5.1 (Release date: 13 jul 2021)
 - added prefix argument in wrf_create, doc update
 - added check option on wrf_put (to check NA and negative values)
