@@ -116,13 +116,13 @@ wrf_raster <- function(file = file.choose(),
                           " +x_0=0 +y_0=0",              # nocov
                           " +a=6370000 +b=6370000",      # nocov
                           " +units=m +no_defs")          # nocov
-  } else if(map_proj == 3){
+  } else if(map_proj == 3){                              # nocov
     geogrd.proj <-paste0("+proj=merc +lat_1=",cen_lat,   # nocov
                          " +lat_2=",truelat1,            # nocov
                          " +lat_0=",truelat2,            # nocov
                          " +lon_0=",cen_lon,             # nocov
                          " +datum=WGS84")                # nocov
-  } else if(map_proj == 6){
+  } else if(map_proj == 6){                              # nocov
     geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,        # nocov
                           " +lat_0=",cen_lat,            # nocov
                           " +lon_0=",cen_lon,            # nocov
