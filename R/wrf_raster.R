@@ -97,20 +97,27 @@ wrf_raster <- function(file = file.choose(),
   cen_lon  <- ncdf4::ncatt_get(coordNC, varid=0, attname="CEN_LON")$value
   truelat1 <- ncdf4::ncatt_get(coordNC, varid=0, attname="TRUELAT1")$value
   truelat2 <- ncdf4::ncatt_get(coordNC, varid=0, attname="TRUELAT2")$value
-  if (map_proj==1) {
-    geogrd.proj <- paste0("+proj=lcc +lat_1=",truelat1,
+
+  if(map_proj == 1){
+    geogrd.proj <- paste0("+proj=lcc +lat_1=", truelat1,
                           " +lat_2=", truelat2,
                           " +lat_0=", cen_lat,
                           " +lon_0=", cen_lon,
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
-  } else if(map_proj == 6){                         # nocov
-    geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,   # nocov
-                          " +lat_0=",cen_lat,       # nocov
-                          " +lon_0=",cen_lon,       # nocov
-                          " +x_0=",0," +y_0=",0,    # nocov
-                          " +ellps=WGS84 +units=m") # nocov
-  }else {
-    stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal Conic projections).') # nocov
+  } else if(map_proj == 6){
+    geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,        # nocov
+                          " +lat_0=",cen_lat,            # nocov
+                          " +lon_0=",cen_lon,            # nocov
+                          " +x_0=",0," +y_0=",0,         # nocov
+                          " +ellps=WGS84 +units=m")      # nocov
+  } else if(map_proj == 3){
+    geogrd.proj <-paste0("+proj=merc +lat_1=",cen_lat,   # nocov
+                         " +lat_2=",truelat1,            # nocov
+                         " +lat_0=",truelat2,            # nocov
+                         " +lon_0=",cen_lon,             # nocov
+                         " +datum=WGS84")                # nocov
+  } else {
+    stop('Error: Projection type not supported (currently this tool only works for Lambert Conformal and Cylindrical Equidistant).') # nocov
   }
 
   dx <- ncdf4::ncatt_get(coordNC, varid=0, attname="DX")$value
