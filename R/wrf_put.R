@@ -45,7 +45,7 @@ wrf_put <- function (file = file.choose(),
                      k,
                      check = FALSE,
                      verbose = FALSE) {
-  if(check){
+  if(check){              # nocov start
     has_NA  = FALSE
     has_neg = FALSE
     n_neg   = 0
@@ -68,7 +68,7 @@ wrf_put <- function (file = file.choose(),
     if(has_neg){
       warning(paste0(n_neg,' negative values found!\nreplaced by zeros'))
     }
-  }
+  }            # nocov end
   if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
     cat('converting POSIXlt to string\n')      # nocov
     POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov

@@ -72,10 +72,10 @@ wrf_get <- function(file = file.choose(),
     }
   }
   if(verbose){
-    if(missing(k)){
+    if(missing(k)){                                                       # nocov
       cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
     }else{
-      cat(paste0('reading ',name,' from ', file,' k = ',k,'\n'))            # nocov
+      cat(paste0('reading ',name,' from ', file,' k = ',k,'\n'))          # nocov
     }
   }
 
@@ -128,13 +128,13 @@ wrf_get <- function(file = file.choose(),
     names(r) <- paste(name,time,sep="_")
     ncdf4::nc_close(wrfchem)
     if(!missing(k)){
-      r <- k * r
+      r <- k * r                                     # nocov
     }
     return(r)
   } else {
     ncdf4::nc_close(wrfchem)
     if(!missing(k)){
-      POL <- k * POL
+      POL <- k * POL                                 # nocov
     }
     return(POL)
   }
