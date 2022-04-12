@@ -106,7 +106,7 @@ wrf_raster <- function(file = file.choose(),
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
   } else if(map_proj == 2){                              # nocov
     if(cen_lat > 0){                                     # nocov
-      hemis = 90                                         # nocov
+      hemis =  90                                        # nocov
     }else{                                               # nocov
       hemis = -90                                        # nocov
     }
