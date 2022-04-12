@@ -102,7 +102,7 @@ wrf_raster <- function(file = file.choose(),
     geogrd.proj <- paste0("+proj=lcc +lat_1=", truelat1,
                           " +lat_2=", truelat2,
                           " +lat_0=", cen_lat,
-                          " +lon_0=", cen_lon,
+                          " +lon_0=", ref_lon,
                           " +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
   } else if(map_proj == 2){                              # nocov
     if(cen_lat > 0){                                     # nocov
@@ -116,16 +116,15 @@ wrf_raster <- function(file = file.choose(),
                           " +x_0=0 +y_0=0",              # nocov
                           " +a=6370000 +b=6370000",      # nocov
                           " +units=m +no_defs")          # nocov
-  } else if(map_proj == 3){
-    geogrd.proj <-paste0("+proj=merc +lat_1=",cen_lat,   # nocov
-                         " +lat_2=",truelat1,            # nocov
-                         " +lat_0=",truelat2,            # nocov
-                         " +lon_0=",cen_lon,             # nocov
+  } else if(map_proj == 3){                              # nocov
+    geogrd.proj <-paste0("+proj=merc +lat_ts=",truelat1, # nocov
+                         " +lon_0=",ref_lon,             # nocov
+                         " +a=6370000 +b=6370000",       # nocov
                          " +datum=WGS84")                # nocov
-  } else if(map_proj == 6){
+  } else if(map_proj == 6){                              # nocov
     geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,        # nocov
                           " +lat_0=",cen_lat,            # nocov
-                          " +lon_0=",cen_lon,            # nocov
+                          " +lon_0=",ref_lon,            # nocov
                           " +x_0=",0," +y_0=",0,         # nocov
                           " +ellps=WGS84 +units=m")      # nocov
   } else {
