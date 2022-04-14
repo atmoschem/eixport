@@ -17,3 +17,6 @@
 ^_pkgdown.yml$
 ^pkgdown$
 ^.github
+^vignettes$
+^vignettes\.R$
+^vignettes\.Rmd$

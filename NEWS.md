@@ -1,6 +1,11 @@
 NEWS
 ===========
 
+# eixport 0.5.3 (Release date: 14 Bpril 2022)
+- updated wrf_raster projections
+- added support to WRF Polar and Mercator grids in wrf_raster
+- wrf_get(as_raster = T) uses wrf_raster
+
 # eixport 0.5.2 (Release date: 19 Feb 2022)
 - updated wrf_raster cen_lon
 
