@@ -28,9 +28,9 @@ wrf_add(file = f2, name = "E_CO", POL = CO)
 
 nc1 <- ncdf4::nc_open(f1)
 nc2 <- ncdf4::nc_open(f2)
+a   <- ncdf4::ncvar_get(nc1, "E_CO")
+b   <- ncdf4::ncvar_get(nc2, "E_CO")
 
 test_that("wrf_put works", {
-  expect_equal(ncdf4::ncvar_get(nc1, "E_CO"),
-               ncdf4::ncvar_get(nc2, "E_CO")
-  )
+  expect_equal(a,b)
 })
