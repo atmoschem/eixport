@@ -11,6 +11,7 @@
 #' @param col color vector
 #' @param skip logical, skip plot of constant valuess
 #' @param map function call to plot map lines, points and annotation (experimental)
+#' @param no_title no title plot
 #' @param verbose if TRUE print some information
 #' @param ... Arguments to be passed to plot methods
 #'
@@ -56,6 +57,7 @@ wrf_plot <- function(file = file.choose(),
                      col = cptcity::cpt(n = 20, rev = T),
                      map = NULL,
                      skip = FALSE,
+                     no_title = FALSE,
                      verbose = TRUE,
                      ...){
 
@@ -68,14 +70,31 @@ wrf_plot <- function(file = file.choose(),
     POL   <- ncvar_get(wrfchem,name)
   }
 
-  xlat      <- ncdf4::ncvar_get(wrfchem, varid="XLAT")
-  xlong     <- ncdf4::ncvar_get(wrfchem, varid="XLONG")
+  coordvarList = names(wrfchem[['var']])
+  print(coordvarList)
+  if ("XLONG_M" %in% coordvarList & "XLAT_M" %in% coordvarList) {
+    xlong <- ncdf4::ncvar_get(wrfchem, "XLONG_M")                            # nocov
+    xlat  <- ncdf4::ncvar_get(wrfchem, "XLAT_M")                             # nocov
+  } else if ("XLONG" %in% coordvarList & "XLAT" %in% coordvarList) {
+    xlong <- ncdf4::ncvar_get(wrfchem, "XLONG")
+    xlat  <- ncdf4::ncvar_get(wrfchem, "XLAT")
+  } else if ("lon" %in% coordvarList & "lat" %in% coordvarList) {            # nocov
+    xlong <- ncdf4::ncvar_get(wrfchem, "lon")                                # nocov
+    xlat  <- ncdf4::ncvar_get(wrfchem, "lat")                                # nocov
+  } else if ("longitude" %in% coordvarList & "latitude" %in% coordvarList) { # nocov
+    xlong <- ncdf4::ncvar_get(wrfchem, "longitude")                          # nocov
+    xlat  <- ncdf4::ncvar_get(wrfchem, "latitude")                           # nocov
+  } else {
+    stop('Error: Latitude and longitude fields not found (tried: XLAT_M/XLONG_M, XLAT/XLONG, lat/lon longitude/latitude') # nocov
+  }
+
   lat       <- range(xlat)
   lon       <- range(xlong)
   y         <- xlat [1, ]
   x         <- xlong[ ,1]
 
-  Times     <- ncdf4::ncvar_get(wrfchem, varid="Times")
+  if(!no_title)
+    Times <- ncdf4::ncvar_get(wrfchem, varid="Times")
 
   ncdf4::nc_close(wrfchem)
 
@@ -98,7 +117,6 @@ wrf_plot <- function(file = file.choose(),
 
   if(skip & max(POL) == min(POL)){
     cat('skiping plot\n') # nocov
-    # par(oldpar)         # nocov
     return()              # nocov
   }
 
@@ -191,7 +209,6 @@ wrf_plot <- function(file = file.choose(),
   on.exit(par(oldpar))
 
   if(barra){
-    # old.par <- par(mar = c(0, 0, 0, 0))
     par(mar = c(0, 0, 0, 0))
     layout(matrix(c(1,2),
                   ncol = 2,
@@ -201,7 +218,8 @@ wrf_plot <- function(file = file.choose(),
     par(mar=c(3.5, 3.5, 3, 0))
   }
   filled.contour2(x, y, POL, col = col)
-  mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
+  if(!no_title)
+    mtext(paste("WRF-Chem emissions - Time:", Times[time]), 3, line = 0.8)
   mtext("Latitude", 2, line = 2.2,cex = 1.2, las=0)
   mtext("Longitude", 1, line = 2.2,cex = 1.2)
   if(!is.null(map)){
@@ -211,7 +229,6 @@ wrf_plot <- function(file = file.choose(),
     par(mar = c(3.5, 1, 3, 4))
     barras(POL, col = col)
     mtext(name, 3, line = 0.8)
-    # par(old.par)
     par(mfrow = c(1, 1))
   }
 }

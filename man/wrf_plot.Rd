@@ -14,6 +14,7 @@ wrf_plot(
   col = cptcity::cpt(n = 20, rev = T),
   map = NULL,
   skip = FALSE,
+  no_title = FALSE,
   verbose = TRUE,
   ...
 )
@@ -36,6 +37,8 @@ wrf_plot(
 \item{map}{function call to plot map lines, points and annotation (experimental)}
 
 \item{skip}{logical, skip plot of constant valuess}
+
+\item{no_title}{no title plot}
 
 \item{verbose}{if TRUE print some information}
 

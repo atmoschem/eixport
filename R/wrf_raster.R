@@ -74,8 +74,11 @@ wrf_raster <- function(file = file.choose(),
   } else if ("lon" %in% coordvarList & "lat" %in% coordvarList) {        # nocov
     inNCLon <- ncdf4::ncvar_get(coordNC, "lon")                          # nocov
     inNCLat <- ncdf4::ncvar_get(coordNC, "lat")                          # nocov
+  } else if ("longitude" %in% coordvarList & "latitude" %in% coordvarList) { # nocov
+    inNCLon <- ncdf4::ncvar_get(coordNC, "longitude")                        # nocov
+    inNCLat <- ncdf4::ncvar_get(coordNC, "latitude")                         # nocov
   } else {
-    stop('Error: Latitude and longitude fields not found (tried: XLAT_M/XLONG_M, XLAT/XLONG, lat/lon') # nocov
+    stop('Error: Latitude and longitude fields not found (tried: XLAT_M/XLONG_M, XLAT/XLONG, lat/lon longitude/latitude') # nocov
   }
 
   nrows <- dim(inNCLon)[2]
