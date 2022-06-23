@@ -11,6 +11,7 @@ wrf_create(wrfinput_dir         = system.file("extdata", package = "eixport"),
 
 f1 <- list.files(path = file.path(tempdir()),pattern = "wrfchemi",
                  full.names = TRUE)
+f1 <- f1[1]
 
 CO <- wrf_get(file = f1, name = "E_CO")
 CO[] = 1:length(CO)
@@ -21,6 +22,8 @@ wrf_add(file = f1, name = "E_CO", POL = CO)
 f2 <- unzip(zipfile = paste0(system.file("extdata", package = "eixport"),
                              "/wrfchemi_d02_2011-08-02.zip"),
             exdir = file.path(tempdir()))
+f2 <- f2[1]
+
 CO <- wrf_get(file = f2, name = "E_CO")
 CO[] = 1:length(CO)
 wrf_put(file = f2, name = "E_CO", POL = CO)
