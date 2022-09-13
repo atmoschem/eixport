@@ -105,7 +105,7 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     if(io_style_emissions == 2)                                     # nocov
       cat("NOTE: see wrf_create domumentation notes before run\n")  # nocov
 
-  if(length(variables) == 1 && !is.na(variables)[1]){
+  if(length(variables) == 1 & !is.na(variables)[1]){
     emis_opt <- sysdata$emis_opt
     if(variables %in% names(emis_opt)){
       variables <- emis_opt[[variables]]

@@ -68,8 +68,13 @@ wrf_put <- function (file = file.choose(),
     if(has_neg){
       warning(paste0(n_neg,' negative values found!\nreplaced by zeros'))
     }
+<<<<<<< Updated upstream
   }            # nocov end
   if(class(POL[1]) =="POSIXlt" || class(POL[1]) == "POSIXt"){
+=======
+  }
+  if(class(POL[1]) =="POSIXlt" | class(POL[1]) == "POSIXt"){
+>>>>>>> Stashed changes
     cat('converting POSIXlt to string\n')      # nocov
     POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov
     if(name == 'time')                         # nocov

@@ -160,7 +160,7 @@ wrf_plot <- function(file = file.choose(),
       y <- x$y                                       # nocov
       x <- x$x                                       # nocov
     }
-    if (any(diff(x) <= 0) || any(diff(y) <= 0))
+    if (any(diff(x) <= 0) | any(diff(y) <= 0))
       stop("increasing 'x' and 'y' values expected") # nocov
     mar.orig <- (par.orig <- par(c("mar", "las", "mfrow")))$mar
     w <- (3 + mar.orig[2]) * par("csi") * 2.54
@@ -169,7 +169,7 @@ wrf_plot <- function(file = file.choose(),
     plot.new()
     par(mar=mar)
     plot.window(xlim, ylim, "", xaxs = xaxs, yaxs = yaxs, asp = asp)
-    if (!is.matrix(z) || nrow(z) <= 1 || ncol(z) <= 1)
+    if (!is.matrix(z) | nrow(z) <= 1 | ncol(z) <= 1)
       stop("no proper 'z' matrix specified")         # nocov
     if (!is.double(z))
       storage.mode(z) <- "double"                    # nocov
