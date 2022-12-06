@@ -124,7 +124,7 @@ wrf_raster <- function(file = file.choose(),
                          " +lon_0=",ref_lon,             # nocov
                          " +a=6370000 +b=6370000",       # nocov
                          " +datum=WGS84")                # nocov
-  } else if(map_proj == 6){                              # nocov
+  } else if(map_proj %in% c(0, 6)){                      # nocov
     geogrd.proj <- paste0("+proj=eqc +lat_ts=",0,        # nocov
                           " +lat_0=",cen_lat,            # nocov
                           " +lon_0=",ref_lon,            # nocov
