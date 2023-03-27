@@ -6,16 +6,11 @@
 #' @param name variable name
 #' @param latlon project the output in "+proj=longlat +datum=WGS84 +no_defs"
 #' @param level only for 4d data, default is 1 (surface)
-#' @param use_sf set TRUE to use sf package instead of rgdal to project XLAT/XLONG
 #' @param as_polygons logical, true to return a poligon instead of a raster
 #' @param verbose display additional information
 #'
-#' @note newer versions of gdal/rgdal can present a issue related to lat/lon
-#' set use_sf to TRUE use functions of sf instead of rgdal
-#'
 #' @import ncdf4
 #' @import raster
-#' @importFrom rgdal project
 #' @import sf
 #'
 #' @export
@@ -33,7 +28,6 @@ wrf_raster <- function(file = file.choose(),
                        name = NA,
                        latlon = F,
                        level = 1,
-                       use_sf = FALSE,
                        as_polygons = FALSE,
                        verbose = FALSE){
 
@@ -140,15 +134,10 @@ wrf_raster <- function(file = file.choose(),
     stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy))  # nocov
   }
 
-  if(use_sf){
-    pontos     <- sf::st_multipoint(x = as.matrix(cbind(x, y)), dim = "XY")           # nocov
-    coords     <- sf::st_sfc(x = pontos, crs = "+proj=longlat +datum=WGS84 +no_defs") # nocov
-    transform  <- sf::st_transform(x = coords, crs = geogrd.proj)                     # nocov
-    projcoords <- sf::st_coordinates(transform)[,1:2]                                 # nocov
-  }else{
-    coords     <- as.matrix(cbind(x, y))
-    projcoords <- rgdal::project(coords, geogrd.proj)
-  }
+  pontos     <- sf::st_multipoint(x = as.matrix(cbind(x, y)), dim = "XY")           # nocov
+  coords     <- sf::st_sfc(x = pontos, crs = "+proj=longlat +datum=WGS84 +no_defs") # nocov
+  transform  <- sf::st_transform(x = coords, crs = geogrd.proj)                     # nocov
+  projcoords <- sf::st_coordinates(transform)[,1:2]                                 # nocov
 
   # coordinates here refere to the cell center,
   # We need to calculate the boundaries for the raster file

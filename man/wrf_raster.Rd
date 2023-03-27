@@ -9,7 +9,6 @@ wrf_raster(
   name = NA,
   latlon = F,
   level = 1,
-  use_sf = FALSE,
   as_polygons = FALSE,
   verbose = FALSE
 )
@@ -23,18 +22,12 @@ wrf_raster(
 
 \item{level}{only for 4d data, default is 1 (surface)}
 
-\item{use_sf}{set TRUE to use sf package instead of rgdal to project XLAT/XLONG}
-
 \item{as_polygons}{logical, true to return a poligon instead of a raster}
 
 \item{verbose}{display additional information}
 }
 \description{
 Return a Raster
-}
-\note{
-newer versions of gdal/rgdal can present a issue related to lat/lon
-set use_sf to TRUE use functions of sf instead of rgdal
 }
 \examples{
 {

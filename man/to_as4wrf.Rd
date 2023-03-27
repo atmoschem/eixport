@@ -45,7 +45,7 @@ vehicular emissions on the formation of fine particles in the Sao Paulo
 Metropolitan Area: a numerical study with the WRF-Chem model, Atmos. Chem.
 Phys., 16, 777-797, doi:10.5194/acp-16-777-2016, 2016.
 A good website with timezones is http://www.timezoneconverter.com/cgi-bin/tzc
-The crs is the same as used by \code{\link{sp}} package
+The crs is the same as used by \code{\link{sf}} package
 It returns a dataframe with id,, long, lat, pollutants, time_lt, time_utc
 and day-UTC-hour (dutch)
 The pollutants for the CBMZ are: e_so2, e_no, e_ald, e_hcho, e_ora2, e_nh3
