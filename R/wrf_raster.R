@@ -185,10 +185,15 @@ wrf_raster <- function(file = file.choose(),
   ncdf4::nc_close(wrf)
 
   if(as_polygons){
-    return(st_as_sf(rasterToPolygons(r)))                                  # nocov
+    if(latlon){
+      return(st_transform(x   = st_as_sf(rasterToPolygons(r)),           # nocov
+                          crs = st_crs('+proj=longlat')))                # nocov
+    }else{
+      return(st_as_sf(rasterToPolygons(r)))                              # nocov
+    }
   }else{
     if(latlon){
-      return(projectRaster(r, crs="+proj=longlat +datum=WGS84 +no_defs"))  # nocov
+      return(projectRaster(r, crs="+proj=longlats +datum=WGS84 +no_defs"))  # nocov
     }else{
       return(r)                                 # nocov
     }

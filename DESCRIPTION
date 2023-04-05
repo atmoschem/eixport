@@ -31,7 +31,7 @@ Depends: R (>= 3.5.0)
 Imports: sf, ncdf4, raster, methods, cptcity, utils, parallel, data.table
 Encoding: UTF-8
 LazyData: no
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Suggests: 
     testthat,
     covr,

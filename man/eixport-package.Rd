@@ -6,9 +6,9 @@
 \alias{eixport-package}
 \title{eixport: Export Emissions to Atmospheric Models}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Emissions are the mass of pollutants released into the atmosphere. Air quality models need emissions data, with spatial and temporal distribution, to represent air pollutant concentrations. This package, eixport, creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) <doi:10.1016/j.atmosenv.2005.04.027>, 'MUNICH' Kim et al (2018) <doi:10.5194/gmd-11-611-2018> , 'BRAMS-SPM' Freitas et al (2005) <doi:10.1016/j.atmosenv.2005.07.017> and 'RLINE' Snyder et al (2013) <doi:10.1016/j.atmosenv.2013.05.074>. See the 'eixport' website (<https://atmoschem.github.io/eixport/>) for more information, documentations and examples. More details in Ibarra-Espinosa et al (2018) <doi:10.21105/joss.00607>.
+Emissions are the mass of pollutants released into the atmosphere. Air quality models need emissions data, with spatial and temporal distribution, to represent air pollutant concentrations. This package, eixport, creates inputs for the air quality models 'WRF-Chem' Grell et al (2005) \doi{10.1016/j.atmosenv.2005.04.027}, 'MUNICH' Kim et al (2018) \doi{10.5194/gmd-11-611-2018} , 'BRAMS-SPM' Freitas et al (2005) \doi{10.1016/j.atmosenv.2005.07.017} and 'RLINE' Snyder et al (2013) \doi{10.1016/j.atmosenv.2013.05.074}. See the 'eixport' website (\url{https://atmoschem.github.io/eixport/}) for more information, documentations and examples. More details in Ibarra-Espinosa et al (2018) \doi{10.21105/joss.00607}.
 }
 \seealso{
 Useful links:
