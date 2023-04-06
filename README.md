@@ -3,8 +3,7 @@
 
 # eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
 
-[![Travis-CI Build
-Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build
+[![Build
 status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
@@ -14,7 +13,7 @@ Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](h
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](http://cran.r-project.org/package=eixport)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00607/status.svg)](https://doi.org/10.21105/joss.00607)
 [![cran
-checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.org/web/checks/check_results_eixport.html)
+checks](https://cranchecks.info/badges/worst/eixport.svg)](https://cran.r-project.org/web/checks/check_results_eixport.html)
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
