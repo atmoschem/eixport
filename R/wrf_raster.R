@@ -193,7 +193,7 @@ wrf_raster <- function(file = file.choose(),
     }
   }else{
     if(latlon){
-      return(projectRaster(r, crs="+proj=longlats +datum=WGS84 +no_defs"))  # nocov
+      return(projectRaster(r, crs="+proj=longlat +datum=WGS84 +no_defs"))  # nocov
     }else{
       return(r)                                 # nocov
     }
