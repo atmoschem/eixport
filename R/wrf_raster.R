@@ -53,7 +53,7 @@ wrf_raster <- function(file = file.choose(),
   }else{
     POL   <- ncvar_get(wrf,name)
   }
-  if(verbose)  cat(paste("crating raster for",name,'\n'))           # nocov
+  if(verbose)  cat(paste("creating raster for",name,'\n'))           # nocov
 
   coordNC <- tryCatch(suppressWarnings(ncdf4::nc_open(file)),
                       error=function(cond) {message(cond); return(NA)})  # nocov
