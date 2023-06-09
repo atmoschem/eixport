@@ -10,6 +10,7 @@ wrf_raster(
   latlon = F,
   level = 1,
   as_polygons = FALSE,
+  map,
   verbose = FALSE
 )
 }
@@ -23,6 +24,8 @@ wrf_raster(
 \item{level}{only for 4d data, default is 1 (surface)}
 
 \item{as_polygons}{logical, true to return a poligon instead of a raster}
+
+\item{map}{(optional) file with lat-lon variables and grid information}
 
 \item{verbose}{display additional information}
 }

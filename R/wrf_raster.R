@@ -7,6 +7,7 @@
 #' @param latlon project the output in "+proj=longlat +datum=WGS84 +no_defs"
 #' @param level only for 4d data, default is 1 (surface)
 #' @param as_polygons logical, true to return a poligon instead of a raster
+#' @param map (optional) file with lat-lon variables and grid information
 #' @param verbose display additional information
 #'
 #' @import ncdf4
@@ -29,6 +30,7 @@ wrf_raster <- function(file = file.choose(),
                        latlon = F,
                        level = 1,
                        as_polygons = FALSE,
+                       map,
                        verbose = FALSE){
 
   if(!is.na(name)){
@@ -53,9 +55,16 @@ wrf_raster <- function(file = file.choose(),
   }else{
     POL   <- ncvar_get(wrf,name)
   }
-  if(verbose)  cat(paste("creating raster for",name,'\n'))           # nocov
+  if(verbose)  cat(paste("creating raster for",name,'\n'))          # nocov
 
-  coordNC <- tryCatch(suppressWarnings(ncdf4::nc_open(file)),
+  if(missing(map)){                                                 # nocov
+    coord_file = file                                               # nocov
+  }else{                                                            # nocov
+    coord_file = map                                                # nocov
+    cat('using coods and grid information from',map,'file\n')        # nocov
+  }
+
+  coordNC <- tryCatch(suppressWarnings(ncdf4::nc_open(coord_file)),
                       error=function(cond) {message(cond); return(NA)})  # nocov
 
   coordvarList = names(coordNC[['var']])
