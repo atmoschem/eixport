@@ -181,8 +181,14 @@ wrf_raster <- function(file = file.choose(),
       POL <- POL[,,level,,drop = T]
     }
     values(r) <- f2(POL,2)
-    ntimes    <- length(ncvar_get(wrf,'Times'))
     ndim      <- length(dim(POL))
+
+    if('Times' %in% names(wrf$var)){              # this is new!
+      ntimes    <- length(ncvar_get(wrf,'Times'))
+    }else{
+      cat('variable Times not found\n')
+      ntimes    <- 1
+    }
 
     if(ntimes == 1 & ndim > 2){
       names(r)  <- paste(name,'level',formatC(1:dim(r)[3],width = 2, format = "d", flag = "0"),sep="_")
