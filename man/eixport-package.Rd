@@ -29,7 +29,6 @@ Authors:
 Other contributors:
 \itemize{
   \item Edmilson Freitas \email{edmilson.freitas@iag.usp.br} (\href{https://orcid.org/0000-0001-8783-2747}{ORCID}) [thesis advisor]
-  \item Umur Dinç \email{umur.dinc@gmail.com} (\href{https://orcid.org/0000-0003-2439-8757}{ORCID}) [contributor]
 }
 
 }
