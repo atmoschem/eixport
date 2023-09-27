@@ -37,7 +37,7 @@ library(sf)
 Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
 ```{r}
-wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
 ```
 
 Reading HGT from wrfout
@@ -68,7 +68,7 @@ find_cpt("elevation")
 ```   
 
 ```{r, fig.width=6,fig.height=5}
-cols <- classInt::classIntervals(HGT$HGT_2014.11.03_00.00.00, n = 100, style = "pretty")
+cols <- classInt::classIntervals(HGT$HGT, n = 100, style = "pretty")
 plot(HGT, axes = T, main = "HGT using stars", col = cpt("grass_elevation", n = length(cols$brks) - 1), breaks = cols$brks, reset = F)
 plot(cl$geometry, add= T, col = "black")
 ```

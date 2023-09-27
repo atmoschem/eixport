@@ -1,7 +1,7 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.5.4
-Date: 2023-03-27
+Version: 0.6.0
+Date: 2023-09-26
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
@@ -23,7 +23,7 @@ License: MIT + file LICENSE
 URL: https://atmoschem.github.io/eixport/
 BugReports: https://github.com/atmoschem/eixport/issues/
 Depends: R (>= 3.5.0)
-Imports: sf, ncdf4, raster, methods, cptcity, utils, parallel, data.table
+Imports: sf, ncdf4, raster, methods, cptcity, utils, data.table
 Encoding: UTF-8
 LazyData: no
 RoxygenNote: 7.2.3

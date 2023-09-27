@@ -1,4 +1,4 @@
-#' Download datasets of EDGAR emissions
+#' DEPRECATED Download datasets of EDGAR emissions
 #'
 #' @description The Emissions Database for Global Atmospheric Research (EDGAR) is a
 #' project from the Joint Research Centre. They provide provides global past and
@@ -7,6 +7,7 @@
 #' functions to download any of the EDGAR datasets.
 #'
 #'
+#' @name eixport-deprecated
 #' @param dataset Character; name of the datasets:  "v50_AP",  "v432_AP", "v432_VOC_spec",
 #'  "htap_v2_2", "v50_GHG
 #' @param pol Character; one of the pollutants shown on note.
@@ -106,7 +107,7 @@
 #' @importFrom utils download.file askYesNo data
 #' @importFrom parallel detectCores mclapply
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # see all the links:
 #' data(edgar)
 #' head(edgar)
@@ -119,6 +120,7 @@
 #'           type = "nc",
 #'           ask = FALSE)
 #' }
+
 get_edgar <- function(dataset = "v50_AP",
                       pol,
                       sector,
@@ -129,94 +131,97 @@ get_edgar <- function(dataset = "v50_AP",
                       ask = TRUE,
                       copyright = TRUE,
                       verbose = TRUE){
-  if(copyright) message(
-    paste0(c(
-      " Copyright notice\n",
-      "------------------\n",
-      " (c) European Union, 1995-2019\n\n",
-      " Reuse is authorised, provided the source is acknowledged. The reuse policy \n",
-      " of the European Commission is implemented by a Decision of 12 December 2011, see\n",
-      " http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2011:330:0039:0042:EN:PDF\n\n"
-    ))
-  )
-  ed <- sysdata$edgar
-
-  eda <- ed
-  ed <- ed[ed$data %in% dataset, ]
-  if(nrow(ed) == 0) {
-    cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n") # nocov
-    stop("No dataset")                                                             # nocov
-  }
-
-  eda <- ed
-  if(missing(year)){
-    warning("Downloading all available years")                                    # nocov
-  } else {
-    ed <- ed[ed$year %in% year, ]
-    if(nrow(ed) == 0) {
-      cat("Please, choose one of the following years:\n", unique(eda$year), "\n") # nocov
-      stop("No Year")                                                             # nocov
-    }
-  }
-
-  eda <- ed
-  if(missing(sector)){
-    warning("Downloading all available sector")                                   # nocov
-  } else {
-    ed <- ed[ed$sector %in% sector, ]
-    if(nrow(ed) == 0) {
-      cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n") # nocov
-      stop("No sector")                                                              # nocov
-    }
-  }
-
-  eda <- ed
-  if(missing(pol)){
-    warning("Downloading all available pollutants") # nocov
-  } else {
-    ed <- ed[ed$pol %in% pol, ]
-    if(nrow(ed) == 0) {
-      cat("Please, choose one of the following pollutants:\n", unique(eda$pol), "\n")
-      stop("No pollutants")
-    }
-  }
-
-  # nocov start
-
-  eda <- ed
-  if(missing(type)){
-    warning("Downloading all available pollutants")
-  } else {
-    ed <- ed[ed$type %in% type, ]
-    if(nrow(ed) == 0) {
-      cat("Please, choose one of the following pollutants:\n", unique(eda$type), "\n")
-      stop("No type")
-    }
-  }
-
-  if(verbose)  cat("Downloading the following data:\n")
-  if(verbose)  cat(ed$url)
-
-  if(ask){  # nocov start
-    a <- utils::askYesNo("Are these links ok?")
-    if(!a) stop("Make a selection again. Remember, you can see the urls with data(edgar)")
-  } # nocov end
-
-
-  # paths
-  if(missing(n)) {
-    for (i in 1:length(ed$url)){
-      utils::download.file(url = ed$url[i],
-                           destfile =  paste0(destpath, "/", ed$links[i]))
-      message(paste0(
-        "Files at ", destpath,  "\n"))
-    }
-  } else {
-    parallel::mclapply(seq_along(ed$url), function(i) {
-      utils::download.file(paste0(url = ed$url[i]),
-                           destfile =  paste0(destpath, "/", ed$links[i]))
-
-    }, mc.cores = n)
-  }
-  # nocov end
+  .Deprecated("Internet")
+  "get_edgar"
+  #
+  # if(copyright) message(
+  #   paste0(c(
+  #     " Copyright notice\n",
+  #     "------------------\n",
+  #     " (c) European Union, 1995-2019\n\n",
+  #     " Reuse is authorised, provided the source is acknowledged. The reuse policy \n",
+  #     " of the European Commission is implemented by a Decision of 12 December 2011, see\n",
+  #     " http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=OJ:L:2011:330:0039:0042:EN:PDF\n\n"
+  #   ))
+  # )
+  # ed <- sysdata$edgar
+  #
+  # eda <- ed
+  # ed <- ed[ed$data %in% dataset, ]
+  # if(nrow(ed) == 0) {
+  #   cat("Please, choose one of the following datasets:\n", unique(eda$data), "\n") # nocov
+  #   stop("No dataset")                                                             # nocov
+  # }
+  #
+  # eda <- ed
+  # if(missing(year)){
+  #   warning("Downloading all available years")                                    # nocov
+  # } else {
+  #   ed <- ed[ed$year %in% year, ]
+  #   if(nrow(ed) == 0) {
+  #     cat("Please, choose one of the following years:\n", unique(eda$year), "\n") # nocov
+  #     stop("No Year")                                                             # nocov
+  #   }
+  # }
+  #
+  # eda <- ed
+  # if(missing(sector)){
+  #   warning("Downloading all available sector")                                   # nocov
+  # } else {
+  #   ed <- ed[ed$sector %in% sector, ]
+  #   if(nrow(ed) == 0) {
+  #     cat("Please, choose one of the following sector:\n", unique(eda$sector), "\n") # nocov
+  #     stop("No sector")                                                              # nocov
+  #   }
+  # }
+  #
+  # eda <- ed
+  # if(missing(pol)){
+  #   warning("Downloading all available pollutants") # nocov
+  # } else {
+  #   ed <- ed[ed$pol %in% pol, ]
+  #   if(nrow(ed) == 0) {
+  #     cat("Please, choose one of the following pollutants:\n", unique(eda$pol), "\n")
+  #     stop("No pollutants")
+  #   }
+  # }
+  #
+  # # nocov start
+  #
+  # eda <- ed
+  # if(missing(type)){
+  #   warning("Downloading all available pollutants")
+  # } else {
+  #   ed <- ed[ed$type %in% type, ]
+  #   if(nrow(ed) == 0) {
+  #     cat("Please, choose one of the following pollutants:\n", unique(eda$type), "\n")
+  #     stop("No type")
+  #   }
+  # }
+  #
+  # if(verbose)  cat("Downloading the following data:\n")
+  # if(verbose)  cat(ed$url)
+  #
+  # if(ask){  # nocov start
+  #   a <- utils::askYesNo("Are these links ok?")
+  #   if(!a) stop("Make a selection again. Remember, you can see the urls with data(edgar)")
+  # } # nocov end
+  #
+  #
+  # # paths
+  # if(missing(n)) {
+  #   for (i in 1:length(ed$url)){
+  #     utils::download.file(url = ed$url[i],
+  #                          destfile =  paste0(destpath, "/", ed$links[i]))
+  #     message(paste0(
+  #       "Files at ", destpath,  "\n"))
+  #   }
+  # } else {
+  #   parallel::mclapply(seq_along(ed$url), function(i) {
+  #     utils::download.file(paste0(url = ed$url[i]),
+  #                          destfile =  paste0(destpath, "/", ed$links[i]))
+  #
+  #   }, mc.cores = n)
+  # }
+  # # nocov end
 }

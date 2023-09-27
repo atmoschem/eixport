@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,52 +46,22 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/gallery0.html">WRF out statistics</a>
-    </li>
-    <li>
-      <a href="../articles/gallery1.html">plot WRF: Elevation</a>
-    </li>
-    <li>
-      <a href="../articles/gallery2.html">plot WRF: Temperature</a>
-    </li>
-    <li>
-      <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
-    </li>
-    <li>
-      <a href="../articles/gallery5.html">plot WRF: Domains</a>
-    </li>
-  </ul>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atmoschem/eixport/">
+  <a href="https://github.com/atmoschem/eixport/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,131 +76,127 @@
 
       
 
-      </header><script src="gallery3_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>plot WRF: Cross sections</h1>
-                        <h4 class="author">Sergio Ibarra-Espinosa</h4>
+                        <h4 data-toc-skip class="author">Sergio
+Ibarra-Espinosa</h4>
             
-            <h4 class="date">2021-07-17</h4>
+            <h4 data-toc-skip class="date">2023-09-26</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/master/vignettes/gallery3.Rmd"><code>vignettes/gallery3.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/HEAD/vignettes/gallery3.Rmd" class="external-link"><code>vignettes/gallery3.Rmd</code></a></small>
       <div class="hidden name"><code>gallery3.Rmd</code></div>
 
     </div>
 
     
     
-<p>Based on this <a href="https://www.ncl.ucar.edu/Applications/wrf.shtml">NCL</a></p>
+<p>Based on this <a href="https://www.ncl.ucar.edu/Applications/wrf.shtml" class="external-link">NCL</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/">eixport</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: sp</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: abind</span>
-<span class="co">#&gt; Loading required package: sf</span>
-<span class="co">#&gt; Linking to GEOS 3.9.0, GDAL 3.2.2, PROJ 7.2.1</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity">cptcity</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atmoschem/vein">vein</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/" class="external-link">eixport</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
+<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
+<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
+<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
+<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
+<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
+<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: sp</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/" class="external-link">stars</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: abind</span></span>
+<span><span class="co">#&gt; Loading required package: sf</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity" class="external-link">cptcity</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/atmoschem/vein" class="external-link">vein</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <p>Reading Temperature and crop coast lines for our study area</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"</span>
-
-<span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="va">wrfo</span>, <span class="st">"T2"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="co">#&gt; Warning in wrf_get(wrfo, "T2", as_raster = T): The option as_raster will be</span>
-<span class="co">#&gt; deprecated, see eixport::wrf_raster()</span>
-<span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">t2</span> <span class="op">-</span><span class="fl">273.15</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"</span></span>
+<span></span>
+<span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="va">wrfo</span>, <span class="st">"T2"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">t2</span> <span class="op">-</span><span class="fl">273.15</span></span></code></pre></div>
 <p>Find colour palette for temperature</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html">find_cpt</a></span><span class="op">(</span><span class="st">"temperature"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "arendal_temperature"    "idv_temperature"        "jjg_misc_temperature"  </span>
-<span class="co">#&gt; [4] "kst_03_red_temperature"</span></code></pre></div>
-<p>Let us create a line between c(-46.5,-23.85) and c(-46.35, -23.95)</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html" class="external-link">find_cpt</a></span><span class="op">(</span><span class="st">"temperature"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "arendal_temperature"    "idv_temperature"        "jjg_misc_temperature"  </span></span>
+<span><span class="co">#&gt; [4] "kst_03_red_temperature"</span></span></code></pre></div>
+<p>Let us create a line between c(-46.5,-23.85) and c(-46.35,
+-23.95)</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">46.5</span>, <span class="op">-</span><span class="fl">46.35</span><span class="op">)</span>,  <span class="co"># xini xend</span>
-           <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">23.85</span>, <span class="op">-</span><span class="fl">23.95</span><span class="op">)</span><span class="op">)</span> <span class="co"># yini yend</span>
-<span class="va">cross</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_linestring</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>
-<span class="op">(</span><span class="va">cross</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">cross</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Geometry set for 1 feature </span>
-<span class="co">#&gt; Geometry type: LINESTRING</span>
-<span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: -46.5 ymin: -23.95 xmax: -46.35 ymax: -23.85</span>
-<span class="co">#&gt; Geodetic CRS:  WGS 84</span>
-<span class="co">#&gt; LINESTRING (-46.5 -23.85, -46.35 -23.95)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">t2</span><span class="op">$</span><span class="va">T2_2014.11.03_00.00.00</span>, 
-     main <span class="op">=</span> <span class="st">"Temperature using plot"</span>, 
-     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"arendal_temperature"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cross</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">46.5</span>, <span class="op">-</span><span class="fl">46.35</span><span class="op">)</span>,  <span class="co"># xini xend</span></span>
+<span>           <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">23.85</span>, <span class="op">-</span><span class="fl">23.95</span><span class="op">)</span><span class="op">)</span> <span class="co"># yini yend</span></span>
+<span><span class="va">cross</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_linestring</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">cross</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span><span class="va">cross</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Geometry set for 1 feature </span></span>
+<span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -46.5 ymin: -23.95 xmax: -46.35 ymax: -23.85</span></span>
+<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt; LINESTRING (-46.5 -23.85, -46.35 -23.95)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">t2</span><span class="op">$</span><span class="va">T2</span>, </span>
+<span>     main <span class="op">=</span> <span class="st">"Temperature using plot"</span>, </span>
+<span>     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html" class="external-link">cpt</a></span><span class="op">(</span><span class="st">"arendal_temperature"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cross</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gallery3_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Now, define several lines</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">46.05</span>, <span class="op">-</span><span class="fl">46.36</span><span class="op">)</span>,  <span class="co"># xini xend</span>
-            <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">23.85</span>, <span class="op">-</span><span class="fl">23.95</span><span class="op">)</span><span class="op">)</span>   <span class="co"># yini yend</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">46.05</span>, <span class="op">-</span><span class="fl">46.36</span><span class="op">)</span>,  <span class="co"># xini xend</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">23.85</span>, <span class="op">-</span><span class="fl">23.95</span><span class="op">)</span><span class="op">)</span>   <span class="co"># yini yend</span></span></code></pre></div>
 <p>Define a helper function</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">points_extract</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">sta</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">cross</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_linestring</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>
-  <span class="va">cross</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">cross</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
-  <span class="va">t2s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">sta</span><span class="op">)</span>
-  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">st_intersection</a></span><span class="op">(</span><span class="va">t2s</span>, <span class="va">cross</span><span class="op">)</span> 
-  <span class="va">geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span>
-  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_set_geometry</a></span><span class="op">(</span><span class="va">lt</span>, <span class="cn">NULL</span><span class="op">)</span>
-  <span class="va">na</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span>
-  <span class="va">lt</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html">nrow</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span>
-  <span class="va">dx</span> <span class="op">&lt;-</span> <span class="fu">vein</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vein/man/wide_to_long.html">wide_to_long</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">lt</span>, 
-                           column_with_data <span class="op">=</span> <span class="va">na</span>, 
-                           column_fixed <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
-  <span class="va">stf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span><span class="va">dx</span>, geometry <span class="op">=</span> <span class="va">geo</span><span class="op">)</span>
-  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">stf</span><span class="op">)</span>
-  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">lt</span>, <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span><span class="op">)</span>
-  
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">points_extract</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">sta</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">cross</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_linestring</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+<span>  <span class="va">cross</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span><span class="va">cross</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span>  <span class="va">t2s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">sta</span><span class="op">)</span></span>
+<span>  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html" class="external-link">st_intersection</a></span><span class="op">(</span><span class="va">t2s</span>, <span class="va">cross</span><span class="op">)</span> </span>
+<span>  <span class="va">geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span></span>
+<span>  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_set_geometry</a></span><span class="op">(</span><span class="va">lt</span>, <span class="cn">NULL</span><span class="op">)</span></span>
+<span>  <span class="va">na</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span></span>
+<span>  <span class="va">lt</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span></span>
+<span>  <span class="va">dx</span> <span class="op">&lt;-</span> <span class="fu">vein</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/vein/man/wide_to_long.html" class="external-link">wide_to_long</a></span><span class="op">(</span>df <span class="op">=</span> <span class="va">lt</span>, </span>
+<span>                           column_with_data <span class="op">=</span> <span class="va">na</span>, </span>
+<span>                           column_fixed <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
+<span>  <span class="va">stf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">st_sf</a></span><span class="op">(</span><span class="va">dx</span>, geometry <span class="op">=</span> <span class="va">geo</span><span class="op">)</span></span>
+<span>  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_centroid</a></span><span class="op">(</span><span class="va">stf</span><span class="op">)</span></span>
+<span>  <span class="va">lt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">lt</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">lt</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sta</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/names.html">names</a></span><span class="op">(</span><span class="va">sta</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"temperature"</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">points_extract</span><span class="op">(</span><span class="va">m</span>, sta <span class="op">=</span> <span class="va">sta</span><span class="op">)</span>
-<span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span>
-<span class="co">#&gt; geometries</span>
-<span class="co">#&gt; Warning in data.frame(..., check.names = FALSE): row names were found from a</span>
-<span class="co">#&gt; short variable and have been discarded</span>
-<span class="co">#&gt; Warning in st_centroid.sf(stf): st_centroid assumes attributes are constant over</span>
-<span class="co">#&gt; geometries of x</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sta</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html" class="external-link">st_as_stars</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span></span>
+<span><span class="va">sta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="va">sta</span>, <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">sta</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"temperature"</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">points_extract</span><span class="op">(</span><span class="va">m</span>, sta <span class="op">=</span> <span class="va">sta</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout</span></span>
+<span><span class="co">#&gt; all geometries</span></span>
+<span><span class="co">#&gt; Warning: st_centroid assumes attributes are constant over geometries</span></span></code></pre></div>
 <p>Let us check the data</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/raster/man/headtail.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="co">#&gt; Simple feature collection with 6 features and 5 fields</span>
-<span class="co">#&gt; Geometry type: POINT</span>
-<span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: -46.49466 ymin: -23.90841 xmax: -46.41243 ymax: -23.85356</span>
-<span class="co">#&gt; CRS:           +proj=longlat +datum=WGS84 +no_defs</span>
-<span class="co">#&gt;         V1 V2                     V3         X         Y</span>
-<span class="co">#&gt; 1 17.93331  1 T2_2014.11.03_00.00.00 -46.49466 -23.85356</span>
-<span class="co">#&gt; 2 18.83734  2 T2_2014.11.03_00.00.00 -46.48186 -23.86211</span>
-<span class="co">#&gt; 3 20.90524  3 T2_2014.11.03_00.00.00 -46.46182 -23.87548</span>
-<span class="co">#&gt; 4 22.21670  4 T2_2014.11.03_00.00.00 -46.44715 -23.88527</span>
-<span class="co">#&gt; 5 22.05804  5 T2_2014.11.03_00.00.00 -46.43040 -23.89643</span>
-<span class="co">#&gt; 6 22.49484  6 T2_2014.11.03_00.00.00 -46.41243 -23.90841</span>
-<span class="co">#&gt;                      geometry</span>
-<span class="co">#&gt; 1 POINT (-46.49466 -23.85356)</span>
-<span class="co">#&gt; 2 POINT (-46.48186 -23.86211)</span>
-<span class="co">#&gt; 3 POINT (-46.46182 -23.87548)</span>
-<span class="co">#&gt; 4 POINT (-46.44715 -23.88527)</span>
-<span class="co">#&gt; 5  POINT (-46.4304 -23.89643)</span>
-<span class="co">#&gt; 6 POINT (-46.41243 -23.90841)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Simple feature collection with 5 features and 5 fields</span></span>
+<span><span class="co">#&gt; Geometry type: POINT</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -46.48935 ymin: -23.94883 xmax: -46.35176 ymax: -23.85711</span></span>
+<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#&gt;         V1 V2          V3         X         Y                    geometry</span></span>
+<span><span class="co">#&gt; 1 16.29934  1 temperature -46.48935 -23.85711 POINT (-46.48935 -23.85711)</span></span>
+<span><span class="co">#&gt; 2 17.21432  2 temperature -46.46038 -23.87644 POINT (-46.46038 -23.87644)</span></span>
+<span><span class="co">#&gt; 3 17.83019  3 temperature -46.39963 -23.91695 POINT (-46.39963 -23.91695)</span></span>
+<span><span class="co">#&gt; 4 18.65838  4 temperature -46.35535 -23.94644 POINT (-46.35535 -23.94644)</span></span>
+<span><span class="co">#&gt; 5 19.27224  5 temperature -46.35176 -23.94883 POINT (-46.35176 -23.94883)</span></span></code></pre></div>
 <p>Add time variable, select and plot</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">V3</span>, format <span class="op">=</span> <span class="st">"T2_%Y.%m.%d_%H.%M.%S"</span><span class="op">)</span>
-<span class="va">df</span><span class="op">$</span><span class="va">hour</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strptime.html">strftime</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">time</span>, <span class="st">"%H"</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">hour</span> <span class="op">%in%</span> <span class="st">"15"</span>, <span class="op">]</span>, 
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span>, y <span class="op">=</span> <span class="va">V1</span>, colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/factor.html">as.factor</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Temperature ["</span>,<span class="va">degree</span>,<span class="st">"C]"</span><span class="op">)</span><span class="op">)</span>,
-       x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Longitude ["</span>,<span class="va">degree</span>,<span class="st">"]"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, </span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">X</span>, y <span class="op">=</span> <span class="va">V1</span>, colour <span class="op">=</span> <span class="va">V3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Temperature ["</span>,<span class="va">degree</span>,<span class="st">"C]"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Longitude ["</span>,<span class="va">degree</span>,<span class="st">"]"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gallery3_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
   </div>
 
@@ -241,11 +209,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://www.ibarraespinosa.github.io">Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
+  <p></p>
+<p>Developed by <a href="http://www.ibarraespinosa.github.io" class="external-link">Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -253,6 +223,8 @@
 
   
 
+
+  
 
   </body>
 </html>

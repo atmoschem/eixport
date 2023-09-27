@@ -32,7 +32,7 @@ library(ggplot2)
 
 Reading Temperature and crop coast lines for our study area
 ```{r}
-wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
 
 t2 <- wrf_get(wrfo, "T2", as_raster = T)
 t2 <- t2 -273.15
@@ -51,7 +51,7 @@ m <- cbind(c(-46.5, -46.35),  # xini xend
            c(-23.85, -23.95)) # yini yend
 cross = st_linestring(m)
 (cross <- st_sfc(cross, crs = 4326))
-plot(t2$T2_2014.11.03_00.00.00, 
+plot(t2$T2, 
      main = "Temperature using plot", 
      col = cpt("arendal_temperature"))
 plot(cross, add = T)
@@ -88,6 +88,7 @@ points_extract <- function(m, sta) {
 
 ```{r}
 sta = st_as_stars(t2)
+sta <- st_transform(sta, 4326)
 names(sta) <- "temperature"
 df <- points_extract(m, sta = sta)
 ```
@@ -98,10 +99,8 @@ head(df)
 
 Add time variable, select and plot
 ```{r}
-df$time <- as.POSIXct(df$V3, format = "T2_%Y.%m.%d_%H.%M.%S")
-df$hour <- strftime(df$time, "%H")
-ggplot(df[df$hour %in% "15", ], 
-       aes(x = X, y = V1, colour = as.factor(time))) +
+ggplot(df, 
+       aes(x = X, y = V1, colour = V3)) +
   labs(y =expression(paste("Temperature [",degree,"C]")),
        x = expression(paste("Longitude [",degree,"]")))+
   geom_line() +

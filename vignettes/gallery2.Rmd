@@ -28,9 +28,9 @@ library(sf)
 
 Reading Temperature
 ```{r}
-wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
 t2 <- wrf_get(wrfo, "T2", as_raster = T)
-t2 <- t2$T2_2014.11.03_00.00.00 -273.15# we select one
+t2 <- t2$T2 -273.15# we select one
 ```
 
 Find colour palette for temperature

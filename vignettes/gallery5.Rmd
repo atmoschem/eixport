@@ -81,11 +81,9 @@ the coatlines and also another shapefile for reference
 library(eixport)
 library(sf)
 # d02
-g <- wrf_grid("/media/sergio/ext51/WRF4/WPS/geo_em.d02.nc", type = "geo")
-rmsp <- st_read("/media/sergio/0A9AD66165F337622/MEGA/PhDgrive/Dados/OD2007-METRO/od.shp")
+g <- wrf_grid("/media/sergio/ext5/WRF4/WPS/geo_em.d02.nc", type = "geo")
 
 plot(g$geometry,axes = T, reset = F, lwd = 0.1)
-plot(rmsp$geometry, add= T)
 ```
 
 

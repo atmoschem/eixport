@@ -49,7 +49,12 @@
 #'                  tz = "America/Sao_Paulo")
 #' head(df2)
 #' }
-to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){
+to_as4wrf <- function(sdf,
+                      nr = 1,
+                      dmyhm,
+                      tz,
+                      crs = 4326,
+                      islist){
   if(nr <= 0){
     stop("The argument 'nr' must be positive") # nocov
   } else if (class(sdf)[1] != "list") {
@@ -88,7 +93,7 @@ to_as4wrf <- function(sdf, nr = 1, dmyhm, tz, crs = 4326, islist){
         strftime(dft$time_utc, timezone = tz, format = "%d"),
         strftime(dft$time_utc, timezone = tz, format = "%H")
       ))
-  } else if (class(sdf) == "list") {
+  } else if (class(sdf)[1] == "list") {
     # if(class(sdf)[1] == "sf"){
     #   sdf <- lapply(sdf, methods::as, "Spatial")
     # }

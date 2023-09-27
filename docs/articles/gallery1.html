@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,52 +46,22 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/gallery0.html">WRF out statistics</a>
-    </li>
-    <li>
-      <a href="../articles/gallery1.html">plot WRF: Elevation</a>
-    </li>
-    <li>
-      <a href="../articles/gallery2.html">plot WRF: Temperature</a>
-    </li>
-    <li>
-      <a href="../articles/gallery3.html">plot WRF: Cross sections</a>
-    </li>
-    <li>
-      <a href="../articles/gallery5.html">plot WRF: Domains</a>
-    </li>
-  </ul>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/atmoschem/eixport/">
+  <a href="https://github.com/atmoschem/eixport/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -104,81 +76,99 @@
 
       
 
-      </header><script src="gallery1_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>plot WRF: Elevation</h1>
-                        <h4 class="author">Sergio Ibarra-Espinosa</h4>
+                        <h4 data-toc-skip class="author">Sergio
+Ibarra-Espinosa</h4>
             
-            <h4 class="date">2021-07-17</h4>
+            <h4 data-toc-skip class="date">2023-09-26</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/master/vignettes/gallery1.Rmd"><code>vignettes/gallery1.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/HEAD/vignettes/gallery1.Rmd" class="external-link"><code>vignettes/gallery1.Rmd</code></a></small>
       <div class="hidden name"><code>gallery1.Rmd</code></div>
 
     </div>
 
     
     
-<p>Here we attempt to provide useful code to generate figures from WRF outputs based on known galleries. For instance, NCL and WRF-Python provides extensive examples for plotting WRF outputs. Therefore, we aim to replicate some of these. Our approach to read wrfout files is based on eixport which relies r packages with GDAL bindings such as raster and stars. We do not try to provide a full gallery, instead, some basics and necessary plots to inspire other R used and receive more examples so share with the community.</p>
-<div id="packages" class="section level2">
-<h2 class="hasAnchor">
-<a href="#packages" class="anchor"></a>packages</h2>
+<p>Here we attempt to provide useful code to generate figures from WRF
+outputs based on known galleries. For instance, NCL and WRF-Python
+provides extensive examples for plotting WRF outputs. Therefore, we aim
+to replicate some of these. Our approach to read wrfout files is based
+on eixport which relies r packages with GDAL bindings such as raster and
+stars. We do not try to provide a full gallery, instead, some basics and
+necessary plots to inspire other R used and receive more examples so
+share with the community.</p>
+<div class="section level2">
+<h2 id="packages">packages<a class="anchor" aria-label="anchor" href="#packages"></a>
+</h2>
 <ul>
 <li>
-<a href="https://atmoschem.github.io/eixport/">eixport</a> read and manipulate wrf files.</li>
+<a href="https://atmoschem.github.io/eixport/" class="external-link">eixport</a> read and
+manipulate wrf files.</li>
 <li>
-<a href="https://github.com/rspatial/raster">raster</a> for gridded and raster data.</li>
+<a href="https://github.com/rspatial/raster" class="external-link">raster</a> for gridded
+and raster data.</li>
 <li>
-<a href="https://github.com/r-spatial/stars">stars</a> for gridded and raster data.</li>
+<a href="https://github.com/r-spatial/stars" class="external-link">stars</a> for gridded
+and raster data.</li>
 <li>
-<a href="https://github.com/ibarraespinosa/cptcity">cptcity</a> colour palettes.</li>
+<a href="https://github.com/ibarraespinosa/cptcity" class="external-link">cptcity</a>
+colour palettes.</li>
 <li>
-<a href="https://github.com/r-spatial/sf">sf</a> for spatial vector data.</li>
+<a href="https://github.com/r-spatial/sf" class="external-link">sf</a> for spatial vector
+data.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/">eixport</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: sp</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: abind</span>
-<span class="co">#&gt; Loading required package: sf</span>
-<span class="co">#&gt; Linking to GEOS 3.9.0, GDAL 3.2.2, PROJ 7.2.1</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity">cptcity</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></code></pre></div>
-<p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl">NCL</a>:</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/" class="external-link">eixport</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
+<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
+<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
+<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
+<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
+<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
+<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: sp</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/" class="external-link">stars</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: abind</span></span>
+<span><span class="co">#&gt; Loading required package: sf</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity" class="external-link">cptcity</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></code></pre></div>
+<p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl" class="external-link">NCL</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"</span></span></code></pre></div>
 <p>Reading HGT from wrfout</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="va">wrfo</span>,  <span class="st">"HGT"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="co">#&gt; Warning in wrf_get(wrfo, "HGT", as_raster = T): The option as_raster will be</span>
-<span class="co">#&gt; deprecated, see eixport::wrf_raster()</span>
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="va">HGT</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># by default one variable with each time, so we select one</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_get.html">wrf_get</a></span><span class="op">(</span><span class="va">wrfo</span>,  <span class="st">"HGT"</span>, as_raster <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">HGT</span> <span class="op">&lt;-</span> <span class="va">HGT</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># by default one variable with each time, so we select one</span></span></code></pre></div>
 <p>Adding coastlines and cropping for our study area</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ropenscilabs/rnaturalearth">rnaturalearth</a></span><span class="op">)</span>
-<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_countries.html">ne_countries</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"small"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>
-<span class="co">#&gt; Warning in fun(libname, pkgname): rgeos: versions of GEOS runtime 3.9.0-CAPI-1.16.2</span>
-<span class="co">#&gt; and GEOS at installation 3.8.0-CAPI-1.13.1differ</span>
-<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fl">31983</span><span class="op">)</span>
-<span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">HGT</span><span class="op">)</span>, <span class="fl">31983</span><span class="op">)</span>
-<span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html">st_cast</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">cl</span>, <span class="va">HGT</span><span class="op">)</span>, <span class="st">"LINESTRING"</span><span class="op">)</span>
-<span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span>
-<span class="co">#&gt; geometries</span>
-<span class="co">#&gt; Warning in st_cast.sf(st_crop(cl, HGT), "LINESTRING"): repeating attributes for</span>
-<span class="co">#&gt; all sub-geometries for which they may not be constant</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Support for Spatial objects (`sp`) will be deprecated in {rnaturalearth} and will be removed in a future release of the package. Please use `sf` objects with {rnaturalearth}. For example: `ne_download(returnclass = 'sf')`</span></span>
+<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"small"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fl">31983</span><span class="op">)</span></span>
+<span><span class="va">HGT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html" class="external-link">st_as_stars</a></span><span class="op">(</span><span class="va">HGT</span><span class="op">)</span>, <span class="fl">31983</span><span class="op">)</span></span>
+<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html" class="external-link">st_cast</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html" class="external-link">st_crop</a></span><span class="op">(</span><span class="va">cl</span>, <span class="va">HGT</span><span class="op">)</span>, <span class="st">"LINESTRING"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout</span></span>
+<span><span class="co">#&gt; all geometries</span></span>
+<span><span class="co">#&gt; Warning in st_cast.sf(st_crop(cl, HGT), "LINESTRING"): repeating attributes for</span></span>
+<span><span class="co">#&gt; all sub-geometries for which they may not be constant</span></span></code></pre></div>
 <p>Find colour palette for elevation</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html">find_cpt</a></span><span class="op">(</span><span class="st">"elevation"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "gmt_GMT_elevation" "grass_elevation"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/find_cpt.html" class="external-link">find_cpt</a></span><span class="op">(</span><span class="st">"elevation"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "gmt_GMT_elevation" "grass_elevation"</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),</span>
-<span class="co">#       col.regions = cpt("grass_elevation"),</span>
-<span class="co">#       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#spplot(HGT, main = "HGT using spplot", scales=list(draw = TRUE),</span></span>
+<span><span class="co">#       col.regions = cpt("grass_elevation"),</span></span>
+<span><span class="co">#       sp.layout = list("sp.lines", as_Spatial(cl), col = "black"))</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu">classInt</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals</a></span><span class="op">(</span><span class="va">HGT</span><span class="op">$</span><span class="va">HGT_2014.11.03_00.00.00</span>, n <span class="op">=</span> <span class="fl">100</span>, style <span class="op">=</span> <span class="st">"pretty"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">HGT</span>, axes <span class="op">=</span> <span class="cn">T</span>, main <span class="op">=</span> <span class="st">"HGT using stars"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span>, n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">cols</span><span class="op">$</span><span class="va">brks</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="va">cols</span><span class="op">$</span><span class="va">brks</span>, reset <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/raster/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cl</span><span class="op">$</span><span class="va">geometry</span>, add<span class="op">=</span> <span class="cn">T</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu">classInt</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html" class="external-link">classIntervals</a></span><span class="op">(</span><span class="va">HGT</span><span class="op">$</span><span class="va">HGT</span>, n <span class="op">=</span> <span class="fl">100</span>, style <span class="op">=</span> <span class="st">"pretty"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">HGT</span>, axes <span class="op">=</span> <span class="cn">T</span>, main <span class="op">=</span> <span class="st">"HGT using stars"</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cptcity/man/cpt.html" class="external-link">cpt</a></span><span class="op">(</span><span class="st">"grass_elevation"</span>, n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cols</span><span class="op">$</span><span class="va">brks</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="va">cols</span><span class="op">$</span><span class="va">brks</span>, reset <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">cl</span><span class="op">$</span><span class="va">geometry</span>, add<span class="op">=</span> <span class="cn">T</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gallery1_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 </div>
   </div>
@@ -194,11 +184,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://www.ibarraespinosa.github.io">Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
+  <p></p>
+<p>Developed by <a href="http://www.ibarraespinosa.github.io" class="external-link">Sergio Ibarra-Espinosa</a>, Daniel Schuch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -206,6 +198,8 @@
 
   
 
+
+  
 
   </body>
 </html>

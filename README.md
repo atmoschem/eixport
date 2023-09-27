@@ -2,18 +2,23 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # eixport <img src="man/figures/logo.gif" align="right" alt="" width="140" />
-<!-- badges: start -->
-[![Build status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
-[![Coverage Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
-[![cran checks](https://badges.cranchecks.info/worst/eixport.svg)](https://cran.r-project.org/web/checks/check_results_eixport.html)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eixport)](http://cran.r-project.org/web/packages/eixport)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](http://cran.r-project.org/package=eixport)
-[![DOI](http://joss.theoj.org/papers/10.21105/joss.00607/status.svg)](https://doi.org/10.21105/joss.00607)
-[![DOI](https://zenodo.org/badge/106145968.svg)](https://zenodo.org/badge/latestdoi/106145968) 
-[![Github Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
-<!-- badges: end -->
 
-## Exporting emissions to atmospheric models, eixport: 0.5.1
+[![Travis-CI Build
+Status](https://travis-ci.org/atmoschem/eixport.svg?branch=master)](https://travis-ci.org/atmoschem/eixport)[![Build
+status](https://ci.appveyor.com/api/projects/status/frk36kmayf8yff70?svg=true)](https://ci.appveyor.com/project/Schuch666/eixport)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/atmoschem/eixport/master.svg)](https://codecov.io/github/atmoschem/eixport?branch=master)
+[![DOI](https://zenodo.org/badge/106145968.svg)](https://zenodo.org/badge/latestdoi/106145968)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eixport)](http://cran.r-project.org/web/packages/eixport)
+[![CRAN
+Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eixport?color=orange)](http://cran.r-project.org/package=eixport)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00607/status.svg)](https://doi.org/10.21105/joss.00607)
+[![cran
+checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.org/web/checks/check_results_eixport.html)
+[![Github
+Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
+
+## Exporting emissions to atmospheric models, eixport: 0.6.0
 
 Emissions are mass that affects atmosphere in complex ways, not only
 physical, but also, in the health of humans, ecosystems, economically,
@@ -44,42 +49,50 @@ devtools::install_github("atmoschem/eixport")
 
 ## Some functions:
 
--   [get\_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
-    Download EDGAR emissions data.
--   [to\_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
-    Export emissions to other formats
--   [to\_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
-    Combine total/spatial/temporal/split and write emission to file
--   [to\_brams\_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
-    inputs for SPM BRAMS
--   [wrf\_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
-    Create spatial profile for WRF-Chem
--   [wrf\_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
-    Create emission files to the WRF-Chem
--   [wrf\_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
-    simple but useful plot
--   [wrf\_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
-    Read variables
--   [wrf\_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
-    Write variables
--   [to\_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
-    Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
--   [to\_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
-    To generate inputs for MUNICH model.
+- [get_edgar](https://atmoschem.github.io/eixport/reference/get_edgar.html):
+  Download EDGAR emissions data.
+- [to_rline](https://atmoschem.github.io/eixport/reference/to_rline.html):
+  Export emissions to other formats
+- [to_wrf](https://atmoschem.github.io/eixport/reference/to_wrf.html):
+  Combine total/spatial/temporal/split and write emission to file
+- [to_brams_spm](https://atmoschem.github.io/eixport/reference/to_brams_spm.html):
+  inputs for SPM BRAMS
+- [wrf_profile](https://atmoschem.github.io/eixport/reference/wrf_profile.html):
+  Create spatial profile for WRF-Chem
+- [wrf_create](https://atmoschem.github.io/eixport/reference/wrf_create.html):
+  Create emission files to the WRF-Chem
+- [wrf_plot](https://atmoschem.github.io/eixport/reference/wrf_plot.html):
+  simple but useful plot
+- [wrf_get](https://atmoschem.github.io/eixport/reference/wrf_get.html):
+  Read variables
+- [wrf_put](https://atmoschem.github.io/eixport/reference/wrf_put.html):
+  Write variables
+- [to_as4wrf](https://atmoschem.github.io/eixport/reference/to_as4wrf.html):
+  Create WRF-Chem inputs using NCL scrip AS4WRF.ncl.
+- [to_munich](https://atmoschem.github.io/eixport/reference/to_munich.html):
+  To generate inputs for MUNICH model.
 
 ### Summary
 
 ``` r
 library(eixport)
+#> The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+#> which was just loaded, will retire in October 2023.
+#> Please refer to R-spatial evolution reports for details, especially
+#> https://r-spatial.org/r/2023/05/15/evolution4.html.
+#> It may be desirable to make the sf package available;
+#> package maintainers should consider adding sf to Suggests:.
+#> The sp package is now running under evolution status 2
+#>      (status 2 uses the sf package in place of rgdal)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 wrf_summary(file = file)
 #>   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%
 #>                Min.       1st Qu.        Median          Mean       3rd Qu.
-#> Times  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09  1.312168e+09
+#> Times  1.312178e+09  1.312178e+09  1.312178e+09  1.312178e+09  1.312178e+09
 #> XLAT  -2.438538e+01 -2.405025e+01 -2.370471e+01 -2.370379e+01 -2.335773e+01
 #> XLONG -4.742899e+01 -4.696930e+01 -4.650305e+01 -4.650304e+01 -4.603427e+01
 #>                Max.        sum
-#> Times  1.312168e+09         NA
+#> Times  1.312178e+09         NA
 #> XLAT  -2.301877e+01  -76160.28
 #> XLONG -4.558643e+01 -149414.28
 ```

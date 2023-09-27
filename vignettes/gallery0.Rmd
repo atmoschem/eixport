@@ -38,7 +38,7 @@ Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
 First lets get a summary of a WRF output file
 ```{r}
-wrfo <- "/media/sergio/ext41/wrfo_sebrazil/wrfout_d02_2014-11-03_000000"
+wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
 (dt <- wrf_meta(wrfo)$vars)
 ```
 Now we can select some variables
@@ -50,6 +50,6 @@ Now we can select some variables
 Now get some statistics
 
 ```{r}
-wrf_summary(wrfo, c("o3", "PM2_5_DRY", "T", "U", "V"))
+wrf_summary(wrfo, vars = c("co"))
 ```
 
