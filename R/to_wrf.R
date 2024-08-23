@@ -10,6 +10,7 @@
 #' @param norm if the spatial weights need to be normalized (modifier)
 #' @param profile temporal profile to expand the emissions (modifier)
 #' @param weights weight of each species (modifier)
+#' @param k constant passed to wrf_put
 #' @param verbose display additional information
 #'
 #' @note length(profile) must be the number of times in the emission
@@ -76,6 +77,7 @@ to_wrf <- function(POL,
                    norm = FALSE,
                    profile = 1,
                    weights = 1,
+                   k = 1,
                    verbose = TRUE){
 
   if(is.matrix(POL)){
@@ -113,7 +115,7 @@ to_wrf <- function(POL,
       }
     }
     if(verbose)
-      cat(paste("writing emissions:", name[i],"weight", weights[i],'on file',file,'\n'))
-    wrf_put(file,name = name[i],weights[i]*VAR)
+      cat(paste("writing emissions:", name[i],"weight", k * weights[i],'on file',file,'\n'))
+    wrf_put(file,name = name[i],weights[i]*VAR, k = k)
   }
 }
