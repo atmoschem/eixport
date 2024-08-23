@@ -12,6 +12,7 @@ to_wrf(
   norm = FALSE,
   profile = 1,
   weights = 1,
+  k = 1,
   verbose = TRUE
 )
 }
@@ -29,6 +30,8 @@ to_wrf(
 \item{profile}{temporal profile to expand the emissions (modifier)}
 
 \item{weights}{weight of each species (modifier)}
+
+\item{k}{constant passed to wrf_put}
 
 \item{verbose}{display additional information}
 }
