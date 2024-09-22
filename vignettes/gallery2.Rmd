@@ -28,9 +28,9 @@ library(sf)
 
 Reading Temperature
 ```{r}
-wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
+wrfo <- "/home/sergio/R/x86_64-pc-linux-gnu-library/4.3/helios/extras/wrfout_d01_2020-01-01_01%3A00%3A00_sub.nc"
 t2 <- wrf_get(wrfo, "T2", as_raster = T)
-t2 <- t2$T2 -273.15# we select one
+t2[] <- t2[] -273.15# we select one
 ```
 
 Find colour palette for temperature
@@ -41,8 +41,8 @@ find_cpt("temperature")
 
 Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 ```{r, fig.width=6,fig.height=4}
-plot(t2, main = "Temperature using plot", col = cpt("arendal_temperature"))
-contour(t2, add = T)
+plot(t2[[1]], main = "Temperature using plot", col = cpt("arendal_temperature"))
+contour(t2[[1]], add = T)
 ```
 
 ```{r, fig.width=6,fig.height=4}

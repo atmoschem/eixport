@@ -18,7 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.6.0
+## Exporting emissions to atmospheric models, eixport: 0.6.1
 
 Emissions are mass that affects atmosphere in complex ways, not only
 physical, but also, in the health of humans, ecosystems, economically,
@@ -76,14 +76,6 @@ devtools::install_github("atmoschem/eixport")
 
 ``` r
 library(eixport)
-#> The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
-#> which was just loaded, will retire in October 2023.
-#> Please refer to R-spatial evolution reports for details, especially
-#> https://r-spatial.org/r/2023/05/15/evolution4.html.
-#> It may be desirable to make the sf package available;
-#> package maintainers should consider adding sf to Suggests:.
-#> The sp package is now running under evolution status 2
-#>      (status 2 uses the sf package in place of rgdal)
 file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 wrf_summary(file = file)
 #>   |                                                                              |                                                                      |   0%  |                                                                              |=======================                                               |  33%  |                                                                              |===============================================                       |  67%  |                                                                              |======================================================================| 100%

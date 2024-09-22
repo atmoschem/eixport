@@ -32,10 +32,9 @@ library(ggplot2)
 
 Reading Temperature and crop coast lines for our study area
 ```{r}
-wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
-
-t2 <- wrf_get(wrfo, "T2", as_raster = T)
-t2 <- t2 -273.15
+wrfo <- "/home/sergio/R/x86_64-pc-linux-gnu-library/4.3/helios/extras/wrfout_d01_2020-01-01_01%3A00%3A00_sub.nc"
+t2 <- mean(wrf_get(wrfo, "T2", as_raster = T))
+t2[] <- t2[] -273.15# we select one
 ```
 
 Find colour palette for temperature
@@ -47,21 +46,20 @@ find_cpt("temperature")
 Let us create a line between c(-46.5,-23.85) and c(-46.35, -23.95)
 
 ```{r}
-m <- cbind(c(-46.5, -46.35),  # xini xend
-           c(-23.85, -23.95)) # yini yend
+cx <- as.data.frame(coordinates(projectRaster(t2, crs="+proj=longlat")))
+
+m <- cbind(c(min(cx$x),  # xini
+             max(cx$y)), # xend
+           c(min(cx$y),  # yini
+             max(cx$y))) # yend
 cross = st_linestring(m)
 (cross <- st_sfc(cross, crs = 4326))
-plot(t2$T2, 
+plot(mean(t2), 
      main = "Temperature using plot", 
      col = cpt("arendal_temperature"))
 plot(cross, add = T)
 ```
 
-Now, define several lines
-```{r}
-m2 <- cbind(c(-46.05, -46.36),  # xini xend
-            c(-23.85, -23.95))   # yini yend
-```
 
 Define a helper function
 ```{r}
@@ -99,6 +97,7 @@ head(df)
 
 Add time variable, select and plot
 ```{r}
+library(ggplot2)
 ggplot(df, 
        aes(x = X, y = V1, colour = V3)) +
   labs(y =expression(paste("Temperature [",degree,"C]")),

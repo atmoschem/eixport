@@ -38,18 +38,18 @@ Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
 First lets get a summary of a WRF output file
 ```{r}
-wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
+wrfo <- "/home/sergio/R/x86_64-pc-linux-gnu-library/4.3/helios/extras/wrfout_d01_2020-01-01_01%3A00%3A00_sub.nc"
 (dt <- wrf_meta(wrfo)$vars)
 ```
 Now we can select some variables
 
 ```{r}
-(vars <- dt[dt$MemoryOrder == "XYZ", ]$vars)
+(vars <- dt$vars)
 ```
 
 Now get some statistics
 
 ```{r}
-wrf_summary(wrfo, vars = c("co"))
+wrf_summary(wrfo, vars = c("T2"))
 ```
 

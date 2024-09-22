@@ -50,7 +50,7 @@
 #'
 #' @author Daniel Schuch
 #'
-#' @source \url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
+#' @source \url{https://www.ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
 #'
 #' @details  \url{https://en.wikipedia.org/wiki/Defense_Meteorological_Satellite_Program}
 #'

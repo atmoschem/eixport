@@ -77,7 +77,7 @@ now let us plot the domains if they are in the right place!
 
 First let us read the grid from the geo_em.d02.nc file, let us add
 the coatlines and also another shapefile for reference
-```{r, fig.width=10, fig.height=8, fig.align="center"}
+```{r, fig.width=10, fig.height=8, fig.align="center", eval  = FALSE}
 library(eixport)
 library(sf)
 # d02
@@ -90,7 +90,7 @@ plot(g$geometry,axes = T, reset = F, lwd = 0.1)
 And then with leaflet would be
 
 
-```{r}
+```{r, eval = F}
 library(leaflet)
 
 #mapview(g)
