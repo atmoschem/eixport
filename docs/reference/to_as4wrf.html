@@ -26,7 +26,7 @@ by Vera-Vala et al (2016)'><meta property="og:image" content="/logo.png"><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
       </span>
     </div>
 
@@ -117,8 +117,8 @@ vehicular emissions on the formation of fine particles in the Sao Paulo
 Metropolitan Area: a numerical study with the WRF-Chem model, Atmos. Chem.
 Phys., 16, 777-797, doi:10.5194/acp-16-777-2016, 2016.
 A good website with timezones is http://www.timezoneconverter.com/cgi-bin/tzc
-The crs is the same as used by <code>sf</code> package
-It returns a dataframe with id,, long, lat, pollutants, time_lt, time_utc
+The crs is the same as used by code sf package
+It returns a dataframe with id,s long, lat, pollutants, time_lt, time_utc
 and day-UTC-hour (dutch)
 The pollutants for the CBMZ are: e_so2, e_no, e_ald, e_hcho, e_ora2, e_nh3
 e_hc3, e_hc5, e_hc8, e_eth, e_co, e_ol2, e_olt, e_oli, e_tol, e_xyl, e_ket
@@ -133,6 +133,7 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">gCO</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">to_as4wrf</span><span class="op">(</span>sdf <span class="op">=</span> <span class="va">gCO</span>,</span></span>
 <span class="r-in"><span>                dmyhm <span class="op">=</span> <span class="st">"29-04-2018 00:00"</span>,</span></span>
@@ -142,16 +143,8 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc</p>
 <span class="r-in"><span>                 dmyhm <span class="op">=</span> <span class="st">"29-04-2018 00:00"</span>,</span></span>
 <span class="r-in"><span>                 tz <span class="op">=</span> <span class="st">"America/Sao_Paulo"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id      long    lat       co       pm    time_lt            time_utc dutch</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 -46.80660 -23.62 8391.282 8391.282 2018-04-29 2018-04-29 03:00:00  2821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2 -46.80172 -23.62 8340.653 8340.653 2018-04-29 2018-04-29 03:00:00  2821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  3 -46.79684 -23.62 8549.459 8549.459 2018-04-29 2018-04-29 03:00:00  2821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  4 -46.79196 -23.62 9055.417 9055.417 2018-04-29 2018-04-29 03:00:00  2821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  5 -46.78708 -23.62 8378.953 8378.953 2018-04-29 2018-04-29 03:00:00  2821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  6 -46.78220 -23.62    0.000    0.000 2018-04-29 2018-04-29 03:00:00  2821</span>
 </code></pre></div>
     </div>
   </div>
