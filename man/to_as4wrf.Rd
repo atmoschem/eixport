@@ -45,8 +45,8 @@ vehicular emissions on the formation of fine particles in the Sao Paulo
 Metropolitan Area: a numerical study with the WRF-Chem model, Atmos. Chem.
 Phys., 16, 777-797, doi:10.5194/acp-16-777-2016, 2016.
 A good website with timezones is http://www.timezoneconverter.com/cgi-bin/tzc
-The crs is the same as used by \code{\link{sf}} package
-It returns a dataframe with id,, long, lat, pollutants, time_lt, time_utc
+The crs is the same as used by code sf package
+It returns a dataframe with id,s long, lat, pollutants, time_lt, time_utc
 and day-UTC-hour (dutch)
 The pollutants for the CBMZ are: e_so2, e_no, e_ald, e_hcho, e_ora2, e_nh3
 e_hc3, e_hc5, e_hc8, e_eth, e_co, e_ol2, e_olt, e_oli, e_tol, e_xyl, e_ket
@@ -55,6 +55,7 @@ e_no3i, e_no3j, e_orgi, e_orgj, e_eci, e_ecj, e_so4c, e_no3c, e_orgc, e_ecc
 }
 \examples{
 {
+\dontrun{
 data(gCO)
 df <- to_as4wrf(sdf = gCO,
                 dmyhm = "29-04-2018 00:00",
@@ -64,6 +65,7 @@ df2 <- to_as4wrf(sdf = list(co = gCO, pm = gCO),
                  dmyhm = "29-04-2018 00:00",
                  tz = "America/Sao_Paulo")
 head(df2)
+}
 }
 }
 \seealso{

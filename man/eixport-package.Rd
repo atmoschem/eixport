@@ -19,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Sergio Ibarra-Espinosa \email{sergio.ibarra@usp.br} (\href{https://orcid.org/0000-0002-3162-1905}{ORCID})
+\strong{Maintainer}: Sergio Ibarra-Espinosa \email{zergioibarra@gmail.com} (\href{https://orcid.org/0000-0002-3162-1905}{ORCID})
 
 Authors:
 \itemize{

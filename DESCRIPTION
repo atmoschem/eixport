@@ -1,12 +1,12 @@
 Package: eixport
 Title: Export Emissions to Atmospheric Models
-Version: 0.6.0
-Date: 2023-09-26
+Version: 0.6.2
+Date: 2024-09-22
 Authors@R: c(
   person(given = "Sergio",
          family = "Ibarra-Espinosa",
          role = c("aut", "cre"),
-         email = "sergio.ibarra@usp.br",
+         email = "zergioibarra@gmail.com",
          comment = c(ORCID = "0000-0002-3162-1905")),
   person(given = "Daniel",
          family = "Schuch",

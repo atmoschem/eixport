@@ -1,12 +1,9 @@
 citHeader("To cite eixport in publications use at least the first, if not both:")
 
-citEntry(entry = "article",
+bibentry(bibtype = "article",
    title          = "eixport: An R package to export emissions to atmospheric models",
    journal		    = "The Journal of Open Source Software",
-   author         = personList(
-                    person("Sergio", "Ibarra-Espinosa"),
-                    person("Daniel", "Schuch"),
-                    person("Edmilson", "Dias de Freitas")),
+   author         = "Sergio Ibarra-Espinosa and Daniel Schuch and Edmilson Dias de Freitas",
    year           = "2018",
    doi            = "10.21105/joss.00607",
    url            = "https://joss.theoj.org/papers/10.21105/joss.00607",
@@ -20,3 +17,4 @@ citEntry(entry = "article",
 citation(auto = meta)
 
 citFooter("Thanks")
+

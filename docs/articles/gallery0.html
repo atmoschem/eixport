@@ -12,14 +12,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="WRF out statistics">
-<meta property="og:description" content="eixport">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -32,7 +30,7 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -46,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eixport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
       </span>
     </div>
 
@@ -63,7 +61,7 @@
 <li>
   <a href="https://github.com/atmoschem/eixport/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -74,7 +72,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -83,7 +81,7 @@
                         <h4 data-toc-skip class="author">Sergio
 Ibarra-Espinosa</h4>
             
-            <h4 data-toc-skip class="date">2023-09-26</h4>
+            <h4 data-toc-skip class="date">2024-09-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/atmoschem/eixport/blob/HEAD/vignettes/gallery0.Rmd" class="external-link"><code>vignettes/gallery0.Rmd</code></a></small>
       <div class="hidden name"><code>gallery0.Rmd</code></div>
@@ -122,828 +120,43 @@ data.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://atmoschem.github.io/eixport/" class="external-link">eixport</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
-<span><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
-<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
-<span><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
-<span><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: sp</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/" class="external-link">stars</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: abind</span></span>
 <span><span class="co">#&gt; Loading required package: sf</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.11.1, GDAL 3.6.2, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ibarraespinosa/cptcity" class="external-link">cptcity</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></code></pre></div>
 <p>Based on <a href="https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl" class="external-link">NCL</a>:</p>
 <p>First lets get a summary of a WRF output file</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"</span></span>
+<code class="sourceCode R"><span><span class="va">wrfo</span> <span class="op">&lt;-</span> <span class="st">"/home/sergio/R/x86_64-pc-linux-gnu-library/4.3/helios/extras/wrfout_d01_2020-01-01_01%3A00%3A00_sub.nc"</span></span>
 <span><span class="op">(</span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wrf_meta.html">wrf_meta</a></span><span class="op">(</span><span class="va">wrfo</span><span class="op">)</span><span class="op">$</span><span class="va">vars</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in rbind(c(FieldType = "104", MemoryOrder = "XYZ", description =</span></span>
-<span><span class="co">#&gt; "Aerosol Optical Depth", : number of columns of result is not a multiple of</span></span>
-<span><span class="co">#&gt; vector length (arg 87)</span></span>
-<span><span class="co">#&gt;                      vars FieldType MemoryOrder</span></span>
-<span><span class="co">#&gt; 156              ACGRDFLX       104         XY </span></span>
-<span><span class="co">#&gt; 228                 ACHFX       104         XY </span></span>
-<span><span class="co">#&gt; 229                 ACLHF       104         XY </span></span>
-<span><span class="co">#&gt; 64                   aco3       104         XYZ</span></span>
-<span><span class="co">#&gt; 157                ACSNOM       104         XY </span></span>
-<span><span class="co">#&gt; 218                ALBBCK       104         XY </span></span>
-<span><span class="co">#&gt; 216                ALBEDO       104         XY </span></span>
-<span><span class="co">#&gt; 43                    ald       104         XYZ</span></span>
-<span><span class="co">#&gt; 1                 AOD_OUT       104         XYZ</span></span>
-<span><span class="co">#&gt; 2               AOD2D_OUT       104         XY </span></span>
-<span><span class="co">#&gt; 3              ATOP2D_OUT       104         XY </span></span>
-<span><span class="co">#&gt; 241                   C1F       104         Z  </span></span>
-<span><span class="co">#&gt; 239                   C1H       104         Z  </span></span>
-<span><span class="co">#&gt; 242                   C2F       104         Z  </span></span>
-<span><span class="co">#&gt; 240                   C2H       104         Z  </span></span>
-<span><span class="co">#&gt; 245                   C3F       104         Z  </span></span>
-<span><span class="co">#&gt; 243                   C3H       104         Z  </span></span>
-<span><span class="co">#&gt; 246                   C4F       104         Z  </span></span>
-<span><span class="co">#&gt; 244                   C4H       104         Z  </span></span>
-<span><span class="co">#&gt; 160                CANWAT       104         XY </span></span>
-<span><span class="co">#&gt; 130                   CF1       104         0  </span></span>
-<span><span class="co">#&gt; 131                   CF2       104         0  </span></span>
-<span><span class="co">#&gt; 132                   CF3       104         0  </span></span>
-<span><span class="co">#&gt; 116                   CFN       104         0  </span></span>
-<span><span class="co">#&gt; 117                  CFN1       104         0  </span></span>
-<span><span class="co">#&gt; 76                    ch4       104         XYZ</span></span>
-<span><span class="co">#&gt; 217                  CLAT       104         XY </span></span>
-<span><span class="co">#&gt; 207                CLDFRA       104         XYZ</span></span>
-<span><span class="co">#&gt; 6                 CLDFRA2       104         XYZ</span></span>
-<span><span class="co">#&gt; 81                  CN2O5       104         XYZ</span></span>
-<span><span class="co">#&gt; 58                     co       104         XYZ</span></span>
-<span><span class="co">#&gt; 75                    co2       104         XYZ</span></span>
-<span><span class="co">#&gt; 189              COSALPHA       104         XY </span></span>
-<span><span class="co">#&gt; 162                COSZEN       104         XY </span></span>
-<span><span class="co">#&gt; 73                    csl       104         XYZ</span></span>
-<span><span class="co">#&gt; 71                    dcb       104         XYZ</span></span>
-<span><span class="co">#&gt; 29                  DMS_0       104         XY </span></span>
-<span><span class="co">#&gt; 115                    DN       104         Z  </span></span>
-<span><span class="co">#&gt; 114                   DNW       104         Z  </span></span>
-<span><span class="co">#&gt; 22            DRY_DEP_LEN       104         XYZ</span></span>
-<span><span class="co">#&gt; 12              DRYDEPVEL       104         XY </span></span>
-<span><span class="co">#&gt; 26                dvel_o3       104         XYZ</span></span>
-<span><span class="co">#&gt; 90                    DZS       104         Z  </span></span>
-<span><span class="co">#&gt; 187                     E       104         XY </span></span>
-<span><span class="co">#&gt; 24               EBIO_API       104         XY </span></span>
-<span><span class="co">#&gt; 23               EBIO_ISO       104         XY </span></span>
-<span><span class="co">#&gt; 13                 ebu_oc       104         XYZ</span></span>
-<span><span class="co">#&gt; 165                EDMF_A       104         XYZ</span></span>
-<span><span class="co">#&gt; 169              EDMF_ENT       104         XYZ</span></span>
-<span><span class="co">#&gt; 170               EDMF_QC       104         XYZ</span></span>
-<span><span class="co">#&gt; 168               EDMF_QT       104         XYZ</span></span>
-<span><span class="co">#&gt; 167              EDMF_THL       104         XYZ</span></span>
-<span><span class="co">#&gt; 166                EDMF_W       104         XYZ</span></span>
-<span><span class="co">#&gt; 175                EL_PBL       104         XYZ</span></span>
-<span><span class="co">#&gt; 219                 EMISS       104         XY </span></span>
-<span><span class="co">#&gt; 57                    eth       104         XYZ</span></span>
-<span><span class="co">#&gt; 8                EVAPPROD       104         XYZ</span></span>
-<span><span class="co">#&gt; 186                     F       104         XY </span></span>
-<span><span class="co">#&gt; 19          FIRESIZE_AGEF       104         XY </span></span>
-<span><span class="co">#&gt; 21          FIRESIZE_AGGR       104         XY </span></span>
-<span><span class="co">#&gt; 20          FIRESIZE_AGSV       104         XY </span></span>
-<span><span class="co">#&gt; 18          FIRESIZE_AGTF       104         XY </span></span>
-<span><span class="co">#&gt; 110                   FNM       104         Z  </span></span>
-<span><span class="co">#&gt; 111                   FNP       104         Z  </span></span>
-<span><span class="co">#&gt; 80                GAMN2O5       104         XYZ</span></span>
-<span><span class="co">#&gt; 209                   GLW       104         XY </span></span>
-<span><span class="co">#&gt; 69                    gly       104         XYZ</span></span>
-<span><span class="co">#&gt; 205             GRAUPELNC       104         XY </span></span>
-<span><span class="co">#&gt; 155                GRDFLX       104         XY </span></span>
-<span><span class="co">#&gt; 42                   h2o2       104         XYZ</span></span>
-<span><span class="co">#&gt; 206                HAILNC       104         XY </span></span>
-<span><span class="co">#&gt; 54                    hc3       104         XYZ</span></span>
-<span><span class="co">#&gt; 55                    hc5       104         XYZ</span></span>
-<span><span class="co">#&gt; 56                    hc8       104         XYZ</span></span>
-<span><span class="co">#&gt; 44                   hcho       104         XYZ</span></span>
-<span><span class="co">#&gt; 225                   HFX       104         XY </span></span>
-<span><span class="co">#&gt; 99              HFX_FORCE       104         0  </span></span>
-<span><span class="co">#&gt; 102        HFX_FORCE_TEND       104         0  </span></span>
-<span><span class="co">#&gt; 190                   HGT       104         XY </span></span>
-<span><span class="co">#&gt; 41                   hno3       104         XYZ</span></span>
-<span><span class="co">#&gt; 67                   hno4       104         XYZ</span></span>
-<span><span class="co">#&gt; 77                     ho       104         XYZ</span></span>
-<span><span class="co">#&gt; 78                    ho2       104         XYZ</span></span>
-<span><span class="co">#&gt; 66                   hono       104         XYZ</span></span>
-<span><span class="co">#&gt; 4                ICN_DIAG       104         XYZ</span></span>
-<span><span class="co">#&gt; 235 ISEEDARR_RAND_PERTURB       106         Z  </span></span>
-<span><span class="co">#&gt; 234        ISEEDARR_SKEBS       106         Z  </span></span>
-<span><span class="co">#&gt; 233         ISEEDARR_SPPT       106         Z  </span></span>
-<span><span class="co">#&gt; 236   ISEEDARRAY_SPP_CONV       106         Z  </span></span>
-<span><span class="co">#&gt; 238    ISEEDARRAY_SPP_LSM       106         Z  </span></span>
-<span><span class="co">#&gt; 237    ISEEDARRAY_SPP_PBL       106         Z  </span></span>
-<span><span class="co">#&gt; 153                ISLTYP       106         XY </span></span>
-<span><span class="co">#&gt; 74                    iso       104         XYZ</span></span>
-<span><span class="co">#&gt; 133             ITIMESTEP       106         0  </span></span>
-<span><span class="co">#&gt; 152                IVGTYP       106         XY </span></span>
-<span><span class="co">#&gt; 68                    ket       104         XYZ</span></span>
-<span><span class="co">#&gt; 82                  KN2O5       104         XYZ</span></span>
-<span><span class="co">#&gt; 163                   LAI       104         XY </span></span>
-<span><span class="co">#&gt; 25            LAI_VEGMASK       104         XY </span></span>
-<span><span class="co">#&gt; 250              LAKEMASK       104         XY </span></span>
-<span><span class="co">#&gt; 249              LANDMASK       104         XY </span></span>
-<span><span class="co">#&gt; 227                    LH       104         XY </span></span>
-<span><span class="co">#&gt; 100              LH_FORCE       104         0  </span></span>
-<span><span class="co">#&gt; 103         LH_FORCE_TEND       104         0  </span></span>
-<span><span class="co">#&gt; 86               LU_INDEX       104         XY </span></span>
-<span><span class="co">#&gt; 176              MAPFAC_M       104         XY </span></span>
-<span><span class="co">#&gt; 179             MAPFAC_MX       104         XY </span></span>
-<span><span class="co">#&gt; 180             MAPFAC_MY       104         XY </span></span>
-<span><span class="co">#&gt; 177              MAPFAC_U       104         XY </span></span>
-<span><span class="co">#&gt; 181             MAPFAC_UX       104         XY </span></span>
-<span><span class="co">#&gt; 182             MAPFAC_UY       104         XY </span></span>
-<span><span class="co">#&gt; 178              MAPFAC_V       104         XY </span></span>
-<span><span class="co">#&gt; 183             MAPFAC_VX       104         XY </span></span>
-<span><span class="co">#&gt; 185             MAPFAC_VY       104         XY </span></span>
-<span><span class="co">#&gt; 199             MAX_MSTFX       104         0  </span></span>
-<span><span class="co">#&gt; 200             MAX_MSTFY       104         0  </span></span>
-<span><span class="co">#&gt; 172                 MAXMF       104         XY </span></span>
-<span><span class="co">#&gt; 15          MEAN_FCT_AGEF       104         XY </span></span>
-<span><span class="co">#&gt; 17          MEAN_FCT_AGGR       104         XY </span></span>
-<span><span class="co">#&gt; 16          MEAN_FCT_AGSV       104         XY </span></span>
-<span><span class="co">#&gt; 14          MEAN_FCT_AGTF       104         XY </span></span>
-<span><span class="co">#&gt; 184             MF_VX_INV       104         XY </span></span>
-<span><span class="co">#&gt; 70                   mgly       104         XYZ</span></span>
-<span><span class="co">#&gt; 105                    MU       104         XY </span></span>
-<span><span class="co">#&gt; 106                   MUB       104         XY </span></span>
-<span><span class="co">#&gt; 51                   n2o5       104         XYZ</span></span>
-<span><span class="co">#&gt; 5                 NC_DIAG       104         XYZ</span></span>
-<span><span class="co">#&gt; 107              NEST_POS       104         XY </span></span>
-<span><span class="co">#&gt; 50                    nh3       104         XYZ</span></span>
-<span><span class="co">#&gt; 39                     no       104         XYZ</span></span>
-<span><span class="co">#&gt; 38                    no2       104         XYZ</span></span>
-<span><span class="co">#&gt; 52                    no3       104         XYZ</span></span>
-<span><span class="co">#&gt; 220               NOAHRES       104         XY </span></span>
-<span><span class="co">#&gt; 171              NUPDRAFT       106         XY </span></span>
-<span><span class="co">#&gt; 40                     o3       104         XYZ</span></span>
-<span><span class="co">#&gt; 59                    ol2       104         XYZ</span></span>
-<span><span class="co">#&gt; 61                    oli       104         XYZ</span></span>
-<span><span class="co">#&gt; 211                   OLR       104         XY </span></span>
-<span><span class="co">#&gt; 60                    olt       104         XYZ</span></span>
-<span><span class="co">#&gt; 72                   onit       104         XYZ</span></span>
-<span><span class="co">#&gt; 45                    op1       104         XYZ</span></span>
-<span><span class="co">#&gt; 46                    op2       104         XYZ</span></span>
-<span><span class="co">#&gt; 48                   ora1       104         XYZ</span></span>
-<span><span class="co">#&gt; 49                   ora2       104         XYZ</span></span>
-<span><span class="co">#&gt; 108                     P       104         XYZ</span></span>
-<span><span class="co">#&gt; 119                 P_HYD       104         XYZ</span></span>
-<span><span class="co">#&gt; 198               P_STRAT       104         0  </span></span>
-<span><span class="co">#&gt; 192                 P_TOP       104         0  </span></span>
-<span><span class="co">#&gt; 194                   P00       104         0  </span></span>
-<span><span class="co">#&gt; 47                    paa       104         XYZ</span></span>
-<span><span class="co">#&gt; 53                    pan       104         XYZ</span></span>
-<span><span class="co">#&gt; 109                    PB       104         XYZ</span></span>
-<span><span class="co">#&gt; 224                  PBLH       104         XY </span></span>
-<span><span class="co">#&gt; 248                    PC       104         XY </span></span>
-<span><span class="co">#&gt; 247                   PCB       104         XY </span></span>
-<span><span class="co">#&gt; 95                     PH       104         XYZ</span></span>
-<span><span class="co">#&gt; 96                    PHB       104         XYZ</span></span>
-<span><span class="co">#&gt; 31               PHOTR201       104         XYZ</span></span>
-<span><span class="co">#&gt; 32               PHOTR202       104         XYZ</span></span>
-<span><span class="co">#&gt; 33               PHOTR203       104         XYZ</span></span>
-<span><span class="co">#&gt; 30               PHOTR204       104         XYZ</span></span>
-<span><span class="co">#&gt; 28                   PM10       104         XYZ</span></span>
-<span><span class="co">#&gt; 27              PM2_5_DRY       104         XYZ</span></span>
-<span><span class="co">#&gt; 123                  PSFC       104         XY </span></span>
-<span><span class="co">#&gt; 79                     PV       104         XYZ</span></span>
-<span><span class="co">#&gt; 120                    Q2       104         XY </span></span>
-<span><span class="co">#&gt; 136                QCLOUD       104         XYZ</span></span>
-<span><span class="co">#&gt; 226                   QFX       104         XY </span></span>
-<span><span class="co">#&gt; 140                QGRAUP       104         XYZ</span></span>
-<span><span class="co">#&gt; 138                  QICE       104         XYZ</span></span>
-<span><span class="co">#&gt; 164                   QKE       104         XYZ</span></span>
-<span><span class="co">#&gt; 141                QNDROP       104         XYZ</span></span>
-<span><span class="co">#&gt; 137                 QRAIN       104         XYZ</span></span>
-<span><span class="co">#&gt; 139                 QSNOW       104         XYZ</span></span>
-<span><span class="co">#&gt; 135                QVAPOR       104         XYZ</span></span>
-<span><span class="co">#&gt; 201                 RAINC       104         XY </span></span>
-<span><span class="co">#&gt; 203                RAINNC       104         XY </span></span>
-<span><span class="co">#&gt; 7                RAINPROD       104         XYZ</span></span>
-<span><span class="co">#&gt; 202                RAINSH       104         XY </span></span>
-<span><span class="co">#&gt; 113                   RDN       104         Z  </span></span>
-<span><span class="co">#&gt; 112                  RDNW       104         Z  </span></span>
-<span><span class="co">#&gt; 126                   RDX       104         0  </span></span>
-<span><span class="co">#&gt; 127                   RDY       104         0  </span></span>
-<span><span class="co">#&gt; 128                  RESM       104         0  </span></span>
-<span><span class="co">#&gt; 10              ROUGH_COR       104         XY </span></span>
-<span><span class="co">#&gt; 35                    SAC       104         XYZ</span></span>
-<span><span class="co">#&gt; 232   SAVE_TOPO_FROM_REAL       106         0  </span></span>
-<span><span class="co">#&gt; 148                SEAICE       104         XY </span></span>
-<span><span class="co">#&gt; 150                SFROFF       104         XY </span></span>
-<span><span class="co">#&gt; 147                  SH2O       104         XYZ</span></span>
-<span><span class="co">#&gt; 142                SHDMAX       104         XY </span></span>
-<span><span class="co">#&gt; 143                SHDMIN       104         XY </span></span>
-<span><span class="co">#&gt; 188              SINALPHA       104         XY </span></span>
-<span><span class="co">#&gt; 146                 SMOIS       104         XYZ</span></span>
-<span><span class="co">#&gt; 11              SMOIS_COR       104         XY </span></span>
-<span><span class="co">#&gt; 144                SNOALB       104         XY </span></span>
-<span><span class="co">#&gt; 158                  SNOW       104         XY </span></span>
-<span><span class="co">#&gt; 230                 SNOWC       104         XY </span></span>
-<span><span class="co">#&gt; 159                 SNOWH       104         XY </span></span>
-<span><span class="co">#&gt; 204                SNOWNC       104         XY </span></span>
-<span><span class="co">#&gt; 34                    SNU       104         XYZ</span></span>
-<span><span class="co">#&gt; 36                    so2       104         XYZ</span></span>
-<span><span class="co">#&gt; 231                    SR       104         XY </span></span>
-<span><span class="co">#&gt; 251                   SST       104         XY </span></span>
-<span><span class="co">#&gt; 252             SST_INPUT       104         XY </span></span>
-<span><span class="co">#&gt; 161                 SSTSK       104         XY </span></span>
-<span><span class="co">#&gt; 37                   sulf       104         XYZ</span></span>
-<span><span class="co">#&gt; 208                SWDOWN       104         XY </span></span>
-<span><span class="co">#&gt; 210                SWNORM       104         XY </span></span>
-<span><span class="co">#&gt; 97                      T       104         XYZ</span></span>
-<span><span class="co">#&gt; 193                   T00       104         0  </span></span>
-<span><span class="co">#&gt; 121                    T2       104         XY </span></span>
-<span><span class="co">#&gt; 122                   TH2       104         XY </span></span>
-<span><span class="co">#&gt; 118  THIS_IS_AN_IDEAL_RUN       106         0  </span></span>
-<span><span class="co">#&gt; 98                    THM       104         XYZ</span></span>
-<span><span class="co">#&gt; 196                  TISO       104         0  </span></span>
-<span><span class="co">#&gt; 174               TKE_PBL       104         XYZ</span></span>
-<span><span class="co">#&gt; 195                   TLP       104         0  </span></span>
-<span><span class="co">#&gt; 197             TLP_STRAT       104         0  </span></span>
-<span><span class="co">#&gt; 221                   TMN       104         XY </span></span>
-<span><span class="co">#&gt; 62                    tol       104         XYZ</span></span>
-<span><span class="co">#&gt; 65                   tpan       104         XYZ</span></span>
-<span><span class="co">#&gt; 191                   TSK       104         XY </span></span>
-<span><span class="co">#&gt; 101             TSK_FORCE       104         0  </span></span>
-<span><span class="co">#&gt; 104        TSK_FORCE_TEND       104         0  </span></span>
-<span><span class="co">#&gt; 145                  TSLB       104         XYZ</span></span>
-<span><span class="co">#&gt; 92                      U       104         XYZ</span></span>
-<span><span class="co">#&gt; 124                   U10       104         XY </span></span>
-<span><span class="co">#&gt; 151                UDROFF       104         XY </span></span>
-<span><span class="co">#&gt; 223                   UST       104         XY </span></span>
-<span><span class="co">#&gt; 9                   UST_T       104         XY </span></span>
-<span><span class="co">#&gt; 93                      V       104         XYZ</span></span>
-<span><span class="co">#&gt; 125                   V10       104         XY </span></span>
-<span><span class="co">#&gt; 173                   VAR       104         XY </span></span>
-<span><span class="co">#&gt; 91                VAR_SSO       104         XY </span></span>
-<span><span class="co">#&gt; 154                VEGFRA       104         XY </span></span>
-<span><span class="co">#&gt; 94                      W       104         XYZ</span></span>
-<span><span class="co">#&gt; 149                 XICEM       104         XY </span></span>
-<span><span class="co">#&gt; 222                 XLAND       104         XY </span></span>
-<span><span class="co">#&gt; 84                   XLAT       104         XY </span></span>
-<span><span class="co">#&gt; 212                XLAT_U       104         XY </span></span>
-<span><span class="co">#&gt; 214                XLAT_V       104         XY </span></span>
-<span><span class="co">#&gt; 85                  XLONG       104         XY </span></span>
-<span><span class="co">#&gt; 213               XLONG_U       104         XY </span></span>
-<span><span class="co">#&gt; 215               XLONG_V       104         XY </span></span>
-<span><span class="co">#&gt; 134                 XTIME       104         0  </span></span>
-<span><span class="co">#&gt; 63                    xyl       104         XYZ</span></span>
-<span><span class="co">#&gt; 83                 YCLNO2       104         XYZ</span></span>
-<span><span class="co">#&gt; 129               ZETATOP       104         0  </span></span>
-<span><span class="co">#&gt; 87                    ZNU       104         Z  </span></span>
-<span><span class="co">#&gt; 88                    ZNW       104         Z  </span></span>
-<span><span class="co">#&gt; 89                     ZS       104         Z  </span></span>
-<span><span class="co">#&gt;                                                                          description</span></span>
-<span><span class="co">#&gt; 156                                                     ACCUMULATED GROUND HEAT FLUX</span></span>
-<span><span class="co">#&gt; 228                                      ACCUMULATED UPWARD HEAT FLUX AT THE SURFACE</span></span>
-<span><span class="co">#&gt; 229                               ACCUMULATED UPWARD LATENT HEAT FLUX AT THE SURFACE</span></span>
-<span><span class="co">#&gt; 64                                                                 ACO3 mixing ratio</span></span>
-<span><span class="co">#&gt; 157                                                          ACCUMULATED MELTED SNOW</span></span>
-<span><span class="co">#&gt; 218                                                                BACKGROUND ALBEDO</span></span>
-<span><span class="co">#&gt; 216                                                                           ALBEDO</span></span>
-<span><span class="co">#&gt; 43                                                                  ALD mixing ratio</span></span>
-<span><span class="co">#&gt; 1                                                              Aerosol Optical Depth</span></span>
-<span><span class="co">#&gt; 2                                                          Aerosol Optical Depth, 2d</span></span>
-<span><span class="co">#&gt; 3                                                         Aerosol Optical Depth, top</span></span>
-<span><span class="co">#&gt; 241                                       full levels, c1f = d bf / d eta, using znu</span></span>
-<span><span class="co">#&gt; 239                                       half levels, c1h = d bf / d eta, using znw</span></span>
-<span><span class="co">#&gt; 242                                               full levels, c2f = (1-c1f)*(p0-pt)</span></span>
-<span><span class="co">#&gt; 240                                               half levels, c2h = (1-c1h)*(p0-pt)</span></span>
-<span><span class="co">#&gt; 245                                                            full levels, c3f = bf</span></span>
-<span><span class="co">#&gt; 243                                                            half levels, c3h = bh</span></span>
-<span><span class="co">#&gt; 246                                full levels, c4f = (eta-bf)*(p0-pt)+pt, using znw</span></span>
-<span><span class="co">#&gt; 244                                half levels, c4h = (eta-bh)*(p0-pt)+pt, using znu</span></span>
-<span><span class="co">#&gt; 160                                                                     CANOPY WATER</span></span>
-<span><span class="co">#&gt; 130                                                 2nd order extrapolation constant</span></span>
-<span><span class="co">#&gt; 131                                                 2nd order extrapolation constant</span></span>
-<span><span class="co">#&gt; 132                                                 2nd order extrapolation constant</span></span>
-<span><span class="co">#&gt; 116                                                           extrapolation constant</span></span>
-<span><span class="co">#&gt; 117                                                           extrapolation constant</span></span>
-<span><span class="co">#&gt; 76                                                                  CH4 mixing ratio</span></span>
-<span><span class="co">#&gt; 217                                   COMPUTATIONAL GRID LATITUDE, SOUTH IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 207                                                                   CLOUD FRACTION</span></span>
-<span><span class="co">#&gt; 6                                                                     CLOUD FRACTION</span></span>
-<span><span class="co">#&gt; 81                                                                     n2o5 velocity</span></span>
-<span><span class="co">#&gt; 58                                                                   CO mixing ratio</span></span>
-<span><span class="co">#&gt; 75                                                                  CO2 mixing ratio</span></span>
-<span><span class="co">#&gt; 189                                                     Local cosine of map rotation</span></span>
-<span><span class="co">#&gt; 162                                                        COS of SOLAR ZENITH ANGLE</span></span>
-<span><span class="co">#&gt; 73                                                                  CSL mixing ratio</span></span>
-<span><span class="co">#&gt; 71                                                                  DCB mixing ratio</span></span>
-<span><span class="co">#&gt; 29                                                        dms oceanic concentrations</span></span>
-<span><span class="co">#&gt; 115                                         d(eta) values between half (mass) levels</span></span>
-<span><span class="co">#&gt; 114                                            d(eta) values between full (w) levels</span></span>
-<span><span class="co">#&gt; 22                                                           dry deposition velocity</span></span>
-<span><span class="co">#&gt; 12                                                      dust dry deposition velocity</span></span>
-<span><span class="co">#&gt; 26                                                            O3 deposition velocity</span></span>
-<span><span class="co">#&gt; 90                                                        THICKNESSES OF SOIL LAYERS</span></span>
-<span><span class="co">#&gt; 187                                                    Coriolis cosine latitude term</span></span>
-<span><span class="co">#&gt; 24                                                                 Actual biog emiss</span></span>
-<span><span class="co">#&gt; 23                                                                 Actual biog emiss</span></span>
-<span><span class="co">#&gt; 13                                                             biomass burning emiss</span></span>
-<span><span class="co">#&gt; 165                                     EDMF relative updraft  area - moist updrafts</span></span>
-<span><span class="co">#&gt; 169                                          EDMF entrainment  - mean moist updrafts</span></span>
-<span><span class="co">#&gt; 170                                                    EDMF qc - mean moist updrafts</span></span>
-<span><span class="co">#&gt; 168                                                   EDMF qt  - mean moist updrafts</span></span>
-<span><span class="co">#&gt; 167                                               EDMF thetaL  - mean moist updrafts</span></span>
-<span><span class="co">#&gt; 166                                    EDMF vertical velocity  - mean moist updrafts</span></span>
-<span><span class="co">#&gt; 175                                                            Length scale from PBL</span></span>
-<span><span class="co">#&gt; 219                                                               SURFACE EMISSIVITY</span></span>
-<span><span class="co">#&gt; 57                                                                  ETH mixing ratio</span></span>
-<span><span class="co">#&gt; 8                                                              RAIN EVAPORATION RATE</span></span>
-<span><span class="co">#&gt; 186                                                      Coriolis sine latitude term</span></span>
-<span><span class="co">#&gt; 19                                            mean firesize for extratropical forest</span></span>
-<span><span class="co">#&gt; 21                                                       mean firesize for grassland</span></span>
-<span><span class="co">#&gt; 20                                                         mean firesize for savanna</span></span>
-<span><span class="co">#&gt; 18                                                 mean firesize for tropical forest</span></span>
-<span><span class="co">#&gt; 110                                             upper weight for vertical stretching</span></span>
-<span><span class="co">#&gt; 111                                             lower weight for vertical stretching</span></span>
-<span><span class="co">#&gt; 80                                                            n2o5 uptake by aerosol</span></span>
-<span><span class="co">#&gt; 209                                        DOWNWARD LONG WAVE FLUX AT GROUND SURFACE</span></span>
-<span><span class="co">#&gt; 69                                                                  GLY mixing ratio</span></span>
-<span><span class="co">#&gt; 205                                             ACCUMULATED TOTAL GRID SCALE GRAUPEL</span></span>
-<span><span class="co">#&gt; 155                                                                 GROUND HEAT FLUX</span></span>
-<span><span class="co">#&gt; 42                                                                 H2O2 mixing ratio</span></span>
-<span><span class="co">#&gt; 206                                                ACCUMULATED TOTAL GRID SCALE HAIL</span></span>
-<span><span class="co">#&gt; 54                                                                  HC3 mixing ratio</span></span>
-<span><span class="co">#&gt; 55                                                                  HC5 mixing ratio</span></span>
-<span><span class="co">#&gt; 56                                                                  HC8 mixing ratio</span></span>
-<span><span class="co">#&gt; 44                                                                 HCHO mixing ratio</span></span>
-<span><span class="co">#&gt; 225                                                  UPWARD HEAT FLUX AT THE SURFACE</span></span>
-<span><span class="co">#&gt; 99                                              SCM ideal surface sensible heat flux</span></span>
-<span><span class="co">#&gt; 102                                    SCM ideal surface sensible heat flux tendency</span></span>
-<span><span class="co">#&gt; 190                                                                   Terrain Height</span></span>
-<span><span class="co">#&gt; 41                                                                 HNO3 mixing ratio</span></span>
-<span><span class="co">#&gt; 67                                                                 HNO4 mixing ratio</span></span>
-<span><span class="co">#&gt; 77                                                                   HO mixing ratio</span></span>
-<span><span class="co">#&gt; 78                                                                  HO2 mixing ratio</span></span>
-<span><span class="co">#&gt; 66                                                                 HONO mixing ratio</span></span>
-<span><span class="co">#&gt; 4                                                          Some chem thing, ICN_DIAG</span></span>
-<span><span class="co">#&gt; 235                                        Array to hold seed for restart, RAND_PERT</span></span>
-<span><span class="co">#&gt; 234                                            Array to hold seed for restart, SKEBS</span></span>
-<span><span class="co">#&gt; 233                                             Array to hold seed for restart, SPPT</span></span>
-<span><span class="co">#&gt; 236                                       Array to hold seed for restart, RAND_PERT2</span></span>
-<span><span class="co">#&gt; 238                                       Array to hold seed for restart, RAND_PERT4</span></span>
-<span><span class="co">#&gt; 237                                       Array to hold seed for restart, RAND_PERT3</span></span>
-<span><span class="co">#&gt; 153                                                           DOMINANT SOIL CATEGORY</span></span>
-<span><span class="co">#&gt; 74                                                                  ISO mixing ratio</span></span>
-<span><span class="co">#&gt; 133                                                                                 </span></span>
-<span><span class="co">#&gt; 152                                                     DOMINANT VEGETATION CATEGORY</span></span>
-<span><span class="co">#&gt; 68                                                                  KET mixing ratio</span></span>
-<span><span class="co">#&gt; 82                                                            n2o5 het reaction rate</span></span>
-<span><span class="co">#&gt; 163                                                                  LEAF AREA INDEX</span></span>
-<span><span class="co">#&gt; 25          MODIS LAI vegetation mask for this date; 0=no dust produced (vegetation)</span></span>
-<span><span class="co">#&gt; 250                                              LAKE MASK (1 FOR LAND, 0 FOR WATER)</span></span>
-<span><span class="co">#&gt; 249                                              LAND MASK (1 FOR LAND, 0 FOR WATER)</span></span>
-<span><span class="co">#&gt; 227                                                  LATENT HEAT FLUX AT THE SURFACE</span></span>
-<span><span class="co">#&gt; 100                                               SCM ideal surface latent heat flux</span></span>
-<span><span class="co">#&gt; 103                                      SCM ideal surface latent heat flux tendency</span></span>
-<span><span class="co">#&gt; 86                                                                 LAND USE CATEGORY</span></span>
-<span><span class="co">#&gt; 176                                                    Map scale factor on mass grid</span></span>
-<span><span class="co">#&gt; 179                                       Map scale factor on mass grid, x direction</span></span>
-<span><span class="co">#&gt; 180                                       Map scale factor on mass grid, y direction</span></span>
-<span><span class="co">#&gt; 177                                                       Map scale factor on u-grid</span></span>
-<span><span class="co">#&gt; 181                                          Map scale factor on u-grid, x direction</span></span>
-<span><span class="co">#&gt; 182                                          Map scale factor on u-grid, y direction</span></span>
-<span><span class="co">#&gt; 178                                                       Map scale factor on v-grid</span></span>
-<span><span class="co">#&gt; 183                                          Map scale factor on v-grid, x direction</span></span>
-<span><span class="co">#&gt; 185                                          Map scale factor on v-grid, y direction</span></span>
-<span><span class="co">#&gt; 199                                                         Max map factor in domain</span></span>
-<span><span class="co">#&gt; 200                                                         Max map factor in domain</span></span>
-<span><span class="co">#&gt; 172                                     Maximum mass-flux (neg: all dry, pos: moist)</span></span>
-<span><span class="co">#&gt; 15                                            mean fraction of extra tropical forest</span></span>
-<span><span class="co">#&gt; 17                                                        mean fraction of grassland</span></span>
-<span><span class="co">#&gt; 16                                                          mean fraction of savanna</span></span>
-<span><span class="co">#&gt; 14                                                  mean fraction of tropical forest</span></span>
-<span><span class="co">#&gt; 184                                  Inverse map scale factor on v-grid, x direction</span></span>
-<span><span class="co">#&gt; 70                                                                 MGLY mixing ratio</span></span>
-<span><span class="co">#&gt; 105                                              perturbation dry air mass in column</span></span>
-<span><span class="co">#&gt; 106                                                base state dry air mass in column</span></span>
-<span><span class="co">#&gt; 51                                                                 N2O5 mixing ratio</span></span>
-<span><span class="co">#&gt; 5                                                           Some chem thing, NC_DIAG</span></span>
-<span><span class="co">#&gt; 107                                                                                -</span></span>
-<span><span class="co">#&gt; 50                                                                  NH3 mixing ratio</span></span>
-<span><span class="co">#&gt; 39                                                                   NO mixing ratio</span></span>
-<span><span class="co">#&gt; 38                                                                  NO2 mixing ratio</span></span>
-<span><span class="co">#&gt; 52                                                                  NO3 mixing ratio</span></span>
-<span><span class="co">#&gt; 220                                       RESIDUAL OF THE NOAH SURFACE ENERGY BUDGET</span></span>
-<span><span class="co">#&gt; 171                                                 Number of updrafts per grid cell</span></span>
-<span><span class="co">#&gt; 40                                                                   O3 mixing ratio</span></span>
-<span><span class="co">#&gt; 59                                                                  OL2 mixing ratio</span></span>
-<span><span class="co">#&gt; 61                                                                  OLI mixing ratio</span></span>
-<span><span class="co">#&gt; 211                                                           TOA OUTGOING LONG WAVE</span></span>
-<span><span class="co">#&gt; 60                                                                  OLT mixing ratio</span></span>
-<span><span class="co">#&gt; 72                                                                 ONIT mixing ratio</span></span>
-<span><span class="co">#&gt; 45                                                                  OP1 mixing ratio</span></span>
-<span><span class="co">#&gt; 46                                                                  OP2 mixing ratio</span></span>
-<span><span class="co">#&gt; 48                                                                 ORA1 mixing ratio</span></span>
-<span><span class="co">#&gt; 49                                                                 ORA2 mixing ratio</span></span>
-<span><span class="co">#&gt; 108                                                            perturbation pressure</span></span>
-<span><span class="co">#&gt; 119                                                             hydrostatic pressure</span></span>
-<span><span class="co">#&gt; 198                                    BASE STATE PRESSURE AT BOTTOM OF STRATOSPHERE</span></span>
-<span><span class="co">#&gt; 192                                                        PRESSURE TOP OF THE MODEL</span></span>
-<span><span class="co">#&gt; 194                                                               BASE STATE PRESURE</span></span>
-<span><span class="co">#&gt; 47                                                                  PAA mixing ratio</span></span>
-<span><span class="co">#&gt; 53                                                                  PAN mixing ratio</span></span>
-<span><span class="co">#&gt; 109                                                              BASE STATE PRESSURE</span></span>
-<span><span class="co">#&gt; 224                                                                       PBL HEIGHT</span></span>
-<span><span class="co">#&gt; 248                                              perturbation dry air mass in column</span></span>
-<span><span class="co">#&gt; 247                                                base state dry air mass in column</span></span>
-<span><span class="co">#&gt; 95                                                         perturbation geopotential</span></span>
-<span><span class="co">#&gt; 96                                                           base-state geopotential</span></span>
-<span><span class="co">#&gt; 31                                                               cl2 photolysis rate</span></span>
-<span><span class="co">#&gt; 32                                                              hocl photolysis rate</span></span>
-<span><span class="co">#&gt; 33                                                              fmcl photolysis rate</span></span>
-<span><span class="co">#&gt; 30                                                             CLNO2 Photolysis Rate</span></span>
-<span><span class="co">#&gt; 28                                                                     pm10 dry mass</span></span>
-<span><span class="co">#&gt; 27                                                            pm2.5 aerosol dry mass</span></span>
-<span><span class="co">#&gt; 123                                                                     SFC PRESSURE</span></span>
-<span><span class="co">#&gt; 79                                                               Potential Vorticity</span></span>
-<span><span class="co">#&gt; 120                                                                        QV at 2 M</span></span>
-<span><span class="co">#&gt; 136                                                         Cloud water mixing ratio</span></span>
-<span><span class="co">#&gt; 226                                              UPWARD MOISTURE FLUX AT THE SURFACE</span></span>
-<span><span class="co">#&gt; 140                                                             Graupel mixing ratio</span></span>
-<span><span class="co">#&gt; 138                                                                 Ice mixing ratio</span></span>
-<span><span class="co">#&gt; 164                                                              twice TKE from MYNN</span></span>
-<span><span class="co">#&gt; 141                                                      Droplet number mixing ratio</span></span>
-<span><span class="co">#&gt; 137                                                          Rain water mixing ratio</span></span>
-<span><span class="co">#&gt; 139                                                                Snow mixing ratio</span></span>
-<span><span class="co">#&gt; 135                                                         Water vapor mixing ratio</span></span>
-<span><span class="co">#&gt; 201                                          ACCUMULATED TOTAL CUMULUS PRECIPITATION</span></span>
-<span><span class="co">#&gt; 203                                       ACCUMULATED TOTAL GRID SCALE PRECIPITATION</span></span>
-<span><span class="co">#&gt; 7                                                         TOTAL RAIN PRODUCTION RATE</span></span>
-<span><span class="co">#&gt; 202                                        ACCUMULATED SHALLOW CUMULUS PRECIPITATION</span></span>
-<span><span class="co">#&gt; 113                                 inverse d(eta) values between half (mass) levels</span></span>
-<span><span class="co">#&gt; 112                                    inverse d(eta) values between full (w) levels</span></span>
-<span><span class="co">#&gt; 126                                                            INVERSE X GRID LENGTH</span></span>
-<span><span class="co">#&gt; 127                                                            INVERSE Y GRID LENGTH</span></span>
-<span><span class="co">#&gt; 128                                             TIME WEIGHT CONSTANT FOR SMALL STEPS</span></span>
-<span><span class="co">#&gt; 10                                                     roughness elements correction</span></span>
-<span><span class="co">#&gt; 35                                                            2nd moment Aitken mode</span></span>
-<span><span class="co">#&gt; 232                                 1=original topo from real/0=topo modified by WRF</span></span>
-<span><span class="co">#&gt; 148                                                                     SEA ICE FLAG</span></span>
-<span><span class="co">#&gt; 150                                                                   SURFACE RUNOFF</span></span>
-<span><span class="co">#&gt; 147                                                                SOIL LIQUID WATER</span></span>
-<span><span class="co">#&gt; 142                                                          ANNUAL MAX VEG FRACTION</span></span>
-<span><span class="co">#&gt; 143                                                          ANNUAL MIN VEG FRACTION</span></span>
-<span><span class="co">#&gt; 188                                                       Local sine of map rotation</span></span>
-<span><span class="co">#&gt; 146                                                                    SOIL MOISTURE</span></span>
-<span><span class="co">#&gt; 11                                                          soil moisture correction</span></span>
-<span><span class="co">#&gt; 144                                               ANNUAL MAX SNOW ALBEDO IN FRACTION</span></span>
-<span><span class="co">#&gt; 158                                                            SNOW WATER EQUIVALENT</span></span>
-<span><span class="co">#&gt; 230                                 FLAG INDICATING SNOW COVERAGE (1 FOR SNOW COVER)</span></span>
-<span><span class="co">#&gt; 159                                                              PHYSICAL SNOW DEPTH</span></span>
-<span><span class="co">#&gt; 204                                        ACCUMULATED TOTAL GRID SCALE SNOW AND ICE</span></span>
-<span><span class="co">#&gt; 34                                                            2nd moment Aitken mode</span></span>
-<span><span class="co">#&gt; 36                                                                  SO2 mixing ratio</span></span>
-<span><span class="co">#&gt; 231                                                 fraction of frozen precipitation</span></span>
-<span><span class="co">#&gt; 251                                                          SEA SURFACE TEMPERATURE</span></span>
-<span><span class="co">#&gt; 252                                    SEA SURFACE TEMPERATURE FROM WRFLOWINPUT FILE</span></span>
-<span><span class="co">#&gt; 161                                                     SKIN SEA SURFACE TEMPERATURE</span></span>
-<span><span class="co">#&gt; 37                                                                 SULF mixing ratio</span></span>
-<span><span class="co">#&gt; 208                                       DOWNWARD SHORT WAVE FLUX AT GROUND SURFACE</span></span>
-<span><span class="co">#&gt; 210                       NORMAL SHORT WAVE FLUX AT GROUND SURFACE (SLOPE-DEPENDENT)</span></span>
-<span><span class="co">#&gt; 97                                       perturbation potential temperature theta-t0</span></span>
-<span><span class="co">#&gt; 193                                                           BASE STATE TEMPERATURE</span></span>
-<span><span class="co">#&gt; 121                                                                      TEMP at 2 M</span></span>
-<span><span class="co">#&gt; 122                                                                  POT TEMP at 2 M</span></span>
-<span><span class="co">#&gt; 118                                        T/F flag: this is an ARW ideal simulation</span></span>
-<span><span class="co">#&gt; 98  either 1) pert moist pot temp=(1+Rv/Rd Qv)*(theta)-T0, or 2) pert dry pot temp=t</span></span>
-<span><span class="co">#&gt; 196                                             TEMP AT WHICH THE BASE T TURNS CONST</span></span>
-<span><span class="co">#&gt; 174                                                                     TKE from PBL</span></span>
-<span><span class="co">#&gt; 195                                                            BASE STATE LAPSE RATE</span></span>
-<span><span class="co">#&gt; 197                               BASE STATE LAPSE RATE (DT/D(LN(P)) IN STRATOSPHERE</span></span>
-<span><span class="co">#&gt; 221                                               SOIL TEMPERATURE AT LOWER BOUNDARY</span></span>
-<span><span class="co">#&gt; 62                                                                  TOL mixing ratio</span></span>
-<span><span class="co">#&gt; 65                                                                 TPAN mixing ratio</span></span>
-<span><span class="co">#&gt; 191                                                         SURFACE SKIN TEMPERATURE</span></span>
-<span><span class="co">#&gt; 101                                               SCM ideal surface skin temperature</span></span>
-<span><span class="co">#&gt; 104                                      SCM ideal surface skin temperature tendency</span></span>
-<span><span class="co">#&gt; 145                                                                 SOIL TEMPERATURE</span></span>
-<span><span class="co">#&gt; 92                                                                  x-wind component</span></span>
-<span><span class="co">#&gt; 124                                                                        U at 10 M</span></span>
-<span><span class="co">#&gt; 151                                                               UNDERGROUND RUNOFF</span></span>
-<span><span class="co">#&gt; 223                                                          U* IN SIMILARITY THEORY</span></span>
-<span><span class="co">#&gt; 9                                                        Threshold Friction Velocity</span></span>
-<span><span class="co">#&gt; 93                                                                  y-wind component</span></span>
-<span><span class="co">#&gt; 125                                                                        V at 10 M</span></span>
-<span><span class="co">#&gt; 173                                                              OROGRAPHIC VARIANCE</span></span>
-<span><span class="co">#&gt; 91                                               variance of subgrid-scale orography</span></span>
-<span><span class="co">#&gt; 154                                                              VEGETATION FRACTION</span></span>
-<span><span class="co">#&gt; 94                                                                  z-wind component</span></span>
-<span><span class="co">#&gt; 149                                                     SEA ICE FLAG (PREVIOUS STEP)</span></span>
-<span><span class="co">#&gt; 222                                              LAND MASK (1 FOR LAND, 2 FOR WATER)</span></span>
-<span><span class="co">#&gt; 84                                                       LATITUDE, SOUTH IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 212                                                      LATITUDE, SOUTH IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 214                                                      LATITUDE, SOUTH IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 85                                                       LONGITUDE, WEST IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 213                                                      LONGITUDE, WEST IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 215                                                      LONGITUDE, WEST IS NEGATIVE</span></span>
-<span><span class="co">#&gt; 134                                                minutes since 2014-10-03 00:00:00</span></span>
-<span><span class="co">#&gt; 63                                                                  XYL mixing ratio</span></span>
-<span><span class="co">#&gt; 83                                                         clno2 yield from n2o5 het</span></span>
-<span><span class="co">#&gt; 129                                                                ZETA AT MODEL TOP</span></span>
-<span><span class="co">#&gt; 87                                                  eta values on half (mass) levels</span></span>
-<span><span class="co">#&gt; 88                                                     eta values on full (w) levels</span></span>
-<span><span class="co">#&gt; 89                                                  DEPTHS OF CENTERS OF SOIL LAYERS</span></span>
-<span><span class="co">#&gt;                                 units stagger          coordinates</span></span>
-<span><span class="co">#&gt; 156                             J m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 228                             J m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 229                             J m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 64                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 157                            kg m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 218                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 216                                 -             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 43                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 1                                                 XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 2                                                 XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 3                                                 XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 241                     Dimensionless       Z                  104</span></span>
-<span><span class="co">#&gt; 239                     Dimensionless                          104</span></span>
-<span><span class="co">#&gt; 242                                Pa       Z                  104</span></span>
-<span><span class="co">#&gt; 240                                Pa                          104</span></span>
-<span><span class="co">#&gt; 245                     Dimensionless       Z                  104</span></span>
-<span><span class="co">#&gt; 243                     Dimensionless                          104</span></span>
-<span><span class="co">#&gt; 246                                Pa       Z                  104</span></span>
-<span><span class="co">#&gt; 244                                Pa                          104</span></span>
-<span><span class="co">#&gt; 160                            kg m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 130                                                            104</span></span>
-<span><span class="co">#&gt; 131                                                            104</span></span>
-<span><span class="co">#&gt; 132                                                            104</span></span>
-<span><span class="co">#&gt; 116                                                            104</span></span>
-<span><span class="co">#&gt; 117                                                            104</span></span>
-<span><span class="co">#&gt; 76                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 217                      degree_north             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 207                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 6                                   -             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 81                                m/s             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 58                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 75                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 189                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 162                     dimensionless             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 73                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 71                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 29                               nM/L             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 115                                                            104</span></span>
-<span><span class="co">#&gt; 114                                                            104</span></span>
-<span><span class="co">#&gt; 22                               cm/s       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 12                                m/s             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 26                               cm/s             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 90                                  m       Z                  104</span></span>
-<span><span class="co">#&gt; 187                               s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 24                    mol km^-2 hr^-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 23                    mol km^-2 hr^-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 13                            ug/m2/s             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 165                                 -             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 169                               m-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 170                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 168                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 167                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 166                             m s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 175                                 m       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 219                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 57                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 8                                 s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 186                               s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 19                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 21                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 20                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 18                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 110                                                            104</span></span>
-<span><span class="co">#&gt; 111                                                            104</span></span>
-<span><span class="co">#&gt; 80                    numerical value             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 209                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 69                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 205                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 155                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 42                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 206                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 54                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 55                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 56                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 44                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 225                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 99                              W m-2                          104</span></span>
-<span><span class="co">#&gt; 102                         W m-2 s-1                          104</span></span>
-<span><span class="co">#&gt; 190                                 m             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 41                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 67                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 77                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 78                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 66                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 4                                                 XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 235                                         Z                  106</span></span>
-<span><span class="co">#&gt; 234                                         Z                  106</span></span>
-<span><span class="co">#&gt; 233                                         Z                  106</span></span>
-<span><span class="co">#&gt; 236                                         Z                  106</span></span>
-<span><span class="co">#&gt; 238                                         Z                  106</span></span>
-<span><span class="co">#&gt; 237                                         Z                  106</span></span>
-<span><span class="co">#&gt; 153                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 74                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 133                                                            106</span></span>
-<span><span class="co">#&gt; 152                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 68                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 82                                s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 163                           m-2/m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 25                               none             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 250                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 249                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 227                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 100                             W m-2                          104</span></span>
-<span><span class="co">#&gt; 103                         W m-2 s-1                          104</span></span>
-<span><span class="co">#&gt; 86                                                XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 176                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 179                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 180                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 177                                         X XLONG_U XLAT_U XTIME</span></span>
-<span><span class="co">#&gt; 181                                         X XLONG_U XLAT_U XTIME</span></span>
-<span><span class="co">#&gt; 182                                         X XLONG_U XLAT_U XTIME</span></span>
-<span><span class="co">#&gt; 178                                         Y XLONG_V XLAT_V XTIME</span></span>
-<span><span class="co">#&gt; 183                                         Y XLONG_V XLAT_V XTIME</span></span>
-<span><span class="co">#&gt; 185                                         Y XLONG_V XLAT_V XTIME</span></span>
-<span><span class="co">#&gt; 199                                                            104</span></span>
-<span><span class="co">#&gt; 200                                                            104</span></span>
-<span><span class="co">#&gt; 172                        m/s * area             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 15                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 17                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 16                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 14                                  ?             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 184                                         Y XLONG_V XLAT_V XTIME</span></span>
-<span><span class="co">#&gt; 70                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 105                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 106                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 51                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 5                                                 XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 107                                 -             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 50                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 39                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 38                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 52                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 220                           W m{-2}             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 171                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 40                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 59                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 61                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 211                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 60                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 72                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 45                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 46                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 48                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 49                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 108                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 119                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 198                                Pa                          104</span></span>
-<span><span class="co">#&gt; 192                                Pa                          104</span></span>
-<span><span class="co">#&gt; 194                                Pa                          104</span></span>
-<span><span class="co">#&gt; 47                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 53                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 109                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 224                                 m             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 248                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 247                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 95                             m2 s-2       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 96                             m2 s-2       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 31                            min{-1}             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 32                            min{-1}             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 33                            min{-1}             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 30                            min{-1}             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 28                            ug m^-3             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 27                            ug m^-3             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 123                                Pa             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 79                                pvu             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 120                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 136                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 226                        kg m-2 s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 140                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 138                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 164                            m2 s-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 141                              kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 137                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 139                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 135                           kg kg-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 201                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 203                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 7                                 s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 202                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 113                                                            104</span></span>
-<span><span class="co">#&gt; 112                                                            104</span></span>
-<span><span class="co">#&gt; 126                                                            104</span></span>
-<span><span class="co">#&gt; 127                                                            104</span></span>
-<span><span class="co">#&gt; 128                                                            104</span></span>
-<span><span class="co">#&gt; 10                                                XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 35                             m2 m-3             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 232                              flag                          106</span></span>
-<span><span class="co">#&gt; 148                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 150                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 147                            m3 m-3       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 142                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 143                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 188                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 146                            m3 m-3       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 11                                                XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 144                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 158                            kg m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 230                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 159                                 m             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 204                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 34                             m2 m-3             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 36                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 231                                 -             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 251                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 252                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 161                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 37                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 208                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 210                             W m-2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 97                                  K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 193                                 K                          104</span></span>
-<span><span class="co">#&gt; 121                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 122                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 118                                 -                          106</span></span>
-<span><span class="co">#&gt; 98                                  K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 196                                 K                          104</span></span>
-<span><span class="co">#&gt; 174                            m2 s-2       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 195                                                            104</span></span>
-<span><span class="co">#&gt; 197                                 K                          104</span></span>
-<span><span class="co">#&gt; 221                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 62                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 65                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 191                                 K             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 101                             W m-2                          104</span></span>
-<span><span class="co">#&gt; 104                         W m-2 s-1                          104</span></span>
-<span><span class="co">#&gt; 145                                 K       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 92                              m s-1       X XLONG_U XLAT_U XTIME</span></span>
-<span><span class="co">#&gt; 124                             m s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 151                                mm             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 223                             m s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 9                               m s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 93                              m s-1       Y XLONG_V XLAT_V XTIME</span></span>
-<span><span class="co">#&gt; 125                             m s-1             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 173                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 91                                 m2             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 154                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 94                              m s-1       Z     XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 149                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 222                                               XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 84                       degree_north                   XLONG XLAT</span></span>
-<span><span class="co">#&gt; 212                      degree_north       X       XLONG_U XLAT_U</span></span>
-<span><span class="co">#&gt; 214                      degree_north       Y       XLONG_V XLAT_V</span></span>
-<span><span class="co">#&gt; 85                        degree_east                   XLONG XLAT</span></span>
-<span><span class="co">#&gt; 213                       degree_east       X       XLONG_U XLAT_U</span></span>
-<span><span class="co">#&gt; 215                       degree_east       Y       XLONG_V XLAT_V</span></span>
-<span><span class="co">#&gt; 134 minutes since 2014-10-03 00:00:00                          104</span></span>
-<span><span class="co">#&gt; 63                               ppmv             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 83                    numerical value             XLONG XLAT XTIME</span></span>
-<span><span class="co">#&gt; 129                                                            104</span></span>
-<span><span class="co">#&gt; 87                                                             104</span></span>
-<span><span class="co">#&gt; 88                                          Z                  104</span></span>
-<span><span class="co">#&gt; 89                                  m       Z                  104</span></span></code></pre></div>
+<span><span class="co">#&gt;    vars FieldType MemoryOrder                 description        units stagger</span></span>
+<span><span class="co">#&gt; 1    T2       104         XY                  TEMP at 2 M            K        </span></span>
+<span><span class="co">#&gt; 2  XLAT       104         XY  LATITUDE, SOUTH IS NEGATIVE degree_north        </span></span>
+<span><span class="co">#&gt; 3 XLONG       104         XY  LONGITUDE, WEST IS NEGATIVE  degree_east        </span></span>
+<span><span class="co">#&gt;        coordinates</span></span>
+<span><span class="co">#&gt; 1 XLONG XLAT XTIME</span></span>
+<span><span class="co">#&gt; 2       XLONG XLAT</span></span>
+<span><span class="co">#&gt; 3       XLONG XLAT</span></span></code></pre></div>
 <p>Now we can select some variables</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">vars</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span><span class="va">dt</span><span class="op">$</span><span class="va">MemoryOrder</span> <span class="op">==</span> <span class="st">"XYZ"</span>, <span class="op">]</span><span class="op">$</span><span class="va">vars</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "aco3"        "ald"         "AOD_OUT"     "ch4"         "CLDFRA"     </span></span>
-<span><span class="co">#&gt;  [6] "CLDFRA2"     "CN2O5"       "co"          "co2"         "csl"        </span></span>
-<span><span class="co">#&gt; [11] "dcb"         "DRY_DEP_LEN" "dvel_o3"     "ebu_oc"      "EDMF_A"     </span></span>
-<span><span class="co">#&gt; [16] "EDMF_ENT"    "EDMF_QC"     "EDMF_QT"     "EDMF_THL"    "EDMF_W"     </span></span>
-<span><span class="co">#&gt; [21] "EL_PBL"      "eth"         "EVAPPROD"    "GAMN2O5"     "gly"        </span></span>
-<span><span class="co">#&gt; [26] "h2o2"        "hc3"         "hc5"         "hc8"         "hcho"       </span></span>
-<span><span class="co">#&gt; [31] "hno3"        "hno4"        "ho"          "ho2"         "hono"       </span></span>
-<span><span class="co">#&gt; [36] "ICN_DIAG"    "iso"         "ket"         "KN2O5"       "mgly"       </span></span>
-<span><span class="co">#&gt; [41] "n2o5"        "NC_DIAG"     "nh3"         "no"          "no2"        </span></span>
-<span><span class="co">#&gt; [46] "no3"         "o3"          "ol2"         "oli"         "olt"        </span></span>
-<span><span class="co">#&gt; [51] "onit"        "op1"         "op2"         "ora1"        "ora2"       </span></span>
-<span><span class="co">#&gt; [56] "P"           "P_HYD"       "paa"         "pan"         "PB"         </span></span>
-<span><span class="co">#&gt; [61] "PH"          "PHB"         "PHOTR201"    "PHOTR202"    "PHOTR203"   </span></span>
-<span><span class="co">#&gt; [66] "PHOTR204"    "PM10"        "PM2_5_DRY"   "PV"          "QCLOUD"     </span></span>
-<span><span class="co">#&gt; [71] "QGRAUP"      "QICE"        "QKE"         "QNDROP"      "QRAIN"      </span></span>
-<span><span class="co">#&gt; [76] "QSNOW"       "QVAPOR"      "RAINPROD"    "SAC"         "SH2O"       </span></span>
-<span><span class="co">#&gt; [81] "SMOIS"       "SNU"         "so2"         "sulf"        "T"          </span></span>
-<span><span class="co">#&gt; [86] "THM"         "TKE_PBL"     "tol"         "tpan"        "TSLB"       </span></span>
-<span><span class="co">#&gt; [91] "U"           "V"           "W"           "xyl"         "YCLNO2"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">vars</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">$</span><span class="va">vars</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "T2"    "XLAT"  "XLONG"</span></span></code></pre></div>
 <p>Now get some statistics</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">wrf_summary</span>(wrfo, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"co"</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;    Min.    1st Qu. Median       Mean 3rd Qu.       Max.      sum</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; co 0.07 0.07999999   0.08 0.07868254    0.08 0.08000001 22380.78</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/wrf_summary.html">wrf_summary</a></span><span class="op">(</span><span class="va">wrfo</span>, vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T2"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span>
+<span><span class="co">#&gt;        Min.  1st Qu.   Median     Mean  3rd Qu.   Max.     sum</span></span>
+<span><span class="co">#&gt; T2 263.2122 272.8542 274.6107 274.5677 276.3937 284.13 5581411</span></span></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -956,16 +169,16 @@ data.</li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

@@ -8,7 +8,7 @@
 A matrix of spatial distribution
 }
 \source{
-\url{https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
+\url{https://www.ngdc.noaa.gov/eog/dmsp/downloadV4composites.html}
 }
 \usage{
 data(Lights)

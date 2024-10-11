@@ -4,7 +4,7 @@ author: "Sergio Ibarra-Espinosa"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{plot WRF: Elevation}
+  %\VignetteIndexEntry{plot WRF: Temperature}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -37,13 +37,13 @@ library(sf)
 Based on [NCL](https://www.ncl.ucar.edu/Applications/Scripts/wrf_gsn_1.ncl):
 
 ```{r}
-wrfo <- "/media/sergio/ext5/WRF4/WRF/test/em_real/wrfout_d01_2014-10-03_00:00:00"
+wrfo <- "/home/sergio/R/x86_64-pc-linux-gnu-library/4.3/helios/extras/wrfout_d01_2020-01-01_01%3A00%3A00_sub.nc"
 ```
 
-Reading HGT from wrfout
+Reading T2 from wrfout
 ```{r}
-HGT <- wrf_get(wrfo,  "HGT", as_raster = T)
-HGT <- HGT[[1]] # by default one variable with each time, so we select one
+T2 <- wrf_get(wrfo,  "T2", as_raster = T)
+T2 <- T2[[1]] # by default one variable with each time, so we select one
 ```
 
 Adding coastlines and cropping for our study area
@@ -51,8 +51,8 @@ Adding coastlines and cropping for our study area
 library(rnaturalearth)
 cl <- ne_countries(scale = "small", returnclass = "sf")
 cl <- st_transform(cl, 31983)
-HGT <- st_transform(st_as_stars(HGT), 31983)
-cl <- st_cast(st_crop(cl, HGT), "LINESTRING")
+T2 <- st_transform(st_as_stars(T2), 31983)
+cl <- st_cast(st_crop(cl, T2), "LINESTRING")
 ```
 
 Find colour palette for elevation
@@ -68,7 +68,9 @@ find_cpt("elevation")
 ```   
 
 ```{r, fig.width=6,fig.height=5}
-cols <- classInt::classIntervals(HGT$HGT, n = 100, style = "pretty")
-plot(HGT, axes = T, main = "HGT using stars", col = cpt("grass_elevation", n = length(cols$brks) - 1), breaks = cols$brks, reset = F)
+cols <- classInt::classIntervals(T2[[names(T2)]], 
+                                 n = 100, 
+                                 style = "pretty")
+plot(T2, axes = T, main = "HGT using stars", col = cpt("grass_elevation", n = length(cols$brks) - 1), breaks = cols$brks, reset = F)
 plot(cl$geometry, add= T, col = "black")
 ```
