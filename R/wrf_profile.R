@@ -59,6 +59,20 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
   times   <- wrf_get(file,"Times")
   profile <- vector(mode = "numeric",length = length(times))
 
+  values  <- c(as.matrix(x))
+
+  if(adjust < 0){
+    cat(paste0('delaying the profile by ',-adjust,' hour\n'))
+    values <- c( values[(length(values)+adjust+1):length(values)] ,
+                  values[1:(length(values)+adjust)] )
+    x[] = values
+  }
+  if(adjust > 0){
+    cat(paste0('advancing the profile by ',adjust,' hour\n'))
+    values <- c( values[(adjust+1):length(values)] , values[1:adjust] )
+    x[] = values
+  }
+
   for(i in 1:length(profile)){
     data     <- times[i]
     data     <- unlist(strsplit(data,"_"))
@@ -72,18 +86,6 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
       cat(paste0("\nWeekday: ",dia," - Activity intensity: ",profile[i],"\n")) #
     }
   }
-  if(adjust == 0)
-    return(profile)
-  else{                             # nocov start
-    if(adjust < 0){
-      cat(paste0('delaying the profile by ',-adjust,' hour\n'))
-      profile <- c( profile[(length(profile)+adjust+1):length(profile)] ,
-                    profile[1:(length(profile)+adjust)] )
-    }
-    if(adjust > 0){
-      cat(paste0('advancing the profile by ',adjust,' hour\n'))
-      profile <- c( profile[(adjust+1):length(profile)] , profile[1:adjust] )
-    }
-    return(profile)                 # nocov end
-  }
+
+  return(profile)
 }
