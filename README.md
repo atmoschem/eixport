@@ -18,7 +18,7 @@ checks](https://cranchecks.info/badges/worst/eixport)](https://cran.r-project.or
 [![Github
 Stars](https://img.shields.io/github/stars/atmoschem/eixport.svg?style=social&label=Github)](https://github.com/atmoschem/eixport)
 
-## Exporting emissions to atmospheric models, eixport: 0.6.2
+## Exporting emissions to atmospheric models using eixport
 
 Emissions are not just masses released into the atmosphere; they have far-reaching impacts on air quality, human health, ecosystems, and even economic activityes. Understanding and modeling these effects is crucial, and various models, such as [R-Line](https://www.cmascenter.org/r-line/) and [WRF-Chem](https://ruc.noaa.gov/wrf/wrf-chem/), rely on emissions data as key inputs. This R package streamlines the process by providing functions to read the emissions from VEIN and other sources and export them in a structure compatible with different modeling frameworks.
 
