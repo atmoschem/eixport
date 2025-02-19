@@ -12,9 +12,9 @@ wrf_plot(
   barra = T,
   lbarra = 0.2,
   col = cptcity::cpt(n = 20, rev = T),
-  map = NULL,
+  extra = NULL,
+  map,
   skip = FALSE,
-  no_title = FALSE,
   verbose = TRUE,
   ...
 )
@@ -34,11 +34,11 @@ wrf_plot(
 
 \item{col}{color vector}
 
-\item{map}{function call to plot map lines, points and annotation (experimental)}
+\item{extra}{function call to plot map lines, points and annotation}
+
+\item{map}{(optional) file with lat-lon variables and grid information}
 
 \item{skip}{logical, skip plot of constant valuess}
-
-\item{no_title}{no title plot}
 
 \item{verbose}{if TRUE print some information}
 
@@ -52,6 +52,8 @@ If the file contains levels (kemit>1), and one frame (auxinput5_interval_m = 1)
 time with control the level which will be ploted
 
 In case of an error related to plot.new() margins lbarra must be adjusted
+
+This function provide a fast visualization, the projection is assumed to be lat-long, use wrf_raster and raster::plot to deal with different projections.
 }
 \examples{
 {
