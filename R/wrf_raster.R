@@ -142,13 +142,13 @@ wrf_raster <- function(file = file.choose(),
   dx <- ncdf4::ncatt_get(coordNC, varid=0, attname="DX")$value
   dy <- ncdf4::ncatt_get(coordNC, varid=0, attname="DY")$value
   if ( dx != dy ) {
-    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy))  # nocov
+    stop(paste0('Error: Asymmetric grid cells not supported. DX=', dx, ', DY=', dy)) # nocov
   }
 
-  pontos     <- sf::st_multipoint(x = as.matrix(cbind(x, y)), dim = "XY")           # nocov
+  pontos     <- sf::st_point(x = cbind(x[1], y[1]), dim = "XY")                     # nocov
   coords     <- sf::st_sfc(x = pontos, crs = "+proj=longlat +datum=WGS84 +no_defs") # nocov
   transform  <- sf::st_transform(x = coords, crs = geogrd.proj)                     # nocov
-  projcoords <- sf::st_coordinates(transform)[,1:2]                                 # nocov
+  projcoords <- sf::st_coordinates(transform)                                       # nocov
 
   # coordinates here refere to the cell center,
   # We need to calculate the boundaries for the raster file
