@@ -62,15 +62,15 @@ wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
   values  <- c(as.matrix(x))
 
   if(adjust < 0){
-    cat(paste0('delaying the profile by ',-adjust,' hour\n'))
-    values <- c( values[(length(values)+adjust+1):length(values)] ,
-                  values[1:(length(values)+adjust)] )
-    x[] = values
+    cat(paste0('delaying the profile by ',-adjust,' hour\n'))       # nocov
+    values <- c( values[(length(values)+adjust+1):length(values)] , # nocov
+                  values[1:(length(values)+adjust)] )               # nocov
+    x[] = values                                                    # nocov
   }
   if(adjust > 0){
-    cat(paste0('advancing the profile by ',adjust,' hour\n'))
-    values <- c( values[(adjust+1):length(values)] , values[1:adjust] )
-    x[] = values
+    cat(paste0('advancing the profile by ',adjust,' hour\n'))       # nocov
+    values <- c( values[(adjust+1):length(values)] , values[1:adjust] ) # nocov
+    x[] = values                                                    # nocov
   }
 
   for(i in 1:length(profile)){

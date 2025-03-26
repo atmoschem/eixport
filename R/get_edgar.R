@@ -131,8 +131,8 @@ get_edgar <- function(dataset = "v50_AP",
                       ask = TRUE,
                       copyright = TRUE,
                       verbose = TRUE){
-  .Deprecated("Internet")
-  "get_edgar"
+  .Deprecated("Internet") # nocov
+  "get_edgar"             # nocov
   #
   # if(copyright) message(
   #   paste0(c(

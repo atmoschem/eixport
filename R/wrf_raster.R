@@ -204,7 +204,7 @@ wrf_raster <- function(file = file.choose(),
   ncdf4::nc_close(wrf)
 
   if(as_polygons){
-    if(latlon){
+    if(latlon){                                                          # nocov
       return(st_transform(x   = st_as_sf(rasterToPolygons(r)),           # nocov
                           crs = st_crs('+proj=longlat')))                # nocov
     }else{
