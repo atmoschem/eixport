@@ -217,7 +217,7 @@ chem_edgar <- function(path,
   # radm ####
   if (chem == "radm") {
     E_ISO <- bp$voc10 / dte[dte$GEIA_id == "voc10", ]$g_mol # emis_opt$eradm[1]
-    E_SO2 <- bp$so2 / (64 + 16 * 2) # emis_opt$eradm[2]
+    E_SO2 <- bp$so2 / (64) # emis_opt$eradm[2]
     E_NO <- bp$nox * 0.9 / (14 + 16) # emis_opt$eradm[3]
     E_CO <- bp$co / (12 + 18) # emis_opt$eradm[4]
     E_ETH <- bp$voc7 / dte[dte$GEIA_id == "voc7", ]$g_mol # emis_opt$eradm[5]
@@ -255,7 +255,7 @@ chem_edgar <- function(path,
     # radmsorg ####
   } else if (chem == "radmsorg") {
     E_ISO <- bp$voc10 / dte[dte$GEIA_id == "voc10", ]$g_mol # emis_opt$eradmsorg[1]
-    E_SO2 <- bp$so2 / (64 + 16 * 2) # emis_opt$eradmsorg[2]
+    E_SO2 <- bp$so2 / (64) # emis_opt$eradmsorg[2]
     E_NO <- bp$nox * 0.9 / (14 + 16) # emis_opt$eradmsorg[3]
     E_NO2 <- bp$nox * 0.1 / (14 + 16 * 1) # emis_opt$eradmsorg[4]
     E_CO <- bp$co / (12 + 18) # emis_opt$eradmsorg[5]
@@ -322,7 +322,7 @@ chem_edgar <- function(path,
   } else if (chem == "cbmz_mosaic") {
     E_ISO <- bp$voc10 / dte[dte$GEIA_id == "voc10", ]$g_mol # emis_opt$ecbmz_mosaic[1]
 
-    E_SO2 <- bp$so2 / (64 + 16 * 2) # emis_opt$ecbmz_mosaic[2]
+    E_SO2 <- bp$so2 / (64) # emis_opt$ecbmz_mosaic[2]
 
     E_NO <- bp$nox * 0.9 / (14 + 16) # emis_opt$ecbmz_mosaic[3]
 
@@ -414,7 +414,7 @@ chem_edgar <- function(path,
   } else if (chem == "cptec") {
     E_ISO <- bp$voc10 / dte[dte$GEIA_id == "voc10", ]$g_mol # emis_opt$ecptec[1]
 
-    E_SO2 <- bp$so2 / (64 + 16 * 2) # emis_opt$ecptec[2]
+    E_SO2 <- bp$so2 / (64) # emis_opt$ecptec[2]
 
     E_NO <- bp$nox * 0.9 / (14 + 16) # emis_opt$ecptec[3]
 
@@ -492,7 +492,7 @@ chem_edgar <- function(path,
 
     E_TERP <- bp$voc10 / dte[dte$GEIA_id == "voc11", ]$g_mol # emis_opt$ecb05_opt1[4]
 
-    E_SO2 <- bp$so2 / (64 + 16 * 2) # emis_opt$ecb05_opt1[5]
+    E_SO2 <- bp$so2 / (64) # emis_opt$ecb05_opt1[5]
 
     E_ORA2 <- bp$voc24 / dte[dte$GEIA_id == "voc24", ]$g_mol # emis_opt$ecb05_opt1[6]
 
@@ -776,7 +776,7 @@ chem_edgar <- function(path,
       bp$voc11 / dte[dte$GEIA_id == "voc11", ]$g_mol
 
     # emis_opt$ecbmz_mosaic[2]
-    E_SO2 <- bp$so2 / (64 + 16 * 2)
+    E_SO2 <- bp$so2 / (64)
 
     # emis_opt$ecbmz_mosaic[3]
     E_NO <- bp$nox * 0.9 / (14 + 16)
