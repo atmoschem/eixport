@@ -118,11 +118,11 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
   if(is.na(variables)[1]){
     cat("writing the emission file without emission variables\n")   # nocov
   }else{
-    if(n_aero > length(variables)){
+    if(n_aero > length(variables)){                                 # nocov start
       warning("n_aero is greater than the number of variables!
   all the units are set to aerossol!
-  (check the units of the variables)")                              # nocov
-      n_aero = length(variables)
+  (check the units of the variables)")
+      n_aero = length(variables)                                    # nocov ends
     }
   }
 
