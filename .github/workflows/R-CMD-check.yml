@@ -16,6 +16,9 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
         r: [release, devel]
 
+    env:
+      RSPM: https://packagemanager.posit.co/cran/latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,9 +30,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            any::rcmdcheck
+          extra-packages: any::rcmdcheck
           needs: check
+          cache: true
 
       - name: Check
         run: rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning")
