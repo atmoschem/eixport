@@ -110,16 +110,19 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
     if(variables %in% names(emis_opt)){
       variables <- emis_opt[[variables]]
     }else{
-      cat(paste(variables,"is not valid, use one of:\n"))           # nocov
-      cat(names(emis_opt))                                          # nocov
-      stop("name, numeric value or a set of variable names")        # nocov
+      cat(paste(variables,"is not a emis_opt valid, use one of:\n"))  # nocov
+      cat(names(emis_opt))                                            # nocov
+      warning("\nusing one variable with name:", variables,'\n')      # nocov
     }
   }
   if(is.na(variables)[1]){
     cat("writing the emission file without emission variables\n")   # nocov
   }else{
     if(n_aero > length(variables)){
-      stop("n_aero cannot be greater than the number of variables ") # nocov
+      warning("n_aero is greater than the number of variables!
+  all the units are set to aerossol!
+  (check the units of the variables)")                              # nocov
+      n_aero = length(variables)
     }
   }
 
@@ -289,7 +292,9 @@ wrf_create  <- function(wrfinput_dir         = getwd(),
                             vars = c(list('Times' = Times,
                                           'XLAT' = XLAT,
                                           'XLONG' = XLONG),
-                                     mget(ls(pattern = "E_"))),
+                                  #  mget(ls(pattern = "E_"))), # OLD
+                                     mget(intersect(variables, ls()))
+                                  ),
                             force_v4 = force_ncdf4)
     for(i in 1:length(g_atributos)){
       ncdf4::ncatt_put(emiss_file,
