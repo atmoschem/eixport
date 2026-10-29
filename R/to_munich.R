@@ -88,46 +88,46 @@
 #'             sep = " ",
 #'             quote = FALSE)
 #' }
-to_munich <- function (sdf, idbrin, typo, width, height, crs= 4326){
+to_munich <- function(sdf, idbrin, typo, width, height, crs = 4326) {
   sdf <- sf::st_as_sf(sdf)
   x <- sapply(sf::st_set_geometry(sdf, NULL), class)
-  if(any(x != "units")){
-   stop("All emissions must have units. Check ?units::set_units") # nocov
+  if (any(x != "units")) {
+    stop("All emissions must have units. Check ?units::set_units") # nocov
   }
   sdf$id <- NULL
   # if(length(unique(sapply(sf::st_geometry(sdf), length))) > 1){
   #   sdf <- sfx_explode(sdf)
   # }
 
-  if(missing(crs)) {
+  if (missing(crs)) {
     dft <- as.data.frame(sf::st_coordinates(sdf))
   } else {
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs))) # nocov
   }
 
   lista <- split(x = dft, f = dft$L1)
-  df <- do.call("rbind",(lapply(1:length(lista), function(i){
-    cbind(names(lista)[i], lista[[i]][1,], lista[[i]][2,])
+  df <- do.call("rbind", (lapply(1:length(lista), function(i) {
+    cbind(names(lista)[i], lista[[i]][1, ], lista[[i]][2, ])
   })))
   names(df) <- c("i", "xa", "ya", "borrar1", "xb", "yb", "borrar2")
-  if(missing(idbrin)) idbrin <- df$i
-  if(missing(typo)) typo <- rep(0, nrow(df))
-  if(missing(width)) width <- rep(0, nrow(df))
-  if(missing(height)) height <- rep(30, nrow(df))
+  if (missing(idbrin)) idbrin <- df$i
+  if (missing(typo)) typo <- rep(0, nrow(df))
+  if (missing(width)) width <- rep(0, nrow(df))
+  if (missing(height)) height <- rep(30, nrow(df))
   dfa <- data.frame(i = df$i,
-                    idbrin = idbrin,
-                    typo = typo,
-                    xa = df$xa,
-                    ya = df$ya,
-                    xb = df$xb,
-                    yb = df$yb)
+    idbrin = idbrin,
+    typo = typo,
+    xa = df$xa,
+    ya = df$ya,
+    xb = df$xb,
+    yb = df$yb)
   dfb <- sf::st_set_geometry(sdf, NULL)
   dfr <- cbind(dfa, dfb)
   dfr2 <- data.frame(i = dfa$i,
-                     length = sf::st_length(sdf),
-                     width,
-                     height)
+    length = sf::st_length(sdf),
+    width,
+    height)
   dfl <- list(Emissions = dfr,
-              Street = dfr2)
+    Street = dfr2)
   return(dfl)
 }

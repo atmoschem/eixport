@@ -46,7 +46,7 @@
 #'        total = 1521983,
 #'        profile = perfil,
 #'        name = "E_CO")
-#'}
+#' }
 #'
 #' @author Daniel Schuch
 #'

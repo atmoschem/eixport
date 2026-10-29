@@ -20,14 +20,14 @@
 wrf_summary <- function(file, vars, clean = FALSE) {
   nc <- ncdf4::nc_open(file)
 
-  if(missing(vars))   vars <- names(nc$var)
+  if (missing(vars)) vars <- names(nc$var)
 
   pb <- utils::txtProgressBar(min = 0, max = length(vars), style = 3)
 
-  df <- lapply(seq_along(vars), function(i){
+  df <- lapply(seq_along(vars), function(i) {
     utils::setTxtProgressBar(pb, i)
     v <- ncdf4::ncvar_get(nc = nc, varid = vars[i])
-    if(vars[i] == "Times") {
+    if (vars[i] == "Times") {
       v <- as.POSIXct(v, format = "%Y-%m-%d_%H:%M:%S")
       dt <- c(summary(v), sum = NA)
     } else {
@@ -41,8 +41,8 @@ wrf_summary <- function(file, vars, clean = FALSE) {
   df <- as.data.frame(data.table::rbindlist(df))
   row.names(df) <- vars
 
-  if(clean){
-    df <- df[!row.names(df) %in% c("Times","XLAT","XLONG"),] # nocov
+  if (clean) {
+    df <- df[!row.names(df) %in% c("Times", "XLAT", "XLONG"), ] # nocov
   }
   return(df)
 

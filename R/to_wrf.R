@@ -64,12 +64,12 @@
 #'      at = c(0, 6, 12, 18, 24),
 #'      labels = c("00:00","06:00","12:00","18:00","00:00"))
 #'
-#'to_wrf(Lights,
+#' to_wrf(Lights,
 #'       files[1],
 #'       total = 1521983,
 #'       profile = perfil,
 #'       name = "E_CO")
-#'}
+#' }
 to_wrf <- function(POL,
                    file = file.choose(),
                    name = NA,
@@ -78,44 +78,44 @@ to_wrf <- function(POL,
                    profile = 1,
                    weights = 1,
                    k = 1,
-                   verbose = TRUE){
+                   verbose = TRUE) {
 
-  if(is.matrix(POL)){
+  if (is.matrix(POL)) {
     kemit <- 1
-  }else{
+  } else {
     kemit <- dim(POL)[3] # nocov
   }
   wrf          <- ncdf4::nc_open(file)
-  g_atributos  <- ncdf4::ncatt_get(wrf,0)
-  if(is.matrix(POL)){
+  g_atributos  <- ncdf4::ncatt_get(wrf, 0)
+  if (is.matrix(POL)) {
     VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,
-                              g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
-                              length(profile)))
-  }else{
+      g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
+      length(profile)))
+  } else {
     VAR          <- array(0, c(g_atributos$`WEST-EAST_PATCH_END_UNSTAG`,  # nocov start
-                              g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
-                              kemit,
-                              length(profile)))                           # nocov end
+      g_atributos$`SOUTH-NORTH_PATCH_END_UNSTAG`,
+      kemit,
+      length(profile)))                           # nocov end
   }
 
   ncdf4::nc_close(wrf)
 
-  if(norm)
+  if (norm)
     POL <- POL / sum(POL) # nocov
 
-  if(!is.na(total))
+  if (!is.na(total))
     POL <- total * POL
 
-  for(i in 1:length(name)){
-    for(j in 1:length(profile)){
-      if(is.matrix(POL)){
-        VAR[,,j] = profile[j] * POL
-      }else{
-        VAR[,,,j] = profile[j] * POL # nocov
+  for (i in 1:length(name)) {
+    for (j in 1:length(profile)) {
+      if (is.matrix(POL)) {
+        VAR[, , j] = profile[j] * POL
+      } else {
+        VAR[, , , j] = profile[j] * POL # nocov
       }
     }
-    if(verbose)
-      cat(paste("writing emissions:", name[i],"weight", k * weights[i],'on file',file,'\n'))
-    wrf_put(file,name = name[i],weights[i]*VAR, k = k)
+    if (verbose)
+      cat(paste("writing emissions:", name[i], "weight", k * weights[i], "on file", file, "\n"))
+    wrf_put(file, name = name[i], weights[i] * VAR, k = k)
   }
 }

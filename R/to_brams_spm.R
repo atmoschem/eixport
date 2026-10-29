@@ -33,27 +33,27 @@
 #' df2 <- to_brams_spm(sdf = list(co = gCO, pm = gCO),
 #'                     epsg = 4326)
 #' lapply(df2, head)
-#'}
-to_brams_spm <- function(sdf, epsg = 4326){
-  if(inherits(x = sdf, what = "list")){
-    if(class(sdf[[1]])[1] == "SpatialPolygonsDataFrame"){
+#' }
+to_brams_spm <- function(sdf, epsg = 4326) {
+  if (inherits(x = sdf, what = "list")) {
+    if (class(sdf[[1]])[1] == "SpatialPolygonsDataFrame") {
       # message("SpatialPolygonsDataFrame")
       sdf <- lapply(sdf, sf::st_as_sf)     # nocov
-    } else if(class(sdf[[1]])[1] == "sf"){
+    } else if (class(sdf[[1]])[1] == "sf") {
 
     }
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], epsg)))
     dft$N <- paste0(dft[, 3], "_", dft[, 4])
-    dft <- dft[!duplicated(dft$N),]
+    dft <- dft[!duplicated(dft$N), ]
     dft <- dft[, 1:2]
     names(dft) <- c("long", "lat")
     ldf <- lapply(1:length(sdf),
-                  function(i){
-                    cbind(rowSums(sf::st_set_geometry(sdf[[i]], NULL)),
-                          dft)
-                  })
+      function(i) {
+        cbind(rowSums(sf::st_set_geometry(sdf[[i]], NULL)),
+          dft)
+      })
     nombres <- names(sdf)
-    for(i in 1:length(sdf)){
+    for (i in 1:length(sdf)) {
       names(ldf[[i]]) <- c(nombres[i], "long", "lat")
     }
     # Initially, this function return rowsums and polygon separatly
@@ -65,7 +65,7 @@ to_brams_spm <- function(sdf, epsg = 4326){
     sdf <- sf::st_as_sf(sdf)
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, epsg)))
     dft$N <- paste0(dft[, 3], "_", dft[, 4])
-    dft <- dft[!duplicated(dft$N),]
+    dft <- dft[!duplicated(dft$N), ]
     dft <- dft[, 1:2]
     names(dft) <- c("long", "lat")
     dft2 <- data.frame(e24h = rowSums(sf::st_set_geometry(sdf, NULL)))

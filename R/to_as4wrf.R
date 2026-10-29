@@ -56,8 +56,8 @@ to_as4wrf <- function(sdf,
                       dmyhm,
                       tz,
                       crs = 4326,
-                      islist){
-  if(nr <= 0){
+                      islist) {
+  if (nr <= 0) {
     stop("The argument 'nr' must be positive") # nocov
   } else if (class(sdf)[1] != "list") {
     sdf <- sf::st_as_sf(sdf)
@@ -66,7 +66,7 @@ to_as4wrf <- function(sdf,
     # }
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf, crs)))
     dft$N <- paste0(dft[, 3], "_", dft[, 4])
-    dft = dft[!duplicated(dft$N),]
+    dft = dft[!duplicated(dft$N), ]
     dft <- dft[, 1:2]
 
     dftid <- data.frame(id = 1:nrow(dft))
@@ -83,25 +83,25 @@ to_as4wrf <- function(sdf,
     names(dft) <- c("id", "long", "lat", "pollutant")
     dft <- do.call("rbind", replicate(nr, dft, simplify = FALSE))
     # tzz <- ifelse(utc!=0,(-utc)*3600, 0)
-    time_lt <- as.POSIXct(x = dmyhm, format="%d-%m-%Y %H:%M", tz=tz)
+    time_lt <- as.POSIXct(x = dmyhm, format = "%d-%m-%Y %H:%M", tz = tz)
     dft$time_lt = rep(seq.POSIXt(from = time_lt,
-                                 by = "1 hour",
-                                 length.out = ncol(sdf)*nr),
-                      each=nrow(sdf))
+      by = "1 hour",
+      length.out = ncol(sdf) * nr),
+    each = nrow(sdf))
     dft$time_utc <- dft$time_lt
     attr(dft$time_utc, "tzone") <- "Etc/UTC"
     dft$dutch <- as.numeric(
       paste0(
         strftime(dft$time_utc, timezone = tz, format = "%d"),
         strftime(dft$time_utc, timezone = tz, format = "%H")
-      ))
+    ))
   } else if (class(sdf)[1] == "list") {
     # if(class(sdf)[1] == "sf"){
     #   sdf <- lapply(sdf, methods::as, "Spatial")
     # }
     dft <- as.data.frame(sf::st_coordinates(sf::st_transform(sdf[[1]], crs)))
     dft$N <- paste0(dft[, 3], "_", dft[, 4])
-    dft = dft[!duplicated(dft$N),]
+    dft = dft[!duplicated(dft$N), ]
     dft <- dft[, 1:2]
 
     dftid <- data.frame(id = 1:nrow(sdf[[1]]))
@@ -111,7 +111,7 @@ to_as4wrf <- function(sdf,
     sdf <- lapply(sdf, sf::st_set_geometry, NULL)
 
     # remove id and convert to matrix
-    dft2 <- sapply(1:length(sdf), function(i){
+    dft2 <- sapply(1:length(sdf), function(i) {
       sdf[[i]]$id <- NULL
       unlist(sdf[[i]])
     })
@@ -127,20 +127,20 @@ to_as4wrf <- function(sdf,
     dft <- cbind(dft1, dft2)
     # replicate data.frames
     dft <- do.call("rbind", replicate(nr, dft, simplify = FALSE))
-    time_lt <- as.POSIXct(x = dmyhm, format="%d-%m-%Y %H:%M", tz=tz)
+    time_lt <- as.POSIXct(x = dmyhm, format = "%d-%m-%Y %H:%M", tz = tz)
     sdf1 <- sdf[[1]]
     sdf1$id <- NULL
     dft$time_lt <- rep(seq.POSIXt(from = time_lt,
-                                  by = "1 hour",
-                                  length.out = ncol(sdf1)*nr),
-                       each=nrow(sdf[[1]]))
+      by = "1 hour",
+      length.out = ncol(sdf1) * nr),
+    each = nrow(sdf[[1]]))
     dft$time_utc <- dft$time_lt
     attr(dft$time_utc, "tzone") <- "Etc/UTC"
     dft$dutch <- as.numeric(
       paste0(
         strftime(dft$time_utc, timezone = tz, format = "%d"),
         strftime(dft$time_utc, timezone = tz, format = "%H")
-      ))
+    ))
   }
   return(dft)
 }

@@ -35,15 +35,15 @@
 #' wrf_add(file = files[1], name = "E_CO", POL = CO)
 #' }
 
-wrf_add <- function(file = file.choose(), name = NA,POL){
-  wrfchem <- ncdf4::nc_open(file,write = T)                             # iteractive
-  if(is.na(name)){                                                      # nocov start
+wrf_add <- function(file = file.choose(), name = NA, POL) {
+  wrfchem <- ncdf4::nc_open(file, write = T)                             # iteractive
+  if (is.na(name)) {                                                      # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL0   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]                                   # nocov end
-  }else{
-    POL0   <- ncdf4::ncvar_get(wrfchem,name)
+  } else {
+    POL0   <- ncdf4::ncvar_get(wrfchem, name)
   }
-  ncdf4::ncvar_put(wrfchem,varid = name,POL0+POL)
+  ncdf4::ncvar_put(wrfchem, varid = name, POL0 + POL)
   ncdf4::nc_close(wrfchem)
 }

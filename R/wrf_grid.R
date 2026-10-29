@@ -18,17 +18,17 @@
 #'                          "/wrfinput_d02", sep="")
 #' gwrf  <- wrf_grid(wrf)
 #' plot(gwrf, axes = TRUE)
-#'}
+#' }
 wrf_grid <- function(filewrf,
-                      type = "wrfinput",
-                      matrix = FALSE,
-                      as_raster = FALSE){
+                     type = "wrfinput",
+                     matrix = FALSE,
+                     as_raster = FALSE) {
   cat(paste("using grid info from:", filewrf, "\n"))
   wrf <- ncdf4::nc_open(filewrf)
-  if(type == "wrfinput"){
+  if (type == "wrfinput") {
     lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT")
     lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG")
-  } else if(type == "geo"){                            # nocov
+  } else if (type == "geo") {                            # nocov
     lat    <- ncdf4::ncvar_get(wrf, varid = "XLAT_M")  # nocov
     lon    <- ncdf4::ncvar_get(wrf, varid = "XLONG_M") # nocov
   }
@@ -36,9 +36,9 @@ wrf_grid <- function(filewrf,
   # dx     <- ncdf4::ncatt_get(wrf, varid = 0,
   #                            attname = "DX")$value
   n.lat  <- ncdf4::ncatt_get(wrf, varid = 0,
-                             attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
+    attname = "SOUTH-NORTH_PATCH_END_UNSTAG")$value
   n.lon  <- ncdf4::ncatt_get(wrf, varid = 0,
-                             attname = "WEST-EAST_PATCH_END_UNSTAG")$value
+    attname = "WEST-EAST_PATCH_END_UNSTAG")$value
   cat(paste0("Number of lat points ", n.lat, "\n"))
   cat(paste0("Number of lon points ", n.lon, "\n"))
   ncdf4::nc_close(wrf)
@@ -46,27 +46,27 @@ wrf_grid <- function(filewrf,
   # r.lon  <- range(lat)
 
   # if(change_latlon) {
-    EM  <- matrix(0, nrow = n.lat, ncol = n.lon) # nocov
+  EM  <- matrix(0, nrow = n.lat, ncol = n.lon) # nocov
   # } else {
-    # EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
+  # EM  <- matrix(0, nrow = n.lon, ncol = n.lat)
   # }
 
-  if (matrix == T){
+  if (matrix == T) {
     return(EM)
   }
 
   # raster
   r <- raster::raster(EM,
-                      xmn = min(lon),
-                      xmx = max(lon),
-                      ymn = min(lat),
-                      ymx = max(lat),
-                      crs = "+proj=longlat +datum=WGS84")
-  if (as_raster){ # nocov start
+    xmn = min(lon),
+    xmx = max(lon),
+    ymn = min(lat),
+    ymx = max(lat),
+    crs = "+proj=longlat +datum=WGS84")
+  if (as_raster) { # nocov start
     return(r)
   }               # nocov end
 
-  #sf
+  # sf
   r <- raster::rasterToPolygons(r)
   grid <- sf::st_as_sf(r)
   names(grid)[1] <- "id"

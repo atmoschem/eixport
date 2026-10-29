@@ -10,7 +10,7 @@
 #' file = paste0(system.file("extdata", package = "eixport"),"/wrfinput_d02")
 #' wrf_meta(file)
 #' }
-wrf_meta <- function(file = file.choose()){
+wrf_meta <- function(file = file.choose()) {
   nc <- ncdf4::nc_open(file)
   na <- names(nc$var)
   na <- data.frame(vars = names(nc$var), stringsAsFactors = FALSE)
@@ -18,7 +18,7 @@ wrf_meta <- function(file = file.choose()){
 
   latts <- as.data.frame(unlist(ncdf4::ncatt_get(nc, 0)), stringsAsFactors = FALSE)
   latts <- data.frame(att = row.names(latts),
-                      vars = latts[[1]])
+    vars = latts[[1]])
 
   ti <- ncdf4::ncatt_get(nc, "Times")
 
@@ -33,6 +33,6 @@ wrf_meta <- function(file = file.choose()){
 
   a <- a[order(a$vars), ]
   df <- list(global = latts,
-             vars = a)
+    vars = a)
   return(df)
 }

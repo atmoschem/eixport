@@ -154,9 +154,9 @@ chem_edgar <- function(path,
     oc = grep("_OC_", ncs, value = TRUE)
   )
 
-  if(verbose) cat("Detecting the following files:\n")
+  if (verbose) cat("Detecting the following files:\n")
 
-  if(verbose) print(as.data.frame(cbind(lncs)))
+  if (verbose) print(as.data.frame(cbind(lncs)))
 
   la <- unique(unlist(lapply(lncs, length)))
 
@@ -590,13 +590,13 @@ chem_edgar <- function(path,
 
     # emis_opt$ecb05_opt2[2]
     E_PAR <- cb05[cb05$GEIA_id == "voc3", ]$M * bp$voc3  / cb05[cb05$GEIA_id == "voc3", ]$g_mol +
-             cb05[cb05$GEIA_id == "voc4", ]$M * bp$voc4  / cb05[cb05$GEIA_id == "voc4", ]$g_mol +
-             cb05[cb05$GEIA_id == "voc5", ]$M * bp$voc5  / cb05[cb05$GEIA_id == "voc5", ]$g_mol +
-             cb05[cb05$GEIA_id == "voc6", ]$M * bp$voc6  / cb05[cb05$GEIA_id == "voc6", ]$g_mol +
-             cb05[cb05$GEIA_id == "voc9", ]$M * bp$voc9  / cb05[cb05$GEIA_id == "voc9", ]$g_mol +
-             cb05[cb05$GEIA_id == "voc13",]$M * bp$voc13 / cb05[cb05$GEIA_id == "voc13",]$g_mol +
-             cb05[cb05$GEIA_id == "voc18",]$M * bp$voc18 / cb05[cb05$GEIA_id == "voc18",]$g_mol +
-             cb05[cb05$GEIA_id == "voc19",]$M * bp$voc19 / cb05[cb05$GEIA_id == "voc19",]$g_mol
+      cb05[cb05$GEIA_id == "voc4", ]$M * bp$voc4  / cb05[cb05$GEIA_id == "voc4", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc5", ]$M * bp$voc5  / cb05[cb05$GEIA_id == "voc5", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc6", ]$M * bp$voc6  / cb05[cb05$GEIA_id == "voc6", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc9", ]$M * bp$voc9  / cb05[cb05$GEIA_id == "voc9", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc13", ]$M * bp$voc13 / cb05[cb05$GEIA_id == "voc13", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc18", ]$M * bp$voc18 / cb05[cb05$GEIA_id == "voc18", ]$g_mol +
+      cb05[cb05$GEIA_id == "voc19", ]$M * bp$voc19 / cb05[cb05$GEIA_id == "voc19", ]$g_mol
 
     # emis_opt$ecb05_opt2[3]
     E_ALK3 <- bp$voc9 * 0
@@ -612,8 +612,8 @@ chem_edgar <- function(path,
 
     # emis_opt$ecb05_opt2[7]
     E_XYL <- bp$voc15 / cb05[cb05$GEIA_id == "voc15", ]$g_mol +
-             bp$voc16 / cb05[cb05$GEIA_id == "voc16", ]$g_mol +
-             bp$voc17 / cb05[cb05$GEIA_id == "voc17", ]$g_mol
+      bp$voc16 / cb05[cb05$GEIA_id == "voc16", ]$g_mol +
+      bp$voc17 / cb05[cb05$GEIA_id == "voc17", ]$g_mol
 
     # emis_opt$ecb05_opt2[8]
     E_BALD <- bp$voc13 * 0

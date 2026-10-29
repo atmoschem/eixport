@@ -76,31 +76,31 @@
 #'
 #' @references
 #'
-#'- **v50_AP** Crippa, M., Solazzo, E., Huang, G., Guizzardi, D., Koffi, E.,
-#'Muntean, M., Schieberle, C., Friedrich, R., Janssens-Maenhout, G.:
-#'High resolution temporal profiles in the Emissions Database for
-#'Global Atmospheric Research, Nature Scientific Data, 2020, in press.
-#'- **v432**:  Muntean, M., Guizzardi, D., Schaaf, E., Crippa, M., Solazzo, E.,
-#'Olivier, J.G.J., Vignati, E. Fossil CO2 emissions of all world countries - 2018
-#'Report, EUR 29433 EN, Publications Office  of the European Union, Luxembourg,
-#'2018, ISBN 978-92-79-97240-9, doi:10.2760/30158, JRC113738.
-#'- **v432_AP**:Crippa, M., Guizzardi, D., Muntean, M., Schaaf, E., Dentener, F.,
-#'van Aardenne, J. A., Monni, S., Doering, U., Olivier, J. G. J., Pagliari, V.,
-#'and Janssens-Maenhout, G.: Gridded emissions of air pollutants for the period
-#'1970–2012 within EDGAR v4.3.2, Earth Syst. Sci. Data, 10, 1987–2013,
-#'https://doi.org/10.5194/essd-10-1987-2018, 2018.
-#'- **v432_VOC_spec**: Huang, G., Brook, R., Crippa, M., Janssens-Maenhout, G.,
-#'Schieberle, C., Dore, C., Guizzardi, D., Muntean, M., Schaaf, E., and Friedrich, R.:
-#'Speciation of anthropogenic emissions of non-methane volatile organic compounds: a
-#'global gridded data set for 1970–2012, Atmos. Chem. Phys., 17, 7683-7701,
-#'https://doi.org/10.5194/acp-17-7683-2017, 2017.
-#'- **htap_v2_2**: Janssens-Maenhout, G., Crippa, M., Guizzardi, D.,
-#'Dentener, F., Muntean, M., Pouliot, G., Keating, T., Zhang, Q., Kurokawa, J.,
-#'Wankmüller, R., Denier van der Gon, H., Kuenen, J. J. P., Klimont, Z.,
-#'Frost, G., Darras, S., Koffi, B., and Li, M.: HTAP_v2.2: a mosaic of
-#'regional and global emission grid maps for 2008 and 2010 to study
-#'hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
-#'11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.
+#' - **v50_AP** Crippa, M., Solazzo, E., Huang, G., Guizzardi, D., Koffi, E.,
+#' Muntean, M., Schieberle, C., Friedrich, R., Janssens-Maenhout, G.:
+#' High resolution temporal profiles in the Emissions Database for
+#' Global Atmospheric Research, Nature Scientific Data, 2020, in press.
+#' - **v432**:  Muntean, M., Guizzardi, D., Schaaf, E., Crippa, M., Solazzo, E.,
+#' Olivier, J.G.J., Vignati, E. Fossil CO2 emissions of all world countries - 2018
+#' Report, EUR 29433 EN, Publications Office  of the European Union, Luxembourg,
+#' 2018, ISBN 978-92-79-97240-9, doi:10.2760/30158, JRC113738.
+#' - **v432_AP**:Crippa, M., Guizzardi, D., Muntean, M., Schaaf, E., Dentener, F.,
+#' van Aardenne, J. A., Monni, S., Doering, U., Olivier, J. G. J., Pagliari, V.,
+#' and Janssens-Maenhout, G.: Gridded emissions of air pollutants for the period
+#' 1970–2012 within EDGAR v4.3.2, Earth Syst. Sci. Data, 10, 1987–2013,
+#' https://doi.org/10.5194/essd-10-1987-2018, 2018.
+#' - **v432_VOC_spec**: Huang, G., Brook, R., Crippa, M., Janssens-Maenhout, G.,
+#' Schieberle, C., Dore, C., Guizzardi, D., Muntean, M., Schaaf, E., and Friedrich, R.:
+#' Speciation of anthropogenic emissions of non-methane volatile organic compounds: a
+#' global gridded data set for 1970–2012, Atmos. Chem. Phys., 17, 7683-7701,
+#' https://doi.org/10.5194/acp-17-7683-2017, 2017.
+#' - **htap_v2_2**: Janssens-Maenhout, G., Crippa, M., Guizzardi, D.,
+#' Dentener, F., Muntean, M., Pouliot, G., Keating, T., Zhang, Q., Kurokawa, J.,
+#' Wankmüller, R., Denier van der Gon, H., Kuenen, J. J. P., Klimont, Z.,
+#' Frost, G., Darras, S., Koffi, B., and Li, M.: HTAP_v2.2: a mosaic of
+#' regional and global emission grid maps for 2008 and 2010 to study
+#' hemispheric transport of air pollution, Atmos. Chem. Phys., 15,
+#' 11411–11432, https://doi.org/10.5194/acp-15-11411-2015, 2015.
 #'
 #' MNM is MNN for NOx v432_AP
 #'
@@ -125,12 +125,12 @@ get_edgar <- function(dataset = "v50_AP",
                       pol,
                       sector,
                       year,
-                      n = parallel::detectCores()/2,
+                      n = parallel::detectCores() / 2,
                       destpath = tempdir(),
                       type = "nc",
                       ask = TRUE,
                       copyright = TRUE,
-                      verbose = TRUE){
+                      verbose = TRUE) {
   .Deprecated("Internet") # nocov
   "get_edgar"             # nocov
   #

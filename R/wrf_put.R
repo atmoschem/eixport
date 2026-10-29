@@ -39,61 +39,61 @@
 #'         name = "E_CO",
 #'         POL = CO)
 #' }
-wrf_put <- function (file = file.choose(),
-                     name = NA,
-                     POL,
-                     k,
-                     check = FALSE,
-                     verbose = FALSE) {
-  if(check){              # nocov start
+wrf_put <- function(file = file.choose(),
+                    name = NA,
+                    POL,
+                    k,
+                    check = FALSE,
+                    verbose = FALSE) {
+  if (check) {              # nocov start
     has_NA  = FALSE
     has_neg = FALSE
     n_neg   = 0
     n_NA    = 0
-    for(i in 1:length(POL)){
-      if(is.na(POL[i])){
+    for (i in 1:length(POL)) {
+      if (is.na(POL[i])) {
         POL[i] = 0
         n_NA   = n_NA + 1
         has_NA = TRUE
       }
-      if(POL[i] < 0){
+      if (POL[i] < 0) {
         POL[i]  = 0
         n_neg   = n_neg + 1
         has_neg = TRUE
       }
     }
-    if(has_NA){
-      warning(paste0(n_NA,' NA values found!\nreplaced by zeros'))
+    if (has_NA) {
+      warning(paste0(n_NA, " NA values found!\nreplaced by zeros"))
     }
-    if(has_neg){
-      warning(paste0(n_neg,' negative values found!\nreplaced by zeros'))
+    if (has_neg) {
+      warning(paste0(n_neg, " negative values found!\nreplaced by zeros"))
     }
   }            # nocov end
-  if(class(POL[1])[1] =="POSIXlt" || class(POL[1])[1] == "POSIXt"){
-    cat('converting POSIXlt to string\n')      # nocov
-    POL <- format(POL,"%Y-%m-%d_%H:%M:%OS")    # nocov
-    if(name == 'time')                         # nocov
-      name <- 'Times'                          # nocov
+  if (class(POL[1])[1] == "POSIXlt" || class(POL[1])[1] == "POSIXt") {
+    cat("converting POSIXlt to string\n")      # nocov
+    POL <- format(POL, "%Y-%m-%d_%H:%M:%OS")    # nocov
+    if (name == "time") # nocov
+      name <- "Times"                          # nocov
   }
   if (verbose) {
     if (missing(k)) {                                                    # nocov
       cat(paste0("writing ", name, " to   ", file, "\n"))                # nocov
-    }
-    else {
-      cat(paste0("writing ", name, " to   ", file, " k = ",k, "\n"))     # nocov
+    } else {
+      cat(paste0("writing ", name, " to   ", file, " k = ", k, "\n"))     # nocov
     }
   }
   wrfchem <- ncdf4::nc_open(file, write = TRUE)
   if (missing(k)) {
     ncdf4::ncvar_put(wrfchem,
-                     varid = name,
-                     POL)
-  }
-  else {
+      varid = name,
+      POL)
+  } else {
     ncdf4::ncvar_put(wrfchem,                                   # nocov
-                     varid = name,                              # nocov
-                     unlist(lapply(seq_along(k),                # nocov
-                                   function(i) {POL*k[i]})))    # nocov
+      varid = name,                              # nocov
+      unlist(lapply(seq_along(k),                # nocov
+        function(i) {
+          POL * k[i]
+        })))    # nocov
   }
   ncdf4::nc_close(wrfchem)
 }

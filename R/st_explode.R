@@ -17,13 +17,13 @@
 #' dim(net)
 #' dim(net2)
 #' }
-st_explode <- function(net){
+st_explode <- function(net) {
   net <- sf::st_as_sf(net)
   net$id <- NULL
   netdf <- sf::st_set_geometry(net, NULL)
   namesnet <- names(netdf)
 
-  for(i in 1:length(namesnet)) {
+  for (i in 1:length(namesnet)) {
     netdf[[namesnet[i]]] <- as.numeric(as.character(netdf[[namesnet[i]]]))
   }
 
@@ -31,14 +31,14 @@ st_explode <- function(net){
   net$LKM <- sf::st_length(net)
 
   df <- eixport::sfx_explode(net)
-  for(i in 1:length(namesnet)) {
+  for (i in 1:length(namesnet)) {
     df[[namesnet[i]]] <- as.numeric(as.character(df[[namesnet[i]]]))
   }
 
   df$LKM2 <- sf::st_length(df)
   df <- as.data.frame(df)
-  df[, namesnet] <- df[, namesnet] * as.numeric(df$LKM2/df$LKM)
-  df[, namesnet] <- df[, namesnet] * snetdf/sum(df[, namesnet], na.rm = TRUE)
+  df[, namesnet] <- df[, namesnet] * as.numeric(df$LKM2 / df$LKM)
+  df[, namesnet] <- df[, namesnet] * snetdf / sum(df[, namesnet], na.rm = TRUE)
 
   cat(paste0("Sum: ", round(sum(df[, namesnet], na.rm = T), 2), "\n"))
 

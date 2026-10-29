@@ -54,71 +54,71 @@
 #'                name = "E_CO",
 #'                as_raster = TRUE)
 #'
-#'}
+#' }
 wrf_get <- function(file = file.choose(),
                     name = NA,
                     as_raster = FALSE,
-                    raster_crs = 'WRF',
+                    raster_crs = "WRF",
                     raster_lev = 1,
                     k = NA,
-                    verbose = FALSE, ...){
+                    verbose = FALSE, ...) {
 
-  if(!is.na(name)){
-    if(name == 'time'){
+  if (!is.na(name)) {
+    if (name == "time") {
       wrfchem <- ncdf4::nc_open(file)                                                     # nocov
-      if(verbose)                                                                         # nocov
-        cat(paste0('reading Times from ', file,'\n'))                                     # nocov
-      TIME   <- ncvar_get(wrfchem,'Times')                                                # nocov
-      TIME   <- as.POSIXlt(TIME, tz = "UTC", format="%Y-%m-%d_%H:%M:%OS", optional=FALSE) # nocov
-      if(verbose)                                                                         # nocov
-        cat('returning Times in POSIXct\n')                                               # nocov
+      if (verbose) # nocov
+        cat(paste0("reading Times from ", file, "\n"))                                     # nocov
+      TIME   <- ncvar_get(wrfchem, "Times")                                                # nocov
+      TIME   <- as.POSIXlt(TIME, tz = "UTC", format = "%Y-%m-%d_%H:%M:%OS", optional = FALSE) # nocov
+      if (verbose) # nocov
+        cat("returning Times in POSIXct\n")                                               # nocov
       return(TIME)                                                                        # nocov
     }
   }
-  if(verbose){
-    if(missing(k)){                                                       # nocov
-      cat(paste0('reading ',name,' from ', file,'\n'))                    # nocov
-    }else{
-      cat(paste0('reading ',name,' from ', file,' k = ',k,'\n'))          # nocov
+  if (verbose) {
+    if (missing(k)) {                                                       # nocov
+      cat(paste0("reading ", name, " from ", file, "\n"))                    # nocov
+    } else {
+      cat(paste0("reading ", name, " from ", file, " k = ", k, "\n"))          # nocov
     }
   }
 
   wrfchem <- ncdf4::nc_open(file)                                       # iteractive
-  if(is.na(name)){                                                      # nocov start
+  if (is.na(name)) {                                                      # nocov start
     name  <- menu(names(wrfchem$var), title = "Choose the variable:")
     POL   <- ncdf4::ncvar_get(wrfchem, names(wrfchem$var)[name])
     name  <- names(wrfchem$var)[name]                                   # nocov end
   }
-  if(as_raster){
-    if(raster_crs == 'latlon' |
-       raster_crs == 'lonlat' |
-       raster_crs == 'latlong'|
-       raster_crs == 'longlat'){
+  if (as_raster) {
+    if (raster_crs == "latlon" |
+      raster_crs == "lonlat" |
+      raster_crs == "latlong" |
+      raster_crs == "longlat") {
       r <- wrf_raster(file    = file,           # nocov
-                      name    = name,           # nocov
-                      latlon  = TRUE,           # nocov
-                      level   = raster_lev,     # nocov
-                      verbose = verbose,        # nocov
-                      ...)                      # nocov
-    }else{
+        name    = name,           # nocov
+        latlon  = TRUE,           # nocov
+        level   = raster_lev,     # nocov
+        verbose = verbose,        # nocov
+        ...)                      # nocov
+    } else {
       r <- wrf_raster(file    = file,
-                      name    = name,
-                      latlon  = FALSE,
-                      level   = raster_lev,
-                      verbose = verbose,
-                      ...)
-      if(raster_crs != 'WRF'){
-        r <- projectRaster(r, crs=raster_crs)
+        name    = name,
+        latlon  = FALSE,
+        level   = raster_lev,
+        verbose = verbose,
+        ...)
+      if (raster_crs != "WRF") {
+        r <- projectRaster(r, crs = raster_crs)
       }
     }
-    if(!missing(k)){
+    if (!missing(k)) {
       r <- k * r                                     # nocov
     }
     return(r)
   } else {
-    POL   <- ncvar_get(wrfchem,name)
+    POL   <- ncvar_get(wrfchem, name)
     ncdf4::nc_close(wrfchem)
-    if(!missing(k)){
+    if (!missing(k)) {
       POL <- k * POL                                 # nocov
     }
     return(POL)

@@ -53,37 +53,37 @@
 #' axis(1,
 #'      at = 0.5 + c(0, 6, 12, 18, 24),
 #'     labels = c("00:00","06:00","12:00","18:00", "00:00"))
-#'}
-wrf_profile <- function(x,file,adjust = 0 ,verbose = T){
+#' }
+wrf_profile <- function(x, file, adjust = 0, verbose = T) {
   x       <- as.data.frame(x)
-  times   <- wrf_get(file,"Times")
-  profile <- vector(mode = "numeric",length = length(times))
+  times   <- wrf_get(file, "Times")
+  profile <- vector(mode = "numeric", length = length(times))
 
   values  <- c(as.matrix(x))
 
-  if(adjust < 0){
-    cat(paste0('delaying the profile by ',-adjust,' hour\n'))       # nocov
-    values <- c( values[(length(values)+adjust+1):length(values)] , # nocov
-                  values[1:(length(values)+adjust)] )               # nocov
+  if (adjust < 0) {
+    cat(paste0("delaying the profile by ", -adjust, " hour\n"))       # nocov
+    values <- c(values[(length(values) + adjust + 1):length(values)], # nocov
+      values[1:(length(values) + adjust)])               # nocov
     x[] = values                                                    # nocov
   }
-  if(adjust > 0){
-    cat(paste0('advancing the profile by ',adjust,' hour\n'))       # nocov
-    values <- c( values[(adjust+1):length(values)] , values[1:adjust] ) # nocov
+  if (adjust > 0) {
+    cat(paste0("advancing the profile by ", adjust, " hour\n"))       # nocov
+    values <- c(values[(adjust + 1):length(values)], values[1:adjust]) # nocov
     x[] = values                                                    # nocov
   }
 
-  for(i in 1:length(profile)){
+  for (i in 1:length(profile)) {
     data     <- times[i]
-    data     <- unlist(strsplit(data,"_"))
-    hora     <- unlist(strsplit(data[2],":"))
+    data     <- unlist(strsplit(data, "_"))
+    hora     <- unlist(strsplit(data[2], ":"))
     hora     <- as.numeric(hora[1])
     s        <- as.POSIXlt(as.Date(data[1]))$wday
     dia      <- weekdays(as.Date(data[1]))
-    profile[i] <- as.numeric(x[hora+1,s+1])
-    if(verbose){
-      cat(unlist(strsplit(times[i],"_")))
-      cat(paste0("\nWeekday: ",dia," - Activity intensity: ",profile[i],"\n")) #
+    profile[i] <- as.numeric(x[hora + 1, s + 1])
+    if (verbose) {
+      cat(unlist(strsplit(times[i], "_")))
+      cat(paste0("\nWeekday: ", dia, " - Activity intensity: ", profile[i], "\n")) #
     }
   }
 
